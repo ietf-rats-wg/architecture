@@ -654,6 +654,10 @@ All other attacks involving RATS structures are not explicitly addressed by the 
 Additional security protections MAY be required of conveyance mechanisms.
 For example, additional means of authentication, confidentiality, integrity, replay, denial of service and privacy protection of RATS payloads and Principals may be needed.
 
+# IANA Considerations
+
+This document does not require any actions by IANA.
+
 # Acknowledgments
 
 Special thanks go to David Wooten, Jörg Borchert, Hannes Tschofenig, Laurence Lundblade, Diego Lopez, Jessica Fitzgerald-McKay, Frank Xia, and Nancy Cam-Winget.
