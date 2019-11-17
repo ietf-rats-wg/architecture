@@ -24,7 +24,7 @@ author:
   city: Darmstadt
   country: Germany
 - ins: D. Thaler
-  name: Dave Tahler
+  name: Dave Thaler
   org: Microsoft
   email: dthaler@microsoft.com
   street: ""
@@ -476,7 +476,12 @@ Attested Environments are measured. They provide the raw values and the informat
 
 Attesting Environments conduct the measuring. They collect the Claims, format them appropriately, and typically use key material and cryptographic functions, such as signing or cipher algorithms, to create Evidence.
 
-Attesting Environments use system components that have to be trusted. As a result, Evidence includes Claims about the Attested and the Attesting Environments. Claims about the Attested Environments are appraised using Reference Values and Claims about the Attesting Environments are appraised using Endorsements. It is not mandated that both Environments have to be separate, but it is highly encouraged. Examples of separated Environments that can be used as Attesting Environments include: Trusted Execution Environments (TEE), embedded Secure Elements (eSE), or Hardware Security Modules (HSM).
+Attesting Environments use system components that have to be trusted. As a result, Evidence includes Claims
+about the Attested and the Attesting Environments. Claims about the Attested Environments are appraised using
+Reference Values and Claims about the Attesting Environments are appraised using Endorsements. It is not mandated
+that both Environments have to be separate, but it is highly encouraged. Examples of separated Environments that
+can be used as Attesting Environments include: Trusted Execution Environments (TEE), embedded Secure Elements
+(eSE), or Hardware Security Modules (HSM).
 
 In summary, the majority of the creation of evidence can take place in an Attested Environments. Exemplary duties include the collection and formatting of Claim values, or the trigger for creating Evidence. A trusted sub-set of the creation of evidence can take place in an Attesting Environment, that provide special protection with respect to key material, identity documents, or primitive functions to create the Evidence itself.
 
