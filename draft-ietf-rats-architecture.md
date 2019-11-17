@@ -92,6 +92,10 @@ An entity (a relying party) requires a source of truth and evidence about a remo
     <this section can include content from Serialization Formats and Conceptual Messages sections from
     draft-thaler-rats-architecture, and Role Messages content from draft-birkholz-rats-architecture>
 
+# Freshness
+
+    <this section can include some high-level content from draft-birkholz-rats-reference-interaction-model>
+
 # Privacy Considerations
 
     <this section can include Privacy Considerations from draft-birkholz-rats-architecture>
