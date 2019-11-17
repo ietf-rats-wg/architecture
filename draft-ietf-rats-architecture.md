@@ -7,7 +7,7 @@ stand_alone: true
 ipr: trust200902
 area: Security
 kw: Internet-Draft
-cat: informational
+cat: info
 pi:
   toc: yes
   sortrefs: yes
@@ -149,7 +149,7 @@ Attesting Environment:
 
 Background-Check Message Flow:
 
-: An attestation workflow where the Attester provides Evidence to a Relying Party, who consults one or more Verifiers who supply Attestation Results to the Relying Party. See {{background}}.
+: An attestation workflow where the Attester provides Evidence to a Relying Party, who consults one or more Verifiers who supply Attestation Results to the Relying Party. See [background].
 
 Claim:
 
@@ -169,7 +169,7 @@ Evidence:
 
 Passport Message Flow:
 
-: An attestation workflow where the Attester provides Evidence to a Verifier who returns Attestation Results that are then forwarded to one or more Relying Parties. See {{passport}}.
+: An attestation workflow where the Attester provides Evidence to a Verifier who returns Attestation Results that are then forwarded to one or more Relying Parties. See [passport].
 
 Reference Values:
 
@@ -194,7 +194,7 @@ Verifier:
 # Reference Use Cases {#referenceusecases}
 
 This section provides an overview of a number of distinct use cases that benefit from a standardized claim format.
-In addition to outlining the user, the specific message flow is identified from among the flows detailed in {{messageflows}}.
+In addition to outlining the user, the specific message flow is identified from among the flows detailed in [messageflows].
 
 ## Device Capabilities/Firmware Attestation {#netattest}
 
@@ -223,7 +223,7 @@ Relying Party:
 
 Description:
 
-: Network operators want a trustworth report of identity and version of
+: Network operators want a trustworthiness report of identity and version of
 information of the hardware and software on the machines attached to their
 network.
 The process starts with some kind of Root of Trust that provides device
@@ -524,7 +524,7 @@ Information Model representations are realized as data structure and conveyance 
 
 # Roles {#roles}
 
-An endpoint system (a.k.a., Entity) may implement one or more attestation Roles to accommodate a variety of possible message flows. Exemplary message flows are described in {{passport}} and {{background}}. Role messages are secured by the Entity that generated it. Entities possess credentials (e.g., cryptographic keys) that authenticate, integrity protect and optionally confidentiality protect attestation messages.
+An endpoint system (a.k.a., Entity) may implement one or more attestation Roles to accommodate a variety of possible message flows. Exemplary message flows are described in [passport] and [background]. Role messages are secured by the Entity that generated it. Entities possess credentials (e.g., cryptographic keys) that authenticate, integrity protect and optionally confidentiality protect attestation messages.
 
 ## Attester {#attester}
 
@@ -631,7 +631,7 @@ Principals have the following properties:
 
 The conveyance of Evidence and the resulting Attestation Results reveal a great deal of information about the internal state of a device.
 In many cases the whole point of the Attestation process is to provided reliable evidence about the type of the device and the firmware that the device is running.
-This information is particularly interesting to many attackers: knowing that a device is running a weak version of a the firmware provides a way to aim attacks better.
+This information is particularly interesting to many attackers: knowing that a device is running a weak version of a firmware provides a way to aim attacks better.
 
 Just knowing the existence of a device is itself a disclosure.
 
