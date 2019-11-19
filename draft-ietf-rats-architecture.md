@@ -113,6 +113,10 @@ remote attestation procedures (RATS).
 
     <this section can include IANA Considerations from draft-thaler-rats-architecture>
 
+# IANA Considerations
+
+This document does not require any actions by IANA.
+
 # Acknowledgments
 
 Special thanks go to David Wooten, Jörg Borchert, Hannes Tschofenig, Laurence Lundblade, Diego Lopez,
