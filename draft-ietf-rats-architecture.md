@@ -96,6 +96,16 @@ remote attestation procedures (RATS).
     <this section can include content from Serialization Formats and Conceptual Messages sections from
     draft-thaler-rats-architecture, and Role Messages content from draft-birkholz-rats-architecture>
 
+    ## Working with Multiple Attestation Evidence Formats
+
+    Verifiers may support Evidence formats besides the preferred EAT format. To reduce unnecessary complexity in Relying Parties it is recommended that Verifier and Relying Party standardize on the EAT token format for Attestation Results.
+
+{:multiev: artwork-align="center"}
+~~~~ MULTIFORMAT
+{::include multi-evidence.txt}
+~~~~
+{:multiev #multiev_diag title="RATS Multiple Evidence Formats Flow"}
+
 # Freshness
 
     <this section can include some high-level content from draft-birkholz-rats-reference-interaction-model>
