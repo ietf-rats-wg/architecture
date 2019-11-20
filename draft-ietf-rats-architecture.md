@@ -104,17 +104,15 @@ remote attestation procedures (RATS).
 
 The conveyance of Evidence and the resulting Attestation Results
 reveal a great deal of information about the internal state of a
-device.  In many cases the whole point of the Attestation process is
-to provided reliable evidence about the type of the device and the
-firmware that the device is running.  This information is
-particularly interesting to many attackers: knowing that a device is
-running a weak version of a the firmware provides a way to aim
+device.  In many cases, the whole point of the Attestation process is
+to provide reliable information about the type of the device and the
+firmware/software that the device is running.  This information is
+particularly interesting to many attackers. For example, knowing that a device is
+running a weak version of firmware provides a way to aim
 attacks better.
 
-Just knowing the existence of a device is itself a disclosure.
-
-Conveyance protocols must detail what kinds of information is
-disclosed, and to whom it is exposed.
+Protocols that convey Evidence or Attestation Results are responsible for
+detailing what kinds of information are disclosed, and to whom they are exposed.
 
 # Security Considerations
 
