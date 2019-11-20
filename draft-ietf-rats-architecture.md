@@ -96,6 +96,12 @@ remote attestation procedures (RATS).
     <this section can include content from Serialization Formats and Conceptual Messages sections from
     draft-thaler-rats-architecture, and Role Messages content from draft-birkholz-rats-architecture>
 
+{:multievidence: artwork-align="center"}
+~~~~ MULTIEVIDENCE
+{::include multi-evidence.txt}
+~~~~
+{:multievidence #multievidence_diag title="RATS Multiple Attesters with Different Evidence Formats"}
+
 # Freshness
 
     <this section can include some high-level content from draft-birkholz-rats-reference-interaction-model>
