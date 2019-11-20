@@ -57,7 +57,11 @@ informative:
 
 --- abstract
 
-An entity (a relying party) requires a source of truth and evidence about a remote peer to assess the peer's trustworthiness. The evidence is typically a believable set of claims about its host, software or hardware platform. This document describes an architecture for such remote attestation procedures (RATS).
+In network protocol exchanges, it is often the case that
+one entity (a relying party) requires evidence about a remote peer to assess the peer's
+trustworthiness, and a way to appraise such evidence. The evidence is typically a set of claims
+about its software and hardware platform. This document describes an architecture for such
+remote attestation procedures (RATS).
 
 --- middle
 
@@ -108,6 +112,10 @@ An entity (a relying party) requires a source of truth and evidence about a remo
 # IANA Considerations
 
     <this section can include IANA Considerations from draft-thaler-rats-architecture>
+
+# IANA Considerations
+
+This document does not require any actions by IANA.
 
 # Acknowledgments
 
