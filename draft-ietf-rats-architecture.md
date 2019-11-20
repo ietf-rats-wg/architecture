@@ -121,10 +121,6 @@ detailing what kinds of information are disclosed, and to whom they are exposed.
 
 # IANA Considerations
 
-    <this section can include IANA Considerations from draft-thaler-rats-architecture>
-
-# IANA Considerations
-
 This document does not require any actions by IANA.
 
 # Acknowledgments
