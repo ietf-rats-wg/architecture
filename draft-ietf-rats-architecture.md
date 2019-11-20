@@ -102,7 +102,19 @@ remote attestation procedures (RATS).
 
 # Privacy Considerations
 
-    <this section can include Privacy Considerations from draft-birkholz-rats-architecture>
+The conveyance of Evidence and the resulting Attestation Results
+reveal a great deal of information about the internal state of a
+device.  In many cases the whole point of the Attestation process is
+to provided reliable evidence about the type of the device and the
+firmware that the device is running.  This information is
+particularly interesting to many attackers: knowing that a device is
+running a weak version of a the firmware provides a way to aim
+attacks better.
+
+Just knowing the existence of a device is itself a disclosure.
+
+Conveyance protocols must detail what kinds of information is
+disclosed, and to whom it is exposed.
 
 # Security Considerations
 
