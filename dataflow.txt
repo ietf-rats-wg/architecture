@@ -1,0 +1,20 @@
+                              ************
+                              * Endorser *
+                              ************
+                                    |
+                  Evidence          |Endorsements
+                 Appraisal----.     |
+                  Policy      |     |             Attestation
+                              |     |                Result
+                              v     v              Appraisal
+                          .---------------.          Policy
+               .--------->|   Verifier    |-------.     |
+               |          '---------------'       |     |
+               |                                  |     |
+               |Evidence               Attestation|     |
+               |                           Results|     |
+               |                                  |     |
+               |                                  v     v
+       .---------------.                     .---------------.
+       |   Attester    |                     | Relying Party |
+       '---------------'                     '---------------'
