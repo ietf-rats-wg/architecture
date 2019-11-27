@@ -130,7 +130,7 @@ whether it is mutable software, or firmware that is read-only after
 boot, or immutable hardware/ROM.
 
 It is also important that the Appraisal Policy was itself obtained
-securely.  As such, if Apprisal Policy in a Relying Party or Verifier
+securely.  As such, if Appraisal Policy in a Relying Party or Verifier
 can be configured via a network protocol, the ability to attest to
 the health of the client providing the Appraisal Policy needs to be
 considered.
