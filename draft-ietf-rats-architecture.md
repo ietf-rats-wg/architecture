@@ -95,6 +95,10 @@ remote attestation procedures (RATS).
 
     <this section can include content from Serialization Formats and Conceptual Messages sections from
     draft-thaler-rats-architecture, and Role Messages content from draft-birkholz-rats-architecture>
+    
+    Points to make: this disagram shows different options for evidence to travel to Attester to verifier, not multiple Attesters.
+    The Verifier creates one format of Attestation Token, and this is typically defined by the profile, but in some cases (EXEMPLAR) is negotiated.
+    
 
 {:multievidence: artwork-align="center"}
 ~~~~ MULTIEVIDENCE
