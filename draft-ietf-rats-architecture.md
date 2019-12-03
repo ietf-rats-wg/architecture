@@ -84,8 +84,8 @@ This document uses the following terms:
     Verifier vouches for the validity of the results.
 
 * Attester: An entity whose attributes must be evaluated in order to
-    determine whether the entity is considered trustworthy or authorized
-    to access a resource.
+    determine whether the entity is considered trustworthy, such as when
+    deciding whether the entity is authorized to perform some operation.
 
 * Endorsement: A secure statement that some entity (typically a manufacturer) vouches
     for the integrity of an Attester's signing capability.
