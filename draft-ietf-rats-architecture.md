@@ -100,7 +100,7 @@ This document uses the following terms:
     information about another entity, typically for purposes of authorization.
     Compare /relying party/ in {{?RFC4949}}.
 
-* Verifier: An entity that evaluates the validity of information about an Attester.  
+* Verifier: An entity that evaluates the validity of Evidence about an Attester.  
 
 # Reference Use Cases {#referenceusecases}
 
