@@ -100,7 +100,7 @@ remote attestation procedures (RATS).
 ~~~~ MULTIEVIDENCE
 {::include multi-evidence.txt}
 ~~~~
-{:multievidence #multievidence_diag title="RATS Multiple Attesters with Different Evidence Formats"}
+{:multievidence #multievidence_diag title="Multiple Attesters and Relying Parties with Different Formats"}
 
 # Freshness
 
