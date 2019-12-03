@@ -149,8 +149,8 @@ The scope of this document is scenarios for which a Relying Party
 trusts a Verifier that can evaluate the trustworthiness of
 information about an Attester.  Such trust might come by the Relying
 Party trusting the Verifier (or its public key) directly, or might
-come by trusting an entity (e.g., a Certificate Authority) that the
-Verifier has a certificate that chains up to.  The Relying Party
+come by trusting an entity (e.g., a Certificate Authority) that is
+in the Verifier's certificate chain.  The Relying Party
 might implicitly trust a Verifier (such as in the Verifying Relying
 Party combination).  Or, for a stronger level of security, the
 Relying Party might require that the Verifier itself provide
