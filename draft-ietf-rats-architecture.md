@@ -99,7 +99,7 @@ This document uses the following terms:
 * Verifier: An entity that evaluates the validity of Evidence about an Attester.
 
 
-[EDITORIAL NOTE]
+\[EDITORIAL NOTE\]
 
 The term Attestation and Remote Attestation are not defined in this
 document, at this time.  This document will include pointers to industry
