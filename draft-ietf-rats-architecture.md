@@ -67,14 +67,16 @@ remote attestation procedures (RATS).
 
 # Introduction
 
-# Terminology {#terminology}
+    <more text to be added here>
 
-The document defines the term "Remote Attestation" as follows: A process by
+Remote Attestation, as used in this document, is a process by
 which one entity (the "Attester") provides evidence about its identity and
 state to another remote entity (the "Relying Party"), which then assesses the
 Attester's trustworthiness for the Relying Party's own purposes.
 
-This document then uses the following terms:
+# Terminology {#terminology}
+
+This document uses the following terms:
 
 * Appraisal Policy for Evidence: A set of rules that direct how a verifier      evaluates the validity of information about an Attester.      Compare /security policy/ in \[RFC4949\].
 
@@ -97,15 +99,6 @@ This document then uses the following terms:
 * Verifier: An entity that evaluates the validity of Evidence about an Attester.
 
 * Verifier Owner: An entity, such as an administrator, that is authorized to configure Appraisal Policy for Evidence in a Verifier.
-
-\[EDITORIAL NOTE\]
-
-The term Attestation and Remote Attestation are not defined in this
-document, at this time.  This document will include pointers to industry
-uses of the terms, in an attempt to gain consensus around the term, and be
-consistent with the charter text defining this term.
-
-
 
 # Reference Use Cases {#referenceusecases}
 
