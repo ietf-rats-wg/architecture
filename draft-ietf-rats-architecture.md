@@ -345,8 +345,24 @@ detailing what kinds of information are disclosed, and to whom they are exposed.
 
 # Security Considerations
 
-    <this section can include Security Considerations from draft-birkholz-rats-architecture
-    and draft-thaler-rats-architecture>
+Any solution that conveys information used for security purposes, whether
+such information is in the form of Evidence, Attestation Results, or
+Endorsements, or Appraisal Policy, needs to support end-to-end integrity protection
+and replay attack prevention, and often also needs to support additional
+security protections.  For example, additional means of authentication,
+confidentiality, integrity, replay, denial of service and privacy
+protection are needed in many use cases.
+
+To evaluate the security provided by a particular Appraisal Policy, it
+is important to understand the strength of the Root of Trust, e.g.,
+whether it is mutable software, or firmware that is read-only after
+boot, or immutable hardware/ROM.
+
+It is also important that the Appraisal Policy was itself obtained
+securely.  As such, if Appraisal Policy in a Relying Party or Verifier
+can be configured via a network protocol, the ability to attest to
+the health of the client providing the Appraisal Policy needs to be
+considered.
 
 # IANA Considerations
 
