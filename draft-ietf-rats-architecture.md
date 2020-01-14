@@ -273,12 +273,24 @@ plans to support in the TEEP architecture {{?I-D.ietf-teep-architecture}}.
 
 # Two Types of Environments
 
-An Attester consists of at least one Attesting Environment and Attested Environment.
-In some implementations, the Attesting and Attested Environments might be combined.
-Other implementations might have multiple Attesting and Attested Environments.
+An Attester consists of at least one Attesting Environment and at least one
+Target Environment. In some implementations, the Attesting and Target Environments
+might be combined.
+Other implementations might have multiple Attesting and Target Environments.
+One example is a set of components in a boot sequence (e.g., ROM, firmware,
+OS, and application) where a Target Environment is the
+Attesting Environment for the next environment in the boot sequence.
 
-    <this section can include Two Types of Environments content from draft-birkholz-rats-architecture
-    but can we find a better name? also this could be a subsection of something else?>
+Target Environments are measured.  They provide the raw values and
+the information to be represented in claims and ultimately expressed
+as Evidence.
+
+Attesting Environments conduct the measuring.  They collect the
+claims, format them appropriately, and typically use key material and
+cryptographic functions, such as signing or cipher algorithms, to
+create Evidence. Examples of environments that can be used as
+Attesting Environments include Trusted Execution Environments (TEE),
+embedded Secure Elements (eSE), or Hardware Security Modules (HSM).
 
 # Trust Model
 
