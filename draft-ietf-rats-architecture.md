@@ -127,6 +127,88 @@ Appraisal Policy to make application-specific decisions such as authorization de
 The Attestation Result Appraisal Policy might, for example, be configured in the Relying Party 
 by an administrator.
 
+## Composite Attester {#compositeattester}
+
+A Composite Attester is an entity composed of multiple sub-entities that its
+trustworthiness has to be determined by evaluating all these sub-entities.
+Each sub-entity has at least one Attesting Environment collecting the claims 
+from at least one Target Environment, then this sub-entity generates Evidence
+about its trustworthiness. Therefore each sub-entity can be called an Attester.
+Among these Attesters, there may be only some, which can be called Lead Attesters,
+that have the communication functionality with the Verifier. Other Attesters
+don't have this ability, but they are connected to the Lead Attesters via internal
+links or network connections, and they are evaluated via the Lead Attesters' help.
+
+For example, the carrier-grade router is a composite device consisting of a chassis and multiple slots.
+The trustworthiness of the router depends on all its slots' trustworthiness.
+Each slot has the attesting environment like the TPM or TEE collecting the
+claims of its boot process and generates Evidence to prove its trustworthiness.
+Among these slots, only the main control slot can communicate with the Verifier
+while other slots cannot. But other slots can communicate with the main control
+slot by the links between them inside the router. So the main control slot collects
+the Evidence of other slots, produces the final Evidence of the whole router and
+conveys the final Evidence to the Verifier. Therefore the router is a Composite
+Attester, each slot is an Attester and the main control slot is the Lead Attester.
+
+Another example is the multi-chassis router which is composed of multiple single carrier-grade routers.
+The multi-chassis router provides higher throughput by interconnecting
+multiple routers and simpler management by logically seen as one router.
+Among these composing routers, there is only one main router that
+connects to the Network Management System (NMS) and the Verifier.
+Other routers are only connected to the main router by the network cables,
+and therefore they are managed and verified via this main router.
+So, in this case, the multi-chassis router is the Composite Attester,
+each router is an Attester and the main router is the Lead Attester.
+
+{{composite}} depicts the data that flows between the Composite Attester and Verifier for the remote attestation.
+
+~~~~
+                   .-----------------------------.
+                   |           Verifier          |
+                   '-----------------------------'
+                                 |  ^
+           Endorsements and      |  | Evidence of
+           Appraisal Policy for  |  | Composite
+           Evidence of Attesters |  | Attester
+                                 |  |
+.--------------------------------|--|-------------------------------.
+|                                v  |                               |
+|  .------------------------------------.                           |
+|  |  .-------------.                   |  Evidence of Attesters    |
+|  |  | Attesting   |-.                 | (via Internal Links or    |
+|  |  | Environment | |----+ Collecting |  Network Connections)     |
+|  |  '-------------' |    | Claims     |    /                      |
+|  |    '-------------'    |            |   / .------------.        |
+|  |                       v            |  /  |            |        |
+|  |                .-------------.     |<----| Attester B |--.     |
+|  |                | Target      |-.   |     '------------'  |     |
+|  |                | Environment | |   |<-------| Attester C |--.  |
+|  |                '-------------' |   |        '------------'  |  |
+|  |                  '-------------'   |<----------| ......     |  |
+|  | Lead Attester A                    |           '------------'  |
+|  '------------------------------------'                           |
+|                                                                   |
+|                       Composite Attester                          |
+'-------------------------------------------------------------------'
+~~~~
+{: #composite title="Conceptual Data Flow for Composite Attester"}
+
+In the Composite Attester, each Attester generates its own Evidence by its
+Attesting Environments collecting the Claims from its Target Environments.
+The Lead Attester collects the Evidence of all other Attesters and then
+generates the Evidence of the whole Composite Attester.
+
+After collecting the Evidence of other Attesters, the Lead Attester verifies the
+Evidence by using the Endorsements and Appraisal Policies, which are got from
+the Verifier or some reliable parties, for evaluating these Attesters' trustworthiness.
+The Lead Attester makes the verification results as Claims which are the input
+to the final Evidence of the whole Composite Attester. Then the Lead Attester
+conveys the final Attestation Evidence to the Verifier on behalf of the Composite Attester.
+
+Before receiving the Endorsements and Appraisal Policies for other Attesters,
+to increase the security, the Lead Attester may first generate Evidence about
+its trustworthiness and convey this Evidence to the Verifier for evaluating. 
+
 # Topological Models {#overview}
 
 There are multiple possible models for communication between an Attester,
