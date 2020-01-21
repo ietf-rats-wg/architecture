@@ -325,7 +325,7 @@ implicitly trusted is often referred to as a Root of Trust.
 ~~~~
 {:multievidence #multievidence_diag title="Multiple Attesters and Relying Parties with Different Formats"}
 
-# Replay Prevention
+# Freshness {#freshness}
 
 It is important to prevent replay attacks where an attacker replays
 old Evidence or an old Attestation Result that is no longer correct.
@@ -383,6 +383,8 @@ and replay attack prevention, and often also needs to support additional
 security protections.  For example, additional means of authentication,
 confidentiality, integrity, replay, denial of service and privacy
 protection are needed in many use cases.
+{{freshness}} discusses ways in which freshness can be used in this
+architecture to protect against replay attacks.
 
 To evaluate the security provided by a particular Appraisal Policy, it
 is important to understand the strength of the Root of Trust, e.g.,
