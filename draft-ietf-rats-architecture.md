@@ -129,7 +129,7 @@ by an administrator.
 
 ## Composite Attester {#compositeattester}
 
-A Composite Attester is an entity composed of multiple sub-entities that its
+A Composite Attester is an entity composed of multiple sub-entities such that its
 trustworthiness has to be determined by evaluating all these sub-entities.
 Each sub-entity has at least one Attesting Environment collecting the claims 
 from at least one Target Environment, then this sub-entity generates Evidence
@@ -137,24 +137,23 @@ about its trustworthiness. Therefore each sub-entity can be called an Attester.
 Among these Attesters, there may be only some, which can be called Lead Attesters,
 that have the communication functionality with the Verifier. Other Attesters
 don't have this ability, but they are connected to the Lead Attesters via internal
-links or network connections, and they are evaluated via the Lead Attesters' help.
+links or network connections, and they are evaluated via the Lead Attester's help.
 
-For example, the carrier-grade router is a composite device consisting of a chassis and multiple slots.
+For example, a carrier-grade router is a composite device consisting of a chassis and multiple slots.
 The trustworthiness of the router depends on all its slots' trustworthiness.
-Each slot has the attesting environment like the TPM or TEE collecting the
-claims of its boot process and generates Evidence to prove its trustworthiness.
-Among these slots, only the main control slot can communicate with the Verifier
-while other slots cannot. But other slots can communicate with the main control
-slot by the links between them inside the router. So the main control slot collects
+Each slot has an Attesting Environment such as a TPM or TEE collecting the
+claims of its boot process, then it generates Evidence from the claims to prove its trustworthiness.
+Among these slots, only a main slot can communicate with the Verifier
+while other slots cannot. But other slots can communicate with the main
+slot by the links between them inside the router. So the main slot collects
 the Evidence of other slots, produces the final Evidence of the whole router and
 conveys the final Evidence to the Verifier. Therefore the router is a Composite
-Attester, each slot is an Attester and the main control slot is the Lead Attester.
+Attester, each slot is an Attester and the main slot is the Lead Attester.
 
-Another example is the multi-chassis router which is composed of multiple single carrier-grade routers.
+Another example is a multi-chassis router which is composed of multiple single carrier-grade routers.
 The multi-chassis router provides higher throughput by interconnecting
-multiple routers and simpler management by logically seen as one router.
-Among these composing routers, there is only one main router that
-connects to the Network Management System (NMS) and the Verifier.
+multiple routers and simpler management by being logically treated as one router.
+Among these routers, there is only one main router that connects to the Verifier.
 Other routers are only connected to the main router by the network cables,
 and therefore they are managed and verified via this main router.
 So, in this case, the multi-chassis router is the Composite Attester,
