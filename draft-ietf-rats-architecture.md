@@ -172,20 +172,20 @@ each router is an Attester and the main router is the Lead Attester.
                                  |  |
 .--------------------------------|--|-------------------------------.
 |                                v  |                               |
-|  .------------------------------------.                           |
-|  |                 .-------------.    |  Evidence of Attesters    |
-|  |                 | Attesting   |-.  | (via Internal Links or    |
-|  | Collecting +----| Environment | |  |  Network Connections)     |
-|  | Claims     |    '-------------' |  |    /                      |
-|  |            |      '-------------'  |   / .------------.        |
-|  |            v                       |  /  |            |        |
-|  |  .-------------.     .----------.  |<----| Attester B |--.     |
-|  |  | Target      |-.   | Local    |  |     '------------'  |     |
-|  |  | Environment | |   | Verifier |  |<-------| Attester C |--.  |
-|  |  '-------------' |   |          |  |        '------------'  |  |
-|  |    '-------------'   '----------'  |<----------| ......     |  |
-|  | Lead Attester A                    |           '------------'  |
-|  '------------------------------------'                           |
+|  .--------------------------------------.                         |
+|  |                   .-------------.    |  Evidence of Attesters  |
+|  |                   | Attesting   |-.  | (via Internal Links or  |
+|  | Collecting +------| Environment | |  |  Network Connections)   |
+|  | Claims     |      '-------------' |  |    /                    |
+|  |            |        '-------------'  |   / .------------.      |
+|  |            v                         |  /  |            |      |
+|  |  .-------------.    ***************  |<----| Attester B |-.    |
+|  |  | Target      |-.  * Verifying   *  |     '------------' |    |
+|  |  | Environment | |  * Environment *  |<------| Attester C |-.  |
+|  |  '-------------' |  * (Optional)  *  |       '------------' |  |
+|  |    '-------------'  ***************  |<--------| ......     |  |
+|  | Lead Attester A                      |         '------------'  |
+|  '--------------------------------------'                         |
 |                                                                   |
 |                       Composite Attester                          |
 '-------------------------------------------------------------------'
@@ -193,17 +193,30 @@ each router is an Attester and the main router is the Lead Attester.
 {: #composite title="Conceptual Data Flow for Composite Attester"}
 
 In the Composite Attester, each Attester generates its own Evidence by its
-Attesting Environments collecting the Claims from its Target Environments.
+Attesting Environments collecting the claims from its Target Environments.
 The Lead Attester collects the Evidence of all other Attesters and then
 generates the Evidence of the whole Composite Attester.
 
-After collecting the Evidence of other Attesters, the Lead Attester verifies the
+Inside the Lead Attester, there may be an optional Verifying Environment.
+The Verifying Environment can verify the collected Evidence of other
+Attesters to evaluate their trustworthiness. Therefore, there are two
+situations when the Lead Attester generates the final Evidence.
+
+One situation is that the Lead Attester has no Verifying Environment.
+In this situation, the Lead Attester just collects the Evidence of other
+Attesters but doesn't verify them. It may just string all these Evidence
+into a whole one, or it may reorganize these Evidence with a new
+structure and sign this final Evidence. Then it conveys the final Evidence
+to the Verifier and the Verifier evaluates the Composite Attester's,
+including the Lead Attester's and other Attesters', trustworthiness.
+
+The other situation is that the Lead Attester has a Verifying Environment.
+After collecting the Evidence of other Attesters, the Lead Attester verifies these
 Evidence by using the Endorsements and Appraisal Policies, which are got from
 the Verifier or some reliable parties, for evaluating these Attesters' trustworthiness.
-The Lead Attester makes the verification results as Claims which are the input
+Then the Lead Attester makes the verification results as claims which are the input
 to the final Evidence of the whole Composite Attester. Then the Lead Attester
 conveys the final Attestation Evidence to the Verifier on behalf of the Composite Attester.
-
 Before receiving the Endorsements and Appraisal Policies for other Attesters,
 to increase the security, the Lead Attester may first generate Evidence about
 its trustworthiness and convey this Evidence to the Verifier for evaluating. 
