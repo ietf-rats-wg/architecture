@@ -325,7 +325,7 @@ implicitly trusted is often referred to as a Root of Trust.
 ~~~~
 {:multievidence #multievidence_diag title="Multiple Attesters and Relying Parties with Different Formats"}
 
-# Freshness
+# Replay Prevention
 
 It is important to prevent replay attacks where an attacker replays
 old Evidence or an old Attestation Result that is no longer correct.
