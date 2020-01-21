@@ -173,17 +173,17 @@ each router is an Attester and the main router is the Lead Attester.
 .--------------------------------|--|-------------------------------.
 |                                v  |                               |
 |  .------------------------------------.                           |
-|  |  .-------------.                   |  Evidence of Attesters    |
-|  |  | Attesting   |-.                 | (via Internal Links or    |
-|  |  | Environment | |----+ Collecting |  Network Connections)     |
-|  |  '-------------' |    | Claims     |    /                      |
-|  |    '-------------'    |            |   / .------------.        |
-|  |                       v            |  /  |            |        |
-|  |                .-------------.     |<----| Attester B |--.     |
-|  |                | Target      |-.   |     '------------'  |     |
-|  |                | Environment | |   |<-------| Attester C |--.  |
-|  |                '-------------' |   |        '------------'  |  |
-|  |                  '-------------'   |<----------| ......     |  |
+|  |                 .-------------.    |  Evidence of Attesters    |
+|  |                 | Attesting   |-.  | (via Internal Links or    |
+|  | Collecting +----| Environment | |  |  Network Connections)     |
+|  | Claims     |    '-------------' |  |    /                      |
+|  |            |      '-------------'  |   / .------------.        |
+|  |            v                       |  /  |            |        |
+|  |  .-------------.     .----------.  |<----| Attester B |--.     |
+|  |  | Target      |-.   | Local    |  |     '------------'  |     |
+|  |  | Environment | |   | Verifier |  |<-------| Attester C |--.  |
+|  |  '-------------' |   |          |  |        '------------'  |  |
+|  |    '-------------'   '----------'  |<----------| ......     |  |
 |  | Lead Attester A                    |           '------------'  |
 |  '------------------------------------'                           |
 |                                                                   |
