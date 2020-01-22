@@ -142,7 +142,7 @@ links or network connections, and they are evaluated via the Lead Attester's hel
 For example, a carrier-grade router is a composite device consisting of a chassis and multiple slots.
 The trustworthiness of the router depends on all its slots' trustworthiness.
 Each slot has an Attesting Environment such as a TPM or TEE collecting the
-claims of its boot process, then it generates Evidence from the claims to prove its trustworthiness.
+claims of its boot process, then it generates Evidence from the claims.
 Among these slots, only a main slot can communicate with the Verifier
 while other slots cannot. But other slots can communicate with the main
 slot by the links between them inside the router. So the main slot collects
@@ -165,13 +165,13 @@ each router is an Attester and the main router is the Lead Attester.
                    .-----------------------------.
                    |           Verifier          |
                    '-----------------------------'
-                                 |  ^
-           Endorsements and      |  | Evidence of
-           Appraisal Policy for  |  | Composite
-           Evidence of Attesters |  | Attester
-                                 |  |
-.--------------------------------|--|-------------------------------.
-|                                v  |                               |
+                                  ^
+                                  |
+                                  | Composite Evidence
+                                  |
+                                  |
+.---------------------------------|---------------------------------.
+|                                 |                                 |
 |  .--------------------------------------.                         |
 |  |                   .-------------.    |  Evidence of Attesters  |
 |  |                   | Attesting   |-.  | (via Internal Links or  |
@@ -179,12 +179,12 @@ each router is an Attester and the main router is the Lead Attester.
 |  | Claims     |      '-------------' |  |    /                    |
 |  |            |        '-------------'  |   / .------------.      |
 |  |            v                         |  /  |            |      |
-|  |  .-------------.    ***************  |<----| Attester B |-.    |
-|  |  | Target      |-.  * Verifying   *  |     '------------' |    |
-|  |  | Environment | |  * Environment *  |<------| Attester C |-.  |
-|  |  '-------------' |  * (Optional)  *  |       '------------' |  |
-|  |    '-------------'  ***************  |<--------| ......     |  |
-|  | Lead Attester A                      |         '------------'  |
+|  |  .-------------.    .-------------.  |<----| Attester B |-.    |
+|  |  | Target      |-.  | Claims      |  |     '------------' |    |
+|  |  | Environment | |  | Collector   |  |<------| Attester C |-.  |
+|  |  '-------------' |  '-------------'  |       '------------' |  |
+|  |    '-------------'                   |<--------| ......     |  |
+|  |                     Lead Attester A  |         '------------'  |
 |  '--------------------------------------'                         |
 |                                                                   |
 |                       Composite Attester                          |
@@ -194,29 +194,26 @@ each router is an Attester and the main router is the Lead Attester.
 
 In the Composite Attester, each Attester generates its own Evidence by its
 Attesting Environments collecting the claims from its Target Environments.
-The Lead Attester collects the Evidence of all other Attesters and then
-generates the Evidence of the whole Composite Attester.
+The Claims Collector in the Lead Attester collects the Evidence of other Attesters,
+then collects claims from the collected Evidence and uses these claims to
+finally generate the Composite Evidence. The Composite Evidence is the
+collection of all the signed Evidence related to the Composite Attester and
+evaluated by the Verifier for considering the Composite Attester's trustworthiness.
 
-Inside the Lead Attester, there may be an optional Verifying Environment.
-The Verifying Environment can verify the collected Evidence of other
-Attesters to evaluate their trustworthiness. Therefore, there are two
-situations when the Lead Attester generates the final Evidence.
+When processing the collected Evidence of other Attesters, one situation
+is that the Claims Collector does not verify the Evidence to evaluate these
+Attesters' trustworthiness. In this situation, the Claim Collector generates the
+Composite Evidence only with information in the collected Evidence, e.g., it may 
+reorganize all collected Evidence with a new structure and sign the new Evidence.
+Then the Lead Attester conveys the Composite Evidence to the Verifier.
 
-One situation is that the Lead Attester has no Verifying Environment.
-In this situation, the Lead Attester just collects the Evidence of other
-Attesters but doesn't verify them. It may just string all these Evidence
-into a whole one, or it may reorganize these Evidence with a new
-structure and sign this final Evidence. Then it conveys the final Evidence
-to the Verifier and the Verifier evaluates the Composite Attester's,
-including the Lead Attester's and other Attesters', trustworthiness.
-
-The other situation is that the Lead Attester has a Verifying Environment.
-After collecting the Evidence of other Attesters, the Lead Attester verifies these
-Evidence by using the Endorsements and Appraisal Policies, which are got from
-the Verifier or some reliable parties, for evaluating these Attesters' trustworthiness.
-Then the Lead Attester makes the verification results as claims which are the input
-to the final Evidence of the whole Composite Attester. Then the Lead Attester
-conveys the final Attestation Evidence to the Verifier on behalf of the Composite Attester.
+The other situation is that the Claims Collector has the functionality of a Verifier.
+After collecting the Evidence of other Attesters, the Claims Collector verifies the
+Evidence by using the Endorsements and Appraisal Policies, which are securely
+got from some reliable parties, for evaluating these Attesters' trustworthiness.
+Then the Claims Collector makes the Attestation Results of other Attesters as
+claims and puts them into the Composite Evidence. The Lead Attester conveys
+the Composite Evidence to the Verifier on behalf of the Composite Attester.
 Before receiving the Endorsements and Appraisal Policies for other Attesters,
 to increase the security, the Lead Attester may first generate Evidence about
 its trustworthiness and convey this Evidence to the Verifier for evaluating. 
