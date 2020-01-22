@@ -96,15 +96,11 @@ remote attestation procedures (RATS).
     <this section can include content from Serialization Formats and Conceptual Messages sections from
     draft-thaler-rats-architecture, and Role Messages content from draft-birkholz-rats-architecture>
 
-    ## Working with Multiple Attestation Evidence Formats
-
-    Verifiers may support Evidence formats besides the preferred EAT format. To reduce unnecessary complexity in Relying Parties it is recommended that Verifier and Relying Party standardize on the EAT token format for Attestation Results.
-
-{:multiev: artwork-align="center"}
-~~~~ MULTIFORMAT
+{:multievidence: artwork-align="center"}
+~~~~ MULTIEVIDENCE
 {::include multi-evidence.txt}
 ~~~~
-{:multiev #multiev_diag title="RATS Multiple Evidence Formats Flow"}
+{:multievidence #multievidence_diag title="Multiple Attesters and Relying Parties with Different Formats"}
 
 # Freshness
 
@@ -112,7 +108,17 @@ remote attestation procedures (RATS).
 
 # Privacy Considerations
 
-    <this section can include Privacy Considerations from draft-birkholz-rats-architecture>
+The conveyance of Evidence and the resulting Attestation Results
+reveal a great deal of information about the internal state of a
+device.  In many cases, the whole point of the Attestation process is
+to provide reliable information about the type of the device and the
+firmware/software that the device is running.  This information is
+particularly interesting to many attackers. For example, knowing that a device is
+running a weak version of firmware provides a way to aim
+attacks better.
+
+Protocols that convey Evidence or Attestation Results are responsible for
+detailing what kinds of information are disclosed, and to whom they are exposed.
 
 # Security Considerations
 
