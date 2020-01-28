@@ -172,18 +172,18 @@ each router is an Attester and the main router is the Lead Attester.
                                     |
 .-----------------------------------|--------------------------------.
 |  .--------------------------------|-----.      .------------.      |
-|  |                                |     |      |            |      |
-|  |  .----------------. .-------------.<--------| Attester B |-.    |
-|  |  |     Target     | |   Claims    |  |      '------------. |    |
-|  |  | Environment(s) | |  Collector  |<----------| Attester C |-.  |
-|  |  '----------------' |             |  |        '------------' |  |
-|  |   Collecting |      '-------------'<------------| ...        |  |
-|  |       Claims v              ^        | Evidence '------------'  |
-|  |         .----------------.  |        |    of                    |
-|  |         |   Attesting    |--+        | Attesters                |
-|  |         | Environment(s) | Evidence  | (via Internal Links or   |
-|  |         '----------------' of Lead   | Network Connections)     |
-|  |                            Attester  |                          |
+|  |                      .------------.  |      |            |      |
+|  |                      |  Attesting |<--------| Attester B |-.    |
+|  |                      |Environment |  |      '------------. |    |
+|  |  .----------------.  |            |<----------| Attester C |-.  |
+|  |  |     Target     |  |            |  |        '------------' |  |
+|  |  | Environment(s) |  |            |<------------| ...        |  |
+|  |  |                |  '------------'  | Evidence '------------'  |
+|  |  |                |            ^     |    of                    |
+|  |  |                |------------/     | Attesters                |
+|  |  '----------------'  Collecting      | (via Internal Links or   |
+|  |                      Claims          | Network Connections)     |
+|  |                                      |                          |
 |  | Lead Attester A                      |                          |
 |  '--------------------------------------'                          |
 |                                                                    |
