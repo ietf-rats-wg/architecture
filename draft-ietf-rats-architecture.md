@@ -177,8 +177,8 @@ each router is an Attester and the main router is the Lead Attester.
 |  |  |     Target     | |   Claims    |  |      '------------. |    |
 |  |  | Environment(s) | |  Collector  |<----------| Attester C |-.  |
 |  |  '----------------' |             |  |        '------------' |  |
-|  |   Collecting ^      '-------------'<------------| ...        |  |
-|  |       Claims |              ^        | Evidence '------------'  |
+|  |   Collecting |      '-------------'<------------| ...        |  |
+|  |       Claims v              ^        | Evidence '------------'  |
 |  |         .----------------.  |        |    of                    |
 |  |         |   Attesting    |--+        | Attesters                |
 |  |         | Environment(s) | Evidence  | (via Internal Links or   |
