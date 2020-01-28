@@ -443,7 +443,7 @@ the Evidence or Attestation Result, so that the remote entity knows that the
 claims were signed after the nonce was generated.
 
 A second approach is to rely on synchronized clocks, and include a signed
-timestamp (e.g., using {{?I.D.draft-birkholz-rats-tuda}}) along with the
+timestamp (e.g., using {{?I-D.birkholz-rats-tuda}}) along with the
 claims in the Evidence or Attestation Result, so that the remote entity knows
 that the claims were signed at that time, as long as it has some assurance that
 the timestamp is correct.  This typically requires additional claims about
