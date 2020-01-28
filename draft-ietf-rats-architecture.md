@@ -499,8 +499,17 @@ This document does not require any actions by IANA.
 
 # Acknowledgments
 
-Special thanks go to David Wooten, Jörg Borchert, Hannes Tschofenig, Laurence Lundblade, Diego Lopez,
-Jessica Fitzgerald-McKay, Frank Xia, and Nancy Cam-Winget.
+Special thanks go to
+Jörg Borchert,
+Nancy Cam-Winget,
+Jessica Fitzgerald-McKay,
+Diego Lopez,
+Laurence Lundblade,
+Wei Pan,
+Hannes Tschofenig,
+Frank Xia,
+and
+David Wooten.
 
 # Contributors
 
