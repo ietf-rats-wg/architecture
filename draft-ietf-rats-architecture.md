@@ -124,14 +124,14 @@ via some other mechanism such as being configured in the Verifier by an administ
 
 The Relying Party uses Attestation Results by applying its own
 Appraisal Policy to make application-specific decisions such as authorization decisions.
-The Attestation Result Appraisal Policy might, for example, be configured in the Relying Party 
+The Attestation Result Appraisal Policy might, for example, be configured in the Relying Party
 by an administrator.
 
 ## Composite Attester {#compositeattester}
 
 A Composite Attester is an entity composed of multiple sub-entities such that its
 trustworthiness has to be determined by evaluating all these sub-entities.
-Each sub-entity has at least one Attesting Environment collecting the claims 
+Each sub-entity has at least one Attesting Environment collecting the claims
 from at least one Target Environment, then this sub-entity generates Evidence
 about its trustworthiness. Therefore each sub-entity can be called an Attester.
 Among these Attesters, there may be only some, which can be called Lead Attesters,
@@ -243,7 +243,7 @@ Attester-Verifier attestation protocol.
    Evidence|    |Attestation
            |    |  Result
            |    v
-      +-------------+               +-------------+ 
+      +-------------+               +-------------+
       |             |-------------->|             | Compare Attestation
       |   Attester  |  Attestation  |   Relying   | Result against
       |             |     Result    |    Party    | Appraisal Policy
@@ -270,7 +270,7 @@ The Relying Party then compares the Attestation Result against its own security
 policy.
 
 The resource access protocol between the Attester and Relying Party
-includes Evidence rather than an Attestation Result, but that Evidence is 
+includes Evidence rather than an Attestation Result, but that Evidence is
 not processed by the Relying Party.  Since the Evidence is merely forwarded
 on to a trusted Verifier, any serialization format can be used
 for Evidence because the Relying Party does not need a parser for it.
@@ -323,9 +323,9 @@ and the same device may need to attest to different Relying Parties for differen
 server holding confidential data to get access to that data).  As such, both models may
 simultaneously be in use by the same device.
 
-{{combination}} shows another example of a combination where Relying Party 1 uses the 
+{{combination}} shows another example of a combination where Relying Party 1 uses the
 passport model, whereas Relying Party 2 uses an extension of the background-check model.
-Specifically, in addition to the basic functionality shown in {{backgroundcheck}}, Relying Party 2 
+Specifically, in addition to the basic functionality shown in {{backgroundcheck}}, Relying Party 2
 actually provides the Attestation Result back to the Attester, allowing the Attester to
 use it with other Relying Parties.  This is the model that the Trusted Application Manager
 plans to support in the TEEP architecture {{?I-D.ietf-teep-architecture}}.
@@ -349,7 +349,7 @@ plans to support in the TEEP architecture {{?I-D.ietf-teep-architecture}}.
    Evidence|    |Attestation
            |    |  Result
            |    v
-      +-------------+               +-------------+ 
+      +-------------+               +-------------+
       |             |-------------->|             | Compare Attestation
       |   Attester  |  Attestation  |   Relying   | Result against
       |             |     Result    |   Party 1   | Appraisal Policy
