@@ -1,0 +1,27 @@
+
+
+           ************   ************    *****************
+           * Endorser *   * Verifier *    * Relying Party *
+           ************   *  Owner   *    *  Owner        *
+                 |        ************    *****************
+                 |              |                 |
+     Endorsements|              |                 |
+                 |              |Appraisal        |
+                 |              |Policy for       |
+                 |              |Evidence         | Appraisal  
+                 |              |                 | Policy for 
+                 |              |                 | Attestation
+                 |              |                 |  Result    
+                 v              v                 |
+               .-----------------.                |
+        .----->|     Verifier    |------.         |
+        |      '-----------------'      |         |
+        |                               |         |
+        |                    Attestation|         |
+        |                    Results    |         |
+        | Evidence                      |         |
+        |                               |         |
+        |                               v         v
+  .----------.                      .-----------------.
+  | Attester |                      | Relying Party   |
+  '----------'                      '-----------------'
