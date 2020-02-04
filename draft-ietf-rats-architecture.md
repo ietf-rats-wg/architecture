@@ -187,7 +187,7 @@ each router is an Attester and the main router is the Lead Attester.
 | | Lead Attester A                      |                         |
 | '--------------------------------------'                         |
 |                                                                  |
-|                           Device                                 |
+|                    Device/Composite Device/Attester/TBD #33      |
 '------------------------------------------------------------------'
 ~~~~
 {: #composite title="Conceptual Data Flow for a Composite Attester"}
