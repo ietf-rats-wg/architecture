@@ -54,6 +54,14 @@ author:
 normative:
 
 informative:
+  OPCUA:
+    author:
+      org: OPC Foundation
+    title: "OPC Unified Architecture Specification, Part 2: Security Model, Release 1.03"
+    date: 2015-11-25
+    target: https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-2-security-model/
+    seriesinfo:
+      OPC 10000-2
 
 --- abstract
 
@@ -413,8 +421,119 @@ implicitly trusted is often referred to as a Root of Trust.
 
 # Conceptual Messages {#messages}
 
-    <this section can include content from Serialization Formats and Conceptual Messages sections from
-    draft-thaler-rats-architecture, and Role Messages content from draft-birkholz-rats-architecture>
+## Evidence
+
+Today, Evidence tends to be highly device-specific, since the information in the Evidence
+often includes vendor-specific information that is necessary to fully describe the manufacturer
+and model of the device including its security properties, the health
+of the device, and the level of confidence in the correctness of the information.
+Evidence is typically signed by the device (whether by hardware, firmware, or software on the
+device), and evaluating it in isolation would require Appraisal Policy to be based on
+device-specific details (e.g., a device public key).
+
+## Endorsements
+
+An Endorsement is a secure statement that some entity (e.g., a manufacturer) vouches for the integrity of the
+device's signing capability.  For example, if the signing capability is in hardware, then
+an Endorsement might be a manufacturer certificate that signs a public key whose corresponding
+private key is only known inside the device's hardware.  Thus, when Evidence and such an Endorsement
+are used together, evaluating them can be done against Appraisal Policy that may not be specific to the
+device instance, but merely specific to the manufacturer providing the Endorsement. For example,
+an Appraisal Policy might simply check that devices from a given manufacturer have information
+matching a set of known-good reference values, or an Appraisal Policy might have a set of more complex
+logic on how to evaluate the validity of information.
+
+However, while an Appraisal Policy that treats all devices from a given manufacturer the same
+may be appropriate for some use cases, it would be inappropriate to use such an Appraisal Policy
+as the sole means of authorization for use cases that wish to constrain *which* compliant devices
+are considered authorized for some purpose.  For example, an enterprise using attestation for
+Network Endpoint Assessment may not wish to let every healthy laptop from the same
+manufacturer onto the network, but instead only want to let devices that it legally owns
+onto the network.  Thus, an Endorsement may be helpful information in authenticating
+information about a device, but is not necessarily sufficient to authorize access to
+resources which may need device-specific information such as a public key for the device or
+component or user on the device.  
+
+## Attestation Results
+
+Attestation Results may indicate compliance or non-compliance with a Verifier's Appraisal Policy.
+A result that indicates non-compliance can be used by an Attester (in the passport model) or
+a Relying Party (in the background-check model) to indicate that the Attester
+should not be treated as authorized and may be in need of remediation.  In some cases,
+it may even indicate that the Evidence itself cannot be authenticated as being correct.
+
+An Attestation Result that indicates compliance can be used by a Relying Party to make
+authorization decisions based on the Relying Party's Appraisal Policy.  The simplest such
+policy might be to simply authorize any party supplying a compliant Attestation Result
+signed by a trusted Verifier.  A more complex policy might also entail comparing information
+provided in the result against known-good reference values, or applying more complex logic
+such information. 
+
+Thus, Attestation Results often need to include detailed information about the Attester,
+for use by Relying Parties, much like physical passports and drivers licenses include
+personal information such as name and date of birth.  Unlike Evidence, which is often
+very device- and vendor-specific, Attestation Results can be vendor-neutral if the Verifier
+has a way to generate vendor-agnostic information based on evaluating vendor-specific
+information in Evidence.  This allows a Relying Party's Appraisal Policy to be simpler,
+potentially based on standard ways of expressing the information, while still allowing
+interoperability with heterogeneous devices.
+
+Finally, whereas Evidence is signed by the device (or indirectly by a manufacturer, if
+Endorsements are used), Attestation Results are signed by a Verifier, allowing a Relying
+Party to only need a trust relationship with one entity, rather than a larger set of
+entities, for purposes of its Appraisal Policy.
+
+# Claims Encoding Formats
+
+The following diagram illustrates a relationship to which attestation is desired to be added:
+
+~~~~
+   +-------------+               +-------------+
+   |             |-------------->|             |
+   |  Attester   |  Access some  |   Relying   | Evaluate request
+   |             |    resource   |    Party    | against security policy
+   +-------------+               +-------------+
+~~~~
+{: #clientserver title="Typical Resource Access"}
+
+In this diagram, the protocol between Attester and a Relying Party
+can be any new or existing protocol (e.g., HTTP(S), COAP(S),
+802.1x, OPC UA, etc.), depending on the use case.  Such
+protocols typically already have mechanisms for passing security
+information for purposes of authentication and authorization.  Common
+formats include JWTs {{?RFC7519}}, CWTs {{?RFC8392}}, and X.509 certificates.
+
+To enable attestation to be added to existing protocols, enabling a higher
+level of assurance against malware for example, it is important that
+information needed for evaluating the Attester be usable with existing
+protocols that have constraints around what formats they can transport.
+For example, OPC UA {{OPCUA}} (probably the most common protocol in
+industrial IoT environments) is defined to carry X.509 certificates and so
+security information must be embedded into an X.509 certificate to be passed
+in the protocol.  Thus, attestation-related information could be natively
+encoded in X.509 certificate extensions, or could be natively encoded in
+some other format (e.g., a CWT) which in turn is then encoded in an X.509
+certificate extension. 
+
+Especially for constrained nodes, however, there is a desire to minimize
+the amount of parsing code needed in a Relying Party, in order to both
+minimize footprint and to minimize the attack surface area.  So while
+it would be possible to embed a CWT inside a JWT, or a JWT inside an
+X.509 extension, etc., there is a desire to encode the information
+natively in the format that is natural for the Relying Party.
+
+This motivates having a common "information model" that describes
+the set of attestation related information in an encoding-agnostic
+way, and allowing multiple encoding formats (CWT, JWT, X.509, etc.)
+that encode the same information into the claims format needed by the
+Relying Party.
+
+The following diagram illustrates that Evidence and Attestation Results
+might each have multiple possible encoding formats, so that they can be
+conveyed by various existing protocols.  It also motivates why the Verifier
+might also be responsible for accepting Evidence that encodes claims in
+one format, while issuing Attestation Results that encode claims in
+a different format.
 
 {:multievidence: artwork-align="center"}
 ~~~~ MULTIEVIDENCE
