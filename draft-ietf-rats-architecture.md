@@ -172,18 +172,18 @@ each router is an Attester and the main router is the Lead Attester.
                                     |
 .-----------------------------------|--------------------------------.
 |  .--------------------------------|-----.      .------------.      |
-|  |                                |     |      |            |      |
-|  |  .----------------. .-------------.<--------| Attester B |-.    |
-|  |  |     Target     | |   Claims    |  |      '------------. |    |
-|  |  | Environment(s) | |  Collector  |<----------| Attester C |-.  |
-|  |  '----------------' |             |  |        '------------' |  |
-|  |   Collecting ^      '-------------'<------------| ...        |  |
-|  |       Claims |              ^        | Evidence '------------'  |
-|  |         .----------------.  |        |    of                    |
-|  |         |   Attesting    |--+        | Attesters                |
-|  |         | Environment(s) | Evidence  | (via Internal Links or   |
-|  |         '----------------' of Lead   | Network Connections)     |
-|  |                            Attester  |                          |
+|  |                      .------------.  |      |            |      |
+|  |                      |  Attesting |<--------| Attester B |-.    |
+|  |                      |Environment |  |      '------------. |    |
+|  |  .----------------.  |            |<----------| Attester C |-.  |
+|  |  |     Target     |  |            |  |        '------------' |  |
+|  |  | Environment(s) |  |            |<------------| ...        |  |
+|  |  |                |  '------------'  | Evidence '------------'  |
+|  |  |                |            ^     |    of                    |
+|  |  |                |------------/     | Attesters                |
+|  |  '----------------'  Collecting      | (via Internal Links or   |
+|  |                      Claims          | Network Connections)     |
+|  |                                      |                          |
 |  | Lead Attester A                      |                          |
 |  '--------------------------------------'                          |
 |                                                                    |
@@ -197,18 +197,19 @@ Attesting Environment(s) collecting the claims from its Target Environment(s).
 The Lead Attester collects the Evidence of all other Attesters and then
 generates the Evidence of the whole Composite Attester.
 
-The Lead Attester's Claims Collector may or may not include its own
-Verifier. One situation is that the Claims Collector has no internal Verifier.
-In this situation, the Claims Collecctor simply combines the various
+The Lead Attester's Attesting Environment may or may not include its own
+Verifier.
+One situation is that the Attesting Environment has no internal Verifier.
+In this situation, the Lead Attesting Environment simply combines the various
 Evidences into the final Evidence that is sent off to the remote Verifier,
 which evaluates the Composite Attester's,
 including the Lead Attester's and other Attesters', trustworthiness.
 
-The other situation is that the Lead Attester's Claims Collector has an internal Verifier.
-After collecting the Evidence of other Attesters, the Claims Collector verifies them
-using Endorsements and Appraisal Policies (obtained the
+The other situation is that the Lead Attesting Environment has an internal Verifier.
+After collecting the Evidence of other Attesters, this Attesting Environment
+verifies them using Endorsements and Appraisal Policies (obtained the
 same way as any other Verifier), for evaluating these Attesters' trustworthiness.
-Then the Claims Collector combines the Attestation Results into
+Then the Lead Attesting Environment combines the Attestation Results into
 the final Evidence of the whole Composite Attester which is sent off to the remote
 Verifier, which might treat the claims obtained from the local Attestation Results
 as if they were Evidence.
