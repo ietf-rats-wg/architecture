@@ -350,11 +350,11 @@ plans to support in the TEEP architecture {{?I-D.ietf-teep-architecture}}.
    Evidence|    |Attestation
            |    |  Result
            |    v
-      +-------------+               +-------------+
-      |             |-------------->|             | Compare Attestation
-      |   Attester  |  Attestation  |   Relying   | Result against
-      |             |     Result    |   Party 1   | Appraisal Policy
-      +-------------+               +-------------+
+      +----------+               +----------+
+      |          |-------------->|          | Compare Attestation
+      | Attester |  Attestation  |  Relying | Result against
+      |          |     Result    |  Party 1 | Appraisal Policy
+      +----------+               +----------+
 ~~~~
 {: #combination title="Example Combination"}
 
