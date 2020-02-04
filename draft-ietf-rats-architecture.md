@@ -550,8 +550,8 @@ provided by a hardware component residing next to the (U)EFI / BIOS / Firmware.
 As in any other scenario, this hardware component is is the first Attesting Environment.
 It collects a rather concise number of Claims about the Target Environment.
 The Target Environment in this example is the (U)EFI / BIOS / Firmware.
-After the boot sequence started the Target Environment is conducts the
-most important feature of layered attestation:
+After the boot sequence started the Target Environment the
+most important feature of layered attestation is conducted:
 The successfully measured [comment: this is why Henk prefers 'measured' above 'collected'
 because it can be used in English text better] environment that is the
 (U)EFI / BIOS / Firmware now becomes the Attesting Environment.
