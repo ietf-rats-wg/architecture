@@ -149,7 +149,7 @@ links or network connections, and they are evaluated via the Lead Attester's hel
 
 For example, a carrier-grade router is a composite device consisting of a chassis and multiple slots.
 The trustworthiness of the router depends on all its slots' trustworthiness.
-Each slot has an Attesting Environment such as a TPM or TEE collecting the
+Each slot has an Attesting Environment such as a TEE collecting the
 claims of its boot process, after which it generates Evidence from the claims.
 Among these slots, only a main slot can communicate with the Verifier
 while other slots cannot. But other slots can communicate with the main
