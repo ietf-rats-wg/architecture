@@ -275,8 +275,8 @@ Result, and the immigration desk is a Relying Party.
 In this model, an Attester sends Evidence to a Relying Party, which simply
 passes it on to a Verifier.  The Verifier then compares the Evidence against
 its Appraisal Policy, and returns an Attestation Result to the Relying Party.
-The Relying Party then compares the Attestation Result against its own security
-policy.
+The Relying Party then compares the Attestation Result against its own
+appraisal policy.
 
 The resource access protocol between the Attester and Relying Party
 includes Evidence rather than an Attestation Result, but that Evidence is
