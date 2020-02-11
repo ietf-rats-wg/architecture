@@ -275,8 +275,8 @@ Result, and the immigration desk is a Relying Party.
 In this model, an Attester sends Evidence to a Relying Party, which simply
 passes it on to a Verifier.  The Verifier then compares the Evidence against
 its Appraisal Policy, and returns an Attestation Result to the Relying Party.
-The Relying Party then compares the Attestation Result against its own security
-policy.
+The Relying Party then compares the Attestation Result against its own
+appraisal policy.
 
 The resource access protocol between the Attester and Relying Party
 includes Evidence rather than an Attestation Result, but that Evidence is
@@ -452,7 +452,7 @@ manufacturer onto the network, but instead only want to let devices that it lega
 onto the network.  Thus, an Endorsement may be helpful information in authenticating
 information about a device, but is not necessarily sufficient to authorize access to
 resources which may need device-specific information such as a public key for the device or
-component or user on the device.  
+component or user on the device.
 
 ## Attestation Results
 
@@ -467,7 +467,7 @@ authorization decisions based on the Relying Party's Appraisal Policy.  The simp
 policy might be to simply authorize any party supplying a compliant Attestation Result
 signed by a trusted Verifier.  A more complex policy might also entail comparing information
 provided in the result against known-good reference values, or applying more complex logic
-such information. 
+such information.
 
 Thus, Attestation Results often need to include detailed information about the Attester,
 for use by Relying Parties, much like physical passports and drivers licenses include
@@ -513,7 +513,7 @@ security information must be embedded into an X.509 certificate to be passed
 in the protocol.  Thus, attestation-related information could be natively
 encoded in X.509 certificate extensions, or could be natively encoded in
 some other format (e.g., a CWT) which in turn is then encoded in an X.509
-certificate extension. 
+certificate extension.
 
 Especially for constrained nodes, however, there is a desire to minimize
 the amount of parsing code needed in a Relying Party, in order to both
