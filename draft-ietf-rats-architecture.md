@@ -236,12 +236,13 @@ an Attestation Result.  If the Attestation Result was a successful one,
 the Attester can then present the Attestation Result to a Relying Party,
 which then compares the Attestation Result against its own Appraisal Policy.
 
-There are two ways in which the process may fail.  First, the Verifier may
+There are three ways in which the process may fail.  First, the Verifier may
 refuse to issue the Attestation Result due to some error in processing, or
 some missing input to the Verifier.
-The second way in which the process mail is when the resulting Result is
+The second way in which the process may fail is when the resulting Result is
 examined by the Relying Party, and based upon the Appraisal Policy, the
 result does not pass the policy.
+The third way is when the verifier is unreachable.
 
 Since the resource access protocol between the Attester and Relying Party
 includes an Attestation Result, in this model the details of that protocol
