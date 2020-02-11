@@ -167,7 +167,7 @@ and therefore they are managed and verified via this main router.
 So, in this case, the multi-chassis router is the Composite Attester,
 each router is an Attester and the main router is the Lead Attester.
 
-{{composite}} depicts the conceptual data flow for a Composite Attester.
+{{composite}} depicts the conceptual data flow for a Composite Device.
 
 ~~~~
                    .-----------------------------.
@@ -195,12 +195,12 @@ each router is an Attester and the main router is the Lead Attester.
 | | Lead Attester A                      |                         |
 | '--------------------------------------'                         |
 |                                                                  |
-|                    Device/Composite Device/Attester/TBD #33      |
+|                       Composite Device                           |
 '------------------------------------------------------------------'
 ~~~~
-{: #composite title="Conceptual Data Flow for a Composite Attester"}
+{: #composite title="Conceptual Data Flow for a Composite Device"}
 
-In the Composite Attester, each Attester generates its own Evidence by its
+In the Composite Device, each Attester generates its own Evidence by its
 Attesting Environment(s) collecting the claims from its Target Environment(s).
 The Lead Attester collects the Evidence of all other Attesters and then
 generates the Evidence of the whole Composite Attester.
@@ -210,7 +210,7 @@ Verifier.
 One situation is that the Attesting Environment has no internal Verifier.
 In this situation, the Lead Attesting Environment simply combines the various
 Evidences into the final Evidence that is sent off to the remote Verifier,
-which evaluates the Composite Attester's,
+which evaluates the trusworthiness of the Composite Device,
 including the Lead Attester's and other Attesters', trustworthiness.
 
 The other situation is that the Lead Attesting Environment has an internal Verifier.
