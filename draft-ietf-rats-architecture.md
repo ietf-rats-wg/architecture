@@ -314,20 +314,20 @@ generates the Evidence of the whole Composite Attester.
 
 The Lead Attester's Attesting Environment may or may not include its own
 Verifier.
-One situation is that the Attesting Environment has no internal Verifier.
+One situation is that the Attesting Environment has no local Verifier.
 In this situation, the Lead Attesting Environment simply combines the various
 Evidences into the final Evidence that is sent off to the remote Verifier,
 which evaluates the trustworthiness of the Composite Device,
 including the Lead Attester's and other Attesters', trustworthiness.
 
-The other situation is that the Lead Attesting Environment has an internal Verifier.
+The other situation is that the Lead Attesting Environment has an local Verifier.
 After collecting the Evidence of other Attesters, this Attesting Environment
 verifies them using Endorsements and Appraisal Policies (obtained the
 same way as any other Verifier), for evaluating these Attesters' trustworthiness.
 Then the Lead Attesting Environment combines the Attestation Results into
 the final Evidence of the whole Composite Attester which is sent off to the remote
 Verifier, which might treat the claims obtained from the local Attestation Results
-as if they were Evidence. In this situation, the internal Verifier may need to be
+as if they were Evidence. In this situation, the local Verifier may need to be
 trusted by the Endorser and Verifier Owner before getting the Endorsements
 and Appraisal Policies. One explicit way to establish such trust may be the Lead
 Attester first generates Evidence about its trustworthiness and sends this
