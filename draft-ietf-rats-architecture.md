@@ -514,12 +514,6 @@ Relying Party might require that the Verifier itself provide
 information about itself that the Relying Party can use to evaluate
 the trustworthiness of the Verifier before accepting its Attestation Results.
 
-In solutions following the background-check model, the Attester is
-assumed to trust the Verifier (again, whether directly or indirectly
-via a Certificate Authority that it trusts), since the Attester
-relies on an Attestation Result it obtains from the Verifier, in
-order to access resources.
-
 The Verifier trusts (or more specifically, the Verifier's security
 policy is written in a way that configures the Verifier to trust) a
 manufacturer, or the manufacturer's hardware, so as to be able to
