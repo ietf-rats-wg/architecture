@@ -738,9 +738,11 @@ Special thanks go to
 Jörg Borchert,
 Nancy Cam-Winget,
 Jessica Fitzgerald-McKay,
+Thomas Fossati,
 Diego Lopez,
 Laurence Lundblade,
 Wei Pan,
+Paul Rowe,
 Hannes Tschofenig,
 Frank Xia,
 and
