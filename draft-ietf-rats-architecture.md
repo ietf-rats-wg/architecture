@@ -518,6 +518,11 @@ Relying Party might require that the Verifier itself provide
 information about itself that the Relying Party can use to evaluate
 the trustworthiness of the Verifier before accepting its Attestation Results.
 
+Similar to the Relying Party, the Endorser and Verifier Owner also
+need to trust the Verifier before giving the Endorsement and
+Appraisal Policy to it. Such trust can also be established directly
+or indirectly, implicitly or explicitly.
+
 The Verifier trusts (or more specifically, the Verifier's security
 policy is written in a way that configures the Verifier to trust) a
 manufacturer, or the manufacturer's hardware, so as to be able to
