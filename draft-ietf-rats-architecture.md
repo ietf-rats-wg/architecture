@@ -149,7 +149,7 @@ the customer themselves, from seeing the details of the model.
 
 This typically works by having some protected environment
 in the device attest to some manufacturer service.  If attestation succeeds.
-then the manufacturer service releases either the model, or a key to decrypt 
+then the manufacturer service releases either the model, or a key to decrypt
 a model the Attester already has in encrypted form, to the requester.
 
 * Attester: A device desiring to run an ML model to do inferencing
@@ -191,7 +191,7 @@ that are within policy.
 A "Trusted Application Manager (TAM)" server is responsible
 for managing the applications running in the TEE of a client device.
 To do this, the TAM wants to verify the state of a TEE, or of applications
-in the TEE, of a client device.  The TEE attests to the TAM, which can 
+in the TEE, of a client device.  The TEE attests to the TAM, which can
 then decide whether the TEE is already in compliance with the TAM's latest
 policy, or if the TAM needs to uninstall, update, or install approved
 applications in the TEE to bring it back into compliance with the TAM's policy.
@@ -210,7 +210,7 @@ of devices to be held hostage for ransom.
 
 A hardware watchdog can be implemented by forcing a reboot unless
 attestation to a remote server succeeds within a periodic interval,
-and having the reboot do remediation by bringing a device into 
+and having the reboot do remediation by bringing a device into
 compliance, including installation of patches as needed.
 
 * Attester: The device that is desired to keep from being held hostage for
@@ -267,7 +267,7 @@ Attester, each slot is an Attester, and the main slot is the Lead Attester.
 
 Another example is a multi-chassis router composed of multiple single carrier-grade routers.
 The multi-chassis router provides higher throughput by interconnecting
-multiple routers and simpler management by being logically treated as one router.
+multiple routers and can be logically treated as one router for simpler management.
 Among these routers, there is only one main router that connects to the Verifier.
 Other routers are only connected to the main router by the network cables,
 and therefore they are managed and verified via this main router.
@@ -314,13 +314,13 @@ generates the Evidence of the whole Composite Attester.
 
 The Lead Attester's Attesting Environment may or may not include its own
 Verifier.
-One situation is that the Attesting Environment has no internal Verifier.
+One situation is that the Attesting Environment has no local Verifier.
 In this situation, the Lead Attesting Environment simply combines the various
 Evidences into the final Evidence that is sent off to the remote Verifier,
-which evaluates the trusworthiness of the Composite Device,
+which evaluates the trustworthiness of the Composite Device,
 including the Lead Attester's and other Attesters', trustworthiness.
 
-The other situation is that the Lead Attesting Environment has an internal Verifier.
+The other situation is that the Lead Attesting Environment has an local Verifier.
 After collecting the Evidence of other Attesters, this Attesting Environment
 verifies them using Endorsements and Appraisal Policies (obtained the
 same way as any other Verifier), for evaluating these Attesters' trustworthiness.
