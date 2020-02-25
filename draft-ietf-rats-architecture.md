@@ -528,6 +528,14 @@ for by hardware or by ROM code, especially if such hardware is
 physically resistant to hardware tampering.  The component that is
 implicitly trusted is often referred to as a Root of Trust.
 
+In some scenarios, Evidence might contain sensitive information such as
+Personally Identifiable Information.
+Thus, an Attester must trust entities to which it sends Evidence, to not
+reveal sensitive data to unauthorized parties.
+The Verifier may share this information with other authorized parties, according rules that it controls.
+In the background-check model, this Evidence may also be revealed to Relying Party(s).
+
+
 # Conceptual Messages {#messages}
 
 ## Evidence
