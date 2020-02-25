@@ -110,7 +110,114 @@ This document uses the following terms:
 
 # Reference Use Cases {#referenceusecases}
 
-    <unclear if the WG wants this section in the arch doc>
+This section covers a number of representative use cases for attestation, independent of
+solution.  The purpose is to provide motivation for various aspects of the
+architecture presented in this draft.  Many other use cases exist, and this
+document does not intend to have a complete list, only to have a set of use
+cases that collectively cover all the functionality required in the architecture.
+
+Each use case includes a description, and a summary of what an Attester and a Relying
+Party refer to in the use case.
+
+## Network Endpoint Assessment
+
+Network operators want a trustworthy report of identity
+and version of information of the hardware and software on the
+machines attached to their network, for purposes such as inventory,
+auditing, and/or logging.  The network operator may also want a policy
+by which full access is only granted to devices that meet some definition
+of health, and so wants to get claims about such information and verify
+their validity. Attestation is desired to prevent vulnerable or
+compromised devices from getting access to the network and potentially
+harming others.
+
+Typically, solutions start with some component (called a "Root of Trust") that
+provides device identity and protected storage for measurements.
+They then perform a series of measurements, and express this with Evidence as to the
+hardware and firmware/software that is running.
+
+* Attester: A device desiring access to a network
+
+* Relying Party: A network infrastructure device such as a router, switch, or access point.
+
+## Confidential Machine Learning (ML) Model Protection
+
+A device manufacturer wants to protect its intellectual property
+in terms of the ML model it developed and that runs in the devices that its
+customers purchased, and it wants to prevent attackers, potentially including
+the customer themselves, from seeing the details of the model.
+
+This typically works by having some protected environment
+in the device attest to some manufacturer service.  If attestation succeeds.
+then the manufacturer service releases either the model, or a key to decrypt 
+a model the Attester already has in encrypted form, to the requester.
+
+* Attester: A device desiring to run an ML model to do inferencing
+
+* Relying Party: A server or service holding ML models it desires to protect
+
+## Confidential Data Retrieval
+
+This is a generalization of the ML model use case above, where
+the data can be any highly confidential data, such as health data
+about customers, payroll data about employees, future business plans, etc.
+Attestation is desired to prevent leaking data to compromised devices.
+
+* Attester: An entity desiring to retrieve confidential data
+
+* Relying Party: An entity that holds confidential data for retrieval by other entities
+
+## Critical Infrastructure Control
+
+In this use case, potentially dangerous physical equipment
+(e.g., power grid, traffic control, hazardous chemical processing, etc.)
+is connected to a network.  The organization managing such infrastructure
+needs to ensure that only authorized code and users can control such
+processes, and they are protected from malware or other adversaries.
+When a protocol operation can affect some critical
+system, the device attached to the critical equipment thus wants some
+assurance that the requester has not been compromised.  As such,
+attestation can be used to only accept commands from requesters
+that are within policy.
+
+* Attester: A device or application wishing to control physical equipment.
+
+* Relying Party: A device or application connected to potentially dangerous
+  physical equipment (hazardous chemical processing, traffic control,
+  power grid, etc.
+
+## Trusted Execution Environment (TEE) Provisioning
+
+A "Trusted Application Manager (TAM)" server is responsible
+for managing the applications running in the TEE of a client device.
+To do this, the TAM wants to verify the state of a TEE, or of applications
+in the TEE, of a client device.  The TEE attests to the TAM, which can 
+then decide whether the TEE is already in compliance with the TAM's latest
+policy, or if the TAM needs to uninstall, update, or install approved
+applications in the TEE to bring it back into compliance with the TAM's policy.
+
+* Attester: A device with a trusted execution environment capable of
+    running trusted applications that can be updated.
+
+* Relying Party: A Trusted Application Manager.
+
+## Hardware Watchdog
+
+One significant problem is malware that holds a device
+hostage and does not allow it to reboot to prevent updates to be
+applied.  This is a significant problem, because it allows a fleet
+of devices to be held hostage for ransom.
+
+A hardware watchdog can be implemented by forcing a reboot unless
+attestation to a remote server succeeds within a periodic interval,
+and having the reboot do remediation by bringing a device into 
+compliance, including installation of patches as needed.
+
+* Attester: The device that is desired to keep from being held hostage for
+    a long period of time.
+
+* Relying Party: A remote server that will securely grant the Attester
+    permission to continue operating (i.e., not reboot) for a period of time.
 
 # Architectural Overview
 
@@ -416,12 +523,6 @@ need to trust the Verifier before giving the Endorsement and
 Appraisal Policy to it. Such trust can also be established directly
 or indirectly, implicitly or explicitly.
 
-In solutions following the background-check model, the Attester is
-assumed to trust the Verifier (again, whether directly or indirectly
-via a Certificate Authority that it trusts), since the Attester
-relies on an Attestation Result it obtains from the Verifier, in
-order to access resources.
-
 The Verifier trusts (or more specifically, the Verifier's security
 policy is written in a way that configures the Verifier to trust) a
 manufacturer, or the manufacturer's hardware, so as to be able to
@@ -435,6 +536,14 @@ A stronger level of security comes when information can be vouched
 for by hardware or by ROM code, especially if such hardware is
 physically resistant to hardware tampering.  The component that is
 implicitly trusted is often referred to as a Root of Trust.
+
+In some scenarios, Evidence might contain sensitive information such as
+Personally Identifiable Information.
+Thus, an Attester must trust entities to which it sends Evidence, to not
+reveal sensitive data to unauthorized parties.
+The Verifier may share this information with other authorized parties, according rules that it controls.
+In the background-check model, this Evidence may also be revealed to Relying Party(s).
+
 
 # Conceptual Messages {#messages}
 
@@ -636,8 +745,19 @@ This document does not require any actions by IANA.
 
 # Acknowledgments
 
-Special thanks go to David Wooten, Jörg Borchert, Hannes Tschofenig, Laurence Lundblade, Diego Lopez,
-Jessica Fitzgerald-McKay, Frank Xia, and Nancy Cam-Winget.
+Special thanks go to
+Jörg Borchert,
+Nancy Cam-Winget,
+Jessica Fitzgerald-McKay,
+Thomas Fossati,
+Diego Lopez,
+Laurence Lundblade,
+Wei Pan,
+Paul Rowe,
+Hannes Tschofenig,
+Frank Xia,
+and
+David Wooten.
 
 # Contributors
 
