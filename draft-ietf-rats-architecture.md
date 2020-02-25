@@ -160,7 +160,7 @@ Attester, each slot is an Attester, and the main slot is the Lead Attester.
 
 Another example is a multi-chassis router composed of multiple single carrier-grade routers.
 The multi-chassis router provides higher throughput by interconnecting
-multiple routers and simpler management by being logically treated as one router.
+multiple routers and can be logically treated as one router for simpler management.
 Among these routers, there is only one main router that connects to the Verifier.
 Other routers are only connected to the main router by the network cables,
 and therefore they are managed and verified via this main router.
@@ -210,7 +210,7 @@ Verifier.
 One situation is that the Attesting Environment has no internal Verifier.
 In this situation, the Lead Attesting Environment simply combines the various
 Evidences into the final Evidence that is sent off to the remote Verifier,
-which evaluates the trusworthiness of the Composite Device,
+which evaluates the trustworthiness of the Composite Device,
 including the Lead Attester's and other Attesters', trustworthiness.
 
 The other situation is that the Lead Attesting Environment has an internal Verifier.
@@ -220,7 +220,11 @@ same way as any other Verifier), for evaluating these Attesters' trustworthiness
 Then the Lead Attesting Environment combines the Attestation Results into
 the final Evidence of the whole Composite Attester which is sent off to the remote
 Verifier, which might treat the claims obtained from the local Attestation Results
-as if they were Evidence.
+as if they were Evidence. In this situation, the internal Verifier may need to be
+trusted by the Endorser and Verifier Owner before getting the Endorsements
+and Appraisal Policies. One explicit way to establish such trust may be the Lead
+Attester first generates Evidence about its trustworthiness and sends this
+Evidence to the remote Verifier for evaluating.
 
 # Topological Models {#overview}
 
@@ -406,6 +410,11 @@ Party combination).  Or, for a stronger level of security, the
 Relying Party might require that the Verifier itself provide
 information about itself that the Relying Party can use to evaluate
 the trustworthiness of the Verifier before accepting its Attestation Results.
+
+Similar to the Relying Party, the Endorser and Verifier Owner also
+need to trust the Verifier before giving the Endorsement and
+Appraisal Policy to it. Such trust can also be established directly
+or indirectly, implicitly or explicitly.
 
 In solutions following the background-check model, the Attester is
 assumed to trust the Verifier (again, whether directly or indirectly
