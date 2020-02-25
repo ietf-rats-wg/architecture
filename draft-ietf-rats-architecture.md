@@ -54,6 +54,14 @@ author:
 normative:
 
 informative:
+  OPCUA:
+    author:
+      org: OPC Foundation
+    title: "OPC Unified Architecture Specification, Part 2: Security Model, Release 1.03"
+    date: 2015-11-25
+    target: https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-2-security-model/
+    seriesinfo:
+      OPC 10000-2
 
 --- abstract
 
@@ -102,7 +110,114 @@ This document uses the following terms:
 
 # Reference Use Cases {#referenceusecases}
 
-    <unclear if the WG wants this section in the arch doc>
+This section covers a number of representative use cases for attestation, independent of
+solution.  The purpose is to provide motivation for various aspects of the
+architecture presented in this draft.  Many other use cases exist, and this
+document does not intend to have a complete list, only to have a set of use
+cases that collectively cover all the functionality required in the architecture.
+
+Each use case includes a description, and a summary of what an Attester and a Relying
+Party refer to in the use case.
+
+## Network Endpoint Assessment
+
+Network operators want a trustworthy report of identity
+and version of information of the hardware and software on the
+machines attached to their network, for purposes such as inventory,
+auditing, and/or logging.  The network operator may also want a policy
+by which full access is only granted to devices that meet some definition
+of health, and so wants to get claims about such information and verify
+their validity. Attestation is desired to prevent vulnerable or
+compromised devices from getting access to the network and potentially
+harming others.
+
+Typically, solutions start with some component (called a "Root of Trust") that
+provides device identity and protected storage for measurements.
+They then perform a series of measurements, and express this with Evidence as to the
+hardware and firmware/software that is running.
+
+* Attester: A device desiring access to a network
+
+* Relying Party: A network infrastructure device such as a router, switch, or access point.
+
+## Confidential Machine Learning (ML) Model Protection
+
+A device manufacturer wants to protect its intellectual property
+in terms of the ML model it developed and that runs in the devices that its
+customers purchased, and it wants to prevent attackers, potentially including
+the customer themselves, from seeing the details of the model.
+
+This typically works by having some protected environment
+in the device attest to some manufacturer service.  If attestation succeeds.
+then the manufacturer service releases either the model, or a key to decrypt 
+a model the Attester already has in encrypted form, to the requester.
+
+* Attester: A device desiring to run an ML model to do inferencing
+
+* Relying Party: A server or service holding ML models it desires to protect
+
+## Confidential Data Retrieval
+
+This is a generalization of the ML model use case above, where
+the data can be any highly confidential data, such as health data
+about customers, payroll data about employees, future business plans, etc.
+Attestation is desired to prevent leaking data to compromised devices.
+
+* Attester: An entity desiring to retrieve confidential data
+
+* Relying Party: An entity that holds confidential data for retrieval by other entities
+
+## Critical Infrastructure Control
+
+In this use case, potentially dangerous physical equipment
+(e.g., power grid, traffic control, hazardous chemical processing, etc.)
+is connected to a network.  The organization managing such infrastructure
+needs to ensure that only authorized code and users can control such
+processes, and they are protected from malware or other adversaries.
+When a protocol operation can affect some critical
+system, the device attached to the critical equipment thus wants some
+assurance that the requester has not been compromised.  As such,
+attestation can be used to only accept commands from requesters
+that are within policy.
+
+* Attester: A device or application wishing to control physical equipment.
+
+* Relying Party: A device or application connected to potentially dangerous
+  physical equipment (hazardous chemical processing, traffic control,
+  power grid, etc.
+
+## Trusted Execution Environment (TEE) Provisioning
+
+A "Trusted Application Manager (TAM)" server is responsible
+for managing the applications running in the TEE of a client device.
+To do this, the TAM wants to verify the state of a TEE, or of applications
+in the TEE, of a client device.  The TEE attests to the TAM, which can 
+then decide whether the TEE is already in compliance with the TAM's latest
+policy, or if the TAM needs to uninstall, update, or install approved
+applications in the TEE to bring it back into compliance with the TAM's policy.
+
+* Attester: A device with a trusted execution environment capable of
+    running trusted applications that can be updated.
+
+* Relying Party: A Trusted Application Manager.
+
+## Hardware Watchdog
+
+One significant problem is malware that holds a device
+hostage and does not allow it to reboot to prevent updates to be
+applied.  This is a significant problem, because it allows a fleet
+of devices to be held hostage for ransom.
+
+A hardware watchdog can be implemented by forcing a reboot unless
+attestation to a remote server succeeds within a periodic interval,
+and having the reboot do remediation by bringing a device into 
+compliance, including installation of patches as needed.
+
+* Attester: The device that is desired to keep from being held hostage for
+    a long period of time.
+
+* Relying Party: A remote server that will securely grant the Attester
+    permission to continue operating (i.e., not reboot) for a period of time.
 
 # Architectural Overview
 
@@ -141,7 +256,7 @@ links or network connections, and they are evaluated via the Lead Attester's hel
 
 For example, a carrier-grade router is a composite device consisting of a chassis and multiple slots.
 The trustworthiness of the router depends on all its slots' trustworthiness.
-Each slot has an Attesting Environment such as a TPM or TEE collecting the
+Each slot has an Attesting Environment such as a TEE collecting the
 claims of its boot process, after which it generates Evidence from the claims.
 Among these slots, only a main slot can communicate with the Verifier
 while other slots cannot. But other slots can communicate with the main
@@ -159,56 +274,57 @@ and therefore they are managed and verified via this main router.
 So, in this case, the multi-chassis router is the Composite Attester,
 each router is an Attester and the main router is the Lead Attester.
 
-{{composite}} depicts the conceptual data flow for a Composite Attester.
+{{composite}} depicts the conceptual data flow for a Composite Device.
 
 ~~~~
-                    .-----------------------------.
-                    |           Verifier          |
-                    '-----------------------------'
-                                    ^
-                                    | Evidence of
-                                    | Composite
-                                    | Attester
-                                    |
-.-----------------------------------|--------------------------------.
-|  .--------------------------------|-----.      .------------.      |
-|  |                                |     |      |            |      |
-|  |  .----------------. .-------------.<--------| Attester B |-.    |
-|  |  |     Target     | |   Claims    |  |      '------------. |    |
-|  |  | Environment(s) | |  Collector  |<----------| Attester C |-.  |
-|  |  '----------------' |             |  |        '------------' |  |
-|  |   Collecting ^      '-------------'<------------| ...        |  |
-|  |       Claims |              ^        | Evidence '------------'  |
-|  |         .----------------.  |        |    of                    |
-|  |         |   Attesting    |--+        | Attesters                |
-|  |         | Environment(s) | Evidence  | (via Internal Links or   |
-|  |         '----------------' of Lead   | Network Connections)     |
-|  |                            Attester  |                          |
-|  | Lead Attester A                      |                          |
-|  '--------------------------------------'                          |
-|                                                                    |
-|                       Composite Attester                           |
-'--------------------------------------------------------------------'
+                   .-----------------------------.
+                   |           Verifier          |
+                   '-----------------------------'
+                                   ^
+                                   |
+                                   | Composite
+                                   | Evidence
+                                   |
+.----------------------------------|-------------------------------.
+| .--------------------------------|-----.      .------------.     |
+| |                      .------------.  |      |            |     |
+| |                      |  Attesting |<--------| Attester B |-.   |
+| |                      |Environment |  |      '------------. |   |
+| |  .----------------.  |            |<----------| Attester C |-. |
+| |  |     Target     |  |            |  |        '------------' | |
+| |  | Environment(s) |  |            |<------------| ...        | |
+| |  |                |  '------------'  | Evidence '------------' |
+| |  |                |            ^     |    of                   |
+| |  |                |------------/     | Attesters               |
+| |  '----------------'  Collecting      | (via Internal Links or  |
+| |                      Claims          | Network Connections)    |
+| |                                      |                         |
+| | Lead Attester A                      |                         |
+| '--------------------------------------'                         |
+|                                                                  |
+|                       Composite Device                           |
+'------------------------------------------------------------------'
 ~~~~
-{: #composite title="Conceptual Data Flow for a Composite Attester"}
+{: #composite title="Conceptual Data Flow for a Composite Device"}
 
-In the Composite Attester, each Attester generates its own Evidence by its
+In the Composite Device, each Attester generates its own Evidence by its
 Attesting Environment(s) collecting the claims from its Target Environment(s).
 The Lead Attester collects the Evidence of all other Attesters and then
 generates the Evidence of the whole Composite Attester.
 
-The Lead Attester's Claims Collector may or may not include its own
-Verifier. One situation is that the Claims Collector has no internal Verifier.
-In this situation, the Claims Collecctor simply combines the various
+The Lead Attester's Attesting Environment may or may not include its own
+Verifier.
+One situation is that the Attesting Environment has no internal Verifier.
+In this situation, the Lead Attesting Environment simply combines the various
 Evidences into the final Evidence that is sent off to the remote Verifier,
-which evaluates the Composite Attester's,
+which evaluates the trusworthiness of the Composite Device,
 including the Lead Attester's and other Attesters', trustworthiness.
 
-The other situation is that the Lead Attester's Claims Collector has an internal Verifier.
-After collecting the Evidence of other Attesters, the Claims Collector verifies them
-using Endorsements and Appraisal Policies (obtained the
+The other situation is that the Lead Attesting Environment has an internal Verifier.
+After collecting the Evidence of other Attesters, this Attesting Environment
+verifies them using Endorsements and Appraisal Policies (obtained the
 same way as any other Verifier), for evaluating these Attesters' trustworthiness.
-Then the Claims Collector combines the Attestation Results into
+Then the Lead Attesting Environment combines the Attestation Results into
 the final Evidence of the whole Composite Attester which is sent off to the remote
 Verifier, which might treat the claims obtained from the local Attestation Results
 as if they were Evidence.
@@ -226,6 +342,14 @@ the Evidence against its Appraisal Policy.  The Verifier then gives back
 an Attestation Result.  If the Attestation Result was a successful one,
 the Attester can then present the Attestation Result to a Relying Party,
 which then compares the Attestation Result against its own Appraisal Policy.
+
+There are three ways in which the process may fail.  First, the Verifier may
+refuse to issue the Attestation Result due to some error in processing, or
+some missing input to the Verifier.
+The second way in which the process may fail is when the resulting Result is
+examined by the Relying Party, and based upon the Appraisal Policy, the
+result does not pass the policy.
+The third way is when the verifier is unreachable.
 
 Since the resource access protocol between the Attester and Relying Party
 includes an Attestation Result, in this model the details of that protocol
@@ -266,8 +390,8 @@ Result, and the immigration desk is a Relying Party.
 In this model, an Attester sends Evidence to a Relying Party, which simply
 passes it on to a Verifier.  The Verifier then compares the Evidence against
 its Appraisal Policy, and returns an Attestation Result to the Relying Party.
-The Relying Party then compares the Attestation Result against its own security
-policy.
+The Relying Party then compares the Attestation Result against its own
+appraisal policy.
 
 The resource access protocol between the Attester and Relying Party
 includes Evidence rather than an Attestation Result, but that Evidence is
@@ -349,11 +473,11 @@ plans to support in the TEEP architecture {{?I-D.ietf-teep-architecture}}.
    Evidence|    |Attestation
            |    |  Result
            |    v
-      +-------------+               +-------------+
-      |             |-------------->|             | Compare Attestation
-      |   Attester  |  Attestation  |   Relying   | Result against
-      |             |     Result    |   Party 1   | Appraisal Policy
-      +-------------+               +-------------+
+      +----------+               +----------+
+      |          |-------------->|          | Compare Attestation
+      | Attester |  Attestation  |  Relying | Result against
+      |          |     Result    |  Party 1 | Appraisal Policy
+      +----------+               +----------+
 ~~~~
 {: #combination title="Example Combination"}
 
@@ -412,8 +536,119 @@ implicitly trusted is often referred to as a Root of Trust.
 
 # Conceptual Messages {#messages}
 
-    <this section can include content from Serialization Formats and Conceptual Messages sections from
-    draft-thaler-rats-architecture, and Role Messages content from draft-birkholz-rats-architecture>
+## Evidence
+
+Today, Evidence tends to be highly device-specific, since the information in the Evidence
+often includes vendor-specific information that is necessary to fully describe the manufacturer
+and model of the device including its security properties, the health
+of the device, and the level of confidence in the correctness of the information.
+Evidence is typically signed by the device (whether by hardware, firmware, or software on the
+device), and evaluating it in isolation would require Appraisal Policy to be based on
+device-specific details (e.g., a device public key).
+
+## Endorsements
+
+An Endorsement is a secure statement that some entity (e.g., a manufacturer) vouches for the integrity of the
+device's signing capability.  For example, if the signing capability is in hardware, then
+an Endorsement might be a manufacturer certificate that signs a public key whose corresponding
+private key is only known inside the device's hardware.  Thus, when Evidence and such an Endorsement
+are used together, evaluating them can be done against Appraisal Policy that may not be specific to the
+device instance, but merely specific to the manufacturer providing the Endorsement. For example,
+an Appraisal Policy might simply check that devices from a given manufacturer have information
+matching a set of known-good reference values, or an Appraisal Policy might have a set of more complex
+logic on how to evaluate the validity of information.
+
+However, while an Appraisal Policy that treats all devices from a given manufacturer the same
+may be appropriate for some use cases, it would be inappropriate to use such an Appraisal Policy
+as the sole means of authorization for use cases that wish to constrain *which* compliant devices
+are considered authorized for some purpose.  For example, an enterprise using attestation for
+Network Endpoint Assessment may not wish to let every healthy laptop from the same
+manufacturer onto the network, but instead only want to let devices that it legally owns
+onto the network.  Thus, an Endorsement may be helpful information in authenticating
+information about a device, but is not necessarily sufficient to authorize access to
+resources which may need device-specific information such as a public key for the device or
+component or user on the device.
+
+## Attestation Results
+
+Attestation Results may indicate compliance or non-compliance with a Verifier's Appraisal Policy.
+A result that indicates non-compliance can be used by an Attester (in the passport model) or
+a Relying Party (in the background-check model) to indicate that the Attester
+should not be treated as authorized and may be in need of remediation.  In some cases,
+it may even indicate that the Evidence itself cannot be authenticated as being correct.
+
+An Attestation Result that indicates compliance can be used by a Relying Party to make
+authorization decisions based on the Relying Party's Appraisal Policy.  The simplest such
+policy might be to simply authorize any party supplying a compliant Attestation Result
+signed by a trusted Verifier.  A more complex policy might also entail comparing information
+provided in the result against known-good reference values, or applying more complex logic
+such information.
+
+Thus, Attestation Results often need to include detailed information about the Attester,
+for use by Relying Parties, much like physical passports and drivers licenses include
+personal information such as name and date of birth.  Unlike Evidence, which is often
+very device- and vendor-specific, Attestation Results can be vendor-neutral if the Verifier
+has a way to generate vendor-agnostic information based on evaluating vendor-specific
+information in Evidence.  This allows a Relying Party's Appraisal Policy to be simpler,
+potentially based on standard ways of expressing the information, while still allowing
+interoperability with heterogeneous devices.
+
+Finally, whereas Evidence is signed by the device (or indirectly by a manufacturer, if
+Endorsements are used), Attestation Results are signed by a Verifier, allowing a Relying
+Party to only need a trust relationship with one entity, rather than a larger set of
+entities, for purposes of its Appraisal Policy.
+
+# Claims Encoding Formats
+
+The following diagram illustrates a relationship to which attestation is desired to be added:
+
+~~~~
+   +-------------+               +-------------+
+   |             |-------------->|             |
+   |  Attester   |  Access some  |   Relying   | Evaluate request
+   |             |    resource   |    Party    | against security policy
+   +-------------+               +-------------+
+~~~~
+{: #clientserver title="Typical Resource Access"}
+
+In this diagram, the protocol between Attester and a Relying Party
+can be any new or existing protocol (e.g., HTTP(S), COAP(S),
+802.1x, OPC UA, etc.), depending on the use case.  Such
+protocols typically already have mechanisms for passing security
+information for purposes of authentication and authorization.  Common
+formats include JWTs {{?RFC7519}}, CWTs {{?RFC8392}}, and X.509 certificates.
+
+To enable attestation to be added to existing protocols, enabling a higher
+level of assurance against malware for example, it is important that
+information needed for evaluating the Attester be usable with existing
+protocols that have constraints around what formats they can transport.
+For example, OPC UA {{OPCUA}} (probably the most common protocol in
+industrial IoT environments) is defined to carry X.509 certificates and so
+security information must be embedded into an X.509 certificate to be passed
+in the protocol.  Thus, attestation-related information could be natively
+encoded in X.509 certificate extensions, or could be natively encoded in
+some other format (e.g., a CWT) which in turn is then encoded in an X.509
+certificate extension.
+
+Especially for constrained nodes, however, there is a desire to minimize
+the amount of parsing code needed in a Relying Party, in order to both
+minimize footprint and to minimize the attack surface area.  So while
+it would be possible to embed a CWT inside a JWT, or a JWT inside an
+X.509 extension, etc., there is a desire to encode the information
+natively in the format that is natural for the Relying Party.
+
+This motivates having a common "information model" that describes
+the set of attestation related information in an encoding-agnostic
+way, and allowing multiple encoding formats (CWT, JWT, X.509, etc.)
+that encode the same information into the claims format needed by the
+Relying Party.
+
+The following diagram illustrates that Evidence and Attestation Results
+might each have multiple possible encoding formats, so that they can be
+conveyed by various existing protocols.  It also motivates why the Verifier
+might also be responsible for accepting Evidence that encodes claims in
+one format, while issuing Attestation Results that encode claims in
+a different format.
 
 {:multievidence: artwork-align="center"}
 ~~~~ MULTIEVIDENCE
