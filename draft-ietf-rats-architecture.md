@@ -327,7 +327,11 @@ same way as any other Verifier), for evaluating these Attesters' trustworthiness
 Then the Lead Attesting Environment combines the Attestation Results into
 the final Evidence of the whole Composite Attester which is sent off to the remote
 Verifier, which might treat the claims obtained from the local Attestation Results
-as if they were Evidence.
+as if they were Evidence. In this situation, the local Verifier may need to be
+trusted by the Endorser and Verifier Owner before getting the Endorsements
+and Appraisal Policies. One explicit way to establish such trust may be the Lead
+Attester first generates Evidence about its trustworthiness and sends this
+Evidence to the remote Verifier for evaluating.
 
 # Topological Models {#overview}
 
