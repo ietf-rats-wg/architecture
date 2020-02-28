@@ -584,7 +584,7 @@ authorization decisions based on the Relying Party's Appraisal Policy.  The simp
 policy might be to simply authorize any party supplying a compliant Attestation Result
 signed by a trusted Verifier.  A more complex policy might also entail comparing information
 provided in the result against known-good reference values, or applying more complex logic
-such information.
+on such information.
 
 Thus, Attestation Results often need to include detailed information about the Attester,
 for use by Relying Parties, much like physical passports and drivers licenses include
