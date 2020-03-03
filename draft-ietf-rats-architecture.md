@@ -530,7 +530,7 @@ The fact that an Attester role is composed of several types of environments that
 can be nested or staged adds complexity to the architectural layout of how an
 Attester -- in itself -- is composed and therefore has to conduct the Claims collection
 in order to create believable Attestation Evidence. This complexity is
-independent of the concept defined by Composite Attesters.
+independent of the concept defined by Composite Devices.
 Composite Attesters are inherently composed of multiple nested environments.
 The following example is intended to illustrate this composition:
 
