@@ -525,10 +525,10 @@ embedded Secure Elements (eSE), or Hardware Security Modules (HSM).
 
 ## Layered Attestation Procedures
 
-By definition, the Attester role takes on the duty to create Attestation Evidence.
+By definition, the Attester role takes on the duty to create Evidence.
 The fact that an Attester role is composed of several types of environments that
 can be nested or staged adds complexity to the architectural layout of how an
-Attester -- in itself -- is composed and therefore has to conduct the Claims Collection
+Attester -- in itself -- is composed and therefore has to conduct the Claims collection
 in order to create believable Attestation Evidence. This complexity is
 independent of the concept defined by Composite Attesters.
 Composite Attesters are inherently composed of multiple nested environments.
@@ -537,24 +537,22 @@ The following example is intended to illustrate this composition:
 A very common example is elaborated on to illustrate Layered Attestation.
 
 The very first Attesting Environment has to ensure the integrity of
-the (U)EFI / BIOS / Firmware that initially boots up a composite device (e.g.
-a cell phone). A hardware component (which effectively can encompasses
-immutable execution environments and mutable execution environments)
-executes the very first Claim Collection. These Claims MUST be stored
-securely (e.g. a eSE. It is not ensured that a TEE or HWM are accessible
-at this very beginning). At this stage of the boot-cycle of a
-thing, the Claims collected typically cannot be composed into Attestation Evidence.
+the (U)EFI / BIOS / Firmware that initially boots up a composite device (e.g.,
+a cell phone). A hardware component, which effectively can encompasses
+immutable execution environments (static code Roots of Trust) and mutable execution environments (dynamic code Roots of Trusts),
+executes the very first Claim Collection. These Claims have to be stored
+securely. At this stage of the boot-cycle of a
+composite device, the Claims collected typically cannot be composed into Evidence.
 
-The very first Attesting Environment in this example can be a static root-of-trust
-provided by a hardware component residing next to the (U)EFI / BIOS / Firmware.
-As in any other scenario, this hardware component is is the first Attesting Environment.
+The very first Attesting Environment in this example can be a hardware component that is a Static Code Root of Trust.
+As in any other scenario, this hardware component is the first Attesting Environment.
 It collects a rather concise number of Claims about the Target Environment.
 The Target Environment in this example is the (U)EFI / BIOS / Firmware.
-After the boot sequence started the Target Environment the
-most important feature of layered attestation is conducted:
+After the boot sequence started, the Target Environment conducts the
+most important and defining feature of layered attestation:
 The successfully measured [comment: this is why Henk prefers 'measured' above 'collected'
 because it can be used in English text better] environment that is the
-(U)EFI / BIOS / Firmware now becomes the Attesting Environment.
+(U)EFI / BIOS / Firmware now becomes the Attesting Environment. Analogously, the Attesting Environment hands off its duty to one of its Target Environments. This procedure in Layered Attestation is called Staging.
 
 Now, the duties have been transferred and Layered Attestation takes place.
 The initial Attesting Environment relinquishes its duties to the Target Environment.
@@ -567,8 +565,8 @@ taken over by the (U)EFI / BIOS / Firmware that was the Attested
 Environment before. This transfer of duty is the essential part of
 Layered Attestation. The (U)EFI / BIOS / Firmware now is the Attesting Environment.
 The next Target Environment is, in this example, a bootloader. There are
-potentially multiple kernels to boot, the decision is imposed on the bootloader.
-Only a integer bootloader will make an appropriate decision. Therefore, Claims about
+potentially multiple kernels to boot, the decision is up to the bootloader.
+Only a bootloader with intact integrity will make an appropriate decision. Therefore, Claims about
 the integrity of a bootloader are now collected by the freshly appointed Attesting Environment
 that is the (U)EFI / BIOS / Firmware. Collected Claims have to be stored by the current
 Attesting Environment in a similar shielded and secured manner, so that the next Attesting Environment
@@ -589,9 +587,8 @@ a layered boot sequence and correspondingly enabling Layered Attestation.
 
 Please note: nested components can compose their on Composite Attesters.
 In consequence, the concept of Layered Attestation is realized in each Attester role.
-If there is a Composite Device enabling Composite Attesters, each Attester in this composite
-can enable its separate instance of Layered Attestation. Layered Attestation takes place
-depending on the complexity of the composition of each Attester role in a Composite Attester.
+If there is a Composite Device enabling Composite Attesters, each Attester
+can enable its separate instance of Layered Attestation.
 
 # Trust Model
 
