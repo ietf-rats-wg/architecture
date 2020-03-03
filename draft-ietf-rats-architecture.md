@@ -242,6 +242,25 @@ Appraisal Policy to make application-specific decisions such as authorization de
 The Attestation Result Appraisal Policy might, for example, be configured in the Relying Party
 by an administrator.
 
+## Two Types of Environments of an Attester
+
+An Attester consists of at least one Attesting Environment and at least one
+Target Environment. In some implementations, the Attesting and Target Environments
+might be combined.
+Other implementations might have multiple Attesting and Target Environments.
+One example is a set of components in a boot sequence (e.g., ROM, firmware,
+OS, and application) where a Target Environment is the
+Attesting Environment for the next environment in the boot sequence.
+
+Claims are collected from Target Environments. That is,
+Attesting Environments collect the raw values and
+the information to be represented in claims. Attesting Environments then
+format them appropriately, and typically use key material and
+cryptographic functions, such as signing or cipher algorithms, to
+create Evidence. Examples of environments that can be used as
+Attesting Environments include Trusted Execution Environments (TEE),
+embedded Secure Elements (eSE), or Hardware Security Modules (HSM).
+
 ## Composite Attester {#compositeattester}
 
 A Composite Attester is an entity composed of multiple sub-entities such that its
@@ -484,25 +503,6 @@ plans to support in the TEEP architecture {{?I-D.ietf-teep-architecture}}.
       +----------+               +----------+
 ~~~~
 {: #combination title="Example Combination"}
-
-# Two Types of Environments of an Attester
-
-An Attester consists of at least one Attesting Environment and at least one
-Target Environment. In some implementations, the Attesting and Target Environments
-might be combined.
-Other implementations might have multiple Attesting and Target Environments.
-One example is a set of components in a boot sequence (e.g., ROM, firmware,
-OS, and application) where a Target Environment is the
-Attesting Environment for the next environment in the boot sequence.
-
-Claims are collected from Target Environments. That is,
-Attesting Environments collect the raw values and
-the information to be represented in claims. Attesting Environments then
-format them appropriately, and typically use key material and
-cryptographic functions, such as signing or cipher algorithms, to
-create Evidence. Examples of environments that can be used as
-Attesting Environments include Trusted Execution Environments (TEE),
-embedded Secure Elements (eSE), or Hardware Security Modules (HSM).
 
 # Trust Model
 
