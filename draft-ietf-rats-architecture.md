@@ -280,17 +280,16 @@ A very common example is elaborated on to illustrate Layered Attestation.
 {:layered #layered title="Layered Attester"}
 
 The very first Attesting Environment has to ensure the integrity of
-the (U)EFI / BIOS / Firmware that initially boots up a composite device (e.g.,
-a cell phone). A hardware component, which effectively can encompasses
-immutable execution environments (static code Roots of Trust) and mutable execution environments (dynamic code Roots of Trusts),
-executes the very first Claim Collection. These Claims have to be stored
-securely. At this stage of the boot-cycle of a
+the (U)EFI / BIOS / Firmware [FIXME] that initially boots up a composite device (e.g.,
+a cell phone).
+These Claims have to be stored securely.
+At this stage of the boot-cycle of a
 composite device, the Claims collected typically cannot be composed into Evidence.
 
 The very first Attesting Environment in this example can be a hardware component that is a Static Code Root of Trust.
 As in any other scenario, this hardware component is the first Attesting Environment.
 It collects a rather concise number of Claims about the Target Environment.
-The Target Environment in this example is the (U)EFI / BIOS / Firmware.
+The Target Environment in this example is the (U)EFI / BIOS / Firmware [FIXME]
 After the boot sequence started, the Target Environment conducts the
 most important and defining feature of layered attestation:
 The successfully measured [comment: this is why Henk prefers 'measured' above 'collected'
