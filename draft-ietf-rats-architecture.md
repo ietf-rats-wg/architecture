@@ -282,7 +282,7 @@ A very common example is elaborated on to illustrate Layered Attestation.
 The very first Attesting Environment has to ensure the integrity of
 the (U)EFI / BIOS / Firmware [FIXME] that initially boots up a composite device (e.g.,
 a cell phone).
-These Claims have to be stored securely.
+These Claims have to be measured securely.
 At this stage of the boot-cycle of a
 composite device, the Claims collected typically cannot be composed into Evidence.
 
@@ -292,9 +292,9 @@ It collects a rather concise number of Claims about the Target Environment.
 The Target Environment in this example is the (U)EFI / BIOS / Firmware [FIXME]
 After the boot sequence started, the Target Environment conducts the
 most important and defining feature of layered attestation:
-The successfully measured [comment: this is why Henk prefers 'measured' above 'collected'
-because it can be used in English text better] environment that is the
-(U)EFI / BIOS / Firmware now becomes the Attesting Environment. Analogously, the Attesting Environment hands off its duty to one of its Target Environments. This procedure in Layered Attestation is called Staging.
+The successfully measured environment that is the
+(U)EFI / BIOS / Firmware now becomes the Attesting Environment.
+Analogously, the Attesting Environment hands off its duty to one of its Target Environments. This procedure in Layered Attestation is called Staging.
 
 Now, the duties have been transferred and Layered Attestation takes place.
 The initial Attesting Environment relinquishes its duties to the Target Environment.
