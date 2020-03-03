@@ -252,10 +252,13 @@ One example is a set of components in a boot sequence (e.g., ROM, firmware,
 OS, and application) where a Target Environment is the
 Attesting Environment for the next environment in the boot sequence.
 
-Claims are collected from Target Environments. That is,
-Attesting Environments collect the raw values and
-the information to be represented in claims. Attesting Environments then
-format them appropriately, and typically use key material and
+Another example is that of a Composite Devices: Composite Devices are defined
+below, and are inherently composed of multiple nested environments.
+
+Claims are collected from Target Environments.
+That is, Attesting Environments collect the raw values and
+the information to be represented in claims.
+Attesting Environments then format them appropriately, and typically use key material and
 cryptographic functions, such as signing or cipher algorithms, to
 create Evidence. Examples of environments that can be used as
 Attesting Environments include Trusted Execution Environments (TEE),
@@ -267,9 +270,7 @@ By definition, the Attester role takes on the duty to create Evidence.
 The fact that an Attester role is composed of several types of environments that
 can be nested or staged adds complexity to the architectural layout of how an
 Attester -- in itself -- is composed and therefore has to conduct the Claims collection
-in order to create believable Attestation Evidence. This complexity is
-independent of the concept defined by Composite Devices.
-Composite Attesters are inherently composed of multiple nested environments.
+in order to create believable Attestation Evidence.
 The following example is intended to illustrate this composition:
 
 A very common example is elaborated on to illustrate Layered Attestation.
