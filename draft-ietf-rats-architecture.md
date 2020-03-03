@@ -330,15 +330,18 @@ Attesting Environment(s) collecting the claims from its Target Environment(s).
 The Lead Attester collects the Evidence of all other Attesters and then
 generates the Evidence of the whole Composite Device.
 
-Inside the entity of Attester, there may be a Target Environment
-that has the ability to verify the Evidence of other Attesters,
-it can be seen as an entity of Verifier and be called a local Verifier.
-The claims collected from this Target Environment (i.e., the local Verifier)
+The Entity that takes on the role of an Attester may also include the
+role of a Verifier in its Target Environment. A Verifier residing in a
+Target Environment of an Attester is called a local Verifier.
+The local Verifier can verify the Evidence of other Attesters.
+Therefore the claims collected from this Target Environment (i.e., the local Verifier)
 have two types. One is about itself and will finally be used to evaluate
-the trustworthiness of the Lead Attester and itself. The other is about
-the verification results of other Attesters.
+the trustworthiness of the Attester and the local Verifier.
+The other is about the verification results of other Attesters.
 
-One situation is that the Lead Attester has no local Verifier. In this situation, 
+In usage scenarios, the Lead Attester either includes a local Verifier
+in one of its Target Environments or not.
+One situation is that the Lead Attester has no local Verifier. In such a case, 
 the Lead Attester's Attesting Environment simply combines the various
 Evidences into the final Evidence that is sent off to the remote Verifier,
 which evaluates the trustworthiness of the Composite Device,
@@ -348,7 +351,7 @@ The other situation is that the Lead Attester has a local Verifier.
 After collecting the Evidence of other Attesters, this local Verifier
 verifies them using Endorsements and Appraisal Policies (obtained the
 same way as any other Verifier), for evaluating these Attesters' trustworthiness.
-Then the Lead Attester's Attesting Environment collects the Attestation
+The Lead Attester's Attesting Environment collects the Attestation
 Results as claims and combines them into the final Evidence of the
 whole Composite Device which is sent off to the remote Verifier,
 which might treat the claims obtained from the local Attestation Results
