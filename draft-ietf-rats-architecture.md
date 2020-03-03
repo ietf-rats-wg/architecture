@@ -277,7 +277,7 @@ A very common example is elaborated on to illustrate Layered Attestation.
 ~~~~ LAYERED
 {::include layered-attester.txt}
 ~~~~
-{:dataflow #dataflow title="Layered Attester"}
+{:layered #layered title="Layered Attester"}
 
 The very first Attesting Environment has to ensure the integrity of
 the (U)EFI / BIOS / Firmware that initially boots up a composite device (e.g.,
