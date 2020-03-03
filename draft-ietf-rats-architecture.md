@@ -296,56 +296,62 @@ each router is an Attester and the main router is the Lead Attester.
 {{composite}} depicts the conceptual data flow for a Composite Device.
 
 ~~~~
-                   .-----------------------------.
-                   |           Verifier          |
-                   '-----------------------------'
-                                   ^
-                                   |
-                                   | Composite
-                                   | Evidence
-                                   |
-.----------------------------------|-------------------------------.
-| .--------------------------------|-----.      .------------.     |
-| |                      .------------.  |      |            |     |
-| |                      |  Attesting |<--------| Attester B |-.   |
-| |                      |Environment |  |      '------------. |   |
-| |  .----------------.  |            |<----------| Attester C |-. |
-| |  |     Target     |  |            |  |        '------------' | |
-| |  | Environment(s) |  |            |<------------| ...        | |
-| |  |                |  '------------'  | Evidence '------------' |
-| |  |                |            ^     |    of                   |
-| |  |                |------------/     | Attesters               |
-| |  '----------------'  Collecting      | (via Internal Links or  |
-| |                      Claims          | Network Connections)    |
-| |                                      |                         |
-| | Lead Attester A                      |                         |
-| '--------------------------------------'                         |
-|                                                                  |
-|                       Composite Device                           |
-'------------------------------------------------------------------'
+              .-----------------------------.
+              |       Remote Verifier       |
+              '-----------------------------'
+                             ^
+                             | Evidence of
+                             | Composite Device
+                             |
+.----------------------------|----------------------------------.
+| .--------------------------|--------.                         |
+| |                   .-------------. |                         |
+| | Collecting Claims | Attesting   | |                         |
+| |         /-------->| Environment | |                         |
+| |         |         '-------------' |      .------------.     |
+| | .----------------.                |      |            |     |
+| | | Target         |                |<-----| Attester B |-.   |
+| | | Environment(s) |                |      '------------' |   |
+| | | (Optional      |                |<-------| Attester C |-. |
+| | |  Local         |                |        '------------' | |
+| | |  Verifier)     |                |<---------| ...        | |
+| | '----------------'                | Evidence '------------' |
+| |                                   | of Attesters            |
+| | Lead Attester A                   | (via Internal Links or  |
+| '-----------------------------------'  Network Connections)   |
+|                                                               |
+|                       Composite Device                        |
+'---------------------------------------------------------------'
 ~~~~
 {: #composite title="Conceptual Data Flow for a Composite Device"}
 
 In the Composite Device, each Attester generates its own Evidence by its
 Attesting Environment(s) collecting the claims from its Target Environment(s).
 The Lead Attester collects the Evidence of all other Attesters and then
-generates the Evidence of the whole Composite Attester.
+generates the Evidence of the whole Composite Device.
 
-The Lead Attester's Attesting Environment may or may not include its own
-Verifier.
-One situation is that the Attesting Environment has no local Verifier.
-In this situation, the Lead Attesting Environment simply combines the various
+Inside the entity of Attester, there may be a Target Environment
+that has the ability to verify the Evidence of other Attesters,
+it can be seen as an entity of Verifier and be called a local Verifier.
+The claims collected from this Target Environment (i.e., the local Verifier)
+have two types. One is about itself and will finally be used to evaluate
+the trustworthiness of the Lead Attester and itself. The other is about
+the verification results of other Attesters.
+
+One situation is that the Lead Attester has no local Verifier. In this situation, 
+the Lead Attester's Attesting Environment simply combines the various
 Evidences into the final Evidence that is sent off to the remote Verifier,
 which evaluates the trustworthiness of the Composite Device,
 including the Lead Attester's and other Attesters', trustworthiness.
 
-The other situation is that the Lead Attesting Environment has an local Verifier.
-After collecting the Evidence of other Attesters, this Attesting Environment
+The other situation is that the Lead Attester has a local Verifier.
+After collecting the Evidence of other Attesters, this local Verifier
 verifies them using Endorsements and Appraisal Policies (obtained the
 same way as any other Verifier), for evaluating these Attesters' trustworthiness.
-Then the Lead Attesting Environment combines the Attestation Results into
-the final Evidence of the whole Composite Attester which is sent off to the remote
-Verifier, which might treat the claims obtained from the local Attestation Results
+Then the Lead Attester's Attesting Environment collects the Attestation
+Results as claims and combines them into the final Evidence of the
+whole Composite Device which is sent off to the remote Verifier,
+which might treat the claims obtained from the local Attestation Results
 as if they were Evidence. In this situation, the local Verifier may need to be
 trusted by the Endorser and Verifier Owner before getting the Endorsements
 and Appraisal Policies. One explicit way to establish such trust may be the Lead
