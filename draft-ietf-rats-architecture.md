@@ -148,7 +148,7 @@ customers purchased, and it wants to prevent attackers, potentially including
 the customer themselves, from seeing the details of the model.
 
 This typically works by having some protected environment
-in the device attest to some manufacturer service.  If attestation succeeds.
+in the device attest to some manufacturer service.  If attestation succeeds,
 then the manufacturer service releases either the model, or a key to decrypt
 a model the Attester already has in encrypted form, to the requester.
 
@@ -184,7 +184,7 @@ that are within policy.
 
 * Relying Party: A device or application connected to potentially dangerous
   physical equipment (hazardous chemical processing, traffic control,
-  power grid, etc.
+  power grid, etc.)
 
 ## Trusted Execution Environment (TEE) Provisioning
 
@@ -346,11 +346,8 @@ same way as any other Verifier), for evaluating these Attesters' trustworthiness
 Then the Lead Attesting Environment combines the Attestation Results into
 the final Evidence of the whole Composite Attester which is sent off to the remote
 Verifier, which might treat the claims obtained from the local Attestation Results
-as if they were Evidence. In this situation, the local Verifier may need to be
-trusted by the Endorser and Verifier Owner before getting the Endorsements
-and Appraisal Policies. One explicit way to establish such trust may be the Lead
-Attester first generates Evidence about its trustworthiness and sends this
-Evidence to the remote Verifier for evaluating.
+as if they were Evidence. In this situation, the trust model described
+in {{trustmodel}} is also suitable for the local verifier.
 
 # Topological Models {#overview}
 
@@ -504,7 +501,7 @@ plans to support in the TEEP architecture {{?I-D.ietf-teep-architecture}}.
 ~~~~
 {: #combination title="Example Combination"}
 
-# Trust Model
+# Trust Model {#trustmodel}
 
 The scope of this document is scenarios for which a Relying Party
 trusts a Verifier that can evaluate the trustworthiness of
@@ -518,10 +515,14 @@ Relying Party might require that the Verifier itself provide
 information about itself that the Relying Party can use to evaluate
 the trustworthiness of the Verifier before accepting its Attestation Results.
 
-Similar to the Relying Party, the Endorser and Verifier Owner also
-need to trust the Verifier before giving the Endorsement and
-Appraisal Policy to it. Such trust can also be established directly
-or indirectly, implicitly or explicitly.
+The Endorser and Verifier Owner may need to trust the Verifier
+before giving the Endorsement and Appraisal Policy to it.
+Such trust can also be established directly or indirectly,
+implicitly or explicitly. One explicit way to establish such trust
+may be the Verifier first acts as an Attester and attests to the
+Endorser and/or Verifier Owner as the Relying Parties.
+If it is accepted as trustworthy, then they can provide Endorsements
+and Appraisal Policies that enable it to act as a Verifier.
 
 The Verifier trusts (or more specifically, the Verifier's security
 policy is written in a way that configures the Verifier to trust) a
