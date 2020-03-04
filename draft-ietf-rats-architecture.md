@@ -124,7 +124,7 @@ This document uses the following terms.
 
 Appraisal Policy for Evidence:
 
-: A set of rules that direct how a Verifier appraises the validity of information about an Attester. Compare /security policy/ in {{RFC4949}}
+: A set of rules that direct how a Verifier evaluates the validity of information about an Attester. Compare /security policy/ in {{RFC4949}}
 
 Appraisal Policy for Attestation Result:
 
@@ -152,7 +152,7 @@ Evidence:
 
 Relying Party: 
 
-: An entity that depends on the validity of information about another entity, typically for purposes of authorization.  Compare /relying party/ in{{RFC4949}}
+: An entity that depends on the validity of information about another entity, typically for purposes of authorization.  Compare /relying party/ in {{RFC4949}}
 
 Relying Party Owner: 
 
@@ -191,7 +191,7 @@ harming others.
 
 Typically, solutions start with a specific component (called a "Root of Trust") that
 provides device identity and protected storage for measurements.
-These components perform a series of initial measurements, and express this with Evidence as to the
+These components perform a series of measurements, and express this with Evidence as to the
 hardware and firmware/software that is running. [FIXME from Henk: Measurements at early stages of Layered Attestation are NOT evidence yet. This text does not cover that yet]
 
 Attester:
@@ -669,7 +669,7 @@ before giving the Endorsement and Appraisal Policy to it.
 Such trust can also be established directly or indirectly,
 implicitly or explicitly. One explicit way to establish such trust
 may be the Verifier first acts as an Attester and creates Evidence about itself to be consumed by the
-Endorser and/or Verifier Owner as the Relying Parties. [FIXME from Henk: this still does not really makes sense]
+Endorser and/or Verifier Owner as the Relying Parties. 
 If it is accepted as trustworthy, then they can provide Endorsements
 and Appraisal Policies that enable it to act as a Verifier.
 
@@ -691,7 +691,7 @@ In some scenarios, Evidence might contain sensitive information such as
 Personally Identifiable Information.
 Thus, an Attester must trust entities to which it sends Evidence, to not
 reveal sensitive data to unauthorized parties.
-The Verifier may share this information with other authorized parties, according rules that it controls.
+The Verifier might share this information with other authorized parties, according rules that it controls.
 In the background-check model, this Evidence may also be revealed to Relying Party(s).
 
 
