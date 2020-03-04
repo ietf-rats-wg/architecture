@@ -85,9 +85,6 @@ remote attestation procedures (RATS).
 
 # Introduction
 
-    <Henk added text based on charter content>
-    <more text to be added here>
-
 In Remote Attestation Procedures (RATS) one peer (the "Attester")
 produces believable information about itself - Evidence - to enable
 a remote peer (the "Relying Party") to decide whether to consider that
