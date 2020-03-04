@@ -50,6 +50,11 @@ author:
   code: ""
   city: ""
   country: USA
+- ins: W. Pan
+  name: Wei Pan
+  org: Huawei Technologies
+  email: william.panwei@huawei.com
+
 
 normative:
 
@@ -148,7 +153,7 @@ customers purchased, and it wants to prevent attackers, potentially including
 the customer themselves, from seeing the details of the model.
 
 This typically works by having some protected environment
-in the device attest to some manufacturer service.  If attestation succeeds.
+in the device attest to some manufacturer service.  If attestation succeeds,
 then the manufacturer service releases either the model, or a key to decrypt
 a model the Attester already has in encrypted form, to the requester.
 
@@ -184,7 +189,7 @@ that are within policy.
 
 * Relying Party: A device or application connected to potentially dangerous
   physical equipment (hazardous chemical processing, traffic control,
-  power grid, etc.
+  power grid, etc.)
 
 ## Trusted Execution Environment (TEE) Provisioning
 
@@ -252,14 +257,81 @@ One example is a set of components in a boot sequence (e.g., ROM, firmware,
 OS, and application) where a Target Environment is the
 Attesting Environment for the next environment in the boot sequence.
 
-Claims are collected from Target Environments. That is,
-Attesting Environments collect the raw values and
-the information to be represented in claims. Attesting Environments then
-format them appropriately, and typically use key material and
+Another example is that of a Composite Devices: Composite Devices are defined
+below, and are inherently composed of multiple nested environments.
+
+Claims are collected from Target Environments.
+That is, Attesting Environments collect the raw values and
+the information to be represented in claims.
+Attesting Environments then format them appropriately, and typically use key material and
 cryptographic functions, such as signing or cipher algorithms, to
 create Evidence. Examples of environments that can be used as
 Attesting Environments include Trusted Execution Environments (TEE),
 embedded Secure Elements (eSE), or Hardware Security Modules (HSM).
+
+## Layered Attestation Procedures
+
+By definition, the Attester role takes on the duty to create Evidence.
+The fact that an Attester role is composed of several types of environments that
+can be nested or staged adds complexity to the architectural layout of how an
+Attester -- in itself -- is composed and therefore has to conduct the Claims collection
+in order to create believable Attestation Evidence.
+The following example is intended to illustrate this composition:
+
+A very common example is elaborated on to illustrate Layered Attestation.
+{:layered: artwork-align="center"}
+~~~~ LAYERED
+{::include layered-attester.txt}
+~~~~
+{:layered #layered title="Layered Attester"}
+
+The very first Attesting Environment has to ensure the integrity of
+the (U)EFI / BIOS / Firmware [FIXME] that initially boots up a composite device (e.g.,
+a cell phone).
+These Claims have to be measured securely.
+At this stage of the boot-cycle of a
+composite device, the Claims collected typically cannot be composed into Evidence.
+
+The very first Attesting Environment in this example can be a hardware component that is a Static Code Root of Trust.
+As in any other scenario, this hardware component is the first Attesting Environment.
+It collects a rather concise number of Claims about the Target Environment.
+The Target Environment in this example is the (U)EFI / BIOS / Firmware [FIXME]
+After the boot sequence started, the Target Environment conducts the
+most important and defining feature of layered attestation:
+The successfully measured environment that is the
+(U)EFI / BIOS / Firmware now becomes the Attesting Environment.
+Analogously, the Attesting Environment hands off its duty to one of its Target Environments. This procedure in Layered Attestation is called Staging.
+
+Now, the duties have been transferred and Layered Attestation takes place.
+The initial Attesting Environment relinquishes its duties to the Target Environment.
+It is important to note that the new Attesting Environment cannot alter
+the content about its own measurements. If the Attesting Environment
+would be able to do that, Layered Attestation would become unfeasible.
+
+In this example the duty of being the Attesting Environment is now
+taken over by the (U)EFI / BIOS / Firmware that was the Attested
+Environment before. This transfer of duty is the essential part of
+Layered Attestation. The (U)EFI / BIOS / Firmware now is the Attesting Environment.
+The next Target Environment is, in this example, a bootloader. There are
+potentially multiple kernels to boot, the decision is up to the bootloader.
+Only a bootloader with intact integrity will make an appropriate decision. Therefore, Claims about
+the integrity of a bootloader are now collected by the freshly appointed Attesting Environment
+that is the (U)EFI / BIOS / Firmware. Collected Claims have to be stored by the current
+Attesting Environment in a similar shielded and secured manner, so that the next Attesting Environment
+is not capable of altering the collection of claims stored.
+
+Continuing with this example, the bootloader is now in charge of collecting Claims
+about the next execution environment. The next execution environment in this example
+is the kernel to be booted up. Analogously, the next transfer of duties in this
+Layered Attestation example occurs: The duty of being an Attesting Environment is
+transferred to a successfully measured kernel [Henk: we might have to define what successful
+means in this example and beyond]. In this sequence, the kernel is now collecting
+additional Claims and is storing them in a secure and shielded manner.
+
+The essence of this example is a cascade of staged boot environments. Each
+environment (after the initial one that is a root-of-trust) has the duty
+of measuring its next environment before it is started. Therefore, creating
+a layered boot sequence and correspondingly enabling Layered Attestation.
 
 ## Composite Attester {#compositeattester}
 
@@ -355,11 +427,8 @@ The Lead Attester's Attesting Environment collects the Attestation
 Results as claims and combines them into the final Evidence of the
 whole Composite Device which is sent off to the remote Verifier,
 which might treat the claims obtained from the local Attestation Results
-as if they were Evidence. In this situation, the local Verifier may need to be
-trusted by the Endorser and Verifier Owner before getting the Endorsements
-and Appraisal Policies. One explicit way to establish such trust may be the Lead
-Attester first generates Evidence about its trustworthiness and sends this
-Evidence to the remote Verifier for evaluating.
+as if they were Evidence. In this situation, the trust model described
+in {{trustmodel}} is also suitable for the local Verifier.
 
 # Topological Models {#overview}
 
@@ -513,7 +582,7 @@ plans to support in the TEEP architecture {{?I-D.ietf-teep-architecture}}.
 ~~~~
 {: #combination title="Example Combination"}
 
-# Trust Model
+# Trust Model {#trustmodel}
 
 The scope of this document is scenarios for which a Relying Party
 trusts a Verifier that can evaluate the trustworthiness of
@@ -527,10 +596,14 @@ Relying Party might require that the Verifier itself provide
 information about itself that the Relying Party can use to evaluate
 the trustworthiness of the Verifier before accepting its Attestation Results.
 
-Similar to the Relying Party, the Endorser and Verifier Owner also
-need to trust the Verifier before giving the Endorsement and
-Appraisal Policy to it. Such trust can also be established directly
-or indirectly, implicitly or explicitly.
+The Endorser and Verifier Owner may need to trust the Verifier
+before giving the Endorsement and Appraisal Policy to it.
+Such trust can also be established directly or indirectly,
+implicitly or explicitly. One explicit way to establish such trust
+may be the Verifier first acts as an Attester and attests to the
+Endorser and/or Verifier Owner as the Relying Parties.
+If it is accepted as trustworthy, then they can provide Endorsements
+and Appraisal Policies that enable it to act as a Verifier.
 
 The Verifier trusts (or more specifically, the Verifier's security
 policy is written in a way that configures the Verifier to trust) a
