@@ -610,6 +610,14 @@ for by hardware or by ROM code, especially if such hardware is
 physically resistant to hardware tampering.  The component that is
 implicitly trusted is often referred to as a Root of Trust.
 
+Implicit trust can also be tied to the communications link over which
+the attestation evidence is conveyed. As an example, if the device and Verifier
+communicate over a link that is established using a Root of Trust (e.g. cellular
+communications link where authentication is tied to the presence of a secure element),
+then the Verifier may be able to trust the attestation evidence from the device without
+an additional endorsement or even a cryptographically-verifiable signature of the 
+evidence.
+
 In some scenarios, Evidence might contain sensitive information such as
 Personally Identifiable Information.
 Thus, an Attester must trust entities to which it sends Evidence, to not
