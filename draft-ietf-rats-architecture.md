@@ -452,34 +452,8 @@ each router is an Attester and the main router is the Lead Attester.
 
 {{composite}} depicts the conceptual data flow for a Composite Device.
 
-~~~~
-                   .-----------------------------.
-                   |           Verifier          |
-                   '-----------------------------'
-                                   ^
-                                   |
-                                   | Composite
-                                   | Evidence
-                                   |
-.----------------------------------|-------------------------------.
-| .--------------------------------|-----.      .------------.     |
-| |                      .------------.  |      |            |     |
-| |                      |  Attesting |<--------| Attester B |-.   |
-| |                      |Environment |  |      '------------. |   |
-| |  .----------------.  |            |<----------| Attester C |-. |
-| |  |     Target     |  |            |  |        '------------' | |
-| |  | Environment(s) |  |            |<------------| ...        | |
-| |  |                |  '------------'  | Evidence '------------' |
-| |  |                |            ^     |    of                   |
-| |  |                |------------/     | Attesters               |
-| |  '----------------'  Collecting      | (via Internal Links or  |
-| |                      Claims          | Network Connections)    |
-| |                                      |                         |
-| | Lead Attester A                      |                         |
-| '--------------------------------------'                         |
-|                                                                  |
-|                       Composite Device                           |
-'------------------------------------------------------------------'
+~~~~ COMPOSITE
+{::include composite-attester.txt}
 ~~~~
 {: #composite title="Conceptual Data Flow for a Composite Device"}
 
