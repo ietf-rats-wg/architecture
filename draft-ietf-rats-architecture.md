@@ -190,8 +190,9 @@ These components perform a series of measurements, and express this with Evidenc
 hardware and firmware/software that is running.
 
 ~~~
-    FIXME from Henk: Measurements at early stages of Layered Attestation are
-    NOT evidence yet. This text does not cover that yet
+    FIXME from Henk: Measurements at early stages of
+    Layered Attestation are NOT evidence yet.
+    This text does not cover that yet
 ~~~
 
 Attester:
@@ -518,11 +519,11 @@ Attester-Verifier remote attestation protocol.
    Evidence|    |Attestation
            |    |  Result
            |    v
-      +-------------+               +-------------+
-      |             |-------------->|             | Compare Attestation
-      |   Attester  |  Attestation  |   Relying   | Result against
-      |             |     Result    |    Party    | Appraisal Policy
-      +-------------+               +-------------+
+      +----------+              +---------+
+      |          |------------->|         |Compare Attestation
+      | Attester | Attestation  | Relying | Result against
+      |          |    Result    |  Party  | Appraisal
+      +----------+              +---------+  Policy
 ~~~~
 {: #passport title="Passport Model"}
 
@@ -562,20 +563,20 @@ minimizing the code footprint and attack surface area of the Relying Party, espe
 if the Relying Party is a constrained node.
 
 ~~~~
-                                 +-------------+
-                                 |             | Compare Evidence
-                                 |   Verifier  | against Appraisal Policy
-                                 |             |
-                                 +-------------+
-                                     ^    |
-                             Evidence|    |Attestation
-                                     |    |  Result
-                                     |    v
-   +-------------+               +-------------+
-   |             |-------------->|             | Compare Attestation
-   |   Attester  |   Evidence    |   Relying   | Result against
-   |             |               |    Party    | Appraisal Policy
-   +-------------+               +-------------+
+                               +-------------+
+                               |             | Compare Evidence
+                               |   Verifier  | against Appraisal
+                               |             | Policy
+                               +-------------+
+                                    ^    |
+                            Evidence|    |Attestation
+                                    |    |  Result
+                                    |    v
+   +------------+               +-------------+
+   |            |-------------->|             | Compare Attestation
+   |   Attester |   Evidence    |   Relying   | Result against
+   |            |               |    Party    | Appraisal Policy
+   +------------+               +-------------+
 ~~~~
 {: #backgroundcheck title="Background-Check Model"}
 
@@ -651,7 +652,7 @@ before giving the Endorsement and Appraisal Policy to it.
 Such trust can also be established directly or indirectly,
 implicitly or explicitly. One explicit way to establish such trust
 may be the Verifier first acts as an Attester and creates Evidence about itself to be consumed by the
-Endorser and/or Verifier Owner as the Relying Parties. 
+Endorser and/or Verifier Owner as the Relying Parties.
 If it is accepted as trustworthy, then they can provide Endorsements
 and Appraisal Policies that enable it to act as a Verifier.
 
@@ -746,11 +747,11 @@ entities, for purposes of its Appraisal Policy.
 The following diagram illustrates a relationship to which remote attestation is desired to be added:
 
 ~~~~
-   +-------------+               +-------------+
-   |             |-------------->|             |
-   |  Attester   |  Access some  |   Relying   | Evaluate request
-   |             |    resource   |    Party    | against security policy
-   +-------------+               +-------------+
+   +-------------+               +------------+ Evaluate
+   |             |-------------->|            | request
+   |  Attester   |  Access some  |   Relying  | against
+   |             |    resource   |    Party   | security
+   +-------------+               +------------+ policy
 ~~~~
 {: #clientserver title="Typical Resource Access"}
 
