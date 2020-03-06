@@ -423,8 +423,10 @@ in {{trustmodel}} is also suitable for the local verifier.
 
 # Topological Models {#overview}
 
-There are multiple possible models for communication between an Attester,
-a Verifier, and a Relying Party.  This section includes some reference models,
+{{dataflow}} shows a basic model for communication between an Attester,
+a Verifier, and a Relying Party. The Attester sends its Evidence to the Verifier
+for appraisal, and the Verifier sends the Attestation Results to the Relying Party.
+There are multiple other possible models. This section includes some reference models,
 but this is not intended to be a restrictive list, and other variations may exist.
 
 ## Passport Model
