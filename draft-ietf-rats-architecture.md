@@ -252,24 +252,23 @@ by an administrator.
 An Attester consists of at least one Attesting Environment and at least one
 Target Environment. In some implementations, the Attesting and Target Environments
 might be combined.
-Other implementations might have multiple Attesting and Target Environments.
-One example is a set of components in a boot sequence (e.g., ROM, firmware,
-OS, and application) where a Target Environment is the
-Attesting Environment for the next environment in the boot sequence.
-
-Another example is that of a Composite Devices: Composite Devices are defined
-below, and are inherently composed of multiple nested environments.
+Other implementations might have multiple Attesting and Target Environments,
+such as in the examples described in more detail in {{layered-attestation}}
+and {{compositeattester}}.  Other examples may exist, and the examples
+discussed could even be combined into even more complex implementations.
 
 Claims are collected from Target Environments.
 That is, Attesting Environments collect the raw values and
-the information to be represented in claims.
-Attesting Environments then format them appropriately, and typically use key material and
+the information to be represented in claims, such as by doing some
+measurement of a Target Environment's code, memory, and/or registers.
+Attesting Environments then format the claims appropriately, and typically
+use key material and
 cryptographic functions, such as signing or cipher algorithms, to
 create Evidence. Examples of environments that can be used as
 Attesting Environments include Trusted Execution Environments (TEE),
 embedded Secure Elements (eSE), or Hardware Security Modules (HSM).
 
-## Layered Attestation Procedures
+## Layered Attestation Procedures {#layered-attestation}
 
 By definition, the Attester role takes on the duty to create Evidence.
 The fact that an Attester role is composed of several types of environments that
@@ -749,8 +748,8 @@ Result are fresh, meaning that there is some degree of assurance
 that they still reflect the latest state of the Attester, and that any Attestation
 Result was generated using the latest Appraisal Policy for Evidence.
 There is, however, always a race condition possible in that the
-state of the Attester, and the Appraisal Policy for Evidence, may
-change immediately after the Evidence or Attestation Result was generated.
+state of the Attester, and the Appraisal Policy for Evidence,
+might change immediately after the Evidence or Attestation Result was generated.
 The goal is merely to narrow the time window to something the Verifier
 (for Evidence) or Relying Party (for an Attestation Result) is willing to accept.
 
@@ -781,18 +780,19 @@ The conveyance of Evidence and the resulting Attestation Results
 reveal a great deal of information about the internal state of a
 device.  In many cases, the whole point of the Attestation process is
 to provide reliable information about the type of the device and the
-firmware/software that the device is running.  This information is
+firmware/software that the device is running.  This information might be
 particularly interesting to many attackers. For example, knowing that a device is
-running a weak version of firmware provides a way to aim
-attacks better.
+running a weak version of firmware provides a way to aim attacks better.
 
-Protocols that convey Evidence or Attestation Results are responsible for
-detailing what kinds of information are disclosed, and to whom they are exposed.
+Evidence and Attestation Results data structures are expected to support
+integrity protection encoding (e.g., COSE, JOSE, X.509) and optionally might
+support confidentiality protection (e.g., COSE, JOSE).
+Therefore, if confidentiality protection is omitted or unavailable, the protocols that convey Evidence or Attestation Results are responsible for detailing what kinds of information are disclosed, and to whom they are exposed.
 
 # Security Considerations
 
 Any solution that conveys information used for security purposes, whether
-such information is in the form of Evidence, Attestation Results, or
+such information is in the form of Evidence, Attestation Results,
 Endorsements, or Appraisal Policy, needs to support end-to-end integrity protection
 and replay attack prevention, and often also needs to support additional
 security protections.  For example, additional means of authentication,
@@ -811,6 +811,9 @@ securely.  As such, if Appraisal Policy in a Relying Party or Verifier
 can be configured via a network protocol, the ability to attest to
 the health of the client providing the Appraisal Policy needs to be
 considered.
+
+The security of conveyed information may be applied at different layers, whether by a conveyance protocol, or an information encoding format. This architecture expects attestation messages (i.e., Evidence, Attestation Results, Endorsements and Policies) are end-to-end protected based on the role interaction context.
+For example, if an Attester produces Evidence that is relayed through some other entity that doesn't implement the Attester or the intended Verifier roles, then the relaying entity should not expect to have access to the Evidence.
 
 # IANA Considerations
 
