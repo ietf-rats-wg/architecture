@@ -336,14 +336,14 @@ a layered boot sequence and correspondingly enabling Layered Attestation.
 ## Composite Device {#compositedevice}
 
 A Composite Device is an entity composed of multiple sub-entities such that its
-trustworthiness has to be determined by evaluating all these sub-entities.
+trustworthiness has to be determined by the appraisal of all these sub-entities.
 Each sub-entity has at least one Attesting Environment collecting the claims
 from at least one Target Environment, then this sub-entity generates Evidence
 about its trustworthiness. Therefore each sub-entity can be called an Attester.
-Among these Attesters, there may be only some, which can be called proxy Attesters,
-that have the ability to communicate with the Verifier. Other Attesters
-don't have this ability, but they are connected to the proxy Attesters via internal
-links or network connections, and they are evaluated via the proxy Attester's help.
+Among all the Attesters, there may be only some have the ability to communicate
+with the Verifier while others don't. But these Attesters have internal links or
+network connections with other Attesters, and they will transit the Evidence of
+other Attesters.
 
 For example, a carrier-grade router is consisted of a chassis and multiple slots.
 The trustworthiness of the router depends on all its slots' trustworthiness.
@@ -354,16 +354,16 @@ while other slots cannot. But other slots can communicate with the main
 slot by the links between them inside the router. So the main slot collects
 the Evidence of other slots, produces the final Evidence of the whole router and
 conveys the final Evidence to the Verifier. Therefore the router is a Composite
-Device, each slot is an Attester, and the main slot is the proxy Attester.
+Device, each slot is an Attester, and the main slot is the transiting Attester.
 
 Another example is a multi-chassis router composed of multiple single carrier-grade routers.
 The multi-chassis router provides higher throughput by interconnecting
 multiple routers and can be logically treated as one router for simpler management.
 Among these routers, there is only one main router that connects to the Verifier.
 Other routers are only connected to the main router by the network cables,
-and therefore they are managed and verified via this main router.
+and therefore they are managed and appraised via this main router's help.
 So, in this case, the multi-chassis router is the Composite Device,
-each router is an Attester and the main router is the proxy Attester.
+each router is an Attester and the main router is the transiting Attester.
 
 {{composite}} depicts the conceptual data flow for a Composite Device.
 
@@ -394,24 +394,25 @@ each router is an Attester and the main router is the proxy Attester.
 
 In the Composite Device, each Attester generates its own Evidence by its
 Attesting Environment(s) collecting the claims from its Target Environment(s).
-The proxy Attester (e.g., Attester A) collects the Evidence of all other Attesters.
-It combines the various Evidence and the claims asserting the combinations
-into the final Evidence of the Composite Device that is sent off to the Verifier,
-which evaluates the trustworthiness of the Composite Device,
-including the proxy Attester's and other Attesters', trustworthiness.
+The transiting Attester (e.g., Attester A) collects the Evidence of all other Attesters.
+It combines the Evidence from other Attesters with its own
+Evidence by including the claims asserting the transition
+in its finalized Evidence for the Composite Device that is sent off to the Verifier,
+which appraises the trustworthiness of the Composite Device,
+including the transiting Attester's and other Attesters' trustworthiness.
 
 An entity can take on multiple RATS roles (e.g., Attester, Verifier, Relying
 Party, etc.) at the same time. The combination of roles can be arbitrary.
 For example, in this Composite Device scenario, the inside entity
-of proxy Attester can also take on the role of a Verifier, and the
+of transiting Attester can also take on the role of a Verifier, and the
 outside entity of Verifier takes on the role of a Relying Party.
-After collecting the Evidence of other Attesters, this inside Verifier
-verifies them using Endorsements and Appraisal Policies (obtained the
+After collecting the Evidence of other Attesters, this inside entity (i.e., Verifier)
+appraises them using Endorsements and Appraisal Policies (obtained the
 same way as any other Verifier), to generate the Attestation Results.
-Then the inside Verifier sends the Attestation Results of other Attesters,
+After that, it sends the Attestation Results of other Attesters,
 whether in the same conveyance protocol as the Evidence or not,
-to the outside Relying Party. In this situation, the trust model described
-in {{trustmodel}} is also suitable for this inside Verifier.
+to the outside entity (i.e., Relying Party). In this situation, the trust model
+described in {{trustmodel}} is also suitable for this inside entity (i.e., Verifier).
 
 # Topological Models {#overview}
 
