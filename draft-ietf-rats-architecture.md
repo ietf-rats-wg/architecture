@@ -141,15 +141,15 @@ Endorser:
 
 : An entity that creates Endorsements that can be used to help to appraise the trustworthiness of Attesters
 
-Evidence: 
+Evidence:
 
 : A set of information about an Attester that is to be appraised by a Verifier
 
-Relying Party: 
+Relying Party:
 
 : An entity that depends on the validity of information about another entity, typically for purposes of authorization.  Compare /relying party/ in {{RFC4949}}
 
-Relying Party Owner: 
+Relying Party Owner:
 
 : An entity, such as an administrator, that is authorized to configure Appraisal Policy for Attestation Results in a Relying Party.
 
@@ -187,7 +187,12 @@ harming others.
 Typically, solutions start with a specific component (called a "Root of Trust") that
 provides device identity and protected storage for measurements.
 These components perform a series of measurements, and express this with Evidence as to the
-hardware and firmware/software that is running. [FIXME from Henk: Measurements at early stages of Layered Attestation are NOT evidence yet. This text does not cover that yet]
+hardware and firmware/software that is running.
+
+~~~
+    FIXME from Henk: Measurements at early stages of Layered Attestation are
+    NOT evidence yet. This text does not cover that yet
+~~~
 
 Attester:
 
@@ -249,7 +254,7 @@ Attester:
 
 : A device or application wishing to control physical equipment
 
-Relying Party: 
+Relying Party:
 
 : A device or application connected to potentially dangerous physical
 equipment (hazardous chemical processing, traffic control, power grid,
@@ -357,8 +362,13 @@ A very common example is elaborated on to illustrate Layered Attestation.
 {:layered #layered title="Layered Attester"}
 
 The very first Attesting Environment has to ensure the integrity of
-the (U)EFI / BIOS / Firmware [FIXME] that initially boots up a composite device (e.g.,
+the (U)EFI / BIOS / Firmware that initially boots up a composite device (e.g.,
 a cell phone).
+
+~~~
+    Henk: we are looking for a better term than UEFI/BIOS/Firmware
+~~~
+
 These Claims have to be measured securely.
 At this stage of the boot-cycle of a
 composite device, the Claims collected typically cannot be composed into Evidence.
@@ -366,7 +376,7 @@ composite device, the Claims collected typically cannot be composed into Evidenc
 The very first Attesting Environment in this example can be a hardware component that is a Static Code Root of Trust.
 As in any other scenario, this hardware component is the first Attesting Environment.
 It collects a rather concise number of Claims about the Target Environment.
-The Target Environment in this example is the (U)EFI / BIOS / Firmware [FIXME]
+The Target Environment in this example is the (U)EFI / BIOS / Firmware
 After the boot sequence started, the Target Environment conducts the
 most important and defining feature of Layered Attestation:
 The successfully measured environment that is the
@@ -395,9 +405,13 @@ Continuing with this example, the bootloader is now in charge of collecting Clai
 about the next execution environment. The next execution environment in this example
 is the kernel to be booted up. Analogously, the next transfer of duties in this
 Layered Attestation example occurs: The duty of being an Attesting Environment is
-transferred to a successfully measured kernel [Henk: we might have to define what successful
-means in this example and beyond]. In this sequence, the kernel is now collecting
+transferred to a successfully measured kernel. In this sequence, the kernel is now collecting
 additional Claims and is storing them in a secure and shielded manner.
+
+~~~
+    [Henk: we might have to define what successful
+    means in this example and beyond]
+~~~
 
 The essence of this example is a cascade of staged boot environments. Each
 environment (after the initial one that is a root-of-trust) has the duty
