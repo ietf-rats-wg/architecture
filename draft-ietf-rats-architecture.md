@@ -252,24 +252,23 @@ by an administrator.
 An Attester consists of at least one Attesting Environment and at least one
 Target Environment. In some implementations, the Attesting and Target Environments
 might be combined.
-Other implementations might have multiple Attesting and Target Environments.
-One example is a set of components in a boot sequence (e.g., ROM, firmware,
-OS, and application) where a Target Environment is the
-Attesting Environment for the next environment in the boot sequence.
-
-Another example is that of a Composite Devices: Composite Devices are defined
-below, and are inherently composed of multiple nested environments.
+Other implementations might have multiple Attesting and Target Environments,
+such as in the examples described in more detail in {{layered-attestation}}
+and {{compositeattester}}.  Other examples may exist, and the examples
+discussed could even be combined into even more complex implementations.
 
 Claims are collected from Target Environments.
 That is, Attesting Environments collect the raw values and
-the information to be represented in claims.
-Attesting Environments then format them appropriately, and typically use key material and
+the information to be represented in claims, such as by doing some
+measurement of a Target Environment's code, memory, and/or registers.
+Attesting Environments then format the claims appropriately, and typically
+use key material and
 cryptographic functions, such as signing or cipher algorithms, to
 create Evidence. Examples of environments that can be used as
 Attesting Environments include Trusted Execution Environments (TEE),
 embedded Secure Elements (eSE), or Hardware Security Modules (HSM).
 
-## Layered Attestation Procedures
+## Layered Attestation Procedures {#layered-attestation}
 
 By definition, the Attester role takes on the duty to create Evidence.
 The fact that an Attester role is composed of several types of environments that
