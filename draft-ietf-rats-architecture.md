@@ -429,8 +429,6 @@ from at least one Target Environment, then this sub-entity generates Evidence
 about its trustworthiness. Therefore each sub-entity can be called an Attester.
 Among all the Attesters, there may be only some which have the ability to communicate
 with the Verifier while others do not.
-Those that do not are connected to the lead Attester via internal
-links (or private network connections), and they are appraised by the lead Attester.
 
 For example, a carrier-grade router is consists of a chassis and multiple slots.
 The trustworthiness of the router depends on all its slots' trustworthiness.
