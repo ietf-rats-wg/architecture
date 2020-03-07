@@ -429,10 +429,10 @@ from at least one Target Environment, then this sub-entity generates Evidence
 about its trustworthiness. Therefore each sub-entity can be called an Attester.
 Among all the Attesters, there may be only some which have the ability to communicate
 with the Verifier while others do not.
-Those that do not are connected to the lead Attesters via internal
+Those that do not are connected to the lead Attester via internal
 links (or private network connections), and they are appraised by the lead Attester.
 
-For example, a carrier-grade router is consisted of a chassis and multiple slots.
+For example, a carrier-grade router is consists of a chassis and multiple slots.
 The trustworthiness of the router depends on all its slots' trustworthiness.
 Each slot has an Attesting Environment such as a TEE collecting the
 claims of its boot process, after which it generates Evidence from the claims.
@@ -450,7 +450,7 @@ Among these routers, there is only one main router that connects to the Verifier
 Other routers are only connected to the main router by the network cables,
 and therefore they are managed and appraised via this main router's help.
 So, in this case, the multi-chassis router is the Composite Device,
-each router is an Attester and the main router is the Lead Attester.
+each router is an Attester and the main router is the lead Attester.
 
 {{composite}} depicts the conceptual data flow for a Composite Device.
 
@@ -466,15 +466,15 @@ generates the Evidence of the whole Composite Attester.
 
 An entity can take on multiple RATS roles (e.g., Attester, Verifier, Relying
 Party, etc.) at the same time. The combination of roles can be arbitrary.
-For example, in this Composite Device scenario, the entity inside of
+For example, in this Composite Device scenario, the entity inside
 the lead Attester can also take on the role of a Verifier, and the
-outside entity of Verifier takes on the role of a Relying Party.
+outside entity of Verifier can take on the role of a Relying Party.
 After collecting the Evidence of other Attesters, this inside Verifier
 verifies them using Endorsements and Appraisal Policies (obtained the
 same way as any other Verifier), to generate Attestation Results.
 The inside Verifier then sends the Attestation Results of other Attesters,
 whether in the same conveyance protocol as the Evidence or not,
-to the outside Relying Party.
+to the outside Verifier.
 
 In this situation, the trust model described in {{trustmodel}} is also suitable for this inside Verifier.
 
