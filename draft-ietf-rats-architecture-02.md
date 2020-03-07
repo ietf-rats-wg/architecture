@@ -1,7 +1,7 @@
 ---
 title: Remote Attestation Procedures Architecture
 abbrev: RATS Arch & Terms
-docname: draft-ietf-rats-architecture-04
+docname: draft-ietf-rats-architecture-02
 wg: RATS Working Group
 stand_alone: true
 ipr: trust200902
