@@ -335,7 +335,7 @@ such as in the examples described in more detail in {{layered-attestation}}
 and {{compositedevice}}.  Other examples may exist, and the examples
 discussed could even be combined into even more complex implementations.
 
-Claims are collected from Target Environments.
+Claims are collected from Target Environments, as shown in {{twotypes-env}}.
 That is, Attesting Environments collect the raw values and
 the information to be represented in claims, such as by doing some
 measurement of a Target Environment's code, memory, and/or registers.
@@ -345,6 +345,12 @@ cryptographic functions, such as signing or cipher algorithms, to
 create Evidence. Examples of environments that can be used as
 Attesting Environments include Trusted Execution Environments (TEE),
 embedded Secure Elements (eSE), or Hardware Security Modules (HSM).
+
+{:twotypes-env: artwork-align="center"}
+~~~~ TWOTYPES
+{::include twotypes-env.txt}
+~~~~
+{:twotypes-env #twotypes-env title="Two Types of Environments"}
 
 ## Layered Attestation Procedures {#layered-attestation}
 
