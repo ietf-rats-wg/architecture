@@ -430,7 +430,7 @@ about its trustworthiness. Therefore each sub-entity can be called an Attester.
 Among all the Attesters, there may be only some which have the ability to communicate
 with the Verifier while others do not.
 
-For example, a carrier-grade router is consists of a chassis and multiple slots.
+For example, a carrier-grade router consists of a chassis and multiple slots.
 The trustworthiness of the router depends on all its slots' trustworthiness.
 Each slot has an Attesting Environment such as a TEE collecting the
 claims of its boot process, after which it generates Evidence from the claims.
@@ -439,7 +439,7 @@ while other slots cannot. But other slots can communicate with the main
 slot by the links between them inside the router. So the main slot collects
 the Evidence of other slots, produces the final Evidence of the whole router and
 conveys the final Evidence to the Verifier. Therefore the router is a Composite
-Device, each slot is an Attester, and the main slot is the transiting Attester.
+Device, each slot is an Attester, and the main slot is the lead Attester.
 
 Another example is a multi-chassis router composed of multiple single carrier-grade routers.
 The multi-chassis router provides higher throughput by interconnecting
