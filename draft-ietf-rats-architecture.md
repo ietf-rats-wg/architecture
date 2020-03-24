@@ -343,9 +343,9 @@ Attesting Environments then format the claims appropriately, and typically
 use key material and
 cryptographic functions, such as signing or cipher algorithms, to
 create Evidence.
-Examples of environments that can be used as Attesting Environments may
+Places that Attesting Environments can exist
 include Trusted  Execution Environments (TEE), embedded Secure Elements
-(eSE), or BIOS firmware.
+(eSE), and BIOS firmware.
 An execution environment may not, by default, be capable of claims collection
 for a given Target Environment.
 Attesting Environments are designed specifically with claims collection in mind.
