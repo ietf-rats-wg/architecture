@@ -123,6 +123,10 @@ Attester:
 
 : An entity whose attributes must be appraised in order to determine whether the entity is considered trustworthy, such as when deciding whether the entity is authorized to perform some operation
 
+Claim:
+: A piece of asserted information, often in the form of a name/value pair.
+(Compare /claim/ in {{RFC7519}})
+
 Endorsement:
 
 : A secure statement that some entity (typically a manufacturer) vouches for the integrity of an Attester's signing capability
