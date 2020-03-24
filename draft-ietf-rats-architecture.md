@@ -343,7 +343,7 @@ Attesting Environments then format the claims appropriately, and typically
 use key material and
 cryptographic functions, such as signing or cipher algorithms, to
 create Evidence. Examples of environments that can be used as
-Attesting Environments include Trusted Execution Environments (TEE),
+Attesting Environments may include Trusted Execution Environments (TEE),
 embedded Secure Elements (eSE), or Hardware Security Modules (HSM).
 An execution environment may not, by default, be capable of claims collection
 for a given Target Environment. Often, Attesting Environments are designed
