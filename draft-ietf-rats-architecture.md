@@ -480,7 +480,7 @@ outside entity of Verifier can take on the role of a Relying Party.
 After collecting the Evidence of other Attesters, this inside Verifier
 verifies them using Endorsements and Appraisal Policies (obtained the
 same way as any other Verifier), to generate Attestation Results.
-The inside Verifier then sends the Attestation Results of other Attesters,
+The inside Verifier then conveys the Attestation Results of other Attesters,
 whether in the same conveyance protocol as the Evidence or not,
 to the outside Verifier.
 
@@ -489,14 +489,14 @@ In this situation, the trust model described in {{trustmodel}} is also suitable 
 # Topological Models {#overview}
 
 {{dataflow}} shows a basic model for communication between an Attester,
-a Verifier, and a Relying Party. The Attester sends its Evidence to the Verifier
+a Verifier, and a Relying Party. The Attester conveys its Evidence to the Verifier
 for appraisal, and the Relying Party gets the Attestation Results from the Verifier.
 There are multiple other possible models. This section includes some reference models,
 but this is not intended to be a restrictive list, and other variations may exist.
 
 ## Passport Model
 
-In this model, an Attester sends Evidence to a Verifier, which compares
+In this model, an Attester conveys Evidence to a Verifier, which compares
 the Evidence against its Appraisal Policy.  The Verifier then gives back
 an Attestation Result.  If the Attestation Result was a successful one,
 the Attester can then present the Attestation Result to a Relying Party,
@@ -546,7 +546,7 @@ Result, and the immigration desk is a Relying Party.
 
 ## Background-Check Model
 
-In this model, an Attester sends Evidence to a Relying Party, which simply
+In this model, an Attester conveys Evidence to a Relying Party, which simply
 passes it on to a Verifier.  The Verifier then compares the Evidence against
 its Appraisal Policy, and returns an Attestation Result to the Relying Party.
 The Relying Party then compares the Attestation Result against its own
@@ -679,7 +679,7 @@ implicitly trusted is often referred to as a Root of Trust.
 
 In some scenarios, Evidence might contain sensitive information such as
 Personally Identifiable Information.
-Thus, an Attester must trust entities to which it sends Evidence, to not
+Thus, an Attester must trust entities to which it conveys Evidence, to not
 reveal sensitive data to unauthorized parties.
 The Verifier might share this information with other authorized parties, according rules that it controls.
 In the background-check model, this Evidence may also be revealed to Relying Party(s).
