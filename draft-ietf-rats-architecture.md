@@ -348,8 +348,7 @@ include Trusted  Execution Environments (TEE), embedded Secure Elements
 (eSE), or BIOS firmware.
 An execution environment may not, by default, be capable of claims collection
 for a given Target Environment.
-Often, Attesting Environments are designed
-specifically with claims collection in mind.
+Attesting Environments are designed specifically with claims collection in mind.
 
 {:twotypes-env: artwork-align="center"}
 ~~~~ TWOTYPES
