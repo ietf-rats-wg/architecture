@@ -91,7 +91,7 @@ The Verifier appraises Evidence via Appraisal Policies and creates the Attestati
 
 This documents defines a flexible architecture with corresponding roles and their interaction via conceptual messages.
 Additionally, this document defines a universal set of terms that can be mapped to various existing and emerging Remote Attestation Procedures.
-Common role compositions and data flows, such as the "Passport Model" and the "Background-Check Model" are illustrated to enable readers of this document to map their current and emerging solutions to the architecture provided and the corresponding terminology defined.
+Common topological models and the data flows associated with them, such as the "Passport Model" and the "Background-Check Model" are illustrated. The purpose is to enable readers of this document to map their current and emerging solutions to the architecture provided and the corresponding terminology defined.
 A common terminology that provides a well-understood semantic meaning to
 the concepts, roles, and models in this document is vital to create
 semantic interoperability between solutions and across different platforms.
@@ -475,6 +475,14 @@ whether in the same conveyance protocol as the Evidence or not,
 to the outside Verifier.
 
 In this situation, the trust model described in {{trustmodel}} is also suitable for this inside Verifier.
+
+## Roles and Entities
+
+An entity in the RATS architecture includes at least on of the roles defined in this document. As a result, the entity can participate as a constituent of the RATS architecture. Additionally, an entity can aggregate more than one role into itself. These collapsed roles combine the duties of multiple roles. In these cases, interaction between these roles do not necessarily use the Internet Protocol. They can, e.g. using a loopback device or other IP-based communication between separate environments, but they do not have to. Alternative channels to convey conceptual messages include sockets, GPIO interfaces, local busses, or hypervisors. This conveyance is sometime referred to as "local conveyance". This type of conveyance is typically found in Composite Devices. Most importantly, these conveyance methods are out-of-scope of RATS, but they are presumed to exist in order to convey conceptual messages appropriately between roles.
+
+An exemplary usage scenario: An entity that both connects to a wide-area network and to a system bus taking on both the Attester and Verifier roles. As a system bus entity, a Verifier consumes Evidence from other devices connected to the system bus that implement Attester roles. As a wide-area network connected entity, it may implement an Attester role. The entity, as a system bus Verifier, may choose to fully isolate its role as a wide-area network Attester. Alternatively, attestation results might reflect an aggregation of system bus operational state claims in the form of Evidence.
+
+In essence, an entity that combines more than one role also creates and consumes the corresponding conceptual messages as defined in this document.
 
 # Topological Models {#overview}
 
