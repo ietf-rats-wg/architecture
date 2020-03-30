@@ -912,8 +912,8 @@ or might be defined relative to some other timestamp or timeticks counter.
 | ID | Event                       | Explanation of event
 |----|-----------------------------|-----------------------
 | VG | Value generation            | A value to appear in a claim was created
-| VN | Nonce sent by Verifier      | A random number not predictable to an Attester is sent by a Verifier
-| VR | Nonce sent by Relying Party | The nonce is sent by a Relying Party
+| NS | Nonce sent                  | A random number not predictable to an Attester is sent
+| NR | Nonce relayed               | The nonce is relayed to an Attester by enother entity
 | EG | Evidence generation         | An Attester collects claims and generates Evidence
 | ER | Evidence relayed            | A Relying Party relays Evidence to a Verifier
 | RG | Result generation           | A Verifier appraises Evidence and generates an Attestation Result
@@ -995,7 +995,7 @@ are synchronized.
         |                                 |               |
         ~                                 ~               ~
         |                                 |               |
-        |<---Nonce1--------------------time(VN)           |
+        |<---Nonce1--------------------time(NS)           |
      time(EG)                             |               |
         |----Evidence-------------------->|               |
         |     {Nonce1, time(EG)-time(VG)} |               |
@@ -1004,7 +1004,7 @@ are synchronized.
         |     {time(RX)-time(RG)}         |               |
         ~                                                 ~
         |                                                 |
-        |<---Nonce2------------------------------------time(VR)
+        |<---Nonce2------------------------------------time(NS')
      time(RR)
         |----Attestation Result{time(RX)-time(RG)}---->time(RA)
         |    Nonce2, time(RR)-time(EG)                    |
@@ -1014,20 +1014,20 @@ are synchronized.
 ~~~~
 
 In this example solution, the Verifier can check whether the Evidence is
-fresh at time(RG) by verifying that `time(RG) - time(VN) < Threshold`.
+fresh at time(RG) by verifying that `time(RG) - time(NS) < Threshold`.
 
 The Verifier cannot, however, simply rely on a Nonce to
 determine whether the value of a claim is recent, since the claim value
 might have been generated long before the nonce was sent by the Verifier.
 However, if the Verifier decides that the Attester can be trusted to
 correctly provide the delta time(EG)-time(VG), then it can determine recency
-by checking `time(RG)-time(VN) + time(EG)-time(VG) < Threshold`.
+by checking `time(RG)-time(NS) + time(EG)-time(VG) < Threshold`.
 
 Similarly if, based on an Attestation Result from a Verifier it trusts,
 the Relying Party decides that the Attester can be trusted to correctly
 provide time deltas, then it can determine whether the Attestation
 Result is fresh by checking 
-`time(OP) - time(VR) + time(RR)-time(EG) < Threshold`.
+`time(OP) - time(NS') + time(RR)-time(EG) < Threshold`.
 Although the Nonce2 and time(RR)-time(EG) values cannot be inside
 the Attestation Result, they might be signed by the Attester such
 that the Attestation Result vouches for the Attester's signing
@@ -1037,7 +1037,7 @@ The Relying Party must still be careful, however, to not allow continued
 use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
 in terms of time(RX)-time(RG), then the Relying Party can check
-`time(OP) - time(VR) < time(RX)-time(RG)`.
+`time(OP) - time(NS') < time(RX)-time(RG)`.
 
 ## Example 3: Timestamp-based Background-Check Model Example
 
@@ -1083,8 +1083,8 @@ the Relying Party needs to send one to an Attester.
      |                       |                           |
      ~                       ~                           ~
      |                       |                           |
-     |                       |<-----Nonce-------------time(VN)
-     |<---Nonce-----------time(VR)                       |
+     |                       |<-----Nonce-------------time(NS)
+     |<---Nonce-----------time(NR)                       |
   time(EG)                   |                           |
      |----Evidence{Nonce}--->|                           |
      |                    time(ER)--Evidence{Nonce}----->|
@@ -1101,7 +1101,7 @@ value is recent, the same as in Example 2 above.
 
 However, unlike in Example 2, the Relying Party can use the Nonce to
 determine whether the Attestation Result is fresh, by verifying that
-`time(OP) - time(VR) < Threshold`.
+`time(OP) - time(NR) < Threshold`.
 
 The Relying Party must still be careful, however, to not allow continued 
 use beyond the period for which it deems the Attestation Result to remain
