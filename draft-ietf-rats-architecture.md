@@ -1055,7 +1055,7 @@ clocks between the Attester, Verifier, and Relying Party.
         |                    |                           |
   time(EG)                   |                           |
         |----Evidence------->|                           |
-        |                 time(ER)--Evidence------------>|
+        |    {time(EG)}   time(ER)--Evidence{time(EG)}-->|
         |                    |                        time(RG)
         |                 time(RA)<-Attestation Result---|    
         |                    |        {time(RX)}         |
