@@ -945,11 +945,11 @@ depends on using a secure clock synchronization mechanism.
         |------Evidence{time(EG)}-------->|               |
         |                              time(RG)           |
         |<-----Attestation Result---------|               |
-        |              {time(RX)}         |               |
+        |      {time(RG),time(RX)}        |               |
         ~                                                 ~
         |                                                 |
      time(RR)                                             |
-        |------Attestation Result--------------------->time(RA)
+        |------Attestation Result{time(RG),time(RX)}-->time(RA)
         |                                                 |
         ~                                                 ~
         |                                                 |
