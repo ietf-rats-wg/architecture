@@ -693,13 +693,17 @@ In the background-check model, this Evidence may also be revealed to Relying Par
 
 ## Evidence
 
-Today, Evidence tends to be highly device-specific, since the information in the Evidence
-often includes vendor-specific information that is necessary to fully describe the manufacturer
-and model of the device including its security properties, the health
-of the device, and the level of confidence in the correctness of the information.
-Evidence is typically signed by the device (whether by hardware, firmware, or software on the
-device), and its appraisal in isolation would require Appraisal Policy to be based on
-device-specific details (e.g., a device public key).
+Evidence is a set of claims about the target environment that reveal operational
+status, health, configuration or construction that have security relevance.
+Evidence is evaluated by a Verifier to establish its relevance, compliance, and timeliness.
+Claims need to be collected in a manner that is reliable.
+Evidence needs to be securely associated with the target environment
+so that the Verifier cannot be tricked into accepting claims originating
+from a different environment (that may be more trustworthy).
+Evidence also must be protected from man-in-the-middle attackers who may observe,
+change or misdirect Evidence as it travels from Attester to Verifier.
+The timeliness of Evidence can be captured using claims that pinpoint the time
+or interval when changes in operational status, health, and so forth occur.
 
 ## Endorsements
 
