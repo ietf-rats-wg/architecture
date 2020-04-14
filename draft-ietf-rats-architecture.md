@@ -695,17 +695,15 @@ In the background-check model, this Evidence may also be revealed to Relying Par
 
 Evidence is a set of claims about the target environment that reveal operational
 status, health, configuration or construction that have security relevance.
-Evidence is evaluated by a Verifier to establish its relevance, correctness, and timeliness.
+Evidence is evaluated by a Verifier to establish its relevance, compliance, and timeliness.
 Claims need to be collected in a manner that is reliable.
-That way if the target environment can somehow lie about them,
-the attesting environment is able to detect or circumvent it (lying).
 Evidence needs to be securely associated with the target environment
 so that the Verifier cannot be tricked into accepting claims originating
 from a different environment (that may be more trustworthy).
 Evidence also must be protected from man-in-the-middle attackers who may observe,
 change or misdirect Evidence as it travels from Attester to Verifier.
 The timeliness of Evidence can be captured using claims that pinpoint the time
-or interval where changes in operational status, health and so forth occur.
+or interval when changes in operational status, health, and so forth occur.
 
 ## Endorsements
 
