@@ -701,7 +701,7 @@ That way if the target environment can somehow lie about them,
 the attesting environment is able to detect or circumvent it (lying).
 Evidence needs to be securely associated with the target environment
 so that the Verifier cannot be tricked into accepting claims originating
-from a different device (that may be more trustworthy).
+from a different environment (that may be more trustworthy).
 Evidence also must be protected from man-in-the-middle attackers who may observe,
 change or misdirect Evidence as it travels from Attester to Verifier.
 The timeliness of Evidence can be captured using claims that pinpoint the time
