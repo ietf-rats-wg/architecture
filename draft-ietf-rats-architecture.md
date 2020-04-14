@@ -697,7 +697,7 @@ Evidence is a set of claims about the target environment that reveal operational
 status, health, configuration or construction that have security relevance.
 Evidence is evaluated by a Verifier to establish its relevance, correctness, and timeliness.
 Claims need to be collected in a manner that is reliable.
-That way if the target device somehow can lie about them,
+That way if the target environment can somehow lie about them,
 the attesting environment is able to detect or circumvent it (lying).
 Evidence needs to be securely associated with the target device
 so that the Verifier cannot be tricked into accepting claims originating
