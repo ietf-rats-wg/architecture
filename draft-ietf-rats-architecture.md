@@ -85,23 +85,33 @@ remote attestation procedures (RATS).
 
 # Introduction
 
-In Remote Attestation Procedures (RATS), one peer (the "Attester") produces believable information about itself - Evidence - to enable a remote peer (the "Relying Party") to decide whether to consider that Attester a trustworthy peer or not.
+In Remote Attestation Procedures (RATS), one peer (the "Attester")
+produces believable information about itself - Evidence - to enable
+a remote peer (the "Relying Party") to decide whether to consider that
+Attester a trustworthy peer or not.
 RATS are facilitated by an additional vital party, the Verifier.
-The Verifier appraises Evidence via Appraisal Policies and creates the Attestation Results to support Relying Parties in their decision process.
+The Verifier appraises Evidence via Appraisal Policies and creates the
+Attestation Results to support Relying Parties in their decision
+process.
 
-This documents defines a flexible architecture with corresponding roles and their interaction via conceptual messages.
-Additionally, this document defines a universal set of terms that can be mapped to various existing and emerging Remote Attestation Procedures.
-Common role compositions and data flows, such as the "Passport Model" and the "Background-Check Model" are illustrated to enable readers of this document to map their current and emerging solutions to the architecture provided and the corresponding terminology defined.
-A common terminology that provides a well-understood semantic meaning to
+This documents defines a flexible architecture with corresponding roles
+and their interaction via conceptual messages. Additionally, this document
+defines a universal set of terms that can be mapped to various existing
+and emerging Remote Attestation Procedures. Common role compositions and
+data flows, such as the "Passport Model" and the "Background-Check Model"
+are illustrated to enable readers of this document to map their current
+and emerging solutions to the architecture provided and the corresponding
+terminology defined. A common terminology that provides a well-understood semantic meaning to
 the concepts, roles, and models in this document is vital to create
 semantic interoperability between solutions and across different platforms.
 
 Amongst other things, this document is about trust and trustworthiness.
-Trust is a decision being made.
-Trustworthiness is a quality that is assessed via evidence created.
-This is a subtle difference and being familiar with the difference is crucial for using this document.
-Additionally, the concepts of freshness and trust relationships with respect
-to RATS are elaborated on to enable implementers in order to choose appropriate solutions to compose their Remote Attestation Procedures.
+Trust is a decision being made. Trustworthiness is a quality that is
+assessed via evidence created. This is a subtle difference and being
+familiar with the difference is crucial for using this document.
+Additionally, the concepts of freshness and trust relationships with
+respect to RATS are elaborated on to enable implementers in order to choose
+appropriate solutions to compose their Remote Attestation Procedures.
 
 # Terminology {#terminology}
 
