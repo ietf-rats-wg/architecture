@@ -322,7 +322,19 @@ The Verifier uses the Evidence, and any Endorsements from Endorsers,
 by applying an Evidence Appraisal Policy to assess the trustworthiness of the Attester,
 and generates Attestation Results for use by Relying Parties.  The Evidence Appraisal Policy
 might be obtained from an Endorser along with the Endorsements, or might be obtained
-via some other mechanism such as being configured in the Verifier by an administrator.
+via some other mechanism such as being configured in the Verifier by an
+administrator.
+
+For example, for some claims the Verifier will compare the claims in the
+Evidence to known-good-values or reference values.
+In many cases these are hashes of files, SW or memory regions.
+In other cases they might be expected SW or HW versions.
+In other cases, they may be something else.
+The actual data format and semantics of a known-good-value are specific to
+claims and implementations.
+There is no general purpose format for them or general means for comparison defined in this architecture document.
+
+These known-good-values may be conveyed to the Verifier as part of an Endorsement or as part of Appraisal Policy or both as these are the two input paths to the Verifier.
 
 The Relying Party uses Attestation Results by applying its own
 Appraisal Policy to make application-specific decisions such as authorization decisions.
@@ -723,18 +735,6 @@ onto the network.  Thus, an Endorsement may be helpful information in authentica
 information about a device, but is not necessarily sufficient to authorize access to
 resources which may need device-specific information such as a public key for the device or
 component or user on the device.
-
-For example, for some claims the Verifier will compare the claims in the
-Evidence to known-good-values or reference values.
-In many cases these are hashes of files, SW or memory regions.
-In other cases they might be expected SW or HW versions.
-In other cases, they may be something else.
-The actual data format and semantics of a known-good-value are specific to
-claims and implementations.
-There is no general purpose format for them or general means for comparison defined in this architecture document.
-
-These known-good-values may be conveyed to the Verifier as part of an Endorsement or as part of Appraisal Policy or both as these are the two input paths to the Verifier.
-
 
 ## Attestation Results
 
