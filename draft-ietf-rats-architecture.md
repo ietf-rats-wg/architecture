@@ -693,7 +693,7 @@ In the background-check model, this Evidence may also be revealed to Relying Par
 
 ## Evidence
 
-Evidence is a set of claims about the target device that reveal operational
+Evidence is a set of claims about the target environment that reveal operational
 status, health, configuration or construction that have security relevance.
 Evidence is evaluated by a Verifier to establish its relevance, correctness, and timeliness.
 Claims need to be collected in a manner that is reliable.
