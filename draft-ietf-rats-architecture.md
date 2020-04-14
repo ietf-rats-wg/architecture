@@ -699,7 +699,7 @@ Evidence is evaluated by a Verifier to establish its relevance, correctness, and
 Claims need to be collected in a manner that is reliable.
 That way if the target environment can somehow lie about them,
 the attesting environment is able to detect or circumvent it (lying).
-Evidence needs to be securely associated with the target device
+Evidence needs to be securely associated with the target environment
 so that the Verifier cannot be tricked into accepting claims originating
 from a different device (that may be more trustworthy).
 Evidence also must be protected from man-in-the-middle attackers who may observe,
