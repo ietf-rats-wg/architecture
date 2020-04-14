@@ -724,6 +724,18 @@ information about a device, but is not necessarily sufficient to authorize acces
 resources which may need device-specific information such as a public key for the device or
 component or user on the device.
 
+For example, for some claims the Verifier will compare the claims in the
+Evidence to known-good-values or reference values.
+In many cases these are hashes of files, SW or memory regions.
+In other cases they might be expected SW or HW versions.
+In other cases, they may be something else.
+The actual data format and semantics of a known-good-value are specific to
+claims and implementations.
+There is no general purpose format for them or general means for comparison defined in this architecture document.
+
+These known-good-values may be conveyed to the Verifier as part of an Endorsement or as part of Appraisal Policy or both as these are the two input paths to the Verifier.
+
+
 ## Attestation Results
 
 Attestation Results may indicate compliance or non-compliance with a Verifier's Appraisal Policy.
