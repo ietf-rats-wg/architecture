@@ -846,6 +846,8 @@ are signed.  For example, values might have been generated at boot, and then
 used in claims as long as the signer can guarantee that they cannot have changed
 since boot.
 
+A more detailed discussion with examples appears in {{time-considerations}}.
+
 # Privacy Considerations
 
 The conveyance of Evidence and the resulting Attestation Results
@@ -913,3 +915,210 @@ Thomas Hardjono created older versions of the terminology section in collaborati
 Eric Voit provided the conceptual separation between Attestation Provision Flows and Attestation Evidence Flows.
 Monty Wisemen created the content structure of the first three architecture drafts.
 Carsten Bormann provided many of the motivational building blocks with respect to the Internet Threat Model.
+
+# Appendix A: Time Considerations {#time-considerations}
+
+The table below defines a number of relevant events, with an ID that
+is used in subsequent diagrams.  The times of said events might be
+defined in terms of an absolute clock time such as Coordinated Universal Time, 
+or might be defined relative to some other timestamp or timeticks counter.
+
+| ID | Event                       | Explanation of event
+|----|-----------------------------|-----------------------
+| VG | Value generation            | A value to appear in a claim was created
+| NS | Nonce sent                  | A random number not predictable to an Attester is sent
+| NR | Nonce relayed               | The nonce is relayed to an Attester by enother entity
+| EG | Evidence generation         | An Attester collects claims and generates Evidence
+| ER | Evidence relayed            | A Relying Party relays Evidence to a Verifier
+| RG | Result generation           | A Verifier appraises Evidence and generates an Attestation Result
+| RR | Result relayed              | A Relying Party relays an Attestation Result to a Relying Party
+| RA | Result appraised            | The Relying Party appraises Attestation Results
+| OP | Operation performed         | The Relying Party performs some operation requested by the Attester.  For example, acting upon some message just received across a session created earlier at time(RA).
+| RX | Result expiry               | An Attestation Result should no longer be accepted, according to the Verifier that generated it
+
+We now walk through a number of hypothetical examples of how
+a solution might be built.  This list is not intended to be complete,
+but is just representative enough to highlight various timing considerations.
+
+## Example 1: Timestamp-based Passport Model Example
+
+The following example illustrates a hypothetical Passport Model
+solution that uses timestamps and requires roughly synchronized
+clocks between the Attester, Verifier, and Relying Party, which
+depends on using a secure clock synchronization mechanism.
+
+~~~~
+   .----------.                     .----------.  .---------------.
+   | Attester |                     | Verifier |  | Relying Party |
+   '----------'                     '----------'  '---------------'
+     time(VG)                             |               |
+        |                                 |               |
+        ~                                 ~               ~
+        |                                 |               |
+     time(EG)                             |               |
+        |------Evidence{time(EG)}-------->|               |
+        |                              time(RG)           |
+        |<-----Attestation Result---------|               |
+        |      {time(RG),time(RX)}        |               |
+        ~                                                 ~
+        |                                                 |
+     time(RR)                                             |
+        |------Attestation Result{time(RG),time(RX)}-->time(RA)
+        |                                                 |
+        ~                                                 ~
+        |                                                 |
+        |                                              time(OP)
+        |                                                 |
+~~~~
+
+The Verifier can check whether the Evidence is fresh when appraising
+it at time(RG) by checking `time(RG) - time(EG) < Threshold`, where the
+Verifier's threshold is large enough to account for the maximum
+permitted clock skew between the Verifier and the Attester.
+
+If time(VG) is also included in the Evidence along with the claim value
+generated at that time, and the Verifier decides that it can trust the
+time(VG) value, the Verifier can also determine whether the claim value is
+recent by checking `time(RG) - time(VG) < Threshold`, again where the threshold
+is large enough to account for the maximum permitted clock skew between
+the Verifier and the Attester.
+
+The Relying Party can check whether the Attestation Result is fresh
+when appraising it at time(RA) by checking `time(RA) - time(RG) < Threshold`,
+where the Relying Party's threshold is large enough to account for the
+maximum permitted clock skew between the Relying Party and the Verifier.  
+The result might then be used for some time (e.g., throughout the lifetime
+of a connection established at time(RA)).  The Relying Party must be
+careful, however, to not allow continued use beyond the period for which
+it deems the Attestation Result to remain fresh enough.  Thus,
+it might allow use (at time(OP)) as long as `time(OP) - time(RG) < Threshold`.
+However, if the Attestation Result contains an expiry time time(RX) then
+it could explicitly check `time(OP) < time(RX)`.
+
+## Example 2: Nonce-based Passport Model Example
+
+The following example illustrates a hypothetical Passport Model
+solution that uses nonces and thus does not require that any clocks
+are synchronized.
+
+~~~~
+   .----------.                     .----------.  .---------------.
+   | Attester |                     | Verifier |  | Relying Party |
+   '----------'                     '----------'  '---------------'
+     time(VG)                             |               |
+        |                                 |               |
+        ~                                 ~               ~
+        |                                 |               |
+        |<---Nonce1--------------------time(NS)           |
+     time(EG)                             |               |
+        |----Evidence-------------------->|               |
+        |     {Nonce1, time(EG)-time(VG)} |               |
+        |                              time(RG)           |
+        |<---Attestation Result-----------|               |
+        |     {time(RX)-time(RG)}         |               |
+        ~                                                 ~
+        |                                                 |
+        |<---Nonce2------------------------------------time(NS')
+     time(RR)
+        |----Attestation Result{time(RX)-time(RG)}---->time(RA)
+        |    Nonce2, time(RR)-time(EG)                    |
+        ~                                                 ~
+        |                                                 |
+        |                                              time(OP)
+~~~~
+
+In this example solution, the Verifier can check whether the Evidence is
+fresh at time(RG) by verifying that `time(RG) - time(NS) < Threshold`.
+
+The Verifier cannot, however, simply rely on a Nonce to
+determine whether the value of a claim is recent, since the claim value
+might have been generated long before the nonce was sent by the Verifier.
+However, if the Verifier decides that the Attester can be trusted to
+correctly provide the delta time(EG)-time(VG), then it can determine recency
+by checking `time(RG)-time(NS) + time(EG)-time(VG) < Threshold`.
+
+Similarly if, based on an Attestation Result from a Verifier it trusts,
+the Relying Party decides that the Attester can be trusted to correctly
+provide time deltas, then it can determine whether the Attestation
+Result is fresh by checking 
+`time(OP) - time(NS') + time(RR)-time(EG) < Threshold`.
+Although the Nonce2 and time(RR)-time(EG) values cannot be inside
+the Attestation Result, they might be signed by the Attester such
+that the Attestation Result vouches for the Attester's signing
+capability.
+
+The Relying Party must still be careful, however, to not allow continued 
+use beyond the period for which it deems the Attestation Result to remain
+valid.  Thus, if the Attestation Result sends a validity lifetime
+in terms of time(RX)-time(RG), then the Relying Party can check
+`time(OP) - time(NS') < time(RX)-time(RG)`.
+
+## Example 3: Timestamp-based Background-Check Model Example
+
+The following example illustrates a hypothetical Background-Check Model
+solution that uses timestamps and requires roughly synchronized
+clocks between the Attester, Verifier, and Relying Party.
+
+~~~~
+.----------.         .---------------.              .----------.
+| Attester |         | Relying Party |              | Verifier |
+'----------'         '---------------'              '----------'
+  time(VG)                   |                           |
+        |                    |                           |
+        ~                    ~                           ~
+        |                    |                           |
+  time(EG)                   |                           |
+        |----Evidence------->|                           |
+        |    {time(EG)}   time(ER)--Evidence{time(EG)}-->|
+        |                    |                        time(RG)
+        |                 time(RA)<-Attestation Result---|    
+        |                    |        {time(RX)}         |
+        ~                    ~                           ~
+        |                    |                           |
+        |                 time(OP)                       |
+~~~~
+
+The time considerations in this example are equivalent to those
+discussed under Example 1 above.
+
+## Example 4: Nonce-based Background-Check Model Example
+
+The following example illustrates a hypothetical Background-Check Model
+solution that uses nonces and thus does not require that any clocks
+are synchronized.  In this example solution, a nonce is
+generated by a Verifier at the request of a Relying Party, when
+the Relying Party needs to send one to an Attester.
+
+~~~~
+.----------.         .---------------.              .----------.
+| Attester |         | Relying Party |              | Verifier |
+'----------'         '---------------'              '----------'
+  time(VG)                   |                           |
+     |                       |                           |
+     ~                       ~                           ~
+     |                       |                           |
+     |                       |<-----Nonce-------------time(NS)
+     |<---Nonce-----------time(NR)                       |
+  time(EG)                   |                           |
+     |----Evidence{Nonce}--->|                           |
+     |                    time(ER)--Evidence{Nonce}----->|
+     |                       |                        time(RG)
+     |                    time(RA)<-Attestation Result---|    
+     |                       |      {time(RX)-time(RG)}  |
+     ~                       ~                           ~
+     |                       |                           |
+     |                    time(OP)                       |
+~~~~
+
+The Verifier can check whether the Evidence is fresh, and whether a claim
+value is recent, the same as in Example 2 above.
+
+However, unlike in Example 2, the Relying Party can use the Nonce to
+determine whether the Attestation Result is fresh, by verifying that
+`time(OP) - time(NR) < Threshold`.
+
+The Relying Party must still be careful, however, to not allow continued 
+use beyond the period for which it deems the Attestation Result to remain
+valid.  Thus, if the Attestation Result sends a validity lifetime
+in terms of time(RX)-time(RG), then the Relying Party can check
+`time(OP) - time(ER) < time(RX)-time(RG)`.
