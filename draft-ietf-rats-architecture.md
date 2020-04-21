@@ -325,11 +325,15 @@ might be obtained from an Endorser along with the Endorsements, or might be obta
 via some other mechanism such as being configured in the Verifier by an
 administrator.
 
-For example, for some claims the Verifier will compare the claims in the
-Evidence to known-good-values or reference values.
-In many cases these are hashes of files, SW or memory regions.
-In other cases they might be expected SW or HW versions.
-In other cases, they may be something else.
+For example, for some claims the Verifier might check the values of claims in the
+Evidence against constraints specified in the Appraisal Policy for Evidence.  Such constraints might
+involve a comparison for equality against reference values, or a check for being in
+a range bounded by reference values, or membership in a set of reference values,
+or a check against values in other claims, or any other test.
+
+Such reference values might be specified as part of the Appraisal Policy for Evidence itself,
+or might be obtained from a separate source, such as an Endorsement, and then used by
+the Appraisal Policy for Evidence.
 The actual data format and semantics of a known-good value are specific to
 claims and implementations.
 There is no general purpose format for them or general means for comparison defined in this architecture document.
