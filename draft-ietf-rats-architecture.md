@@ -330,7 +330,7 @@ Evidence to known-good-values or reference values.
 In many cases these are hashes of files, SW or memory regions.
 In other cases they might be expected SW or HW versions.
 In other cases, they may be something else.
-The actual data format and semantics of a known-good-value are specific to
+The actual data format and semantics of a known-good value are specific to
 claims and implementations.
 There is no general purpose format for them or general means for comparison defined in this architecture document.
 
