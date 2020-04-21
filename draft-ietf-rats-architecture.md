@@ -334,7 +334,7 @@ The actual data format and semantics of a known-good value are specific to
 claims and implementations.
 There is no general purpose format for them or general means for comparison defined in this architecture document.
 Similarly, for some claims the Verifier might check the values of claims in the Evidence for membership in a set, or against a range of values, or against known-bad values such as an expiration time.
-These known-good-values may be conveyed to the Verifier as part of an Endorsement or as part of Appraisal Policy or both as these are the two input paths to the Verifier.
+These reference values may be conveyed to the Verifier as part of an Endorsement or as part of Appraisal Policy or both as these are the two input paths to the Verifier.
 
 The Relying Party uses Attestation Results by applying its own
 Appraisal Policy to make application-specific decisions such as authorization decisions.
