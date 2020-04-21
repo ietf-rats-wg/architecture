@@ -478,12 +478,12 @@ In this situation, the trust model described in {{trustmodel}} is also suitable 
 
 ## Roles and Entities
 
-An entity in the RATS architecture includes at least on of the roles defined
+An entity in the RATS architecture includes at least one of the roles defined
 in this document. As a result, the entity can participate as a constituent of
 the RATS architecture. Additionally, an entity can aggregate more than one
 role into itself. These collapsed roles combine the duties of multiple roles.
 In these cases, interaction between these roles do not necessarily use the
-Internet Protocol. They can, e.g. using a loopback device or other IP-based
+Internet Protocol. They can, e.g., using a loopback device or other IP-based
 communication between separate environments, but they do not have to.
 Alternative channels to convey conceptual messages include sockets, GPIO
 interfaces, local busses, or hypervisors. This conveyance is sometime
@@ -492,13 +492,15 @@ in Composite Devices. Most importantly, these conveyance methods are
 out-of-scope of RATS, but they are presumed to exist in order to convey
 conceptual messages appropriately between roles.
 
-An exemplary usage scenario: An entity that both connects to a wide-area
+The following paragraph elaborates on an exemplary usage scenario:
+
+An entity that both connects to a wide-area
 network and to a system bus taking on both the Attester and Verifier roles.
 As a system bus entity, a Verifier consumes Evidence from other devices
 connected to the system bus that implement Attester roles. As a wide-area
 network connected entity, it may implement an Attester role. The entity, as a
 system bus Verifier, may choose to fully isolate its role as a wide-area
-network Attester. Alternatively, attestation results might reflect an
+network Attester. Alternatively, Attestation Results might reflect an
 aggregation of system bus operational state claims in the form of Evidence.
 
 In essence, an entity that combines more than one role also creates and
