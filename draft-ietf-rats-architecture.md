@@ -620,7 +620,7 @@ link is anchored to a Root of Trust from an entity that established the communic
 As a result, the Verifier may be able to trust the attestation evidence from the device without
 an additional endorsement or even a cryptographically-verifiable signature of the 
 evidence.  Note that the appraisal policy employed by the Verifier may take into account the
-transient nature of the communications link security.  For instance, one the link is torn down
+transient nature of the communications link security.  For instance, once the link is torn down
 then the attestation evidence may not be trusted until it is conveyed again over a re-established link.
 
 In some scenarios, Evidence might contain sensitive information such as
