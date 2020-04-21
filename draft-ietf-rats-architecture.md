@@ -611,7 +611,7 @@ physically resistant to hardware tampering.  The component that is
 implicitly trusted is often referred to as a Root of Trust.
 
 Implicit trust can also be tied to the communications link over which
-the attestation Evidence is conveyed. As an example, the Attester and Verifier can
+the Evidence is conveyed. As an example, the Attester and Verifier can
 communicate over a link that is established using a Root of Trust.  An example of such communicaitons
 is over a cellular link, where the link is established by the Attester leveraging a secure
 element (e.g. SIM card).  The Verifier may have esablished the communications link and verified
