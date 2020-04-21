@@ -322,7 +322,23 @@ The Verifier uses the Evidence, and any Endorsements from Endorsers,
 by applying an Evidence Appraisal Policy to assess the trustworthiness of the Attester,
 and generates Attestation Results for use by Relying Parties.  The Evidence Appraisal Policy
 might be obtained from an Endorser along with the Endorsements, or might be obtained
-via some other mechanism such as being configured in the Verifier by an administrator.
+via some other mechanism such as being configured in the Verifier by an
+administrator.
+
+For example, for some claims the Verifier might check the values of claims in the
+Evidence against constraints specified in the Appraisal Policy for Evidence.  Such constraints might
+involve a comparison for equality against reference values, or a check for being in
+a range bounded by reference values, or membership in a set of reference values,
+or a check against values in other claims, or any other test.
+
+Such reference values might be specified as part of the Appraisal Policy for Evidence itself,
+or might be obtained from a separate source, such as an Endorsement, and then used by
+the Appraisal Policy for Evidence.
+The actual data format and semantics of a known-good value are specific to
+claims and implementations.
+There is no general purpose format for them or general means for comparison defined in this architecture document.
+Similarly, for some claims the Verifier might check the values of claims in the Evidence for membership in a set, or against a range of values, or against known-bad values such as an expiration time.
+These reference values may be conveyed to the Verifier as part of an Endorsement or as part of Appraisal Policy or both as these are the two input paths to the Verifier.
 
 The Relying Party uses Attestation Results by applying its own
 Appraisal Policy to make application-specific decisions such as authorization decisions.
