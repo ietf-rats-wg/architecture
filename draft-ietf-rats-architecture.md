@@ -881,7 +881,17 @@ running a weak version of firmware provides a way to aim attacks better.
 Evidence and Attestation Results data structures are expected to support
 integrity protection encoding (e.g., COSE, JOSE, X.509) and optionally might
 support confidentiality protection (e.g., COSE, JOSE).
-Therefore, if confidentiality protection is omitted or unavailable, the protocols that convey Evidence or Attestation Results are responsible for detailing what kinds of information are disclosed, and to whom they are exposed.
+Therefore, if confidentiality protection is omitted or unavailable, the protocols
+that convey Evidence or Attestation Results are responsible for detailing what
+kinds of information are disclosed, and to whom they are exposed.
+
+Furthermore, because Evidence might contain sensitive information,
+Attesters are responsible for only sending such Evidence to trusted
+Verifiers.  Some Attesters might want a stronger level of assurance of
+the trustworthiness of a Verifier before sending Evidence to it.  In such cases,
+an Attester can first act as a Relying Party and ask for the Verifier's own
+Attestation Result, and appraising it just as a Relying Party would appraise
+an Attestation Result for any other purpose.
 
 # Security Considerations
 
