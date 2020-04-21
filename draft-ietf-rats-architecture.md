@@ -621,7 +621,7 @@ As a result, the Verifier may be able to trust the attestation evidence from the
 an additional endorsement or even a cryptographically-verifiable signature of the 
 evidence.  Note that the appraisal policy employed by the Verifier may take into account the
 transient nature of the communications link security.  For instance, once the link is torn down
-then the attestation evidence may not be trusted until it is conveyed again over a re-established link.
+then the Evidence may not be trusted until it is conveyed again over a re-established link.
 
 In some scenarios, Evidence might contain sensitive information such as
 Personally Identifiable Information.
