@@ -702,9 +702,16 @@ the Evidence is conveyed. As an example, the Attester and Verifier can
 communicate over a link that is established using a Root of Trust.  An example of such communications
 is over a cellular link, where the link is established by the Attester leveraging an enclave (e.g., SIM card).  The Verifier may have established the communications link and verified
 the presence of the Root-of-Trust in doing so, or may have received evidence that the communications
-link is anchored to a Root of Trust from an entity that established the communications link.
+link is anchored to a Root of Trust from an entity that established the
+communications link
+or may have received evidence that the communications link is anchored to a
+Root of Trust from an entity that established the communications link.
+In the latter case, anchoring the communications link to a Root of Trust would mean
+that this entity only established a communications link with the attesting
+device after verifying that the device had a Root of Trust.
+
 As a result, the Verifier may be able to trust the attestation evidence from the device without
-an additional endorsement or even a cryptographically-verifiable signature of the 
+an additional endorsement or even a cryptographically-verifiable signature of the
 evidence.  Note that the appraisal policy employed by the Verifier may take into account the
 transient nature of the communications link security.  For instance, once the link is torn down
 then the Evidence may not be trusted until it is conveyed again over a re-established link.
@@ -952,7 +959,7 @@ Carsten Bormann provided many of the motivational building blocks with respect t
 
 The table below defines a number of relevant events, with an ID that
 is used in subsequent diagrams.  The times of said events might be
-defined in terms of an absolute clock time such as Coordinated Universal Time, 
+defined in terms of an absolute clock time such as Coordinated Universal Time,
 or might be defined relative to some other timestamp or timeticks counter.
 
 | ID | Event                       | Explanation of event
@@ -1018,7 +1025,7 @@ the Verifier and the Attester.
 The Relying Party can check whether the Attestation Result is fresh
 when appraising it at time(RA) by checking `time(RA) - time(RG) < Threshold`,
 where the Relying Party's threshold is large enough to account for the
-maximum permitted clock skew between the Relying Party and the Verifier.  
+maximum permitted clock skew between the Relying Party and the Verifier.
 The result might then be used for some time (e.g., throughout the lifetime
 of a connection established at time(RA)).  The Relying Party must be
 careful, however, to not allow continued use beyond the period for which
@@ -1072,14 +1079,14 @@ by checking `time(RG)-time(NS) + time(EG)-time(VG) < Threshold`.
 Similarly if, based on an Attestation Result from a Verifier it trusts,
 the Relying Party decides that the Attester can be trusted to correctly
 provide time deltas, then it can determine whether the Attestation
-Result is fresh by checking 
+Result is fresh by checking
 `time(OP) - time(NS') + time(RR)-time(EG) < Threshold`.
 Although the Nonce2 and time(RR)-time(EG) values cannot be inside
 the Attestation Result, they might be signed by the Attester such
 that the Attestation Result vouches for the Attester's signing
 capability.
 
-The Relying Party must still be careful, however, to not allow continued 
+The Relying Party must still be careful, however, to not allow continued
 use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
 in terms of time(RX)-time(RG), then the Relying Party can check
@@ -1103,7 +1110,7 @@ clocks between the Attester, Verifier, and Relying Party.
         |----Evidence------->|                           |
         |    {time(EG)}   time(ER)--Evidence{time(EG)}-->|
         |                    |                        time(RG)
-        |                 time(RA)<-Attestation Result---|    
+        |                 time(RA)<-Attestation Result---|
         |                    |        {time(RX)}         |
         ~                    ~                           ~
         |                    |                           |
@@ -1135,7 +1142,7 @@ the Relying Party needs to send one to an Attester.
      |----Evidence{Nonce}--->|                           |
      |                    time(ER)--Evidence{Nonce}----->|
      |                       |                        time(RG)
-     |                    time(RA)<-Attestation Result---|    
+     |                    time(RA)<-Attestation Result---|
      |                       |      {time(RX)-time(RG)}  |
      ~                       ~                           ~
      |                       |                           |
@@ -1149,7 +1156,7 @@ However, unlike in Example 2, the Relying Party can use the Nonce to
 determine whether the Attestation Result is fresh, by verifying that
 `time(OP) - time(NR) < Threshold`.
 
-The Relying Party must still be careful, however, to not allow continued 
+The Relying Party must still be careful, however, to not allow continued
 use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
 in terms of time(RX)-time(RG), then the Relying Party can check
