@@ -613,8 +613,7 @@ implicitly trusted is often referred to as a Root of Trust.
 Implicit trust can also be tied to the communications link over which
 the Evidence is conveyed. As an example, the Attester and Verifier can
 communicate over a link that is established using a Root of Trust.  An example of such communications
-is over a cellular link, where the link is established by the Attester leveraging a secure
-element (e.g., SIM card).  The Verifier may have established the communications link and verified
+is over a cellular link, where the link is established by the Attester leveraging an enclave (e.g., SIM card).  The Verifier may have established the communications link and verified
 the presence of the Root-of-Trust in doing so, or may have received evidence that the communications
 link is anchored to a Root of Trust from an entity that established the communications link.
 As a result, the Verifier may be able to trust the attestation evidence from the device without
