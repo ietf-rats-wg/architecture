@@ -334,7 +334,7 @@ by an administrator.
 
 The Verifier, when appraising Evidence, or the Relying Party, when
 appraising Attestation Results, checks the values of some claims
-against constraints specified in the Appraisal Policy.  Such constraints might
+against constraints specified in its Appraisal Policy.  Such constraints might
 involve a comparison for equality against a reference value, or a check for being in
 a range bounded by reference values, or membership in a set of reference values,
 or a check against values in other claims, or any other test.
