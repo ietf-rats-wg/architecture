@@ -443,10 +443,9 @@ additional Claims and is storing them in a secure and shielded manner.
     means in this example and beyond]
 ~~~
 
-The essence of this example is a cascade of staged boot environments. Each
-environment (after the initial one that is a root-of-trust) has the duty
-of measuring its next environment before it is started. Therefore, creating
-a layered boot sequence and correspondingly enabling Layered Attestation.
+The essence of this example is a cascade of staged environments. Each
+environment has the responsibility
+of measuring the next environment before the next environment is started. 
 
 ## Composite Device {#compositedevice}
 
