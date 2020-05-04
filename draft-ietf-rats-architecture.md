@@ -395,25 +395,22 @@ A very common example is elaborated on to illustrate Layered Attestation.
 {:layered #layered title="Layered Attester"}
 
 The very first Attesting Environment has to ensure the integrity of
-the (U)EFI / BIOS / Firmware that initially boots up a composite device (e.g.,
+the first mutable environment (e.g., BIOS or firmware) that initially
+boots up a composite device (e.g.,
 a cell phone).
-
-~~~
-    Henk: we are looking for a better term than UEFI/BIOS/Firmware
-~~~
 
 These Claims have to be measured securely.
 At this stage of the boot-cycle of a
 composite device, the Claims collected typically cannot be composed into Evidence.
 
-The very first Attesting Environment in this example can be a hardware component that is a Static Code Root of Trust.
+The very first Attesting Environment in this example can be a hardware component that is an immutable Root of Trust.
 As in any other scenario, this hardware component is the first Attesting Environment.
 It collects a rather concise number of Claims about the Target Environment.
-The Target Environment in this example is the (U)EFI / BIOS / Firmware
+The Target Environment in this example is the first mutable environment.
 After the boot sequence started, the Target Environment conducts the
 most important and defining feature of Layered Attestation:
 The successfully measured environment that is the
-(U)EFI / BIOS / Firmware now becomes the Attesting Environment.
+first mutable environment now becomes the Attesting Environment.
 Analogously, the Attesting Environment hands off its duty to one of its Target Environments. This procedure in Layered Attestation is called Staging.
 
 Now, the duties have been transferred and Layered Attestation takes place.
@@ -423,14 +420,14 @@ the content about its own measurements. If the Attesting Environment
 would be able to do that, Layered Attestation would become unfeasible.
 
 In this example the duty of being the Attesting Environment is now
-taken over by the (U)EFI / BIOS / Firmware that was the Attested
+taken over by the first mutable environment that was the Attested
 Environment before. This transfer of duty is the essential part of
-Layered Attestation. The (U)EFI / BIOS / Firmware now is the Attesting Environment.
+Layered Attestation. The first mutable environment now is the Attesting Environment.
 The next Target Environment is, in this example, a bootloader. There are
 potentially multiple kernels to boot, the decision is up to the bootloader.
 Only a bootloader with intact integrity will make an appropriate decision. Therefore, Claims about
-the integrity of a bootloader are now collected by the freshly appointed Attesting Environment
-that is the (U)EFI / BIOS / Firmware. Collected Claims have to be stored by the current
+the integrity of a bootloader are now collected by the freshly appointed Attesting Environment.
+Collected Claims have to be stored by the current
 Attesting Environment in a similar shielded and secured manner, so that the next Attesting Environment
 is not capable of altering the collection of claims stored.
 
@@ -994,7 +991,6 @@ depends on using a secure clock synchronization mechanism.
         |      {time(RG),time(RX)}        |               |
         ~                                                 ~
         |                                                 |
-     time(RR)                                             |
         |------Attestation Result{time(RG),time(RX)}-->time(RA)
         |                                                 |
         ~                                                 ~
