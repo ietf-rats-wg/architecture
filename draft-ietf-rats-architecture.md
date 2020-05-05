@@ -89,7 +89,7 @@ In Remote Attestation Procedures (RATS), one peer (the "Attester") produces beli
 RATS are facilitated by an additional vital party, the Verifier.
 The Verifier appraises Evidence via Appraisal Policies and creates the Attestation Results to support Relying Parties in their decision process.
 
-This documents defines a flexible architecture consisting of attestation Roles and their interactions via Role Messages.
+This documents defines a flexible architecture consisting of attestation Roles and their interactions via conceptual messages.
 Additionally, this document defines a universal set of terms that can be mapped to various existing and emerging Remote Attestation Procedures.
 Common topological models and the data flows associated with them, such as the "Passport Model" and the "Background-Check Model" are illustrated.
 The purpose is to enable readers to map their solution architecture to the
@@ -621,8 +621,8 @@ plans to support in the TEEP architecture {{-teep-arch}}.
 
 # Role Hosting and Composition
 
-The RATS architecture includes the definition of Roles (e.g. Attester, Verifier,
-Relying Party, Endorser) and Role Messages (e.g. Evidence, Attestation Results,
+The RATS architecture includes the definition of Roles (e.g., Attester, Verifier,
+Relying Party, Endorser) and conceptual messages (e.g., Evidence, Attestation Results,
 Endorsements, Appraisal Policies) that captures canonical attestation behaviors,
 that are common to a broad range of attestation-enabled systems. An entity that
 combines multiple Roles produces and consumes the associated Role Messages.
@@ -650,15 +650,15 @@ In a Composite Device scenario, in addition to local entities that host the
 lead Attester and other subordinate Attesters, the Composite Device can host the
 Verifier role locally to appraise Evidence from one or more subordinate Attesters.
 The local Verifier might convey local Attestation Results to a remote Relying party
-or the Relying Party role also could become local where an application specific
+or the Relying Party role also could become local where an application-specific
 action is taken locally. For example, a secure boot scenario prevents system software
 from loading if the firmware fails to satisfy a local trustworthiness appraisal policy.
 
 In a multi-network scenario, a network node might bridge a wide-area
-network, local-area network and span various system buses. In so doing, the bridge node 
+network, local-area network, and span various system buses. In so doing, the bridge node 
 might need to host multiple Roles depending on the type of behavior each connected domain
 expects. For example, the node might be an Attester to a wide-area network, a Verifier to
-the local-area network and a Relying Party to components attached to a local system bus.
+the local-area network, and a Relying Party to components attached to a local system bus.
 
 # Trust Model {#trustmodel}
 
