@@ -54,6 +54,8 @@ author:
 normative:
 
 informative:
+I-D.birkholz-rats-tuda: tuda
+I-D.ietf-teep-architecture: teep-arch
 
 --- abstract
 
@@ -242,7 +244,7 @@ passport model, whereas Relying Party 2 uses an extension of the background-chec
 Specifically, in addition to the basic functionality shown in {{backgroundcheck}}, Relying Party 2 
 actually provides the Attestation Result back to the Attester, allowing the Attester to
 use it with other Relying Parties.  This is the model that the Trusted Application Manager
-plans to support in the TEEP architecture {{?I-D.ietf-teep-architecture}}.
+plans to support in the TEEP architecture {{-teep-arch}}.
 
 ~~~~
       +-------------+
@@ -348,7 +350,7 @@ the Evidence or Attestation Result, so that the remote entity knows that the
 claims were signed after the nonce was generated.
 
 A second approach is to rely on synchronized clocks, and include a signed
-timestamp (e.g., using {{?I.D.draft-birkholz-rats-tuda}}) along with the
+timestamp (e.g., using {{-tuda}}) along with the
 claims in the Evidence or Attestation Result, so that the remote entity knows
 that the claims were signed at that time, as long as it has some assurance that
 the timestamp is correct.  This typically requires additional claims about
