@@ -54,8 +54,8 @@ author:
 normative:
 
 informative:
-I-D.birkholz-rats-tuda: tuda
-I-D.ietf-teep-architecture: teep-arch
+  I-D.birkholz-rats-tuda: tuda
+  I-D.ietf-teep-architecture: teep-arch
 
 --- abstract
 
