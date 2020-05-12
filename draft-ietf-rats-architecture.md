@@ -957,18 +957,22 @@ or might be defined relative to some other timestamp or timeticks counter.
 
 | ID | Event                       | Explanation of event
 |----|-----------------------------|-----------------------
-| VG | Value generation            | A value to appear in a claim was created
-| NS | Nonce sent                  | A random number not predictable to an Attester is sent
-| NR | Nonce relayed               | The nonce is relayed to an Attester by enother entity
-| EG | Evidence generation         | An Attester collects claims and generates Evidence
-| ER | Evidence relayed            | A Relying Party relays Evidence to a Verifier
-| RG | Result generation           | A Verifier appraises Evidence and generates an Attestation Result
-| RR | Result relayed              | A Relying Party relays an Attestation Result to a Relying Party
-| RA | Result appraised            | The Relying Party appraises Attestation Results
+| VG | Value generation            | A value to appear in a Claim was created.
+| AA | Attester awareness          | An Attesting Environment starts to be aware of a new/changed Claim value.
+| CC | Claim Collection            | An Attesting Environment collects a new/changed Claim value to appear in Evidence.
+| HD | Handle distribution         | A centrally generated identifier for time-bound recentness across a domain of devices is successfully distributed to Attesters.
+| NS | Nonce sent                  | A nonce not predictable to an Attester (recentness & uniqueness) is sent to an Attester.
+| NR | Nonce relayed               | A nonce is relayed to an Attester by another entity.
+| EG | Evidence generation         | An Attester creates Evidence from collected Claims (CC).
+| ER | Evidence relayed            | A Relying Party relays Evidence to a Verifier.
+| RG | Result generation           | A Verifier appraises Evidence and generates an Attestation Result.
+| RP | Result push                 | A set of one or more Evidence bundles is conveyed to a Verifier with or without solicitation initially triggered by AA, in a periodic interval, or ad-hoc.
+| RR | Result relayed              | A Relying Party relays an Attestation Result to a Relying Party.
+| RA | Result appraised            | The Relying Party appraises Attestation Results.
 | OP | Operation performed         | The Relying Party performs some operation requested by the Attester.  For example, acting upon some message just received across a session created earlier at time(RA).
-| RX | Result expiry               | An Attestation Result should no longer be accepted, according to the Verifier that generated it
+| RX | Result expiry               | An Attestation Result should no longer be accepted, according to the Verifier that generated it.
 
-We now walk through a number of hypothetical examples of how
+Using the table above, the examples following below illustrate a number of hypothetical examples of how
 a solution might be built.  This list is not intended to be complete,
 but is just representative enough to highlight various timing considerations.
 
