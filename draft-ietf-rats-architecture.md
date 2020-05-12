@@ -193,12 +193,6 @@ provides device identity and protected storage for measurements.
 These components perform a series of measurements, and express this with Evidence as to the
 hardware and firmware/software that is running.
 
-~~~
-    FIXME from Henk: Measurements at early stages of
-    Layered Attestation are NOT evidence yet.
-    This text does not cover that yet
-~~~
-
 Attester:
 
 : A device desiring access to a network
@@ -378,78 +372,60 @@ Attesting Environments are designed specifically with claims collection in mind.
 ~~~~
 {:twotypes-env #twotypes-env title="Two Types of Environments"}
 
-## Layered Attestation Procedures {#layered-attestation}
+## Layered Attestation Environments {#layered-attestation}
 
 By definition, the Attester role takes on the duty to create Evidence.
-The fact that an Attester role is composed of several types of environments that
+The fact that an Attester role is composed of environments that
 can be nested or staged adds complexity to the architectural layout of how an
-Attester -- in itself -- is composed and therefore has to conduct the Claims collection
-in order to create believable Attestation Evidence.
-The following example is intended to illustrate this composition:
+Attester can be composed and therefore has to conduct the Claims collection
+in order to create believable attestation Evidence.
 
-A very common example is elaborated on to illustrate Layered Attestation.
+{{layered}} depicts an example of a device that includes (A) a BIOS stored
+in read-only memory in this example, (B) an updatable bootloader, and (C)
+an operating system kernel.
+
 {:layered: artwork-align="center"}
 ~~~~ LAYERED
 {::include layered-attester.txt}
 ~~~~
 {:layered #layered title="Layered Attester"}
 
-The very first Attesting Environment has to ensure the integrity of
-the (U)EFI / BIOS / Firmware that initially boots up a composite device (e.g.,
-a cell phone).
+Attesting Environment A, the read-only BIOS in this example,
+has to ensure the integrity of the bootloader (Target Environment B).
+There are
+potentially multiple kernels to boot, and the decision is up to the bootloader.
+Only a bootloader with intact integrity will make an appropriate decision. Therefore, these Claims have to be measured securely.
+At this stage of the boot-cycle of the
+device, the Claims collected typically cannot be composed into Evidence.
 
-~~~
-    Henk: we are looking for a better term than UEFI/BIOS/Firmware
-~~~
+After the boot sequence is started, the BIOS conducts the
+most important and defining feature of layered attestation, which is that
+the successfully measured Target Environment B
+now becomes (or contains) an Attesting Environment for the next layer.
+This procedure in Layered Attestation is sometimes called "staging".
+It is important that the new Attesting Environment B not be
+able to alter any Claims about its own Target Environment B. 
+This can be ensured having those Claims be either signed by Attesting
+Environment A or stored in an untamperable manner by Attesting
+Environment A.
 
-These Claims have to be measured securely.
-At this stage of the boot-cycle of a
-composite device, the Claims collected typically cannot be composed into Evidence.
+Continuing with this example, the bootloader's Attesting Environment B is now in charge of collecting Claims
+about Target Environment C, which in this example
+is the kernel to be booted.  The final Evidence thus contains two sets of
+Claims: one set about the bootloader as measured and signed by the BIOS,
+plus a set of Claims about the kernel as measured and signed by the bootloader.
 
-The very first Attesting Environment in this example can be a hardware component that is a Static Code Root of Trust.
-As in any other scenario, this hardware component is the first Attesting Environment.
-It collects a rather concise number of Claims about the Target Environment.
-The Target Environment in this example is the (U)EFI / BIOS / Firmware
-After the boot sequence started, the Target Environment conducts the
-most important and defining feature of Layered Attestation:
-The successfully measured environment that is the
-(U)EFI / BIOS / Firmware now becomes the Attesting Environment.
-Analogously, the Attesting Environment hands off its duty to one of its Target Environments. This procedure in Layered Attestation is called Staging.
+This example could be extended further
+by, say, making the kernel become another Attesting Environment for
+an application as another Target Environment, resulting in a third set
+of Claims in the Evidence pertaining to that application.
 
-Now, the duties have been transferred and Layered Attestation takes place.
-The initial Attesting Environment relinquishes its duties to the Target Environment.
-It is important to note that the new Attesting Environment cannot alter
-the content about its own measurements. If the Attesting Environment
-would be able to do that, Layered Attestation would become unfeasible.
-
-In this example the duty of being the Attesting Environment is now
-taken over by the (U)EFI / BIOS / Firmware that was the Attested
-Environment before. This transfer of duty is the essential part of
-Layered Attestation. The (U)EFI / BIOS / Firmware now is the Attesting Environment.
-The next Target Environment is, in this example, a bootloader. There are
-potentially multiple kernels to boot, the decision is up to the bootloader.
-Only a bootloader with intact integrity will make an appropriate decision. Therefore, Claims about
-the integrity of a bootloader are now collected by the freshly appointed Attesting Environment
-that is the (U)EFI / BIOS / Firmware. Collected Claims have to be stored by the current
-Attesting Environment in a similar shielded and secured manner, so that the next Attesting Environment
-is not capable of altering the collection of claims stored.
-
-Continuing with this example, the bootloader is now in charge of collecting Claims
-about the next execution environment. The next execution environment in this example
-is the kernel to be booted up. Analogously, the next transfer of duties in this
-Layered Attestation example occurs: The duty of being an Attesting Environment is
-transferred to a successfully measured kernel. In this sequence, the kernel is now collecting
-additional Claims and is storing them in a secure and shielded manner.
-
-~~~
-    [Henk: we might have to define what successful
-    means in this example and beyond]
-~~~
-
-The essence of this example is a cascade of staged boot environments. Each
-environment (after the initial one that is a root-of-trust) has the duty
-of measuring its next environment before it is started. Therefore, creating
-a layered boot sequence and correspondingly enabling Layered Attestation.
+The essence of this example is a cascade of staged environments. Each
+environment has the responsibility
+of measuring the next environment before the next environment is started.
+In general, the number of layers may vary by device or implementation,
+and an Attesting Environment might even have multiple Target Environments
+that it measures, rather than only one as shown in {{layered}}.
 
 ## Composite Device {#compositedevice}
 
@@ -994,7 +970,6 @@ depends on using a secure clock synchronization mechanism.
         |      {time(RG),time(RX)}        |               |
         ~                                                 ~
         |                                                 |
-     time(RR)                                             |
         |------Attestation Result{time(RG),time(RX)}-->time(RA)
         |                                                 |
         ~                                                 ~
