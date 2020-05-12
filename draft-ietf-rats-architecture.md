@@ -403,9 +403,11 @@ most important and defining feature of layered attestation, which is that
 the successfully measured Target Environment B
 now becomes (or contains) an Attesting Environment for the next layer.
 This procedure in Layered Attestation is sometimes called "staging".
-It is important to note that the new Attesting Environment B cannot alter
-any Claims about its own Target Environment B, since those Claims were signed
-by Attesting Environment A.
+It is important that the new Attesting Environment B not be
+able to alter any Claims about its own Target Environment B. 
+This can be ensured having those Claims be either signed by Attesting
+Environment A or stored in a shielded and secure manner by Attesting
+Environment A.
 
 Continuing with this example, the bootloader's Attesting Environment B is now in charge of collecting Claims
 about Target Environment C, which in this example
