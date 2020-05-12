@@ -406,7 +406,7 @@ This procedure in Layered Attestation is sometimes called "staging".
 It is important that the new Attesting Environment B not be
 able to alter any Claims about its own Target Environment B. 
 This can be ensured having those Claims be either signed by Attesting
-Environment A or stored in a shielded and secure manner by Attesting
+Environment A or stored in an untamperable manner by Attesting
 Environment A.
 
 Continuing with this example, the bootloader's Attesting Environment B is now in charge of collecting Claims
