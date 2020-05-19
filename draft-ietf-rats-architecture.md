@@ -697,7 +697,7 @@ for by hardware or by ROM code, especially if such hardware is
 physically resistant to hardware tampering.  The component that is
 implicitly trusted is often referred to as a Root of Trust.
 
-A conveyance protocol that is authenticated and integrity protected can be used
+A conveyance protocol that provides authentication and integrity protection can be used
 to convey unprotected Evidence, assuming the following properties exists:
 
    1. The key used to authenticate and integrity protect the conveyance channel is trusted by the Verifier to speak for the Attesting Environment(s) that collected claims about the Target Environment(s).
