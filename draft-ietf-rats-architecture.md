@@ -701,8 +701,8 @@ A conveyance protocol that provides authentication and integrity protection can 
 to convey unprotected Evidence, assuming the following properties exists:
 
    1. The key material used to authenticate and integrity protect the conveyance channel is trusted by the Verifier to speak for the Attesting Environment(s) that collected claims about the Target Environment(s).
-   2. All unprotected Evidence that is conveyed is supplied exclusively by the Attesting Environment that has the key that protects the conveyance channel
-   3. The Root of Trust protects both the conveyance channel key and the Attesting Environment with equivalent strength protections.
+   2. All unprotected Evidence that is conveyed is supplied exclusively by the Attesting Environment that has the key  material that protects the conveyance channel
+   3. The Root of Trust protects both the conveyance channel key material and the Attesting Environment with equivalent strength protections.
 
 In some scenarios, Evidence might contain sensitive information such as
 Personally Identifiable Information.
