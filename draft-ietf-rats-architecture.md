@@ -91,13 +91,13 @@ a remote peer (the "Relying Party") to decide whether to consider that
 Attester a trustworthy peer or not.
 RATS are facilitated by an additional vital party, the Verifier.
 
-This documents defines a flexible architecture consisting of attestation Roles and their interactions via conceptual messages.
+This documents defines a flexible architecture consisting of attestation roles and their interactions via conceptual messages.
 Additionally, this document defines a universal set of terms that can be mapped to various existing and emerging Remote Attestation Procedures.
 Common topological models and the data flows associated with them, such as the "Passport Model" and the "Background-Check Model" are illustrated.
 The purpose is to enable readers to map their solution architecture to the
 canonical attestation architecture provided here and to define useful terminology for attestation.
 Having a common terminology that provides well-understood meanings for common themes
-such as, Roles, device composition, Topological Models and appraisal is vital for
+such as, roles, device composition, topological models and appraisal is vital for
 semantic interoperability across solutions and platforms involving multiple vendors and providers.
 
 Amongst other things, this document is about trust and trustworthiness.
