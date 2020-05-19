@@ -637,7 +637,7 @@ in this document. As a result, the entity can participate as a constituent of
 the RATS architecture. Additionally, an entity can aggregate more than one
 role into itself. These collapsed roles combine the duties of multiple roles.
 In these cases, interaction between these roles do not necessarily use the
-Internet Protocol. They can, e.g., using a loopback device or other IP-based
+Internet Protocol. They can be using a loopback device or other IP-based
 communication between separate environments, but they do not have to.
 Alternative channels to convey conceptual messages include sockets, GPIO
 interfaces, local busses, or hypervisors. This conveyance is sometime
