@@ -639,7 +639,7 @@ role into itself. These collapsed roles combine the duties of multiple roles.
 In these cases, interaction between these roles do not necessarily use the
 Internet Protocol. They can be using a loopback device or other IP-based
 communication between separate environments, but they do not have to.
-Alternative channels to convey conceptual messages include sockets, GPIO
+Alternative channels to convey conceptual messages include function calls, sockets, GPIO
 interfaces, local busses, or hypervisors. This conveyance is sometime
 referred to as "local conveyance". This type of conveyance is typically found
 in Composite Devices. Most importantly, these conveyance methods are
