@@ -85,23 +85,36 @@ remote attestation procedures (RATS).
 
 # Introduction
 
-In Remote Attestation Procedures (RATS), one peer (the "Attester") produces believable information about itself - Evidence - to enable a remote peer (the "Relying Party") to decide whether to consider that Attester a trustworthy peer or not.
+In Remote Attestation Procedures (RATS), one peer (the "Attester")
+produces believable information about itself - Evidence - to enable
+a remote peer (the "Relying Party") to decide whether to consider that
+Attester a trustworthy peer or not.
 RATS are facilitated by an additional vital party, the Verifier.
-The Verifier appraises Evidence via Appraisal Policies and creates the Attestation Results to support Relying Parties in their decision process.
 
-This documents defines a flexible architecture with corresponding roles and their interaction via conceptual messages.
+The Verifier appraises Evidence via Appraisal Policies and creates
+the Attestation Results to support Relying Parties in their decision
+process.
+
+This documents defines a flexible architecture with corresponding roles
+and their interaction via conceptual messages.
 Additionally, this document defines a universal set of terms that can be mapped to various existing and emerging Remote Attestation Procedures.
-Common topological models and the data flows associated with them, such as the "Passport Model" and the "Background-Check Model" are illustrated. The purpose is to enable readers of this document to map their current and emerging solutions to the architecture provided and the corresponding terminology defined.
+Common topological models and the data flows associated with them, such as
+the "Passport Model" and the "Background-Check Model" are illustrated. The
+purpose is to enable readers of this document to map their current and
+emerging solutions to the architecture provided and the corresponding
+terminology defined.
+
 A common terminology that provides a well-understood semantic meaning to
 the concepts, roles, and models in this document is vital to create
 semantic interoperability between solutions and across different platforms.
 
 Amongst other things, this document is about trust and trustworthiness.
-Trust is a decision being made.
-Trustworthiness is a quality that is assessed via evidence created.
-This is a subtle difference and being familiar with the difference is crucial for using this document.
-Additionally, the concepts of freshness and trust relationships with respect
-to RATS are elaborated on to enable implementers in order to choose appropriate solutions to compose their Remote Attestation Procedures.
+Trust is a decision being made. Trustworthiness is a quality that is
+assessed via evidence created. This is a subtle difference and being
+familiar with the difference is crucial for using this document.
+Additionally, the concepts of freshness and trust relationships with
+respect to RATS are elaborated on to enable implementers in order to choose
+appropriate solutions to compose their Remote Attestation Procedures.
 
 # Terminology {#terminology}
 
@@ -122,6 +135,10 @@ Attestation Result:
 Attester:
 
 : An entity whose attributes must be appraised in order to determine whether the entity is considered trustworthy, such as when deciding whether the entity is authorized to perform some operation
+
+Claim:
+: A piece of asserted information, often in the form of a name/value pair.
+(Compare /claim/ in {{RFC7519}})
 
 Endorsement:
 
@@ -178,12 +195,6 @@ Typically, solutions start with a specific component (called a "Root of Trust") 
 provides device identity and protected storage for measurements.
 These components perform a series of measurements, and express this with Evidence as to the
 hardware and firmware/software that is running.
-
-~~~
-    FIXME from Henk: Measurements at early stages of
-    Layered Attestation are NOT evidence yet.
-    This text does not cover that yet
-~~~
 
 Attester:
 
@@ -308,12 +319,30 @@ The Verifier uses the Evidence, and any Endorsements from Endorsers,
 by applying an Evidence Appraisal Policy to assess the trustworthiness of the Attester,
 and generates Attestation Results for use by Relying Parties.  The Evidence Appraisal Policy
 might be obtained from an Endorser along with the Endorsements, or might be obtained
-via some other mechanism such as being configured in the Verifier by an administrator.
+via some other mechanism such as being configured in the Verifier by an
+administrator.
 
 The Relying Party uses Attestation Results by applying its own
 Appraisal Policy to make application-specific decisions such as authorization decisions.
 The Attestation Result Appraisal Policy might, for example, be configured in the Relying Party
 by an administrator.
+
+## Appraisal Policies
+
+The Verifier, when appraising Evidence, or the Relying Party, when
+appraising Attestation Results, checks the values of some claims
+against constraints specified in its Appraisal Policy.  Such constraints might
+involve a comparison for equality against a reference value, or a check for being in
+a range bounded by reference values, or membership in a set of reference values,
+or a check against values in other claims, or any other test.
+
+Such reference values might be specified as part of the Appraisal Policy itself,
+or might be obtained from a separate source, such as an Endorsement, and then used by
+the Appraisal Policy.
+
+The actual data format and semantics of any reference values are specific to
+claims and implementations. This architecture document does not define any
+general purpose format for them or general means for comparison.
 
 ## Two Types of Environments of an Attester
 
@@ -346,78 +375,60 @@ Attesting Environments are designed specifically with claims collection in mind.
 ~~~~
 {:twotypes-env #twotypes-env title="Two Types of Environments"}
 
-## Layered Attestation Procedures {#layered-attestation}
+## Layered Attestation Environments {#layered-attestation}
 
 By definition, the Attester role takes on the duty to create Evidence.
-The fact that an Attester role is composed of several types of environments that
+The fact that an Attester role is composed of environments that
 can be nested or staged adds complexity to the architectural layout of how an
-Attester -- in itself -- is composed and therefore has to conduct the Claims collection
-in order to create believable Attestation Evidence.
-The following example is intended to illustrate this composition:
+Attester can be composed and therefore has to conduct the Claims collection
+in order to create believable attestation Evidence.
 
-A very common example is elaborated on to illustrate Layered Attestation.
+{{layered}} depicts an example of a device that includes (A) a BIOS stored
+in read-only memory in this example, (B) an updatable bootloader, and (C)
+an operating system kernel.
+
 {:layered: artwork-align="center"}
 ~~~~ LAYERED
 {::include layered-attester.txt}
 ~~~~
 {:layered #layered title="Layered Attester"}
 
-The very first Attesting Environment has to ensure the integrity of
-the (U)EFI / BIOS / Firmware that initially boots up a composite device (e.g.,
-a cell phone).
+Attesting Environment A, the read-only BIOS in this example,
+has to ensure the integrity of the bootloader (Target Environment B).
+There are
+potentially multiple kernels to boot, and the decision is up to the bootloader.
+Only a bootloader with intact integrity will make an appropriate decision. Therefore, these Claims have to be measured securely.
+At this stage of the boot-cycle of the
+device, the Claims collected typically cannot be composed into Evidence.
 
-~~~
-    Henk: we are looking for a better term than UEFI/BIOS/Firmware
-~~~
+After the boot sequence is started, the BIOS conducts the
+most important and defining feature of layered attestation, which is that
+the successfully measured Target Environment B
+now becomes (or contains) an Attesting Environment for the next layer.
+This procedure in Layered Attestation is sometimes called "staging".
+It is important that the new Attesting Environment B not be
+able to alter any Claims about its own Target Environment B.
+This can be ensured having those Claims be either signed by Attesting
+Environment A or stored in an untamperable manner by Attesting
+Environment A.
 
-These Claims have to be measured securely.
-At this stage of the boot-cycle of a
-composite device, the Claims collected typically cannot be composed into Evidence.
+Continuing with this example, the bootloader's Attesting Environment B is now in charge of collecting Claims
+about Target Environment C, which in this example
+is the kernel to be booted.  The final Evidence thus contains two sets of
+Claims: one set about the bootloader as measured and signed by the BIOS,
+plus a set of Claims about the kernel as measured and signed by the bootloader.
 
-The very first Attesting Environment in this example can be a hardware component that is a Static Code Root of Trust.
-As in any other scenario, this hardware component is the first Attesting Environment.
-It collects a rather concise number of Claims about the Target Environment.
-The Target Environment in this example is the (U)EFI / BIOS / Firmware
-After the boot sequence started, the Target Environment conducts the
-most important and defining feature of Layered Attestation:
-The successfully measured environment that is the
-(U)EFI / BIOS / Firmware now becomes the Attesting Environment.
-Analogously, the Attesting Environment hands off its duty to one of its Target Environments. This procedure in Layered Attestation is called Staging.
+This example could be extended further
+by, say, making the kernel become another Attesting Environment for
+an application as another Target Environment, resulting in a third set
+of Claims in the Evidence pertaining to that application.
 
-Now, the duties have been transferred and Layered Attestation takes place.
-The initial Attesting Environment relinquishes its duties to the Target Environment.
-It is important to note that the new Attesting Environment cannot alter
-the content about its own measurements. If the Attesting Environment
-would be able to do that, Layered Attestation would become unfeasible.
-
-In this example the duty of being the Attesting Environment is now
-taken over by the (U)EFI / BIOS / Firmware that was the Attested
-Environment before. This transfer of duty is the essential part of
-Layered Attestation. The (U)EFI / BIOS / Firmware now is the Attesting Environment.
-The next Target Environment is, in this example, a bootloader. There are
-potentially multiple kernels to boot, the decision is up to the bootloader.
-Only a bootloader with intact integrity will make an appropriate decision. Therefore, Claims about
-the integrity of a bootloader are now collected by the freshly appointed Attesting Environment
-that is the (U)EFI / BIOS / Firmware. Collected Claims have to be stored by the current
-Attesting Environment in a similar shielded and secured manner, so that the next Attesting Environment
-is not capable of altering the collection of claims stored.
-
-Continuing with this example, the bootloader is now in charge of collecting Claims
-about the next execution environment. The next execution environment in this example
-is the kernel to be booted up. Analogously, the next transfer of duties in this
-Layered Attestation example occurs: The duty of being an Attesting Environment is
-transferred to a successfully measured kernel. In this sequence, the kernel is now collecting
-additional Claims and is storing them in a secure and shielded manner.
-
-~~~
-    [Henk: we might have to define what successful
-    means in this example and beyond]
-~~~
-
-The essence of this example is a cascade of staged boot environments. Each
-environment (after the initial one that is a root-of-trust) has the duty
-of measuring its next environment before it is started. Therefore, creating
-a layered boot sequence and correspondingly enabling Layered Attestation.
+The essence of this example is a cascade of staged environments. Each
+environment has the responsibility
+of measuring the next environment before the next environment is started.
+In general, the number of layers may vary by device or implementation,
+and an Attesting Environment might even have multiple Target Environments
+that it measures, rather than only one as shown in {{layered}}.
 
 ## Composite Device {#compositedevice}
 
@@ -650,7 +661,7 @@ As a system bus entity, a Verifier consumes Evidence from other devices
 connected to the system bus that implement Attester roles. As a wide-area
 network connected entity, it may implement an Attester role. The entity, as a
 system bus Verifier, may choose to fully isolate its role as a wide-area
-network Attester. 
+network Attester.
 
 In essence, an entity that combines more than one role also creates and
 consumes the corresponding conceptual messages as defined in this document.
@@ -704,13 +715,17 @@ In the background-check model, this Evidence may also be revealed to Relying Par
 
 ## Evidence
 
-Today, Evidence tends to be highly device-specific, since the information in the Evidence
-often includes vendor-specific information that is necessary to fully describe the manufacturer
-and model of the device including its security properties, the health
-of the device, and the level of confidence in the correctness of the information.
-Evidence is typically signed by the device (whether by hardware, firmware, or software on the
-device), and its appraisal in isolation would require Appraisal Policy to be based on
-device-specific details (e.g., a device public key).
+Evidence is a set of claims about the target environment that reveal operational
+status, health, configuration or construction that have security relevance.
+Evidence is evaluated by a Verifier to establish its relevance, compliance, and timeliness.
+Claims need to be collected in a manner that is reliable.
+Evidence needs to be securely associated with the target environment
+so that the Verifier cannot be tricked into accepting claims originating
+from a different environment (that may be more trustworthy).
+Evidence also must be protected from man-in-the-middle attackers who may observe,
+change or misdirect Evidence as it travels from Attester to Verifier.
+The timeliness of Evidence can be captured using claims that pinpoint the time
+or interval when changes in operational status, health, and so forth occur.
 
 ## Endorsements
 
@@ -857,6 +872,8 @@ are signed.  For example, values might have been generated at boot, and then
 used in claims as long as the signer can guarantee that they cannot have changed
 since boot.
 
+A more detailed discussion with examples appears in {{time-considerations}}.
+
 # Privacy Considerations
 
 The conveyance of Evidence and the resulting Attestation Results
@@ -870,7 +887,17 @@ running a weak version of firmware provides a way to aim attacks better.
 Evidence and Attestation Results data structures are expected to support
 integrity protection encoding (e.g., COSE, JOSE, X.509) and optionally might
 support confidentiality protection (e.g., COSE, JOSE).
-Therefore, if confidentiality protection is omitted or unavailable, the protocols that convey Evidence or Attestation Results are responsible for detailing what kinds of information are disclosed, and to whom they are exposed.
+Therefore, if confidentiality protection is omitted or unavailable, the protocols
+that convey Evidence or Attestation Results are responsible for detailing what
+kinds of information are disclosed, and to whom they are exposed.
+
+Furthermore, because Evidence might contain sensitive information,
+Attesters are responsible for only sending such Evidence to trusted
+Verifiers.  Some Attesters might want a stronger level of assurance of
+the trustworthiness of a Verifier before sending Evidence to it.  In such cases,
+an Attester can first act as a Relying Party and ask for the Verifier's own
+Attestation Result, and appraising it just as a Relying Party would appraise
+an Attestation Result for any other purpose.
 
 # Security Considerations
 
@@ -924,3 +951,209 @@ Thomas Hardjono created older versions of the terminology section in collaborati
 Eric Voit provided the conceptual separation between Attestation Provision Flows and Attestation Evidence Flows.
 Monty Wisemen created the content structure of the first three architecture drafts.
 Carsten Bormann provided many of the motivational building blocks with respect to the Internet Threat Model.
+
+# Appendix A: Time Considerations {#time-considerations}
+
+The table below defines a number of relevant events, with an ID that
+is used in subsequent diagrams.  The times of said events might be
+defined in terms of an absolute clock time such as Coordinated Universal Time,
+or might be defined relative to some other timestamp or timeticks counter.
+
+| ID | Event                       | Explanation of event
+|----|-----------------------------|-----------------------
+| VG | Value generation            | A value to appear in a claim was created
+| NS | Nonce sent                  | A random number not predictable to an Attester is sent
+| NR | Nonce relayed               | The nonce is relayed to an Attester by enother entity
+| EG | Evidence generation         | An Attester collects claims and generates Evidence
+| ER | Evidence relayed            | A Relying Party relays Evidence to a Verifier
+| RG | Result generation           | A Verifier appraises Evidence and generates an Attestation Result
+| RR | Result relayed              | A Relying Party relays an Attestation Result to a Relying Party
+| RA | Result appraised            | The Relying Party appraises Attestation Results
+| OP | Operation performed         | The Relying Party performs some operation requested by the Attester.  For example, acting upon some message just received across a session created earlier at time(RA).
+| RX | Result expiry               | An Attestation Result should no longer be accepted, according to the Verifier that generated it
+
+We now walk through a number of hypothetical examples of how
+a solution might be built.  This list is not intended to be complete,
+but is just representative enough to highlight various timing considerations.
+
+## Example 1: Timestamp-based Passport Model Example
+
+The following example illustrates a hypothetical Passport Model
+solution that uses timestamps and requires roughly synchronized
+clocks between the Attester, Verifier, and Relying Party, which
+depends on using a secure clock synchronization mechanism.
+
+~~~~
+   .----------.                     .----------.  .---------------.
+   | Attester |                     | Verifier |  | Relying Party |
+   '----------'                     '----------'  '---------------'
+     time(VG)                             |               |
+        |                                 |               |
+        ~                                 ~               ~
+        |                                 |               |
+     time(EG)                             |               |
+        |------Evidence{time(EG)}-------->|               |
+        |                              time(RG)           |
+        |<-----Attestation Result---------|               |
+        |      {time(RG),time(RX)}        |               |
+        ~                                                 ~
+        |                                                 |
+        |------Attestation Result{time(RG),time(RX)}-->time(RA)
+        |                                                 |
+        ~                                                 ~
+        |                                                 |
+        |                                              time(OP)
+        |                                                 |
+~~~~
+
+The Verifier can check whether the Evidence is fresh when appraising
+it at time(RG) by checking `time(RG) - time(EG) < Threshold`, where the
+Verifier's threshold is large enough to account for the maximum
+permitted clock skew between the Verifier and the Attester.
+
+If time(VG) is also included in the Evidence along with the claim value
+generated at that time, and the Verifier decides that it can trust the
+time(VG) value, the Verifier can also determine whether the claim value is
+recent by checking `time(RG) - time(VG) < Threshold`, again where the threshold
+is large enough to account for the maximum permitted clock skew between
+the Verifier and the Attester.
+
+The Relying Party can check whether the Attestation Result is fresh
+when appraising it at time(RA) by checking `time(RA) - time(RG) < Threshold`,
+where the Relying Party's threshold is large enough to account for the
+maximum permitted clock skew between the Relying Party and the Verifier.
+The result might then be used for some time (e.g., throughout the lifetime
+of a connection established at time(RA)).  The Relying Party must be
+careful, however, to not allow continued use beyond the period for which
+it deems the Attestation Result to remain fresh enough.  Thus,
+it might allow use (at time(OP)) as long as `time(OP) - time(RG) < Threshold`.
+However, if the Attestation Result contains an expiry time time(RX) then
+it could explicitly check `time(OP) < time(RX)`.
+
+## Example 2: Nonce-based Passport Model Example
+
+The following example illustrates a hypothetical Passport Model
+solution that uses nonces and thus does not require that any clocks
+are synchronized.
+
+~~~~
+   .----------.                     .----------.  .---------------.
+   | Attester |                     | Verifier |  | Relying Party |
+   '----------'                     '----------'  '---------------'
+     time(VG)                             |               |
+        |                                 |               |
+        ~                                 ~               ~
+        |                                 |               |
+        |<---Nonce1--------------------time(NS)           |
+     time(EG)                             |               |
+        |----Evidence-------------------->|               |
+        |     {Nonce1, time(EG)-time(VG)} |               |
+        |                              time(RG)           |
+        |<---Attestation Result-----------|               |
+        |     {time(RX)-time(RG)}         |               |
+        ~                                                 ~
+        |                                                 |
+        |<---Nonce2------------------------------------time(NS')
+     time(RR)
+        |----Attestation Result{time(RX)-time(RG)}---->time(RA)
+        |    Nonce2, time(RR)-time(EG)                    |
+        ~                                                 ~
+        |                                                 |
+        |                                              time(OP)
+~~~~
+
+In this example solution, the Verifier can check whether the Evidence is
+fresh at time(RG) by verifying that `time(RG) - time(NS) < Threshold`.
+
+The Verifier cannot, however, simply rely on a Nonce to
+determine whether the value of a claim is recent, since the claim value
+might have been generated long before the nonce was sent by the Verifier.
+However, if the Verifier decides that the Attester can be trusted to
+correctly provide the delta time(EG)-time(VG), then it can determine recency
+by checking `time(RG)-time(NS) + time(EG)-time(VG) < Threshold`.
+
+Similarly if, based on an Attestation Result from a Verifier it trusts,
+the Relying Party decides that the Attester can be trusted to correctly
+provide time deltas, then it can determine whether the Attestation
+Result is fresh by checking
+`time(OP) - time(NS') + time(RR)-time(EG) < Threshold`.
+Although the Nonce2 and time(RR)-time(EG) values cannot be inside
+the Attestation Result, they might be signed by the Attester such
+that the Attestation Result vouches for the Attester's signing
+capability.
+
+The Relying Party must still be careful, however, to not allow continued
+use beyond the period for which it deems the Attestation Result to remain
+valid.  Thus, if the Attestation Result sends a validity lifetime
+in terms of time(RX)-time(RG), then the Relying Party can check
+`time(OP) - time(NS') < time(RX)-time(RG)`.
+
+## Example 3: Timestamp-based Background-Check Model Example
+
+The following example illustrates a hypothetical Background-Check Model
+solution that uses timestamps and requires roughly synchronized
+clocks between the Attester, Verifier, and Relying Party.
+
+~~~~
+.----------.         .---------------.              .----------.
+| Attester |         | Relying Party |              | Verifier |
+'----------'         '---------------'              '----------'
+  time(VG)                   |                           |
+        |                    |                           |
+        ~                    ~                           ~
+        |                    |                           |
+  time(EG)                   |                           |
+        |----Evidence------->|                           |
+        |    {time(EG)}   time(ER)--Evidence{time(EG)}-->|
+        |                    |                        time(RG)
+        |                 time(RA)<-Attestation Result---|
+        |                    |        {time(RX)}         |
+        ~                    ~                           ~
+        |                    |                           |
+        |                 time(OP)                       |
+~~~~
+
+The time considerations in this example are equivalent to those
+discussed under Example 1 above.
+
+## Example 4: Nonce-based Background-Check Model Example
+
+The following example illustrates a hypothetical Background-Check Model
+solution that uses nonces and thus does not require that any clocks
+are synchronized.  In this example solution, a nonce is
+generated by a Verifier at the request of a Relying Party, when
+the Relying Party needs to send one to an Attester.
+
+~~~~
+.----------.         .---------------.              .----------.
+| Attester |         | Relying Party |              | Verifier |
+'----------'         '---------------'              '----------'
+  time(VG)                   |                           |
+     |                       |                           |
+     ~                       ~                           ~
+     |                       |                           |
+     |                       |<-----Nonce-------------time(NS)
+     |<---Nonce-----------time(NR)                       |
+  time(EG)                   |                           |
+     |----Evidence{Nonce}--->|                           |
+     |                    time(ER)--Evidence{Nonce}----->|
+     |                       |                        time(RG)
+     |                    time(RA)<-Attestation Result---|
+     |                       |      {time(RX)-time(RG)}  |
+     ~                       ~                           ~
+     |                       |                           |
+     |                    time(OP)                       |
+~~~~
+
+The Verifier can check whether the Evidence is fresh, and whether a claim
+value is recent, the same as in Example 2 above.
+
+However, unlike in Example 2, the Relying Party can use the Nonce to
+determine whether the Attestation Result is fresh, by verifying that
+`time(OP) - time(NR) < Threshold`.
+
+The Relying Party must still be careful, however, to not allow continued
+use beyond the period for which it deems the Attestation Result to remain
+valid.  Thus, if the Attestation Result sends a validity lifetime
+in terms of time(RX)-time(RG), then the Relying Party can check
+`time(OP) - time(ER) < time(RX)-time(RG)`.
