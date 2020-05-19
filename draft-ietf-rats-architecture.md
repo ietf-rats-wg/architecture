@@ -1092,7 +1092,7 @@ in terms of time(RX)-time(RG), then the Relying Party can check
 ## Example 3: Timestamp-based Background-Check Model Example
 
 The following example illustrates a hypothetical Background-Check Model
-solution that uses timestamps and requires roughly synchronized
+solution that uses timestamps and requires synchronized
 clocks between the Attester, Verifier, and Relying Party.
 
 ~~~~
@@ -1101,7 +1101,9 @@ clocks between the Attester, Verifier, and Relying Party.
 '----------'         '---------------'              '----------'
   time(VG)                   |                           |
         |                    |                           |
-        ~                    ~                           ~
+  time(AA)                   |                           |
+        |                    |                           |
+  time(HD)                   |                           |
         |                    |                           |
   time(EG)                   |                           |
         |----Evidence------->|                           |
@@ -1114,8 +1116,15 @@ clocks between the Attester, Verifier, and Relying Party.
         |                 time(OP)                       |
 ~~~~
 
-The time considerations in this example are equivalent to those
-discussed under Example 1 above.
+In comparison with example 1, the time considerations in this example go into more detail with respect to the life-cycle of Claims and the requirements on time synchronization and corresponding timestamps.
+
+The goal is to create up-to-date and recent Evidence as soon as possible, in general. 
+
+At time(AA) the Attesting Environment is able to trigger an event (e.g. based on an Event-Condition-Action model) to create attestation Evidence as recent as possible. As soon as the Attesting Environment is aware, the new values are collected for composition into semantically enriched Claims at time Time(CC). Immediately after that, Evidence based on relevant "old" Claims and the most recent collected "new" Claims is generated at time(EG).
+
+In order to create attestation on demand due to the event trigger time(AA) at the time(EG), the Attester has be in synchronized state with respect to the Verifiers perception of global time. In order to accomplish his, the Attester has to have an identifier for time-bound recentness available at any time(HD) before time(EG) where the time interval between time(HD) and time(EG) is not too large due to time drift or other synchronization disablers (delta(time(HD),time(EG)<threshold)).
+
+In this usage scenario, time(VG), time(AA), and time (EG) are tightly coupled in timely fashin so that the resultung attestation Evidence is created most recently and as fresh as possible. If, for example, a identifier for time-bound recentness, such as a synchronization token, is not avilble when the chain of actions is triggered at time(AA), there recentness characteristics of the created attestation Evidence are impared.
 
 ## Example 4: Nonce-based Background-Check Model Example
 
@@ -1158,3 +1167,5 @@ use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
 in terms of time(RX)-time(RG), then the Relying Party can check
 `time(OP) - time(ER) < time(RX)-time(RG)`.
+
+
