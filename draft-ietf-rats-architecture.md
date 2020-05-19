@@ -701,7 +701,7 @@ A conveyance protocol that is authenticated and integrity protected can be used
 to convey unprotected Evidence, assuming the following properties exists:
 
    1. The key used to authenticate and integrity protect the conveyance channel is trusted by the Verifier to speak for the Attesting Environment that collected claims about the Target Environment.
-   2. The Evidence in the conveyance channel is supplied by the Attesting Environment.
+   2. All unprotected Evidence that is conveyed is supplied exclusively by the Attesting Environment that has the key that protects the conveyance channel
    3. The Root of Trust protects both the conveyance channel key and the Attesting Environment with equivalent strength protections.
 
 In some scenarios, Evidence might contain sensitive information such as
