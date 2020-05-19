@@ -650,8 +650,7 @@ As a system bus entity, a Verifier consumes Evidence from other devices
 connected to the system bus that implement Attester roles. As a wide-area
 network connected entity, it may implement an Attester role. The entity, as a
 system bus Verifier, may choose to fully isolate its role as a wide-area
-network Attester. Alternatively, Attestation Results might reflect an
-aggregation of system bus operational state claims in the form of Evidence.
+network Attester. 
 
 In essence, an entity that combines more than one role also creates and
 consumes the corresponding conceptual messages as defined in this document.
