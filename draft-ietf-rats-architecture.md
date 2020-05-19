@@ -646,10 +646,7 @@ in Composite Devices. Most importantly, these conveyance methods are
 out-of-scope of RATS, but they are presumed to exist in order to convey
 conceptual messages appropriately between roles.
 
-The following paragraph elaborates on an exemplary usage scenario:
-
-An entity that both connects to a wide-area
-network and to a system bus taking on both the Attester and Verifier roles.
+For example, an entity that both connects to a wide-area network and to a system bus is taking on both the Attester and Verifier roles.
 As a system bus entity, a Verifier consumes Evidence from other devices
 connected to the system bus that implement Attester roles. As a wide-area
 network connected entity, it may implement an Attester role. The entity, as a
