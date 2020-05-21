@@ -972,7 +972,7 @@ or might be defined relative to some other timestamp or timeticks counter.
 | OP | Operation performed         | The Relying Party performs some operation requested by the Attester.  For example, acting upon some message just received across a session created earlier at time(RA).
 | RX | Result expiry               | An Attestation Result should no longer be accepted, according to the Verifier that generated it.
 
-Using the table above, the examples following below illustrate a number of hypothetical examples of how
+Using the table above, a number of hypothetical examples of how a solution might be built are illustrated below.
 a solution might be built.  This list is not intended to be complete,
 but is just representative enough to highlight various timing considerations.
 
@@ -1167,5 +1167,4 @@ use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
 in terms of time(RX)-time(RG), then the Relying Party can check
 `time(OP) - time(ER) < time(RX)-time(RG)`.
-
 
