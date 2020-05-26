@@ -471,6 +471,20 @@ Attesting Environment(s) collecting the claims from its Target Environment(s).
 The lead Attester collects the Evidence of all other Attesters and then
 generates the Evidence of the whole Composite Attester.
 
+An entity can take on multiple RATS roles (e.g., Attester, Verifier, Relying
+Party, etc.) at the same time. The combination of roles can be arbitrary.
+For example, in this Composite Device scenario, the entity inside
+the lead Attester can also take on the role of a Verifier, and the
+outside entity of Verifier can take on the role of a Relying Party.
+After collecting the Evidence of other Attesters, this inside Verifier
+verifies them using Endorsements and Appraisal Policies (obtained the
+same way as any other Verifier), to generate Attestation Results.
+The inside Verifier then conveys the Attestation Results of other Attesters,
+whether in the same conveyance protocol as the Evidence or not,
+to the outside Verifier.
+
+In this situation, the trust model described in {{trustmodel}} is also suitable for this inside Verifier.
+
 # Topological Models {#overview}
 
 {{dataflow}} shows a basic model for communication between an Attester,
@@ -627,8 +641,6 @@ plans to support in the TEEP architecture {{-teep-arch}}.
 
 # Roles and Entities
 
-HENK VERSION
-
 An entity in the RATS architecture includes at least one of the roles defined
 in this document. As a result, the entity can participate as a constituent of
 the RATS architecture. Additionally, an entity can aggregate more than one
@@ -651,49 +663,6 @@ network Attester.
 
 In essence, an entity that combines more than one role also creates and
 consumes the corresponding conceptual messages as defined in this document.
-
-# Role Hosting and Composition
-
-NED VERSION
-
-The RATS architecture includes the definition of Roles (e.g. Attester, Verifier,
-Relying Party, Endorser) and conceptual messages (e.g., Evidence, Attestation Results,
-Endorsements, Appraisal Policies) that captures canonical attestation behaviors,
-that are common to a broad range of attestation-enabled systems. An entity that
-combines multiple Roles produces and consumes the associated Role Messages.
-
-The RATS architecture is not prescriptive about deployment configuration options
-of attestation-enabled systems, therefore the various Roles can be hosted on any
-participating entity. This implies, for a given entity, that multiple Roles could
-be co-resident so that the duties of multiple roles could be performed simultaneously.
-Nevertheless, the semantics of which Role Messages are inputs and outputs to a Role
-entity remains constant. As a result, the entity can participate as a constituent of the RATS architecture
-while flexibly accommodating the needs of various deployment architectures.
-
-Interactions between Roles do not necessarily require use of Internet protocols.
-They could, for example, use inter-process communication, local system buses,
-shared memory, hypervisors, IP-loopback devices or any communication path
-between the various environments that may exist on the entity that combines multiple Roles.
-
-The movement of Role Messages between locally hosted Roles is referred to as
-"local conveyance". Most importantly, the definition of local conveyance methods is
-out-of-scope for the RATS architecture.
-
-The following paragraph elaborates on an exemplary usage scenario:
-
-In a Composite Device scenario, in addition to local entities that host the
-lead Attester and other subordinate Attesters, the Composite Device can host the
-Verifier role locally to appraise Evidence from one or more subordinate Attesters.
-The local Verifier might convey local Attestation Results to a remote Relying party
-or the Relying Party role also could become local where an application-specific
-action is taken locally. For example, a secure boot scenario prevents system software
-from loading if the firmware fails to satisfy a local trustworthiness appraisal policy.
-
-In a multi-network scenario, a network node might bridge a wide-area
-network, local-area network, and span various system buses. In so doing, the bridge node
-might need to host multiple Roles depending on the type of behavior each connected domain
-expects. For example, the node might be an Attester to a wide-area network, a Verifier to
-the local-area network, and a Relying Party to components attached to a local system bus.
 
 # Trust Model {#trustmodel}
 
