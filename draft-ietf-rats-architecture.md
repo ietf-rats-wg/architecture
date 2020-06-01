@@ -1168,3 +1168,4 @@ valid.  Thus, if the Attestation Result sends a validity lifetime
 in terms of time(RX)-time(RG), then the Relying Party can check
 `time(OP) - time(ER) < time(RX)-time(RG)`.
 
+
