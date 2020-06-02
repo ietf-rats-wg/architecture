@@ -847,12 +847,12 @@ a different format.
 It is important to prevent replay attacks where an attacker replays
 old Evidence or an old Attestation Result that is no longer correct.
 To do so, some mechanism of ensuring that the Evidence and Attestation
-Result are fresh, meaning that there is some degree of assurance
+Results are fresh, meaning that there is some degree of assurance
 that they still reflect the latest state of the Attester, and that any Attestation
-Result was generated using the latest Appraisal Policy for Evidence.
+Results were generated using the latest Evidence and Appraisal Policy for Evidence.
 There is, however, always a race condition possible in that the
 state of the Attester, and the Appraisal Policy for Evidence,
-might change immediately after the Evidence or Attestation Result was generated.
+might change immediately after the Evidence or Attestation Results were generated.
 The goal is merely to narrow the time window to something the Verifier
 (for Evidence) or Relying Party (for an Attestation Result) is willing to accept.
 
