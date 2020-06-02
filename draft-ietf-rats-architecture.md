@@ -859,21 +859,21 @@ a different format.
 A remote entity (Verifier or Relying Party) may need to learn the point in
 time (i.e., the "epoch") an Evidence or Attestation Result have been
 produced.
-This is essential in deciding whether the included Claims can be considered fresh, meaning they still reflect the latest state of the Attester, and that any Attestation Result was generated using the latest Appraisal Policy for Evidence.
+This is essential in deciding whether the included Claims and their values can be considered fresh, meaning they still reflect the latest state of the Attester, and that any Attestation Result was generated using the latest Appraisal Policy for Evidence.
 
 Freshness is assessed based on a policy defined by the consuming entity,
 Verifier or Relying Party, that compares the estimated epoch against an
 "expiry" threshold defined locally to that policy.
 There is, however, always a race condition possible in that the state of the Attester, and the Appraisal Policy for Evidence, might change immediately after the Evidence or Attestation Result was generated.
 The goal is merely to narrow their recentness to something the Verifier (for Evidence) or Relying Party (for Attestation Result) is willing to accept.
-Freshness is a key component  for enabling caching and reuse of both Evidence and Attestation Results, which is especially valuable in cases where their computation uses a substantial part of the energy budget (e.g., in constrained devices).
+Freshness is a key component  for enabling caching and reuse of both Evidence and Attestation Results, which is especially valuable in cases where their computation uses a substantial part of the resource budget (e.g., energy in constrained devices).
 
 There are two common approaches for determining the epoch of an Evidence or Attestation Result.
 
 <!-- Explicit Timekeeping using Synchronized Clocks -->
 
 The first approach is to rely on synchronized and trustworthy clocks, and include a signed timestamp (see {{?I-D.birkholz-rats-tuda}}) along with the Claims in the Evidence or Attestation Result.
-This allows fine-grained epoch assignment, even on per-Claim basis if wanted, as well as the ability to distinguish time of collection from time of creation of Claims.
+Timestamps can also be added on a per-Claim basis if wanted, to allow distinguishing the time of creation of Evidence from the time that a specific Claim value was generated.
 Clocks trustworthiness typically requires additional Claims about the signer's time synchronization mechanism.
 
 <!-- Implicit Timekeeping using Nonces -->
