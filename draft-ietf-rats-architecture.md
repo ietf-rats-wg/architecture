@@ -881,8 +881,7 @@ since boot.
 The term freshness is applied to both Evidence and Attestation Results in
 this document. Unfortunately, the term freshness is also a bit overloaded and
 in order to illustrate the application of the term in this document better,
-two characteristics that can be part of freshness are elaborated on below:
-recentness and uniqueness:
+two characteristics that can be part of freshness, recentness and uniqueness, are elaborated on below:
 
 Recentness:
 
@@ -904,7 +903,7 @@ tracing Evidence already received (or already requested in some usage
 scenarios, respectively).
 
 : Evidence can be non-unique, if the Evidence created from Claims does not
-include a unique handle (e.g. a UUID used as a nonce). If the Verifier
+include a unique handle (e.g., a UUID used as a nonce). If the Verifier
 receives the same Evidence payload twice, a list of Evidence queries with
 respect to an Attester or a list Evidence messages received from an Attester
 are both usage scenarios in which uniqueness characteristics can be appraised
