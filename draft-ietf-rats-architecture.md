@@ -734,10 +734,49 @@ or interval when changes in operational status, health, and so forth occur.
 
 ## Endorsements
 
-An Endorsement is a secure statement that some entity (e.g., a manufacturer) vouches for the integrity of the
-device's signing capability.  For example, if the signing capability is in hardware, then
-an Endorsement might be a manufacturer certificate that signs a public key whose corresponding
-private key is only known inside the device's hardware.  Thus, when Evidence and such an Endorsement
+Endorsements are essential input to the Verifier that allows them to
+trust Attesters and in turn the Evidence produced by Attesters.
+Without endorsements Verifiers cannot do their job.
+
+An Attester for which there is no Endorsement is not very useful since
+there is no good basis by which a Verifier can trust it.
+Basically, every Attester needs an Endorsement.
+
+An Endorsement usually contains some key material, often a public key,
+that corresponds to a private key that is in the Attester.
+This key material is used to prove the identity of the Attester to
+the Verifier.
+It is also is usually used to sign and verify the Evidence.
+The key material may be as simple as one key pair, with the public key
+in the Endorsement and the private key in the Attester, or it may be
+more elaborate using an X.509 hierarchy or such.
+It may also be symmetric key material. This architecture allows any
+type of key material and scheme.
+
+Endorsements may also contain Claims about the Attester.
+These are claims about the Attester that are static, that don’t vary
+with the state of the device or the Attester.  
+Examples include the manufacturer and model.
+They may be used along with Appraisal Policy to evaluate the Attester
+and Evidence it produces.
+They may also be passed through into Attestation Results for use by
+the Relying Party or both.
+
+Endorsements are usually produced by the manufacturer of the Attester.
+Sometimes the manufacturer is called the Endorser. 
+Sometimes there may be many party involved in producing the device,
+the Attester and the Endorsement. For example, an OS vendor might be
+the one producing the Endorsements and supplying key material to the
+actual manufacturer.
+
+The endorsement must be conveyed to the Verifier in a secure way. If
+not, the Verifier could be told to trust any Attester.
+The specific security mechanism for this is not specified by this
+architecture. Some examples might be a common trusted X.509 root
+certificate used with TLS, a private connection or some out-of-band
+delivery of key material.
+
+Thus, when Evidence and such an Endorsement
 are used together, an appraisal procedure can be conducted based on Appraisal Policies that may not be specific to the
 device instance, but merely specific to the manufacturer providing the Endorsement. For example,
 an Appraisal Policy might simply check that devices from a given manufacturer have information
