@@ -891,10 +891,10 @@ additional Claims about the signer's time synchronization mechanism.
 
 A second approach places the onus of timekeeping solely on the appraising
 entity, e.g., the Verifier (for Evidence), or the Relying Party (for
-Attestation Results).  This might be an appropriate choice in case the Attester
-does not have a reliable clock or time synchronisation is otherwise impaired.
-In this approach, a non-predictable nonce is sent by the appraising entity, and
-the nonce is then signed and included along with the Claims in the Evidence or
+Attestation Results), and might be suitable in case the Attester does not have
+a reliable clock or time synchronisation is otherwise impaired.  In this
+approach, a non-predictable nonce is sent by the appraising entity, and the
+nonce is then signed and included along with the Claims in the Evidence or
 Attestation Result.  After checking that the sent and received nonces are the
 same, the appraising entity knows that the Claims were signed after the nonce
 was generated.  This allows associating a "rough" epoch to the Evidence or
@@ -907,14 +907,13 @@ Attestation Result.  In this case the epoch is said to be rough because:
 
 Implicit and explicit timekeeping can be combined into hybrid mechanisms.  For
 example, if clocks exist and are considered trustworthy but are not
-synchronized, first a nonce-based exchange may be used to determine the (rough)
-time offset between the involved peers, followed by any number of timestamp
-based exchanges.  In another scenario where a broadcast channel is shared by
-all Roles (Attesters, Verifiers and Relying Parties), the nonce-based approach
-may be used to anchor all parties to the same timeline without requiring
-synchronized clocks by having a central entity emit nonces at regular intervals
-and have the "current" nonce included in the produced Evidence or Attestation
-Result.
+synchronized, a nonce-based exchange may be used to determine the (rough) time
+offset between the involved peers, followed by any number of timestamp based
+exchanges.  In another setup where all Roles (Attesters, Verifiers and Relying
+Parties) share the same broadcast channel, the nonce-based approach may be used
+to anchor all parties to the same timeline, without requiring synchronized
+clocks, by having a central entity emit nonces at regular intervals and have
+the "current" nonce included in the produced Evidence or Attestation Result.
 
 It is important to note that the actual values in Claims might have been
 generated long before the Claims are signed.  If so, it is the signer's
