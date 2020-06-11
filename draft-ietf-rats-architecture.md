@@ -856,45 +856,72 @@ a different format.
 
 # Freshness
 
-A remote entity (Verifier or Relying Party) may need to learn the point in
-time (i.e., the "epoch") an Evidence or Attestation Result have been
-produced.
-This is essential in deciding whether the included Claims and their values can be considered fresh, meaning they still reflect the latest state of the Attester, and that any Attestation Result was generated using the latest Appraisal Policy for Evidence.
+A remote entity (Verifier or Relying Party) may need to learn the point in time
+(i.e., the "epoch") an Evidence or Attestation Result have been produced.  This
+is essential in deciding whether the included Claims and their values can be
+considered fresh, meaning they still reflect the latest state of the Attester,
+and that any Attestation Result was generated using the latest Appraisal Policy
+for Evidence.
 
 Freshness is assessed based on a policy defined by the consuming entity,
 Verifier or Relying Party, that compares the estimated epoch against an
-"expiry" threshold defined locally to that policy.
-There is, however, always a race condition possible in that the state of the Attester, and the Appraisal Policy for Evidence, might change immediately after the Evidence or Attestation Result was generated.
-The goal is merely to narrow their recentness to something the Verifier (for Evidence) or Relying Party (for Attestation Result) is willing to accept.
-Freshness is a key component  for enabling caching and reuse of both Evidence and Attestation Results, which is especially valuable in cases where their computation uses a substantial part of the resource budget (e.g., energy in constrained devices).
+"expiry" threshold defined locally to that policy.  There is, however, always a
+race condition possible in that the state of the Attester, and the Appraisal
+Policy for Evidence, might change immediately after the Evidence or Attestation
+Result was generated.  The goal is merely to narrow their recentness to
+something the Verifier (for Evidence) or Relying Party (for Attestation Result)
+is willing to accept.  Freshness is a key component  for enabling caching and
+reuse of both Evidence and Attestation Results, which is especially valuable in
+cases where their computation uses a substantial part of the resource budget
+(e.g., energy in constrained devices).
 
-There are two common approaches for determining the epoch of an Evidence or Attestation Result.
+There are two common approaches for determining the epoch of an Evidence or
+Attestation Result.
 
 <!-- Explicit Timekeeping using Synchronized Clocks -->
 
-The first approach is to rely on synchronized and trustworthy clocks, and include a signed timestamp (see {{?I-D.birkholz-rats-tuda}}) along with the Claims in the Evidence or Attestation Result.
-Timestamps can be added on a per-Claim basis, to distinguish the time of creation from the time that a specific Claim was generated.
-The clock's trustworthiness typically requires additional Claims about the signer's time synchronization mechanism.
+The first approach is to rely on synchronized and trustworthy clocks, and
+include a signed timestamp (see {{?I-D.birkholz-rats-tuda}}) along with the
+Claims in the Evidence or Attestation Result.  Timestamps can be added on a
+per-Claim basis, to distinguish the time of creation from the time that a
+specific Claim was generated.  The clock's trustworthiness typically requires
+additional Claims about the signer's time synchronization mechanism.
 
 <!-- Implicit Timekeeping using Nonces -->
 
-A second approach places the onus of timekeeping solely on the appraising entity, e.g., the Verifier (for Evidence), or the Relying Party (for Attestation Results).
-This might be an appropriate choice in case the Attester does not have a reliable clock or time synchronisation is otherwise impaired.
-In this approach, a non-predictable nonce is sent by the appraising entity, and the nonce is then signed and included along with the Claims in the Evidence or Attestation Result.
-After checking that the sent and received nonces are the same, the appraising entity knows that the Claims were signed after the nonce was generated.
-This allows associating a "rough" epoch to the Evidence or Attestation Result.
-In this case the epoch is said to be rough because:
+A second approach places the onus of timekeeping solely on the appraising
+entity, e.g., the Verifier (for Evidence), or the Relying Party (for
+Attestation Results).  This might be an appropriate choice in case the Attester
+does not have a reliable clock or time synchronisation is otherwise impaired.
+In this approach, a non-predictable nonce is sent by the appraising entity, and
+the nonce is then signed and included along with the Claims in the Evidence or
+Attestation Result.  After checking that the sent and received nonces are the
+same, the appraising entity knows that the Claims were signed after the nonce
+was generated.  This allows associating a "rough" epoch to the Evidence or
+Attestation Result.  In this case the epoch is said to be rough because:
 
-* The epoch applies to the entire claim set instead of a more granular association, and
-* The time between the creation of Claims and the collection of Claims is indistinguishable.
+* The epoch applies to the entire claim set instead of a more granular
+  association, and
+* The time between the creation of Claims and the collection of Claims is
+  indistinguishable.
 
-Implicit and explicit timekeeping can be combined into hybrid mechanisms.
-For example, if clocks exist and are considered trustworthy but are not synchronized, first a nonce-based exchange may be used to determine the (rough) time offset between the involved peers, followed by any number of timestamp based exchanges.
-In another scenario where a broadcast channel is shared by all Roles (Attesters, Verifiers and Relying Parties), the nonce-based approach may be used to anchor all parties to the same timeline without requiring synchronized clocks by having a central entity emit nonces at regular intervals and have the "current" nonce included in the produced Evidence or Attestation Result.
+Implicit and explicit timekeeping can be combined into hybrid mechanisms.  For
+example, if clocks exist and are considered trustworthy but are not
+synchronized, first a nonce-based exchange may be used to determine the (rough)
+time offset between the involved peers, followed by any number of timestamp
+based exchanges.  In another scenario where a broadcast channel is shared by
+all Roles (Attesters, Verifiers and Relying Parties), the nonce-based approach
+may be used to anchor all parties to the same timeline without requiring
+synchronized clocks by having a central entity emit nonces at regular intervals
+and have the "current" nonce included in the produced Evidence or Attestation
+Result.
 
-It is important to note that the actual values in Claims might have been generated long before the Claims are signed.
-If so, it is the signer's responsibility to ensure that the values are still correct when they are signed.
-For example, values generated at boot time might have been saved to secure storage until network connectivity is established to the remote Verifier and a nonce is obtained.
+It is important to note that the actual values in Claims might have been
+generated long before the Claims are signed.  If so, it is the signer's
+responsibility to ensure that the values are still correct when they are
+signed.  For example, values generated at boot time might have been saved to
+secure storage until network connectivity is established to the remote Verifier
+and a nonce is obtained.
 
 A more detailed discussion with examples appears in {{time-considerations}}.
 
