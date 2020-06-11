@@ -889,7 +889,7 @@ In this case the epoch is said to be rough because:
 * The time between the creation of Claims and the collection of Claims is indistinguishable.
 
 Implicit and explicit timekeeping can be combined into hybrid mechanisms.
-For example, if the clocks are trustworthy but not synchronized, first a nonce-based exchange may be used to determine the (rough) time offset between the involved peers, followed by any number of timestamp based exchanges.
+For example, if clocks exist and are considered trustworthy but are not synchronized, first a nonce-based exchange may be used to determine the (rough) time offset between the involved peers, followed by any number of timestamp based exchanges.
 In another scenario where a broadcast channel is shared by all Roles (Attesters, Verifiers and Relying Parties), the nonce-based approach may be used to anchor all parties to the same timeline without requiring synchronized clocks by having a central entity emit nonces at regular intervals and have the "current" nonce included in the produced Evidence or Attestation Result.
 
 It is important to note that the actual values in Claims might have been generated long before the Claims are signed.
