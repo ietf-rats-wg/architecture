@@ -1144,7 +1144,7 @@ In order to create attestation Evidence at
 at time(AA), the Attester requires a fresh (i.e. not expired)
 centrally generated identifier that also has been distributed to the
 Verifiers that are going to appraise the Evidence. Corresponding
-identifiers could be composed of signed timestamps {{-tuda}} or other
+identifiers could be composed of signed timestamps {{-rats-tuda}} or other
 non-repeating values, for example, relative -- with respect to time(TI)
 -- tick-counters that reset
 on restart of a device can also be used.
