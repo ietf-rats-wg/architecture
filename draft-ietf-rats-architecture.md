@@ -734,47 +734,27 @@ or interval when changes in operational status, health, and so forth occur.
 
 ## Endorsements
 
-Endorsements are essential input to the Verifier that allows them to
-trust Attesters and in turn the Evidence produced by Attesters.
-Without endorsements Verifiers cannot do their job.
+An Endorsement input to a Verifier is always required. An Endorsement is what allows a Verifier to trust an Attester and in turn to trust the Evidence produced by an Attester. Without Endorsements a Verifier cannot function.
+Said another way, an Attester for which there is no Endorsement is not useful since there is no good basis by which a Verifier can trust it.
 
-An Attester for which there is no Endorsement is not very useful since
-there is no good basis by which a Verifier can trust it.
-Basically, every Attester needs an Endorsement.
+One of the Endorsements for an Attester will just about always contain cryptographic key material.
+This key material will correspond to key material that is put in the Attester.
+The key material is the basis for the Verifier trusting the Attester.
+This architecture does not dictate any particular cryptographic protocol for establishing this trust, hence the key material can be symmetric or asymmetric, a single key, multiple keys, key hierarchies, X.509 cert or chains or other.
 
-An Endorsement usually contains some key material, often a public key,
-that corresponds to a private key that is in the Attester.
-This key material is used to prove the identity of the Attester to
-the Verifier.
-It is also is usually used to sign and verify the Evidence.
-The key material may be as simple as one key pair, with the public key
-in the Endorsement and the private key in the Attester, or it may be
-more elaborate using an X.509 hierarchy or such.
-It may also be symmetric key material. This architecture allows any
-type of key material and scheme.
+Endorsements are produced by an Endorser.
+The Endorser is often the manufacturer of the device that contains the Attester, but not necessarily so.
+For example, it could be an OS vendor that supplies Attester key material to the device/Attester manufacturer.
 
-Endorsements may also contain Claims about the Attester.
-These are claims about the Attester that are static, that don’t vary
-with the state of the device or the Attester.  
-Examples include the manufacturer and model.
-They may be used along with Appraisal Policy to evaluate the Attester
-and Evidence it produces.
-They may also be passed through into Attestation Results for use by
-the Relying Party or both.
+An Endorsement must be conveyed to the Verifier in a secure way so that the Verifier does not accept fake or false Endorsements that would result in trusting Attesters and Evidence that should not be trusted.
+This architecture does not dictate any particular means of securing this conveyance hence it might be a TLS connection, some sort of signed data, physically transferring the data or other.
 
-Endorsements are usually produced by the manufacturer of the Attester.
-Sometimes the manufacturer is called the Endorser. 
-Sometimes there may be many party involved in producing the device,
-the Attester and the Endorsement. For example, an OS vendor might be
-the one producing the Endorsements and supplying key material to the
-actual manufacturer.
+Endorsements may contain known-good or reference values that are used by the Verifier to evaluate Evidence in the application of the Appraisal Process.
 
-The endorsement must be conveyed to the Verifier in a secure way. If
-not, the Verifier could be told to trust any Attester.
-The specific security mechanism for this is not specified by this
-architecture. Some examples might be a common trusted X.509 root
-certificate used with TLS, a private connection or some out-of-band
-delivery of key material.
+Endorsements may contain implicit Claims about the Attester.
+These are Claims about the device/Attester that are static, that don’t vary with the state of the device or the Attester.
+These implicit static Claims are usually passed on to the Relying Party in Attestation Results.
+The name of the manufacturer and model number are examples of implicit static Claims.
 
 Thus, when Evidence and such an Endorsement
 are used together, an appraisal procedure can be conducted based on Appraisal Policies that may not be specific to the
