@@ -131,7 +131,7 @@ Attestation Result:
 
 Attester:
 
-: A role performed by an entity (typically a device), whose Evidence must be appraised in order to infer the extent to which the Attester is considered trustworthy, such as when deciding whether it is authorized to perform some operation
+: A role performed by an entity (typically a device) whose Evidence must be appraised in order to infer the extent to which the Attester is considered trustworthy, such as when deciding whether it is authorized to perform some operation
 
 Claim:
 : A piece of asserted information, often in the form of a name/value pair.
@@ -151,7 +151,7 @@ Evidence:
 
 Relying Party:
 
-: A role performed by an entity, that depends on the validity of information about an Attester, for purposes of reliably applying application specific actions.  Compare /relying party/ in {{RFC4949}}
+: A role performed by an entity that depends on the validity of information about an Attester, for purposes of reliably applying application specific actions.  Compare /relying party/ in {{RFC4949}}
 
 Relying Party Owner:
 
