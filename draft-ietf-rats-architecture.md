@@ -228,7 +228,7 @@ Relying Party:
 This is a generalization of the ML model use case above, where
 the data can be any highly confidential data, such as health data
 about customers, payroll data about employees, future business plans, etc.
-An assessment of system integrity is made against a set of policies
+An assessment of system state is made against a set of policies
 to evaluate the state of a system using attestations for the system
 requesting data. Attestation is desired to prevent leaking data to
 compromised devices.
