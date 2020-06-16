@@ -106,7 +106,8 @@ such as roles, device composition, topological models, and appraisal is vital fo
 semantic interoperability across solutions and platforms involving multiple vendors and providers.
 
 Amongst other things, this document is about trust and trustworthiness.
-To trust is a decision that spans beyond the technical assertions. Trustworthiness is a quality that is
+The decision to trust spans beyond technical assertions to focus on trustworthiness as a quality of the computing environment.
+Trustworthiness is a quality that is
 assessed via evidence. This is a subtle difference and being
 familiar with the difference is crucial for using this document.
 Additionally, the concepts of freshness and trust relationships with
