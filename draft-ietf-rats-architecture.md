@@ -147,7 +147,8 @@ Endorser:
 
 Evidence:
 
-: A set of information about an Attester that is to be appraised by a Verifier
+: A set of information about an Attester that is to be appraised by a Verifier.
+Evidence may include configuration data, measurements, telemetry, or inferences.
 
 Relying Party:
 
