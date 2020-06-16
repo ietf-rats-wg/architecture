@@ -131,7 +131,7 @@ Attestation Result:
 
 Attester:
 
-: An entity (typically a device), whose Evidence must be appraised in order to infer the extent to which the Attester is considered trustworthy, such as when deciding whether it is authorized to perform some operation
+: A role performed by an entity (typically a device), whose Evidence must be appraised in order to infer the extent to which the Attester is considered trustworthy, such as when deciding whether it is authorized to perform some operation
 
 Claim:
 : A piece of asserted information, often in the form of a name/value pair.
