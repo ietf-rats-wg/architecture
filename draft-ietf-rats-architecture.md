@@ -106,9 +106,8 @@ such as roles, device composition, topological models, and appraisal is vital fo
 semantic interoperability across solutions and platforms involving multiple vendors and providers.
 
 Amongst other things, this document is about trust and trustworthiness.
-The decision to trust spans beyond technical assertions to focus on trustworthiness as a quality of the computing environment.
-Trustworthiness is a quality that is
-assessed via evidence. This is a subtle difference and being
+Trust is a choice one makes about another system.
+Trustworthiness is a quality about the other system that can be used in making one's decision to trust it or not.  This is subtle difference and being
 familiar with the difference is crucial for using this document.
 Additionally, the concepts of freshness and trust relationships with
 respect to RATS are elaborated on to enable implementers in order to choose
