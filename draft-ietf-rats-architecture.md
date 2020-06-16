@@ -119,7 +119,7 @@ This document uses the following terms.
 
 Appraisal Policy for Evidence:
 
-: A set of rules that direct how a Verifier evaluates the validity of information about an Attester. Compare /security policy/ in {{RFC4949}}
+: A set of rules that informs how a Verifier evaluates the validity of information about an Attester. Compare /security policy/ in {{RFC4949}}
 
 Appraisal Policy for Attestation Result:
 
