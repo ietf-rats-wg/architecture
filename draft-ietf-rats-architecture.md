@@ -151,7 +151,7 @@ Evidence:
 
 Relying Party:
 
-: An entity, that depends on the validity of information about an Attester, for purposes of reliably applying application specific actions.  Compare /relying party/ in {{RFC4949}}
+: A role performed by an entity, that depends on the validity of information about an Attester, for purposes of reliably applying application specific actions.  Compare /relying party/ in {{RFC4949}}
 
 Relying Party Owner:
 
@@ -159,7 +159,7 @@ Relying Party Owner:
 
 Verifier:
 
-: An entity that appraises the validity of Evidence about an Attester
+: A role performed by an entity that appraises the validity of Evidence about an Attester
  and produces Attestation Results to be used by a Relying Party
 
 Verifier Owner:
