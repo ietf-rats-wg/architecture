@@ -106,8 +106,8 @@ such as roles, device composition, topological models, and appraisal is vital fo
 semantic interoperability across solutions and platforms involving multiple vendors and providers.
 
 Amongst other things, this document is about trust and trustworthiness.
-Trust is a decision being made. Trustworthiness is a quality that is
-assessed via evidence created. This is a subtle difference and being
+Trust is a choice one makes about another system.
+Trustworthiness is a quality about the other system that can be used in making one's decision to trust it or not.  This is subtle difference and being
 familiar with the difference is crucial for using this document.
 Additionally, the concepts of freshness and trust relationships with
 respect to RATS are elaborated on to enable implementers in order to choose
@@ -174,15 +174,15 @@ architecture presented in this draft.  Many other use cases exist, and this
 document does not intend to have a complete list, only to have a set of use
 cases that collectively cover all the functionality required in the architecture.
 
-Each use case includes a description, and a summary of what an Attester and a Relying
-Party refer to in the use case.
+Each use case includes a description followed by a summary of the
+Attester and a Relying Party roles.
 
 ## Network Endpoint Assessment
 
-Network operators want a trustworthy report of identity
+Network operators want a trustworthy report that includes identity
 and version of information of the hardware and software on the
 machines attached to their network, for purposes such as inventory,
-auditing, and/or logging.  The network operator may also want a policy
+audit, anomaly detection, record maintenance and/or trending reports (logging).  The network operator may also want a policy
 by which full access is only granted to devices that meet some definition
 of health, and so wants to get claims about such information and verify
 their validity. Remote attestation is desired to prevent vulnerable or
@@ -191,8 +191,9 @@ harming others.
 
 Typically, solutions start with a specific component (called a "Root of Trust") that
 provides device identity and protected storage for measurements.
-These components perform a series of measurements, and express this with Evidence as to the
-hardware and firmware/software that is running.
+The system components perform a series of measurements that may be
+signed by the Root of Trust, considered as Evidence about the hardware,
+firmware, BIOS, software, etc. that is running.
 
 Attester:
 
@@ -204,9 +205,9 @@ Relying Party:
 
 ## Confidential Machine Learning (ML) Model Protection
 
-A device manufacturer wants to protect its intellectual property
-in terms of the ML model it developed and that runs in the devices that its
-customers purchased, and it wants to prevent attackers, potentially including
+A device manufacturer wants to protect its intellectual property.
+This is primarily the ML model it developed and runs in the devices purchased by its customers.
+The goals for the protection include preventing attackers, potentially
 the customer themselves, from seeing the details of the model.
 
 This typically works by having some protected environment
@@ -227,7 +228,10 @@ Relying Party:
 This is a generalization of the ML model use case above, where
 the data can be any highly confidential data, such as health data
 about customers, payroll data about employees, future business plans, etc.
-Attestation is desired to prevent leaking data to compromised devices.
+An assessment of system state is made against a set of policies
+to evaluate the state of a system using attestations for the system
+requesting data. Attestation is desired to prevent leaking data to
+compromised devices.
 
 Attester:
 
