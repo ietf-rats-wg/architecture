@@ -747,6 +747,8 @@ The Endorser is often the manufacturer of the device that contains the Attester,
 For example, it could be an OS vendor that supplies Attester key material to the device/Attester manufacturer.
 
 An Endorsement must be conveyed to the Verifier in a secure way so that the Verifier does not accept fake or false Endorsements that would result in trusting Attesters and Evidence that should not be trusted.
+Signing is used in some Endorsement formats, but not in all.
+When signing is not used, some other security mechanism is necessary.
 This architecture does not dictate any particular means of securing this conveyance hence it might be a TLS connection, some sort of signed data, physically transferring the data or other.
 
 Endorsements may contain known-good or reference values that are used by the Verifier to evaluate Evidence in the application of the Appraisal Process.
