@@ -186,7 +186,7 @@ machines attached to their network, for purposes such as inventory,
 audit, anomaly detection, record maintenance and/or trending reports (logging).
 The network operator may also want a policy
 by which full access is only granted to devices that meet some definition
-of health, and so wants to get claims about such information and verify
+of hygiene, and so wants to get claims about such information and verify
 their validity.
 Remote attestation is desired to prevent vulnerable or
 compromised devices from getting access to the network and potentially
