@@ -286,10 +286,9 @@ Relying Party:
 
 ## Hardware Watchdog
 
-One significant problem is malware that holds a device
-hostage and does not allow it to reboot to prevent updates to be
-applied.  This is a significant problem, because it allows a fleet
-of devices to be held hostage for ransom.
+One significant problem is malware that holds a device hostage and does not allow it to reboot to prevent updates from being applied.
+Remote attestation aids in the verification process that may occur locally as well as it is less likely that the policy or verification processes have also been compromised if hosted on a separate system.
+This is a significant problem, because it allows a fleet of devices to be held hostage for ransom.
 
 A hardware watchdog can be implemented by forcing a reboot unless
 remote attestation to a server succeeds within a periodic interval,
