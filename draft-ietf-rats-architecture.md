@@ -72,6 +72,11 @@ informative:
       OPC 10000-2
   I-D.birkholz-rats-tuda: rats-tuda
   I-D.ietf-teep-architecture: teep-arch
+  TCGarch:
+    title: "Trusted Platform Module Library - Part 1: Architecture"
+    author:
+      org: "Trusted Computing Group"
+    target: "https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1p62_Part1_Architecture_7july2020.pdf"
 
 --- abstract
 
@@ -291,10 +296,12 @@ Relying Party:
 One significant problem is malware that holds a device hostage and does not allow it to reboot to prevent updates from being applied.
 This is a significant problem, because it allows a fleet of devices to be held hostage for ransom.
 
-A hardware watchdog can be implemented by forcing a reboot unless
-remote attestation to a server succeeds within a periodic interval,
-and having the reboot do remediation by bringing a device into
-compliance, including installation of patches as needed.
+In the case, the Relying Party is the Watch Dog timer in the TPM/secure
+enclave itself, as described in {{TCGarch}} section 43.3.
+The Attestation Results are returned to the device, and provided to the enclave.
+
+If the watch dog does not receive regular, and fresh, Attestation Results as
+to the systems' health, then it forces a reboot.
 
 Attester:
 
