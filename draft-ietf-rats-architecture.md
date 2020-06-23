@@ -883,9 +883,10 @@ Attestation Result.
 The first approach is to rely on synchronized and trustworthy clocks, and
 include a signed timestamp (see {{?I-D.birkholz-rats-tuda}}) along with the
 Claims in the Evidence or Attestation Result.  Timestamps can be added on a
-per-Claim basis, to distinguish the time of creation from the time that a
-specific Claim was generated.  The clock's trustworthiness typically requires
-additional Claims about the signer's time synchronization mechanism.
+per-Claim basis, to distinguish the time of creation of Evidence or Attestation
+Result from the time that a specific Claim was generated.  The clock's
+trustworthiness typically requires additional Claims about the signer's time
+synchronization mechanism.
 
 <!-- Implicit Timekeeping using Nonces -->
 
