@@ -908,13 +908,14 @@ Attestation Result.  In this case the epoch is said to be rough because:
 
 Implicit and explicit timekeeping can be combined into hybrid mechanisms.  For
 example, if clocks exist and are considered trustworthy but are not
-synchronized, a nonce-based exchange may be used to determine the (rough) time
-offset between the involved peers, followed by any number of timestamp based
-exchanges.  In another setup where all Roles (Attesters, Verifiers and Relying
-Parties) share the same broadcast channel, the nonce-based approach may be used
-to anchor all parties to the same timeline, without requiring synchronized
-clocks, by having a central entity emit nonces at regular intervals and have
-the "current" nonce included in the produced Evidence or Attestation Result.
+synchronized, a nonce-based exchange may be used to determine the (relative)
+time offset between the involved peers, followed by any number of timestamp
+based exchanges.  In another setup where all Roles (Attesters, Verifiers and
+Relying Parties) share the same broadcast channel, the nonce-based approach may
+be used to anchor all parties to the same (relative) timeline, without
+requiring synchronized clocks, by having a central entity emit nonces at
+regular intervals and have the "current" nonce included in the produced
+Evidence or Attestation Result.
 
 It is important to note that the actual values in Claims might have been
 generated long before the Claims are signed.  If so, it is the signer's
