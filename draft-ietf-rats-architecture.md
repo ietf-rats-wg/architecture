@@ -857,7 +857,7 @@ a different format.
 # Freshness
 
 A remote entity (Verifier or Relying Party) may need to learn the point in time
-(i.e., the "epoch") an Evidence or Attestation Result have been produced.  This
+(i.e., the "epoch") an Evidence or Attestation Result has been produced.  This
 is essential in deciding whether the included Claims and their values can be
 considered fresh, meaning they still reflect the latest state of the Attester,
 and that any Attestation Result was generated using the latest Appraisal Policy
