@@ -686,9 +686,12 @@ come by trusting an entity (e.g., a Certificate Authority) that is
 in the Verifier's certificate chain.  The Relying Party
 might implicitly trust a Verifier (such as in the Verifying Relying
 Party combination).  Or, for a stronger level of security, the
-Relying Party might require that the Verifier itself provide
+Relying Party might require that the Verifier provide
 information about itself that the Relying Party can use to assess
 the trustworthiness of the Verifier before accepting its Attestation Results.
+One explicit way to establish such trust may be the Verifier first acts as 
+an Attester and creates Evidence about itself that it shares with the
+Relying Party.
 
 The Endorser and Verifier Owner may need to trust the Verifier
 before giving the Endorsement and Appraisal Policy to it.
