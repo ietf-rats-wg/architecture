@@ -977,18 +977,22 @@ or might be defined relative to some other timestamp or timeticks counter.
 
 | ID | Event                       | Explanation of event
 |----|-----------------------------|-----------------------
-| VG | Value generation            | A value to appear in a claim was created
-| NS | Nonce sent                  | A random number not predictable to an Attester is sent
-| NR | Nonce relayed               | The nonce is relayed to an Attester by enother entity
-| EG | Evidence generation         | An Attester collects claims and generates Evidence
-| ER | Evidence relayed            | A Relying Party relays Evidence to a Verifier
-| RG | Result generation           | A Verifier appraises Evidence and generates an Attestation Result
-| RR | Result relayed              | A Relying Party relays an Attestation Result to a Relying Party
-| RA | Result appraised            | The Relying Party appraises Attestation Results
+| VG | Value generation            | A value to appear in a Claim was created.
+| AA | Attester awareness          | An Attesting Environment starts to be aware of a new/changed Claim value.
+| CC | Claim Collection            | An Attesting Environment collects a new/changed Claim value to appear in Evidence.
+| HD | Handle distribution         | A centrally generated identifier for time-bound recentness across a domain of devices is successfully distributed to Attesters.
+| NS | Nonce sent                  | A nonce not predictable to an Attester (recentness & uniqueness) is sent to an Attester.
+| NR | Nonce relayed               | A nonce is relayed to an Attester by another entity.
+| EG | Evidence generation         | An Attester creates Evidence from collected Claims (CC).
+| ER | Evidence relayed            | A Relying Party relays Evidence to a Verifier.
+| RG | Result generation           | A Verifier appraises Evidence and generates an Attestation Result.
+| RP | Result push                 | A set of one or more Evidence bundles is conveyed to a Verifier with or without solicitation initially triggered by AA, in a periodic interval, or ad-hoc.
+| RR | Result relayed              | A Relying Party relays an Attestation Result to a Relying Party.
+| RA | Result appraised            | The Relying Party appraises Attestation Results.
 | OP | Operation performed         | The Relying Party performs some operation requested by the Attester.  For example, acting upon some message just received across a session created earlier at time(RA).
-| RX | Result expiry               | An Attestation Result should no longer be accepted, according to the Verifier that generated it
+| RX | Result expiry               | An Attestation Result should no longer be accepted, according to the Verifier that generated it.
 
-We now walk through a number of hypothetical examples of how
+Using the table above, a number of hypothetical examples of how a solution might be built are illustrated below.
 a solution might be built.  This list is not intended to be complete,
 but is just representative enough to highlight various timing considerations.
 
@@ -1107,8 +1111,9 @@ in terms of time(RX)-time(RG), then the Relying Party can check
 ## Example 3: Timestamp-based Background-Check Model Example
 
 The following example illustrates a hypothetical Background-Check Model
-solution that uses timestamps and requires roughly synchronized
-clocks between the Attester, Verifier, and Relying Party.
+solution that uses centrally generated identifiers for explicit time-keeping (referred to as "handle" in this example).
+Handles can be qualifying data, such as nonces or signed timestamps. In this example, centrally generated signed timestamps and -- and synchronized clocks between all entities -- are distributed
+in periodic intervals as handles.  If the Attester lacks a source of time based on an absolute timescale, a relative source of time, such as a tick counter can be used, alternatively.  In this example, evidence generation is not triggered at value generation, but at events at which the Attesting Environment becomes of changes to the Target Environment.
 
 ~~~~
 .----------.         .---------------.              .----------.
@@ -1116,7 +1121,9 @@ clocks between the Attester, Verifier, and Relying Party.
 '----------'         '---------------'              '----------'
   time(VG)                   |                           |
         |                    |                           |
-        ~                    ~                           ~
+     ---+----time(HD)--------+------time(HD))------------+--- 
+        |                    |                           |
+  time(AA)                   |                           |
         |                    |                           |
   time(EG)                   |                           |
         |----Evidence------->|                           |
@@ -1129,8 +1136,36 @@ clocks between the Attester, Verifier, and Relying Party.
         |                 time(OP)                       |
 ~~~~
 
-The time considerations in this example are equivalent to those
-discussed under Example 1 above.
+In comparison with example 1, the time considerations in this example
+go into more detail with respect to the life-cycle of Claims and
+Evidence. While the goal is to create up-to-date and recent Evidence as soon as possible, typically there is a latency between value generation and Attester awareness.
+
+At time(AA) the Attesting Environment is able to trigger an event
+(e.g. based on an Event-Condition-Action model) to create attestation
+Evidence that is as recent as possible. In essence, at time(AA) the
+Attesting Environment is aware of new values that where generated at
+time(VG) and corresponding Claim values are collected immediately.
+Consecutively, Evidence based on relevant "old" Claims and the just
+collected "new" Claims is generated at time(EG). In essence, the Claims used to generate the Evidence are generated at various time(VG) before time(AA).
+
+In order to create attestation Evidence at
+at time(AA), the Attester requires a fresh (i.e. not expired)
+centrally generated handle that has been distributed to all involved
+entities.
+
+In general, The duration a handle remains fresh depends on
+the content-type of the handle. If it is a (relative or absolute)
+timestamp, clocks synchronized with a shared and trustworthy source of
+time are required. If another value type is used as a handle, the
+reception time of the handle time(HD) provides an epoch (relative time
+of zero) for measuring the duration of validity (similar to a
+heart-beat timeout). From the point of view of a Verifier, validity of
+Evidence is only given if the handle used in Evidence satisfies
+delta(time(HD),time(EG))distribution-interval.
+
+In this usage scenario, time(VG), time(AA), and time(EG) are tightly
+coupled. Also, the absolute point in time at which a handle is received
+by all three entities is assumed to be close to identical.
 
 ## Example 4: Nonce-based Background-Check Model Example
 
@@ -1173,3 +1208,5 @@ use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
 in terms of time(RX)-time(RG), then the Relying Party can check
 `time(OP) - time(ER) < time(RX)-time(RG)`.
+
+
