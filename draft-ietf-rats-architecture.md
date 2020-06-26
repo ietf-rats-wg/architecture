@@ -892,7 +892,7 @@ synchronization mechanism.
 
 A second approach places the onus of timekeeping solely on the appraising
 entity, e.g., the Verifier (for Evidence), or the Relying Party (for
-Attestation Results), and might be suitable in case the Attester does not have
+Attestation Results), and might be suitable, for example, in case the Attester does not have
 a reliable clock or time synchronisation is otherwise impaired.  In this
 approach, a non-predictable nonce is sent by the appraising entity, and the
 nonce is then signed and included along with the Claims in the Evidence or
