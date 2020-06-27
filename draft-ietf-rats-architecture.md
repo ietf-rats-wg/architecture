@@ -753,8 +753,8 @@ to convey unprotected Evidence, assuming the following properties exists:
 In some scenarios, the Endorser and Verifier Owner may need to trust the Verifier
 before giving the Endorsement and Appraisal Policy to it.  This can be done
 similarly to how a Relying Party might establish trust in a Verifier as
-discussed above.  In such a case, mutual attestation with a Verifier might
-be needed, as discussed in {{rpowner-trust}}.
+discussed above, and in such a case, mutual attestation might even
+be needed as discussed in {{rpowner-trust}}.
 
 # Conceptual Messages {#messages}
 
