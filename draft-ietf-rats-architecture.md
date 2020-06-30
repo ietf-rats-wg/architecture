@@ -219,7 +219,8 @@ The goals for the protection include preventing attackers, potentially
 the customer themselves, from seeing the details of the model.
 
 This typically works by having some protected environment
-in the device attest to some manufacturer service.  If remote attestation succeeds,
+in the device go through a remote attestation with some manufacturer service
+that can assess its trustworthiness.  If remote attestation succeeds,
 then the manufacturer service releases either the model, or a key to decrypt
 a model the Attester already has in encrypted form, to the requester.
 
@@ -277,7 +278,8 @@ etc.)
 A "Trusted Application Manager (TAM)" server is responsible
 for managing the applications running in the TEE of a client device.
 To do this, the TAM wants to assess the state of a TEE, or of applications
-in the TEE, of a client device.  The TEE attests to the TAM, which can
+in the TEE, of a client device.  The TEE conducts a remote attestation
+procedure with the TAM, which can
 then decide whether the TEE is already in compliance with the TAM's latest
 policy, or if the TAM needs to uninstall, update, or install approved
 applications in the TEE to bring it back into compliance with the TAM's policy.
@@ -678,26 +680,61 @@ consumes the corresponding conceptual messages as defined in this document.
 
 # Trust Model {#trustmodel}
 
+## Relying Party
+
 The scope of this document is scenarios for which a Relying Party
 trusts a Verifier that can appraise the trustworthiness of
 information about an Attester.  Such trust might come by the Relying
 Party trusting the Verifier (or its public key) directly, or might
 come by trusting an entity (e.g., a Certificate Authority) that is
-in the Verifier's certificate chain.  The Relying Party
-might implicitly trust a Verifier (such as in the Verifying Relying
-Party combination).  Or, for a stronger level of security, the
-Relying Party might require that the Verifier itself provide
+in the Verifier's certificate chain.
+
+The Relying Party
+might implicitly trust a Verifier, such as in a Verifier/Relying
+Party combination where the Verifier and Relying Party roles are combined.
+Or, for a stronger level of security, the
+Relying Party might require that the Verifier first provide
 information about itself that the Relying Party can use to assess
 the trustworthiness of the Verifier before accepting its Attestation Results.
 
-The Endorser and Verifier Owner may need to trust the Verifier
-before giving the Endorsement and Appraisal Policy to it.
-Such trust can also be established directly or indirectly,
-implicitly or explicitly. One explicit way to establish such trust
-may be the Verifier first acts as an Attester and creates Evidence about itself to be consumed by the
-Endorser and/or Verifier Owner as the Relying Parties.
-If it is accepted as trustworthy, then they can provide Endorsements
-and Appraisal Policies that enable it to act as a Verifier.
+For example, one explicit way for a Relying Party "A" to establish
+such trust in a Verifier "B", would be for B to first act as an Attester
+where A acts as a combined Verifier/Relying Party.  If A then accepts B as
+trustworthy, it can choose to accept B as a Verifier for other Attesters.
+
+Similarly, the Relying Party also needs to trust the Relying Party Owner
+for providing its Appraisal Policy for Attestation Results, and
+in some scenarios the Relying Party might even require that the
+Relying Party Owner go through a remote attestation procedure with it before the Relying Party will accept
+an updated policy. This can be done similarly to how a Relying Party
+could establish trust in a Verifier as discussed above.
+
+## Attester
+
+In some scenarios, Evidence might contain sensitive information such as
+Personally Identifiable Information.
+Thus, an Attester must trust entities to which it conveys Evidence, to not
+reveal sensitive data to unauthorized parties.
+The Verifier might share this information with other authorized parties, according to rules that it controls.
+In the background-check model, this Evidence may also be revealed to Relying Party(s).
+
+In some cases where Evidence contains sensitive information, an Attester
+might even require that a Verifier first go through a remote attestation procedure with it before the Attester
+will send the sensitive Evidence.  This can be done by having the 
+Attester first act as a Verifier/Relying Party, and the Verifier act as its
+own Attester, as discussed above.
+
+## Relying Party Owner {#rpowner-trust}
+
+The Relying Party Owner might also require that the
+Relying Party first act as an Attester, providing Evidence that the Owner
+can appraise, before the Owner would give the Relying Party an updated
+policy that might contain sensitive information.  In such a case,
+mutual attestation might be needed, in which case typically one side's
+Evidence must be considered safe to share with an untrusted entity,
+in order to bootstrap the sequence.
+
+## Verifier
 
 The Verifier trusts (or more specifically, the Verifier's security
 policy is written in a way that configures the Verifier to trust) a
@@ -720,13 +757,13 @@ to convey unprotected Evidence, assuming the following properties exists:
    2. All unprotected Evidence that is conveyed is supplied exclusively by the Attesting Environment that has the key  material that protects the conveyance channel
    3. The Root of Trust protects both the conveyance channel key material and the Attesting Environment with equivalent strength protections.
 
-In some scenarios, Evidence might contain sensitive information such as
-Personally Identifiable Information.
-Thus, an Attester must trust entities to which it conveys Evidence, to not
-reveal sensitive data to unauthorized parties.
-The Verifier might share this information with other authorized parties, according rules that it controls.
-In the background-check model, this Evidence may also be revealed to Relying Party(s).
+## Endorser and Verifier Owner
 
+In some scenarios, the Endorser and Verifier Owner may need to trust the Verifier
+before giving the Endorsement and Appraisal Policy to it.  This can be done
+similarly to how a Relying Party might establish trust in a Verifier as
+discussed above, and in such a case, mutual attestation might even
+be needed as discussed in {{rpowner-trust}}.
 
 # Conceptual Messages {#messages}
 
