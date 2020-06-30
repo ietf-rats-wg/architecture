@@ -990,13 +990,21 @@ an Attestation Result for any other purpose.
 
 # Security Considerations
 
-Any solution that conveys information used for security purposes, whether
-such information is in the form of Evidence, Attestation Results,
-Endorsements, or Appraisal Policy, needs to support end-to-end integrity protection
-and replay attack prevention, and often also needs to support additional
-security protections.  For example, additional means of authentication,
-confidentiality, integrity, replay, denial of service and privacy
-protection are needed in many use cases.
+Any solution that conveys information used for security purposes, whether such
+information is in the form of Evidence, Attestation Results, Endorsements, or
+Appraisal Policy must support the security properties of confidentiality,
+integrity, and availability.  A conveyance protocol includes the typical
+transport security considerations:
+
+* end-to-end encryption,
+* end-to-end integrity protection,
+* replay attack prevention, 
+* denial of service protection,
+* authentication, 
+* authorization,
+* fine grained access controls, and
+* logging in line with current threat models and zero trust architectures.
+
 {{freshness}} discusses ways in which freshness can be used in this
 architecture to protect against replay attacks.
 
