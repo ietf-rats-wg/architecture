@@ -467,7 +467,8 @@ Device, each slot is an Attester, and the main slot is the lead Attester.
 Another example is a multi-chassis router composed of multiple single carrier-grade routers.
 The multi-chassis router provides higher throughput by interconnecting
 multiple routers and can be logically treated as one router for simpler management.
-Among these routers, there is only one main router that connects to the Verifier.
+A multi-chassis router provides a management point and is the only one that
+connects to the Verifier.
 Other routers are only connected to the main router by the network cables,
 and therefore they are managed and appraised via this main router's help.
 So, in this case, the multi-chassis router is the Composite Device,
@@ -490,9 +491,9 @@ Party, etc.) at the same time. The combination of roles can be arbitrary.
 For example, in this Composite Device scenario, the entity inside
 the lead Attester can also take on the role of a Verifier, and the
 outside entity of Verifier can take on the role of a Relying Party.
-After collecting the Evidence of other Attesters, this inside Verifier
-verifies them using Endorsements and Appraisal Policies (obtained the
-same way as any other Verifier), to generate Attestation Results.
+After collecting the Evidence of other Attesters, this inside Verifier uses
+Endorsements and Appraisal Policies (obtained the same way as any other
+Verifier) in the verification process to generate Attestation Results.
 The inside Verifier then conveys the Attestation Results of other Attesters,
 whether in the same conveyance protocol as the Evidence or not,
 to the outside Verifier.
