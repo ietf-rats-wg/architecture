@@ -9,7 +9,7 @@
                  |              |for              | Appraisal
                  |              |Evidence         | Policy for
                  |              |                 | Attestation
-                 |              |                 |  Result
+                 |              |                 |  Results
                  v              v                 |
                .-----------------.                |
         .----->|     Verifier    |------.         |
