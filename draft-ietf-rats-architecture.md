@@ -504,10 +504,21 @@ In this situation, the trust model described in {{trustmodel}} is also suitable 
 {{dataflow}} shows a basic model for communication between an Attester,
 a Verifier, and a Relying Party. The Attester conveys its Evidence to the Verifier
 for appraisal, and the Relying Party gets the Attestation Result from the Verifier.
-There are multiple other possible models. This section includes some reference models,
-but this is not intended to be a restrictive list, and other variations may exist.
+There are multiple other possible models. This section includes some reference
+models. This is not intended to be a restrictive list, and other variations may
+exist.
 
 ## Passport Model
+
+The passport model is so named because of its resemblance to how nations issue
+passports to their citizens. The nature of the Evidence that an individual needs
+to provide to its local authority is specific to the country involved. The citizen
+retains control of the resulting passport document and presents it to other entities
+when it needs to assert a citizenship or identity claim, such as an airport immigration
+desk. The passport is considered sufficient because it vouches for the citizenship and
+identity claims, and it is issued by a trusted authority. Thus, in this immigration
+desk analogy, the passport issuing agency is a Verifier, the passport is an Attestation
+Result, and the immigration desk is a Relying Party.
 
 In this model, an Attester conveys Evidence to a Verifier, which compares
 the Evidence against its Appraisal Policy.  The Verifier then gives back
@@ -518,9 +529,9 @@ which then compares the Attestation Result against its own Appraisal Policy.
 There are three ways in which the process may fail.  First, the Verifier may
 refuse to issue the Attestation Result due to some error in processing, or
 some missing input to the Verifier.
-The second way in which the process may fail is when the resulting Attestation Result is
-examined by the Relying Party, and based upon the Appraisal Policy, the
-result does not pass the policy.
+The second way in which the process may fail is when the Result is examined by
+the Relying Party, and based upon the Appraisal Policy, the result does not
+pass the policy.
 The third way is when the Verifier is unreachable.
 
 Since the resource access protocol between the Attester and Relying Party
@@ -547,17 +558,15 @@ Attester-Verifier remote attestation protocol.
 ~~~~
 {: #passport title="Passport Model"}
 
-The passport model is so named because of its resemblance to how nations issue
-passports to their citizens. The nature of the Evidence that an individual needs
-to provide to its local authority is specific to the country involved. The citizen
-retains control of the resulting passport document and presents it to other entities
-when it needs to assert a citizenship or identity claim, such as an airport immigration
-desk. The passport is considered sufficient because it vouches for the citizenship and
-identity claims, and it is issued by a trusted authority. Thus, in this immigration
-desk analogy, the passport issuing agency is a Verifier, the passport is an Attestation
-Result, and the immigration desk is a Relying Party.
-
 ## Background-Check Model
+
+The background-check model is so named because of the resemblance of how employers and volunteer
+organizations perform background checks. When a prospective employee provides claims about
+education or previous experience, the employer will contact the respective institutions or
+former employers to validate the claim. Volunteer organizations often perform police background
+checks on volunteers in order to determine the volunteer's trustworthiness.
+Thus, in this analogy, a prospective volunteer is an Attester, the organization is the Relying Party,
+and a former employer or government agency that issues a report is a Verifier.
 
 In this model, an Attester conveys Evidence to a Relying Party, which simply
 passes it on to a Verifier.  The Verifier then compares the Evidence against
@@ -600,24 +609,18 @@ if the Relying Party is a constrained node.
 ~~~~
 {: #backgroundcheck title="Background-Check Model"}
 
-The background-check model is so named because of the resemblance of how employers and volunteer
-organizations perform background checks. When a prospective employee provides claims about
-education or previous experience, the employer will contact the respective institutions or
-former employers to validate the claim. Volunteer organizations often perform police background
-checks on volunteers in order to determine the volunteer's trustworthiness.
-Thus, in this analogy, a prospective volunteer is an Attester, the organization is the Relying Party,
-and a former employer or government agency that issues a report is a Verifier.
-
 ## Combinations
 
-One variation of the background-check model is where the Relying Party
-and the Verifier on the same machine, and so there is no need for a protocol between the two.
+One variation of the background-check model is where the Relying Party and the
+Verifier are on the same machine, performing both functions together.  In this
+case, there is no need for a protocol between the two.
 
-It is also worth pointing out that the choice of model is generally up to the Relying Party,
-and the same device may need to create Evidence for different Relying Parties and different use cases
-(e.g., a network infrastructure device to gain access to the network, and then a
-server holding confidential data to get access to that data).  As such, both models may
-simultaneously be in use by the same device.
+It is also worth pointing out that the choice of model is generally up to the
+Relying Party.  The same device may need to create Evidence for different
+Relying Parties and/or different use cases.  For instance, it would provide
+Evidence to a network infrastructure device to gain access to the network, and
+to a server holding confidential data to gain access to that data. As such,
+both models may simultaneously be in use by the same device.
 
 {{combination}} shows another example of a combination where Relying Party 1 uses the
 passport model, whereas Relying Party 2 uses an extension of the background-check model.
