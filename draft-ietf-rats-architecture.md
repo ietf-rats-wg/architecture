@@ -273,7 +273,7 @@ etc.)
 A "Trusted Application Manager (TAM)" server is responsible
 for managing the applications running in the TEE of a client device.
 To do this, the TAM wants to assess the state of a TEE, or of applications
-in the TEE, of a client device.  The TEE conducts a rmeote attestation
+in the TEE, of a client device.  The TEE conducts a remote attestation
 procedure with the TAM, which can
 then decide whether the TEE is already in compliance with the TAM's latest
 policy, or if the TAM needs to uninstall, update, or install approved
