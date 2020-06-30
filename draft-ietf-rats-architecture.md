@@ -656,9 +656,9 @@ plans to support in the TEEP architecture {{-teep-arch}}.
 # Roles and Entities
 
 An entity in the RATS architecture includes at least one of the roles defined
-in this document. As a result, the entity can participate as a constituent of
-the RATS architecture. Additionally, an entity can aggregate more than one
-role into itself. These collapsed roles combine the duties of multiple roles.
+in this document.
+
+These collapsed roles combine the duties of multiple roles.
 In these cases, interaction between these roles do not necessarily use the
 Internet Protocol. They can be using a loopback device or other IP-based
 communication between separate environments, but they do not have to.
@@ -675,8 +675,8 @@ network connected entity, it may implement an Attester role. The entity, as a
 system bus Verifier, may choose to fully isolate its role as a wide-area
 network Attester.
 
-In essence, an entity that combines more than one role also creates and
-consumes the corresponding conceptual messages as defined in this document.
+In essence, an entity that combines more than one role may create and consume
+the corresponding conceptual messages as defined in this document.
 
 # Trust Model {#trustmodel}
 
