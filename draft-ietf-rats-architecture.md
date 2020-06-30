@@ -1051,14 +1051,12 @@ or might be defined relative to some other timestamp or timeticks counter.
 |----|-----------------------------|-----------------------
 | VG | Value generation            | A value to appear in a Claim was created.
 | AA | Attester awareness          | An Attesting Environment starts to be aware of a new/changed Claim value.
-| CC | Claim Collection            | An Attesting Environment collects a new/changed Claim value to appear in Evidence.
 | HD | Handle distribution         | A centrally generated identifier for time-bound recentness across a domain of devices is successfully distributed to Attesters.
 | NS | Nonce sent                  | A nonce not predictable to an Attester (recentness & uniqueness) is sent to an Attester.
 | NR | Nonce relayed               | A nonce is relayed to an Attester by another entity.
 | EG | Evidence generation         | An Attester creates Evidence from collected Claims (CC).
 | ER | Evidence relayed            | A Relying Party relays Evidence to a Verifier.
 | RG | Result generation           | A Verifier appraises Evidence and generates an Attestation Result.
-| RP | Result push                 | A set of one or more Evidence bundles is conveyed to a Verifier with or without solicitation initially triggered by AA, in a periodic interval, or ad-hoc.
 | RR | Result relayed              | A Relying Party relays an Attestation Result to a Relying Party.
 | RA | Result appraised            | The Relying Party appraises Attestation Results.
 | OP | Operation performed         | The Relying Party performs some operation requested by the Attester.  For example, acting upon some message just received across a session created earlier at time(RA).
