@@ -214,7 +214,8 @@ The goals for the protection include preventing attackers, potentially
 the customer themselves, from seeing the details of the model.
 
 This typically works by having some protected environment
-in the device attest to some manufacturer service.  If remote attestation succeeds,
+in the device go through a remote attestation with some manufacturer service
+that can assess its trustworthiness.  If remote attestation succeeds,
 then the manufacturer service releases either the model, or a key to decrypt
 a model the Attester already has in encrypted form, to the requester.
 
@@ -272,7 +273,8 @@ etc.)
 A "Trusted Application Manager (TAM)" server is responsible
 for managing the applications running in the TEE of a client device.
 To do this, the TAM wants to assess the state of a TEE, or of applications
-in the TEE, of a client device.  The TEE attests to the TAM, which can
+in the TEE, of a client device.  The TEE conducts a rmeote attestation
+procedure with the TAM, which can
 then decide whether the TEE is already in compliance with the TAM's latest
 policy, or if the TAM needs to uninstall, update, or install approved
 applications in the TEE to bring it back into compliance with the TAM's policy.
@@ -682,8 +684,8 @@ come by trusting an entity (e.g., a Certificate Authority) that is
 in the Verifier's certificate chain.
 
 The Relying Party
-might implicitly trust a Verifier, such as in a Verifying Relying
-Party combination where a Verifier and a Relying Party are combined.
+might implicitly trust a Verifier, such as in a Verifier/Relying
+Party combination where the Verifier and Relying Party roles are combined.
 Or, for a stronger level of security, the
 Relying Party might require that the Verifier first provide
 information about itself that the Relying Party can use to assess
@@ -691,7 +693,7 @@ the trustworthiness of the Verifier before accepting its Attestation Results.
 
 For example, one explicit way for a Relying Party "A" to establish
 such trust in a Verifier "B", would be for B to first act as an Attester
-where A acts as a Verifying Relying Party.  If A then accepts B as
+where A acts as a combined Verifier/Relying Party.  If A then accepts B as
 trustworthy, it can choose to accept B as a Verifier for other Attesters.
 
 Similarly, the Relying Party also needs to trust the Relying Party Owner
@@ -713,13 +715,14 @@ In the background-check model, this Evidence may also be revealed to Relying Par
 In some cases where Evidence contains sensitive information, an Attester
 might even require that a Verifier first attest to it before the Attester
 will send the sensitive Evidence.  This can be done by having the 
-Attester first act as a Verifying Relying Party, and the Verifier act as its
+Attester first act as a Verifier/Relying Party, and the Verifier act as its
 own Attester, as discussed above.
 
 ## Relying Party Owner {#rpowner-trust}
 
 The Relying Party Owner might also require that the
-Relying Party attest to it before giving the Relying Party an updated
+Relying Party first act as an Attester, providing Evidence that the Owner
+can appraise, before the Owner would give the Relying Party an updated
 policy that might contain sensitive information.  In such a case,
 mutual attestation might be needed, in which case typically one side's
 Evidence must be considered safe to share with an untrusted entity,
