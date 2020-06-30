@@ -699,7 +699,7 @@ trustworthy, it can choose to accept B as a Verifier for other Attesters.
 Similarly, the Relying Party also needs to trust the Relying Party Owner
 for providing its Appraisal Policy for Attestation Results, and
 in some scenarios the Relying Party might even require that the
-Relying Party Owner attest to it before the Relying Party will accept
+Relying Party Owner go through a remote attestation procedure with it before the Relying Party will accept
 an updated policy. This can be done similarly to how a Relying Party
 could establish trust in a Verifier as discussed above.
 
@@ -713,7 +713,7 @@ The Verifier might share this information with other authorized parties, accordi
 In the background-check model, this Evidence may also be revealed to Relying Party(s).
 
 In some cases where Evidence contains sensitive information, an Attester
-might even require that a Verifier first attest to it before the Attester
+might even require that a Verifier first go through a remote attestation procedure with it before the Attester
 will send the sensitive Evidence.  This can be done by having the 
 Attester first act as a Verifier/Relying Party, and the Verifier act as its
 own Attester, as discussed above.
