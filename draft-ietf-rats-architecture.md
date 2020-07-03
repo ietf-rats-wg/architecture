@@ -657,8 +657,9 @@ plans to support in the TEEP architecture {{-teep-arch}}.
 
 An entity in the RATS architecture includes at least one of the roles defined
 in this document.
-
+An entity can aggregate more than one role into itself. 
 These collapsed roles combine the duties of multiple roles.
+
 In these cases, interaction between these roles do not necessarily use the
 Internet Protocol. They can be using a loopback device or other IP-based
 communication between separate environments, but they do not have to.
@@ -1280,5 +1281,4 @@ use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
 in terms of time(RX)-time(RG), then the Relying Party can check
 `time(OP) - time(ER) < time(RX)-time(RG)`.
-
 
