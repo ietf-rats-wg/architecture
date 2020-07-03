@@ -1058,7 +1058,7 @@ or might be defined relative to some other timestamp or timeticks counter.
 | VG | Value generation            | A value to appear in a Claim was created.
 | AA | Attester awareness          | An Attesting Environment starts to be aware of a new/changed Claim value.
 | CC | Claim Collection            | An Attesting Environment collects a new/changed Claim value to appear in Evidence.
-| HD | Handle distributed         | A centrally generated handle for time-bound freshness is successfully received by all entities in a domain.
+| HD | Handle distributed          | The (local) time when a centrally generated handle for time-bound freshness is successfully received by each entity in a domain.
 | NS | Nonce sent                  | A nonce not predictable to an Attester (recentness & uniqueness) is sent to an Attester.
 | NR | Nonce relayed               | A nonce is relayed to an Attester by another entity.
 | EG | Evidence generation         | An Attester creates Evidence from collected Claims (CC).
