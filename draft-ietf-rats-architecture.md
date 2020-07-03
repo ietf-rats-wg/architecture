@@ -1058,7 +1058,7 @@ or might be defined relative to some other timestamp or timeticks counter.
 | VG | Value generation            | A value to appear in a Claim was created.
 | AA | Attester awareness          | An Attesting Environment starts to be aware of a new/changed Claim value.
 | CC | Claim Collection            | An Attesting Environment collects a new/changed Claim value to appear in Evidence.
-| HD | Handle distribution         | A centrally generated identifier for time-bound recentness across a domain of devices is successfully distributed to Attesters.
+| HD | Handle distributed         | A centrally generated handle for time-bound freshness is successfully received by all entities in a domain.
 | NS | Nonce sent                  | A nonce not predictable to an Attester (recentness & uniqueness) is sent to an Attester.
 | NR | Nonce relayed               | A nonce is relayed to an Attester by another entity.
 | EG | Evidence generation         | An Attester creates Evidence from collected Claims (CC).
@@ -1216,9 +1216,12 @@ The time considerations in this example are equivalent to those discussed under 
 ## Example 4: Handle-based Background-Check Model Example
 
 The following example illustrates a hypothetical Background-Check Model
-solution that uses centrally generated identifiers for explicit time-keeping (referred to as "handle" in this example).
-Handles can be qualifying data, such as nonces or signed timestamps. In this example, centrally generated signed timestamps and -- and synchronized clocks between all entities -- are distributed
-in periodic intervals as handles.  If the Attester lacks a source of time based on an absolute timescale, a relative source of time, such as a tick counter can be used, alternatively.  In this example, evidence generation is not triggered at value generation, but at events at which the Attesting Environment becomes of changes to the Target Environment.
+solution that uses centrally generated handles for explicit time-keeping (using local clocks) or implicit time-keeping (using trigger events such as receiving a handle or becoming aware of a changed Claim value).
+Handles are be qualifying data, such as nonces or signed timestamps.
+In this example, centrally generated signed timestamps are used as handles and are distributed in periodic intervals at time(HD).
+The distributor of handles includes a trustable source of time to produce the signed timestamps.
+This eliminates the need for clocks between the entities depicted in the diagram below. If entities include at least a relative clock, such as a tick counter, they can roughly determine (due to potentially latency during handle distribution) when the handles cannot be considered fresh anymore.
+Additionally, latency jitter for time(HD) between all entities involved (introduced by the conveyance of handles) is assumed to be the less than the time drift of a local clock with common precision.
 
 ~~~~
 .----------.         .---------------.              .----------.
@@ -1241,38 +1244,16 @@ in periodic intervals as handles.  If the Attester lacks a source of time based 
         |                 time(OP)                       |
 ~~~~
 
-In comparison with example 1, the time considerations in this example
-go into more detail with respect to the life-cycle of Claims and
-Evidence. While the goal is to create up-to-date and recent Evidence as soon as possible, typically there is a latency between value generation and Attester awareness.
+At time(AA), the Attesting Environment is able to trigger an event (e.g. based on an Event-Condition-Action model) to generate Evidence as soon/recent as possible at time (EG).
+This on-change generated Evidence can be based on a mix of relevant "old" Claim values and just recently generated and collected "new" Claim values.
+The delta between time(VG) and time(AA) -- "delta(time(VG),time(AA))" -- can be very large for corresponding "old" Claim values.
 
-At time(AA) the Attesting Environment is able to trigger an event
-(e.g. based on an Event-Condition-Action model) to create attestation
-Evidence that is as recent as possible. In essence, at time(AA) the
-Attesting Environment is aware of new values that where generated at
-time(VG) and corresponding Claim values are collected immediately.
-Consecutively, Evidence based on relevant "old" Claims and the just
-collected "new" Claims is generated at time(EG). In essence, the Claims used to generate the Evidence are generated at various time(VG) before time(AA).
+In order to be able to generate valid on-change Evidence, the Attester requires a fresh (i.e. not expired) handle that has been distributed to all involved entities.
+In this example, the handle is composed of a signed timestamp. If the Attester does not include a clock, it is possible that the Attester uses an expired handle and it is the Verifier's duty to detect that during the appraisal of Evidence.
+The validity span of a handle can be encoded into the handle itself or determined by an Appraisal Policy.
+From the point of view of a Verifier, the generation of valid Evidence is only possible, if the age of the handle used in the Evidence generation is younger than the duration of the distribution interval -- "delta(time(HD),time(EG)) \< delta(time(HD),time(HD'))".
 
-In order to create attestation Evidence at
-at time(AA), the Attester requires a fresh (i.e. not expired)
-centrally generated handle that has been distributed to all involved
-entities.
-
-In general, The duration a handle remains fresh depends on
-the content-type of the handle. If it is a (relative or absolute)
-timestamp, clocks synchronized with a shared and trustworthy source of
-time are required. If another value type is used as a handle, the
-reception time of the handle time(HD) provides an epoch (relative time
-of zero) for measuring the duration of validity (similar to a
-heart-beat timeout). From the point of view of a Verifier, validity of
-Evidence is only given if the handle used in Evidence satisfies
-delta(time(HD),time(EG))distribution-interval.
-
-In this usage scenario, time(VG), time(AA), and time(EG) are tightly
-coupled. Also, the absolute point in time at which a handle is received
-by all three entities is assumed to be close to identical.
-
-## Example 4: Nonce-based Background-Check Model Example
+## Example 5: Nonce-based Background-Check Model Example
 
 The following example illustrates a hypothetical Background-Check Model
 solution that uses nonces and thus does not require that any clocks
