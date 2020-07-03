@@ -1253,6 +1253,7 @@ In this example, the handle is composed of a signed timestamp. If the Attester d
 The validity span of a handle can be encoded into the handle itself or determined by an Appraisal Policy.
 From the point of view of a Verifier, the generation of valid Evidence is only possible, if the age of the handle used in the Evidence generation is younger than the duration of the distribution interval -- "delta(time(HD),time(EG)) \< delta(time(HD),time(HD'))".
 
+[XXX- this requires an adopted cite-able document]
 ## Example 5: Nonce-based Background-Check Model Example
 
 The following example illustrates a hypothetical Background-Check Model
