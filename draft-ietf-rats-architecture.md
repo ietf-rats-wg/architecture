@@ -1224,23 +1224,32 @@ This eliminates the need for clocks between the entities depicted in the diagram
 Additionally, latency jitter for time(HD) between all entities involved (introduced by the conveyance of handles) is assumed to be the less than the time drift of a local clock with common precision.
 
 ~~~~
-.----------.         .---------------.              .----------.
-| Attester |         | Relying Party |              | Verifier |
-'----------'         '---------------'              '----------'
-  time(VG)                   |                           |
-        |                    |                           |
-     ---+----time(HD)--------+------time(HD))------------+---
-        |                    |                           |
-  time(AA)                   |                           |
-        |                    |                           |
-  time(EG)                   |                           |
-        |----Evidence------->|                           |
-        |    {time(EG)}   time(ER)--Evidence{time(EG)}-->|
-        |                    |                        time(RG)
-        |                 time(RA)<-Attestation Result---|
-        |                    |        {time(RX)}         |
-        ~                    ~                           ~
-        |                    |                           |
+                                                               .------------.
+                                                               | handle     |
+                                                               | distributor|
+                                                               '------------'
+.----------.         .---------------.              .----------.    | | |
+| Attester |         | Relying Party |              | Verifier |    | | |
+'----------'         '---------------'              '----------'    | | |
+  time(VG)                   |                           |          | | |
+        |                    |                           |          | | |
+        |                    |<-------handle------------------------/ | |
+        |                 time(HD)                       |            | |
+        |<-------handle-----------------------------------------------/ |
+  time(HD)                   |                           |<---handle----/
+        |                    |                        time(HD)          .
+  time(AA)                   |                           |              .
+        |                    |                           |              .
+  time(EG)                   |                           |   {}-on-wire .
+        |----Evidence------->|                           |              .
+        |    {time(EG)}   time(ER)--Evidence{time(EG)}-->|              .
+        |                    |                        time(RG)          .
+        |                 time(RA)<-Attestation Result---|              .
+        |                    |        {time(RX)}         |              .
+        ~                    ~                           ~            ...
+        |                 time(HD')<----------------------------------/..
+   time(HD')<----------------------------------------------------------/.
+        |                    |                        time(HD')<--------/
         |                 time(OP)                       |
 ~~~~
 
