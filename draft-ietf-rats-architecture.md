@@ -611,9 +611,9 @@ if the Relying Party is a constrained node.
 
 ## Combinations
 
-One variation of the background-check model is where the Relying Party and the
-Verifier are on the same machine, performing both functions together.  In this
-case, there is no need for a protocol between the two.
+One variation of the background-check model is where the Relying Party
+and the Verifier are on the same machine, performing both functions together.  
+In this case, there is no need for a protocol between the two.
 
 It is also worth pointing out that the choice of model is generally up to the
 Relying Party.  The same device may need to create Evidence for different
