@@ -990,11 +990,11 @@ an Attestation Result for any other purpose.
 
 # Security Considerations
 
-Any solution that conveys information used for security purposes, whether such
-information is in the form of Evidence, Attestation Results, Endorsements, or
-Appraisal Policy must support the security properties of confidentiality,
-integrity, and availability.  A conveyance protocol includes the typical
-transport security considerations:
+Any solution that conveys information used for security purposes, whether
+such information is in the form of Evidence, Attestation Results,
+Endorsements, or Appraisal Policy must support
+the security properties of confidentiality, integrity, and availability.  
+A conveyance protocol includes the typical transport security considerations:
 
 * end-to-end encryption,
 * end-to-end integrity protection,
@@ -1288,5 +1288,4 @@ use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
 in terms of time(RX)-time(RG), then the Relying Party can check
 `time(OP) - time(ER) < time(RX)-time(RG)`.
-
 
