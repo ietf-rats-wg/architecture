@@ -389,12 +389,12 @@ Attesting Environments are designed specifically with claims collection in mind.
 
 ## Layered Attestation Environments {#layered-attestation}
 
-By definition, the Attester role creates Evidence.  
+By definition, the Attester role creates Evidence.
 An Attester may consist of one or
 more nested or staged environments, adding complexity to the architectural
-structure.  
+structure. 
 The unifying component is the Root of Trust and the nested, staged,
-or chained attestation Evidence produced.  
+or chained attestation Evidence produced. 
 The nested or chained structure
 includes Claims, collected by the Attester to aid in the assurance or
 believability of the attestation Evidence.
@@ -435,7 +435,7 @@ Claims: one set about the bootloader as measured and signed by the BIOS,
 plus a set of Claims about the kernel as measured and signed by the bootloader.
 
 This example could be extended further by making the kernel become another
-Attesting Environment for an application as another Target Environment. 
+Attesting Environment for an application as another Target Environment.
 This would result in a third set of Claims in the Evidence pertaining to that application.
 
 The essence of this example is a cascade of staged environments. Each
@@ -532,8 +532,8 @@ which then compares the Attestation Result against its own Appraisal Policy.
 There are three ways in which the process may fail.  First, the Verifier may
 refuse to issue the Attestation Result due to some error in processing, or
 some missing input to the Verifier.
-The second way in which the process may fail is when the Attestation Result is 
-examined by the Relying Party, and based upon the Appraisal Policy, the 
+The second way in which the process may fail is when the Attestation Result is
+examined by the Relying Party, and based upon the Appraisal Policy, the
 result does not pass the policy.
 The third way is when the Verifier is unreachable.
 
@@ -615,13 +615,13 @@ if the Relying Party is a constrained node.
 ## Combinations
 
 One variation of the background-check model is where the Relying Party
-and the Verifier are on the same machine, performing both functions together.  
+and the Verifier are on the same machine, performing both functions together. 
 In this case, there is no need for a protocol between the two.
 
-It is also worth pointing out that the choice of model is generally up to the Relying Party.  
-The same device may need to create Evidence for different Relying Parties and/or different use cases.  
+It is also worth pointing out that the choice of model is generally up to the Relying Party. 
+The same device may need to create Evidence for different Relying Parties and/or different use cases. 
 For instance, it would provide Evidence to a network infrastructure device to gain access to the network, and
-to a server holding confidential data to gain access to that data. 
+to a server holding confidential data to gain access to that data.
 As such, both models may simultaneously be in use by the same device.
 
 {{combination}} shows another example of a combination where Relying Party 1 uses the
@@ -662,7 +662,7 @@ plans to support in the TEEP architecture {{-teep-arch}}.
 
 An entity in the RATS architecture includes at least one of the roles defined
 in this document.
-An entity can aggregate more than one role into itself. 
+An entity can aggregate more than one role into itself.
 These collapsed roles combine the duties of multiple roles.
 
 In these cases, interaction between these roles do not necessarily use the
@@ -726,7 +726,7 @@ In the background-check model, this Evidence may also be revealed to Relying Par
 
 In some cases where Evidence contains sensitive information, an Attester
 might even require that a Verifier first go through a remote attestation procedure with it before the Attester
-will send the sensitive Evidence.  This can be done by having the 
+will send the sensitive Evidence.  This can be done by having the
 Attester first act as a Verifier/Relying Party, and the Verifier act as its
 own Attester, as discussed above.
 
