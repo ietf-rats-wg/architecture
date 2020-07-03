@@ -389,11 +389,15 @@ Attesting Environments are designed specifically with claims collection in mind.
 
 ## Layered Attestation Environments {#layered-attestation}
 
-By definition, the Attester role takes on the duty to create Evidence.
-The fact that an Attester role is composed of environments that
-can be nested or staged adds complexity to the architectural layout of how an
-Attester can be composed and therefore has to conduct the Claims collection
-in order to create believable attestation Evidence.
+By definition, the Attester role creates Evidence.  
+An Attester may consist of one or
+more nested or staged environments, adding complexity to the architectural
+structure.  
+The unifying component is the Root of Trust and the nested, staged,
+or chained attestation Evidence produced.  
+The nested or chained structure
+includes Claims, collected by the Attester to aid in the assurance or
+believability of the attestation Evidence.
 
 {{layered}} depicts an example of a device that includes (A) a BIOS stored
 in read-only memory in this example, (B) an updatable bootloader, and (C)
@@ -430,10 +434,9 @@ is the kernel to be booted.  The final Evidence thus contains two sets of
 Claims: one set about the bootloader as measured and signed by the BIOS,
 plus a set of Claims about the kernel as measured and signed by the bootloader.
 
-This example could be extended further
-by, say, making the kernel become another Attesting Environment for
-an application as another Target Environment, resulting in a third set
-of Claims in the Evidence pertaining to that application.
+This example could be extended further by making the kernel become another
+Attesting Environment for an application as another Target Environment. 
+This would result in a third set of Claims in the Evidence pertaining to that application.
 
 The essence of this example is a cascade of staged environments. Each
 environment has the responsibility
@@ -504,10 +507,21 @@ In this situation, the trust model described in {{trustmodel}} is also suitable 
 {{dataflow}} shows a basic model for communication between an Attester,
 a Verifier, and a Relying Party. The Attester conveys its Evidence to the Verifier
 for appraisal, and the Relying Party gets the Attestation Result from the Verifier.
-There are multiple other possible models. This section includes some reference models,
-but this is not intended to be a restrictive list, and other variations may exist.
+There are multiple other possible models. This section includes some reference
+models. This is not intended to be a restrictive list, and other variations may
+exist.
 
 ## Passport Model
+
+The passport model is so named because of its resemblance to how nations issue
+passports to their citizens. The nature of the Evidence that an individual needs
+to provide to its local authority is specific to the country involved. The citizen
+retains control of the resulting passport document and presents it to other entities
+when it needs to assert a citizenship or identity claim, such as an airport immigration
+desk. The passport is considered sufficient because it vouches for the citizenship and
+identity claims, and it is issued by a trusted authority. Thus, in this immigration
+desk analogy, the passport issuing agency is a Verifier, the passport is an Attestation
+Result, and the immigration desk is a Relying Party.
 
 In this model, an Attester conveys Evidence to a Verifier, which compares
 the Evidence against its Appraisal Policy.  The Verifier then gives back
@@ -518,8 +532,8 @@ which then compares the Attestation Result against its own Appraisal Policy.
 There are three ways in which the process may fail.  First, the Verifier may
 refuse to issue the Attestation Result due to some error in processing, or
 some missing input to the Verifier.
-The second way in which the process may fail is when the resulting Attestation Result is
-examined by the Relying Party, and based upon the Appraisal Policy, the
+The second way in which the process may fail is when the Attestation Result is 
+examined by the Relying Party, and based upon the Appraisal Policy, the 
 result does not pass the policy.
 The third way is when the Verifier is unreachable.
 
@@ -547,17 +561,15 @@ Attester-Verifier remote attestation protocol.
 ~~~~
 {: #passport title="Passport Model"}
 
-The passport model is so named because of its resemblance to how nations issue
-passports to their citizens. The nature of the Evidence that an individual needs
-to provide to its local authority is specific to the country involved. The citizen
-retains control of the resulting passport document and presents it to other entities
-when it needs to assert a citizenship or identity claim, such as an airport immigration
-desk. The passport is considered sufficient because it vouches for the citizenship and
-identity claims, and it is issued by a trusted authority. Thus, in this immigration
-desk analogy, the passport issuing agency is a Verifier, the passport is an Attestation
-Result, and the immigration desk is a Relying Party.
-
 ## Background-Check Model
+
+The background-check model is so named because of the resemblance of how employers and volunteer
+organizations perform background checks. When a prospective employee provides claims about
+education or previous experience, the employer will contact the respective institutions or
+former employers to validate the claim. Volunteer organizations often perform police background
+checks on volunteers in order to determine the volunteer's trustworthiness.
+Thus, in this analogy, a prospective volunteer is an Attester, the organization is the Relying Party,
+and a former employer or government agency that issues a report is a Verifier.
 
 In this model, an Attester conveys Evidence to a Relying Party, which simply
 passes it on to a Verifier.  The Verifier then compares the Evidence against
@@ -600,24 +612,17 @@ if the Relying Party is a constrained node.
 ~~~~
 {: #backgroundcheck title="Background-Check Model"}
 
-The background-check model is so named because of the resemblance of how employers and volunteer
-organizations perform background checks. When a prospective employee provides claims about
-education or previous experience, the employer will contact the respective institutions or
-former employers to validate the claim. Volunteer organizations often perform police background
-checks on volunteers in order to determine the volunteer's trustworthiness.
-Thus, in this analogy, a prospective volunteer is an Attester, the organization is the Relying Party,
-and a former employer or government agency that issues a report is a Verifier.
-
 ## Combinations
 
 One variation of the background-check model is where the Relying Party
-and the Verifier on the same machine, and so there is no need for a protocol between the two.
+and the Verifier are on the same machine, performing both functions together.  
+In this case, there is no need for a protocol between the two.
 
-It is also worth pointing out that the choice of model is generally up to the Relying Party,
-and the same device may need to create Evidence for different Relying Parties and different use cases
-(e.g., a network infrastructure device to gain access to the network, and then a
-server holding confidential data to get access to that data).  As such, both models may
-simultaneously be in use by the same device.
+It is also worth pointing out that the choice of model is generally up to the Relying Party.  
+The same device may need to create Evidence for different Relying Parties and/or different use cases.  
+For instance, it would provide Evidence to a network infrastructure device to gain access to the network, and
+to a server holding confidential data to gain access to that data. 
+As such, both models may simultaneously be in use by the same device.
 
 {{combination}} shows another example of a combination where Relying Party 1 uses the
 passport model, whereas Relying Party 2 uses an extension of the background-check model.
@@ -656,9 +661,10 @@ plans to support in the TEEP architecture {{-teep-arch}}.
 # Roles and Entities
 
 An entity in the RATS architecture includes at least one of the roles defined
-in this document. As a result, the entity can participate as a constituent of
-the RATS architecture. Additionally, an entity can aggregate more than one
-role into itself. These collapsed roles combine the duties of multiple roles.
+in this document.
+An entity can aggregate more than one role into itself. 
+These collapsed roles combine the duties of multiple roles.
+
 In these cases, interaction between these roles do not necessarily use the
 Internet Protocol. They can be using a loopback device or other IP-based
 communication between separate environments, but they do not have to.
@@ -675,8 +681,8 @@ network connected entity, it may implement an Attester role. The entity, as a
 system bus Verifier, may choose to fully isolate its role as a wide-area
 network Attester.
 
-In essence, an entity that combines more than one role also creates and
-consumes the corresponding conceptual messages as defined in this document.
+In essence, an entity that combines more than one role creates and consumes
+the corresponding conceptual messages as defined in this document.
 
 # Trust Model {#trustmodel}
 
@@ -1280,4 +1286,3 @@ use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
 in terms of time(RX)-time(RG), then the Relying Party can check
 `time(OP) - time(ER) < time(RX)-time(RG)`.
-
