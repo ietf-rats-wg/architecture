@@ -389,11 +389,11 @@ Attesting Environments are designed specifically with claims collection in mind.
 
 ## Layered Attestation Environments {#layered-attestation}
 
-By definition, the Attester role creates Evidence.  An Attester may be one or
+By definition, the Attester role creates Evidence.  An Attester may consist of one or
 more nested or staged environments, adding complexity to the architectural
 structure.  The unifying component is the Root of Trust and the nested, staged,
 or chained attestation Evidence produced.  The nested or chained structure
-should include Claims, collected by the Attester to aid in the assurance or
+includes Claims, collected by the Attester to aid in the assurance or
 believability of the attestation Evidence.
 
 {{layered}} depicts an example of a device that includes (A) a BIOS stored
@@ -433,7 +433,7 @@ plus a set of Claims about the kernel as measured and signed by the bootloader.
 
 This example could be extended further by making the kernel become another
 Attesting Environment for an application as another Target Environment. This
-results in a third set of Claims in the Evidence pertaining to that application
+would result in a third set of Claims in the Evidence pertaining to that application.
 
 The essence of this example is a cascade of staged environments. Each
 environment has the responsibility
@@ -1280,5 +1280,4 @@ use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
 in terms of time(RX)-time(RG), then the Relying Party can check
 `time(OP) - time(ER) < time(RX)-time(RG)`.
-
 
