@@ -529,9 +529,9 @@ which then compares the Attestation Result against its own Appraisal Policy.
 There are three ways in which the process may fail.  First, the Verifier may
 refuse to issue the Attestation Result due to some error in processing, or
 some missing input to the Verifier.
-The second way in which the process may fail is when the Attestation Result is examined by
-the Relying Party, and based upon the Appraisal Policy, the result does not
-pass the policy.
+The second way in which the process may fail is when the Attestation Result is 
+examined by the Relying Party, and based upon the Appraisal Policy, the 
+result does not pass the policy.
 The third way is when the Verifier is unreachable.
 
 Since the resource access protocol between the Attester and Relying Party
@@ -1283,4 +1283,3 @@ use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
 in terms of time(RX)-time(RG), then the Relying Party can check
 `time(OP) - time(ER) < time(RX)-time(RG)`.
-
