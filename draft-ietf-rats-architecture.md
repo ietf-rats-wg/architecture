@@ -748,10 +748,10 @@ manufacturer, or the manufacturer's hardware, so as to be able to
 appraise the trustworthiness of that manufacturer's devices.  In solutions
 with weaker security, a Verifier might be configured to implicitly
 trust firmware or even software (e.g., a hypervisor).  That is, it
-might appraise the trustworthiness of an application component, or operating
-system component or service, under the assumption that information
+might appraise the trustworthiness of an application component, operating
+system component, or service under the assumption that information
 provided about it by the lower-layer hypervisor or firmware is true.
-A stronger level of security comes when information can be vouched
+A stronger level of assurance of security comes when information can be vouched
 for by hardware or by ROM code, especially if such hardware is
 physically resistant to hardware tampering.  The component that is
 implicitly trusted is often referred to as a Root of Trust.
