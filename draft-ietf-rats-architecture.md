@@ -676,7 +676,7 @@ network connected entity, it may implement an Attester role. The entity, as a
 system bus Verifier, may choose to fully isolate its role as a wide-area
 network Attester.
 
-In essence, an entity that combines more than one role may create and consume
+In essence, an entity that combines more than one role creates and consumes
 the corresponding conceptual messages as defined in this document.
 
 # Trust Model {#trustmodel}
@@ -1281,4 +1281,3 @@ use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
 in terms of time(RX)-time(RG), then the Relying Party can check
 `time(OP) - time(ER) < time(RX)-time(RG)`.
-
