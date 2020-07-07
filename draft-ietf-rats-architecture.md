@@ -1054,7 +1054,7 @@ or might be defined relative to some other timestamp or timeticks counter.
 | HD | Handle distribution         | A centrally generated identifier for time-bound recentness across a domain of devices is successfully distributed to Attesters.
 | NS | Nonce sent                  | A nonce not predictable to an Attester (recentness & uniqueness) is sent to an Attester.
 | NR | Nonce relayed               | A nonce is relayed to an Attester by another entity.
-| EG | Evidence generation         | An Attester creates Evidence from collected Claims (CC).
+| EG | Evidence generation         | An Attester creates Evidence from collected Claims.
 | ER | Evidence relayed            | A Relying Party relays Evidence to a Verifier.
 | RG | Result generation           | A Verifier appraises Evidence and generates an Attestation Result.
 | RR | Result relayed              | A Relying Party relays an Attestation Result to a Relying Party.
@@ -1278,5 +1278,4 @@ use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
 in terms of time(RX)-time(RG), then the Relying Party can check
 `time(OP) - time(ER) < time(RX)-time(RG)`.
-
 
