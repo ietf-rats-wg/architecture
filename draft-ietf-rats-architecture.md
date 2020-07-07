@@ -999,6 +999,7 @@ security properties, including:
 * end-to-end encryption,
 * denial of service protection,
 * authentication,
+* auditing,
 * fine grained access controls, and
 * logging.
 
