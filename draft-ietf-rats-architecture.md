@@ -992,16 +992,13 @@ an Attestation Result for any other purpose.
 
 Any solution that conveys information used for security purposes, whether
 such information is in the form of Evidence, Attestation Results,
-Endorsements, or Appraisal Policy must support
-confidentiality, integrity, and availability.  
-A conveyance protocol includes the typical transport security considerations:
+Endorsements, or Appraisal Policy must support end-to-end integrity protection
+and replay attack prevention, and often also needs to support additional
+security properties, including:
 
 * end-to-end encryption,
-* end-to-end integrity protection,
-* replay attack prevention, 
 * denial of service protection,
-* authentication, 
-* authorization,
+* authentication,
 * fine grained access controls, and
 * logging in line with current threat models and zero trust architectures.
 
