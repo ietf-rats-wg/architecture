@@ -1188,7 +1188,9 @@ in terms of time(RX)-time(RG), then the Relying Party can check
 
 ## Example 3: Timestamp-based Background-Check Model Example
 
-The following example illustrates a hypothetical Background-Check Model solution that uses timestamps and requires roughly synchronized clocks between the Attester, Verifier, and Relying Party.
+The following example illustrates a hypothetical Background-Check Model
+solution that uses timestamps and requires roughly synchronized
+clocks between the Attester, Verifier, and Relying Party.
 
 ~~~~
    .----------.         .---------------.              .----------.
