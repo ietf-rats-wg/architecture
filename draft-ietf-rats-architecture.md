@@ -998,11 +998,17 @@ an Attestation Result for any other purpose.
 
 Any solution that conveys information used for security purposes, whether
 such information is in the form of Evidence, Attestation Results,
-Endorsements, or Appraisal Policy, needs to support end-to-end integrity protection
+Endorsements, or Appraisal Policy must support end-to-end integrity protection
 and replay attack prevention, and often also needs to support additional
-security protections.  For example, additional means of authentication,
-confidentiality, integrity, replay, denial of service and privacy
-protection are needed in many use cases.
+security properties, including:
+
+* end-to-end encryption,
+* denial of service protection,
+* authentication,
+* auditing,
+* fine grained access controls, and
+* logging.
+
 {{freshness}} discusses ways in which freshness can be used in this
 architecture to protect against replay attacks.
 
@@ -1253,4 +1259,3 @@ use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
 in terms of time(RX)-time(RG), then the Relying Party can check
 `time(OP) - time(ER) < time(RX)-time(RG)`.
-
