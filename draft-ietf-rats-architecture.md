@@ -1189,6 +1189,33 @@ in terms of time(RX)-time(RG), then the Relying Party can check
 ## Example 3: Timestamp-based Background-Check Model Example
 
 The following example illustrates a hypothetical Background-Check Model
+solution that uses timestamps and requires roughly synchronized
+clocks between the Attester, Verifier, and Relying Party.
+
+~~~~
+   .----------.         .---------------.              .----------.
+   | Attester |         | Relying Party |              | Verifier |
+   '----------'         '---------------'              '----------'
+     time(VG)                   |                           |
+           |                    |                           |
+           ~                    ~                           ~
+           |                    |                           |
+     time(EG)                   |                           |
+           |----Evidence------->|                           |
+           |    {time(EG)}   time(ER)--Evidence{time(EG)}-->|
+           |                    |                        time(RG)
+           |                 time(RA)<-Attestation Result---|
+           |                    |        {time(RX)}         |
+           ~                    ~                           ~
+           |                    |                           |
+           |                 time(OP)                       |
+~~~~
+
+The time considerations in this example are equivalent to those discussed under Example 1 above.
+
+## Example 4: Handle-based Background-Check Model Example
+
+The following example illustrates a hypothetical Background-Check Model
 solution that uses centrally generated identifiers for explicit time-keeping (referred to as "handle" in this example).
 Handles can be qualifying data, such as nonces or signed timestamps. In this example, centrally generated signed timestamps and -- and synchronized clocks between all entities -- are distributed
 in periodic intervals as handles.  If the Attester lacks a source of time based on an absolute timescale, a relative source of time, such as a tick counter can be used, alternatively.  In this example, evidence generation is not triggered at value generation, but at events at which the Attesting Environment becomes of changes to the Target Environment.
