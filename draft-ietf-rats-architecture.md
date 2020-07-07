@@ -975,7 +975,8 @@ A more detailed discussion with examples appears in {{time-considerations}}.
 
 The conveyance of Evidence and the resulting Attestation Results
 reveal a great deal of information about the internal state of a
-device.  In many cases, the whole point of the Attestation process is
+device as well as any users the device is associated with.
+In many cases, the whole point of the Attestation process is
 to provide reliable information about the type of the device and the
 firmware/software that the device is running.
 This information might be particularly interesting to many attackers.
