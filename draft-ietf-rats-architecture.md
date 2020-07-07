@@ -1193,42 +1193,12 @@ solution that uses timestamps and requires roughly synchronized
 clocks between the Attester, Verifier, and Relying Party.
 
 ~~~~
-   .----------.         .---------------.              .----------.
-   | Attester |         | Relying Party |              | Verifier |
-   '----------'         '---------------'              '----------'
-     time(VG)                   |                           |
-           |                    |                           |
-           ~                    ~                           ~
-           |                    |                           |
-     time(EG)                   |                           |
-           |----Evidence------->|                           |
-           |    {time(EG)}   time(ER)--Evidence{time(EG)}-->|
-           |                    |                        time(RG)
-           |                 time(RA)<-Attestation Result---|
-           |                    |        {time(RX)}         |
-           ~                    ~                           ~
-           |                    |                           |
-           |                 time(OP)                       |
-~~~~
-
-The time considerations in this example are equivalent to those discussed under Example 1 above.
-
-## Example 4: Handle-based Background-Check Model Example
-
-The following example illustrates a hypothetical Background-Check Model
-solution that uses centrally generated identifiers for explicit time-keeping (referred to as "handle" in this example).
-Handles can be qualifying data, such as nonces or signed timestamps. In this example, centrally generated signed timestamps and -- and synchronized clocks between all entities -- are distributed
-in periodic intervals as handles.  If the Attester lacks a source of time based on an absolute timescale, a relative source of time, such as a tick counter can be used, alternatively.  In this example, evidence generation is not triggered at value generation, but at events at which the Attesting Environment becomes of changes to the Target Environment.
-
-~~~~
 .----------.         .---------------.              .----------.
 | Attester |         | Relying Party |              | Verifier |
 '----------'         '---------------'              '----------'
   time(VG)                   |                           |
         |                    |                           |
-     ---+----time(HD)--------+------time(HD))------------+---
-        |                    |                           |
-  time(AA)                   |                           |
+        ~                    ~                           ~
         |                    |                           |
   time(EG)                   |                           |
         |----Evidence------->|                           |
@@ -1241,36 +1211,8 @@ in periodic intervals as handles.  If the Attester lacks a source of time based 
         |                 time(OP)                       |
 ~~~~
 
-In comparison with example 1, the time considerations in this example
-go into more detail with respect to the life-cycle of Claims and
-Evidence. While the goal is to create up-to-date and recent Evidence as soon as possible, typically there is a latency between value generation and Attester awareness.
-
-At time(AA) the Attesting Environment is able to trigger an event
-(e.g. based on an Event-Condition-Action model) to create attestation
-Evidence that is as recent as possible. In essence, at time(AA) the
-Attesting Environment is aware of new values that where generated at
-time(VG) and corresponding Claim values are collected immediately.
-Consecutively, Evidence based on relevant "old" Claims and the just
-collected "new" Claims is generated at time(EG). In essence, the Claims used to generate the Evidence are generated at various time(VG) before time(AA).
-
-In order to create attestation Evidence at
-at time(AA), the Attester requires a fresh (i.e. not expired)
-centrally generated handle that has been distributed to all involved
-entities.
-
-In general, The duration a handle remains fresh depends on
-the content-type of the handle. If it is a (relative or absolute)
-timestamp, clocks synchronized with a shared and trustworthy source of
-time are required. If another value type is used as a handle, the
-reception time of the handle time(HD) provides an epoch (relative time
-of zero) for measuring the duration of validity (similar to a
-heart-beat timeout). From the point of view of a Verifier, validity of
-Evidence is only given if the handle used in Evidence satisfies
-delta(time(HD),time(EG))distribution-interval.
-
-In this usage scenario, time(VG), time(AA), and time(EG) are tightly
-coupled. Also, the absolute point in time at which a handle is received
-by all three entities is assumed to be close to identical.
+The time considerations in this example are equivalent to those
+discussed under Example 1 above.
 
 ## Example 4: Nonce-based Background-Check Model Example
 
