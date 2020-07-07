@@ -467,8 +467,7 @@ Device, each slot is an Attester, and the main slot is the lead Attester.
 Another example is a multi-chassis router composed of multiple single carrier-grade routers.
 The multi-chassis router provides higher throughput by interconnecting
 multiple routers and can be logically treated as one router for simpler management.
-A multi-chassis router provides a management point and is the only one that
-connects to the Verifier.
+A multi-chassis router provides a management point that connects to the Verifier.
 Other routers are only connected to the main router by the network cables,
 and therefore they are managed and appraised via this main router's help.
 So, in this case, the multi-chassis router is the Composite Device,
@@ -1281,5 +1280,4 @@ use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
 in terms of time(RX)-time(RG), then the Relying Party can check
 `time(OP) - time(ER) < time(RX)-time(RG)`.
-
 
