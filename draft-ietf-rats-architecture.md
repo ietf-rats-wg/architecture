@@ -389,11 +389,15 @@ Attesting Environments are designed specifically with claims collection in mind.
 
 ## Layered Attestation Environments {#layered-attestation}
 
-By definition, the Attester role takes on the duty to create Evidence.
-The fact that an Attester role is composed of environments that
-can be nested or staged adds complexity to the architectural layout of how an
-Attester can be composed and therefore has to conduct the Claims collection
-in order to create believable attestation Evidence.
+By definition, the Attester role creates Evidence.
+An Attester may consist of one or
+more nested or staged environments, adding complexity to the architectural
+structure. 
+The unifying component is the Root of Trust and the nested, staged,
+or chained attestation Evidence produced. 
+The nested or chained structure
+includes Claims, collected by the Attester to aid in the assurance or
+believability of the attestation Evidence.
 
 {{layered}} depicts an example of a device that includes (A) a BIOS stored
 in read-only memory in this example, (B) an updatable bootloader, and (C)
@@ -430,10 +434,9 @@ is the kernel to be booted.  The final Evidence thus contains two sets of
 Claims: one set about the bootloader as measured and signed by the BIOS,
 plus a set of Claims about the kernel as measured and signed by the bootloader.
 
-This example could be extended further
-by, say, making the kernel become another Attesting Environment for
-an application as another Target Environment, resulting in a third set
-of Claims in the Evidence pertaining to that application.
+This example could be extended further by making the kernel become another
+Attesting Environment for an application as another Target Environment.
+This would result in a third set of Claims in the Evidence pertaining to that application.
 
 The essence of this example is a cascade of staged environments. Each
 environment has the responsibility
@@ -467,7 +470,7 @@ Device, each slot is an Attester, and the main slot is the lead Attester.
 Another example is a multi-chassis router composed of multiple single carrier-grade routers.
 The multi-chassis router provides higher throughput by interconnecting
 multiple routers and can be logically treated as one router for simpler management.
-Among these routers, there is only one main router that connects to the Verifier.
+A multi-chassis router provides a management point that connects to the Verifier.
 Other routers are only connected to the main router by the network cables,
 and therefore they are managed and appraised via this main router's help.
 So, in this case, the multi-chassis router is the Composite Device,
@@ -490,9 +493,9 @@ Party, etc.) at the same time. The combination of roles can be arbitrary.
 For example, in this Composite Device scenario, the entity inside
 the lead Attester can also take on the role of a Verifier, and the
 outside entity of Verifier can take on the role of a Relying Party.
-After collecting the Evidence of other Attesters, this inside Verifier
-verifies them using Endorsements and Appraisal Policies (obtained the
-same way as any other Verifier), to generate Attestation Results.
+After collecting the Evidence of other Attesters, this inside Verifier uses
+Endorsements and Appraisal Policies (obtained the same way as any other
+Verifier) in the verification process to generate Attestation Results.
 The inside Verifier then conveys the Attestation Results of other Attesters,
 whether in the same conveyance protocol as the Evidence or not,
 to the outside Verifier.
@@ -504,10 +507,21 @@ In this situation, the trust model described in {{trustmodel}} is also suitable 
 {{dataflow}} shows a basic model for communication between an Attester,
 a Verifier, and a Relying Party. The Attester conveys its Evidence to the Verifier
 for appraisal, and the Relying Party gets the Attestation Result from the Verifier.
-There are multiple other possible models. This section includes some reference models,
-but this is not intended to be a restrictive list, and other variations may exist.
+There are multiple other possible models. This section includes some reference
+models. This is not intended to be a restrictive list, and other variations may
+exist.
 
 ## Passport Model
+
+The passport model is so named because of its resemblance to how nations issue
+passports to their citizens. The nature of the Evidence that an individual needs
+to provide to its local authority is specific to the country involved. The citizen
+retains control of the resulting passport document and presents it to other entities
+when it needs to assert a citizenship or identity claim, such as an airport immigration
+desk. The passport is considered sufficient because it vouches for the citizenship and
+identity claims, and it is issued by a trusted authority. Thus, in this immigration
+desk analogy, the passport issuing agency is a Verifier, the passport is an Attestation
+Result, and the immigration desk is a Relying Party.
 
 In this model, an Attester conveys Evidence to a Verifier, which compares
 the Evidence against its Appraisal Policy.  The Verifier then gives back
@@ -518,7 +532,7 @@ which then compares the Attestation Result against its own Appraisal Policy.
 There are three ways in which the process may fail.  First, the Verifier may
 refuse to issue the Attestation Result due to some error in processing, or
 some missing input to the Verifier.
-The second way in which the process may fail is when the resulting Attestation Result is
+The second way in which the process may fail is when the Attestation Result is
 examined by the Relying Party, and based upon the Appraisal Policy, the
 result does not pass the policy.
 The third way is when the Verifier is unreachable.
@@ -547,17 +561,15 @@ Attester-Verifier remote attestation protocol.
 ~~~~
 {: #passport title="Passport Model"}
 
-The passport model is so named because of its resemblance to how nations issue
-passports to their citizens. The nature of the Evidence that an individual needs
-to provide to its local authority is specific to the country involved. The citizen
-retains control of the resulting passport document and presents it to other entities
-when it needs to assert a citizenship or identity claim, such as an airport immigration
-desk. The passport is considered sufficient because it vouches for the citizenship and
-identity claims, and it is issued by a trusted authority. Thus, in this immigration
-desk analogy, the passport issuing agency is a Verifier, the passport is an Attestation
-Result, and the immigration desk is a Relying Party.
-
 ## Background-Check Model
+
+The background-check model is so named because of the resemblance of how employers and volunteer
+organizations perform background checks. When a prospective employee provides claims about
+education or previous experience, the employer will contact the respective institutions or
+former employers to validate the claim. Volunteer organizations often perform police background
+checks on volunteers in order to determine the volunteer's trustworthiness.
+Thus, in this analogy, a prospective volunteer is an Attester, the organization is the Relying Party,
+and a former employer or government agency that issues a report is a Verifier.
 
 In this model, an Attester conveys Evidence to a Relying Party, which simply
 passes it on to a Verifier.  The Verifier then compares the Evidence against
@@ -600,24 +612,17 @@ if the Relying Party is a constrained node.
 ~~~~
 {: #backgroundcheck title="Background-Check Model"}
 
-The background-check model is so named because of the resemblance of how employers and volunteer
-organizations perform background checks. When a prospective employee provides claims about
-education or previous experience, the employer will contact the respective institutions or
-former employers to validate the claim. Volunteer organizations often perform police background
-checks on volunteers in order to determine the volunteer's trustworthiness.
-Thus, in this analogy, a prospective volunteer is an Attester, the organization is the Relying Party,
-and a former employer or government agency that issues a report is a Verifier.
-
 ## Combinations
 
 One variation of the background-check model is where the Relying Party
-and the Verifier on the same machine, and so there is no need for a protocol between the two.
+and the Verifier are on the same machine, performing both functions together. 
+In this case, there is no need for a protocol between the two.
 
-It is also worth pointing out that the choice of model is generally up to the Relying Party,
-and the same device may need to create Evidence for different Relying Parties and different use cases
-(e.g., a network infrastructure device to gain access to the network, and then a
-server holding confidential data to get access to that data).  As such, both models may
-simultaneously be in use by the same device.
+It is also worth pointing out that the choice of model is generally up to the Relying Party. 
+The same device may need to create Evidence for different Relying Parties and/or different use cases. 
+For instance, it would provide Evidence to a network infrastructure device to gain access to the network, and
+to a server holding confidential data to gain access to that data.
+As such, both models may simultaneously be in use by the same device.
 
 {{combination}} shows another example of a combination where Relying Party 1 uses the
 passport model, whereas Relying Party 2 uses an extension of the background-check model.
@@ -656,9 +661,10 @@ plans to support in the TEEP architecture {{-teep-arch}}.
 # Roles and Entities
 
 An entity in the RATS architecture includes at least one of the roles defined
-in this document. As a result, the entity can participate as a constituent of
-the RATS architecture. Additionally, an entity can aggregate more than one
-role into itself. These collapsed roles combine the duties of multiple roles.
+in this document.
+An entity can aggregate more than one role into itself.
+These collapsed roles combine the duties of multiple roles.
+
 In these cases, interaction between these roles do not necessarily use the
 Internet Protocol. They can be using a loopback device or other IP-based
 communication between separate environments, but they do not have to.
@@ -675,8 +681,8 @@ network connected entity, it may implement an Attester role. The entity, as a
 system bus Verifier, may choose to fully isolate its role as a wide-area
 network Attester.
 
-In essence, an entity that combines more than one role also creates and
-consumes the corresponding conceptual messages as defined in this document.
+In essence, an entity that combines more than one role creates and consumes
+the corresponding conceptual messages as defined in this document.
 
 # Trust Model {#trustmodel}
 
@@ -720,7 +726,7 @@ In the background-check model, this Evidence may also be revealed to Relying Par
 
 In some cases where Evidence contains sensitive information, an Attester
 might even require that a Verifier first go through a remote attestation procedure with it before the Attester
-will send the sensitive Evidence.  This can be done by having the 
+will send the sensitive Evidence.  This can be done by having the
 Attester first act as a Verifier/Relying Party, and the Verifier act as its
 own Attester, as discussed above.
 
@@ -742,10 +748,10 @@ manufacturer, or the manufacturer's hardware, so as to be able to
 appraise the trustworthiness of that manufacturer's devices.  In solutions
 with weaker security, a Verifier might be configured to implicitly
 trust firmware or even software (e.g., a hypervisor).  That is, it
-might appraise the trustworthiness of an application component, or operating
-system component or service, under the assumption that information
+might appraise the trustworthiness of an application component, operating
+system component, or service under the assumption that information
 provided about it by the lower-layer hypervisor or firmware is true.
-A stronger level of security comes when information can be vouched
+A stronger level of assurance of security comes when information can be vouched
 for by hardware or by ROM code, especially if such hardware is
 physically resistant to hardware tampering.  The component that is
 implicitly trusted is often referred to as a Root of Trust.
@@ -1057,14 +1063,12 @@ or might be defined relative to some other timestamp or timeticks counter.
 |----|-----------------------------|-----------------------
 | VG | Value generation            | A value to appear in a Claim was created.
 | AA | Attester awareness          | An Attesting Environment starts to be aware of a new/changed Claim value.
-| CC | Claim Collection            | An Attesting Environment collects a new/changed Claim value to appear in Evidence.
 | HD | Handle distribution         | A centrally generated identifier for time-bound recentness across a domain of devices is successfully distributed to Attesters.
 | NS | Nonce sent                  | A nonce not predictable to an Attester (recentness & uniqueness) is sent to an Attester.
 | NR | Nonce relayed               | A nonce is relayed to an Attester by another entity.
-| EG | Evidence generation         | An Attester creates Evidence from collected Claims (CC).
+| EG | Evidence generation         | An Attester creates Evidence from collected Claims.
 | ER | Evidence relayed            | A Relying Party relays Evidence to a Verifier.
 | RG | Result generation           | A Verifier appraises Evidence and generates an Attestation Result.
-| RP | Result push                 | A set of one or more Evidence bundles is conveyed to a Verifier with or without solicitation initially triggered by AA, in a periodic interval, or ad-hoc.
 | RR | Result relayed              | A Relying Party relays an Attestation Result to a Relying Party.
 | RA | Result appraised            | The Relying Party appraises Attestation Results.
 | OP | Operation performed         | The Relying Party performs some operation requested by the Attester.  For example, acting upon some message just received across a session created earlier at time(RA).
@@ -1189,9 +1193,8 @@ in terms of time(RX)-time(RG), then the Relying Party can check
 ## Example 3: Timestamp-based Background-Check Model Example
 
 The following example illustrates a hypothetical Background-Check Model
-solution that uses centrally generated identifiers for explicit time-keeping (referred to as "handle" in this example).
-Handles can be qualifying data, such as nonces or signed timestamps. In this example, centrally generated signed timestamps and -- and synchronized clocks between all entities -- are distributed
-in periodic intervals as handles.  If the Attester lacks a source of time based on an absolute timescale, a relative source of time, such as a tick counter can be used, alternatively.  In this example, evidence generation is not triggered at value generation, but at events at which the Attesting Environment becomes of changes to the Target Environment.
+solution that uses timestamps and requires roughly synchronized
+clocks between the Attester, Verifier, and Relying Party.
 
 ~~~~
 .----------.         .---------------.              .----------.
@@ -1199,9 +1202,7 @@ in periodic intervals as handles.  If the Attester lacks a source of time based 
 '----------'         '---------------'              '----------'
   time(VG)                   |                           |
         |                    |                           |
-     ---+----time(HD)--------+------time(HD))------------+---
-        |                    |                           |
-  time(AA)                   |                           |
+        ~                    ~                           ~
         |                    |                           |
   time(EG)                   |                           |
         |----Evidence------->|                           |
@@ -1214,36 +1215,8 @@ in periodic intervals as handles.  If the Attester lacks a source of time based 
         |                 time(OP)                       |
 ~~~~
 
-In comparison with example 1, the time considerations in this example
-go into more detail with respect to the life-cycle of Claims and
-Evidence. While the goal is to create up-to-date and recent Evidence as soon as possible, typically there is a latency between value generation and Attester awareness.
-
-At time(AA) the Attesting Environment is able to trigger an event
-(e.g. based on an Event-Condition-Action model) to create attestation
-Evidence that is as recent as possible. In essence, at time(AA) the
-Attesting Environment is aware of new values that where generated at
-time(VG) and corresponding Claim values are collected immediately.
-Consecutively, Evidence based on relevant "old" Claims and the just
-collected "new" Claims is generated at time(EG). In essence, the Claims used to generate the Evidence are generated at various time(VG) before time(AA).
-
-In order to create attestation Evidence at
-at time(AA), the Attester requires a fresh (i.e. not expired)
-centrally generated handle that has been distributed to all involved
-entities.
-
-In general, The duration a handle remains fresh depends on
-the content-type of the handle. If it is a (relative or absolute)
-timestamp, clocks synchronized with a shared and trustworthy source of
-time are required. If another value type is used as a handle, the
-reception time of the handle time(HD) provides an epoch (relative time
-of zero) for measuring the duration of validity (similar to a
-heart-beat timeout). From the point of view of a Verifier, validity of
-Evidence is only given if the handle used in Evidence satisfies
-delta(time(HD),time(EG))distribution-interval.
-
-In this usage scenario, time(VG), time(AA), and time(EG) are tightly
-coupled. Also, the absolute point in time at which a handle is received
-by all three entities is assumed to be close to identical.
+The time considerations in this example are equivalent to those
+discussed under Example 1 above.
 
 ## Example 4: Nonce-based Background-Check Model Example
 
