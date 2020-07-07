@@ -1000,7 +1000,7 @@ security properties, including:
 * denial of service protection,
 * authentication,
 * fine grained access controls, and
-* logging in line with current threat models and zero trust architectures.
+* logging.
 
 {{freshness}} discusses ways in which freshness can be used in this
 architecture to protect against replay attacks.
