@@ -62,6 +62,7 @@ normative:
 
 informative:
   RFC4949:
+  RFC8322:
   OPCUA:
     author:
       org: OPC Foundation
@@ -854,6 +855,7 @@ The following diagram illustrates a relationship to which remote attestation is 
 
 In this diagram, the protocol between Attester and a Relying Party
 can be any new or existing protocol (e.g., HTTP(S), COAP(S),
+ROLIE {{RFC8322}},
 802.1x, OPC UA, etc.), depending on the use case.  Such
 protocols typically already have mechanisms for passing security
 information for purposes of authentication and authorization.  Common
