@@ -973,28 +973,40 @@ A more detailed discussion with examples appears in {{time-considerations}}.
 
 # Privacy Considerations
 
-The conveyance of Evidence and the resulting Attestation Results
-reveal a great deal of information about the internal state of a
-device.  In many cases, the whole point of the Attestation process is
-to provide reliable information about the type of the device and the
-firmware/software that the device is running.  This information might be
-particularly interesting to many attackers. For example, knowing that a device is
-running a weak version of firmware provides a way to aim attacks better.
+Every claim in Attestation Evidence and Attestation Results is potentially PII (Personally Identifying Information) depending on the end-end use case of the attestation.
+Each deployment of attestation must take into account how each claim may or may not be used in a privacy violating manner by the relying parties receiving the attestation.
 
-Evidence and Attestation Results data structures are expected to support
-integrity protection encoding (e.g., COSE, JOSE, X.509) and optionally might
-support confidentiality protection (e.g., COSE, JOSE).
-Therefore, if confidentiality protection is omitted or unavailable, the protocols
-that convey Evidence or Attestation Results are responsible for detailing what
-kinds of information are disclosed, and to whom they are exposed.
+In cases where the device sending attestation is owned by the relying party, little to no consideration for privacy is needed. In other cases, such as when a mobile phone is used to access a large number of web sites, apps and services, privacy must be considered very thoroughly.
 
-Furthermore, because Evidence might contain sensitive information,
-Attesters are responsible for only sending such Evidence to trusted
-Verifiers.  Some Attesters might want a stronger level of assurance of
-the trustworthiness of a Verifier before sending Evidence to it.  In such cases,
-an Attester can first act as a Relying Party and ask for the Verifier's own
-Attestation Result, and appraising it just as a Relying Party would appraise
-an Attestation Result for any other purpose.
+These are some strategies that can be used to address the privacy issue:
+
+* Determine that a particular claim is not privacy violating in the limited context of use.
+  For example, a router sending its serial number to the network management center that owns the router violates no one’s privacy.
+
+* Simply omit the claim. For example, omit the serial number from attestations sent by a phone to web sites it connects to.
+
+* Prompt the user. For example, ask the user if it is OK for a particular web site to access location data.
+
+* Use a privacy proxy service between the device and the relying party to remove or anonymize the privacy violating claims.
+
+Other strategies than these may be used.
+This list is not exhaustive.
+The selection of strategy is highly dependent on the Relying Party, end use case and governmental regulation (e.g., GDPR).
+The selection of strategy may also vary claim-by-claim in a single attestation.
+
+The conveyance of Evidence and the resulting Attestation Results reveal a great deal of information about the configuration and state of a device, some of which may be highly useful to attackers.
+For example, knowing the firmware/software version may help the attacker identify unpatched vulnerabilities.
+
+Confidentiality will usually be necessary when conveying Attestation Evidence and Results so attackers can't capture privacy violating claims or gain information that makes attacking the device easier.
+Evidence and Attestation Results data structures are expected to support integrity protection encoding (e.g., COSE, JOSE, X.509) and optionally might support confidentiality protection (e.g., COSE, JOSE).
+If confidentiality protection is omitted or unavailable, the protocols that convey Evidence or Attestation Results should provide confidentiality.
+
+The Verifier may or may not be trusted with privacy sensitive claims depending on the use case and nature of the Verifier.
+For example, if the Verifier is operated by the Relying Party and that Relying Party should not be allowed to access to privacy violating claims, those claims must not be in Attestation Evidence.
+On the other hand, the Verifier might be designed and operated to be a privacy proxy in which case part of its job is to remove or anonymize privacy violating claims in Attestation Evidence so they are not passed on in Attestation Results.
+
+Thus, in use cases where privacy violating claims are in the Attestation Evidence, the Attester should authenticate the Verifier to know that it is trusted. 
+Similarly, for Attestation Results, the Verifier should authenticate the Relying Party to know that it is trusted.
 
 # Security Considerations
 
