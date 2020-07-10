@@ -977,8 +977,9 @@ The conveyance of Evidence and the resulting Attestation Results
 reveal a great deal of information about the internal state of a
 device.  In many cases, the whole point of the Attestation process is
 to provide reliable information about the type of the device and the
-firmware/software that the device is running.  This information might be
-particularly interesting to many attackers. For example, knowing that a device is
+firmware/software that the device is running.
+This information might be particularly interesting to many attackers.
+For example, knowing that a device is
 running a weak version of firmware provides a way to aim attacks better.
 
 Evidence and Attestation Results data structures are expected to support
@@ -988,10 +989,13 @@ Therefore, if confidentiality protection is omitted or unavailable, the protocol
 that convey Evidence or Attestation Results are responsible for detailing what
 kinds of information are disclosed, and to whom they are exposed.
 
+
 Furthermore, because Evidence might contain sensitive information,
 Attesters are responsible for only sending such Evidence to trusted
-Verifiers.  Some Attesters might want a stronger level of assurance of
-the trustworthiness of a Verifier before sending Evidence to it.  In such cases,
+Verifiers.
+Some Attesters might want a stronger level of assurance of
+the trustworthiness of a Verifier before sending Evidence to it.
+In such cases,
 an Attester can first act as a Relying Party and ask for the Verifier's own
 Attestation Result, and appraising it just as a Relying Party would appraise
 an Attestation Result for any other purpose.
