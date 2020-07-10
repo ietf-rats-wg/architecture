@@ -991,6 +991,7 @@ reveal details about a specific system or user.
 
 In some cases, an attacker may be able to make inferences about attestations
 from the results or timing of the processing.
+For example, an attacker might be able to infer the value of specific claims if it knew that only certain values were accepted by the Relying Party.
 
 Evidence and Attestation Results data structures are expected to support
 integrity protection encoding (e.g., COSE, JOSE, X.509) and optionally might
