@@ -989,6 +989,9 @@ the attestation.
 Attestation that goes up to include containers and applications may further
 reveal details about a specific system or user.
 
+In some cases, an attacker may be able to make inferences about attestations
+from the results or timing of the processing.
+
 Evidence and Attestation Results data structures are expected to support
 integrity protection encoding (e.g., COSE, JOSE, X.509) and optionally might
 support confidentiality protection (e.g., COSE, JOSE).
