@@ -975,12 +975,23 @@ A more detailed discussion with examples appears in {{time-considerations}}.
 
 The conveyance of Evidence and the resulting Attestation Results
 reveal a great deal of information about the internal state of a
-device.  In many cases, the whole point of the Attestation process is
+device as well as any users the device is associated with.
+In many cases, the whole point of the Attestation process is
 to provide reliable information about the type of the device and the
 firmware/software that the device is running.
 This information might be particularly interesting to many attackers.
 For example, knowing that a device is
 running a weak version of firmware provides a way to aim attacks better.
+
+Many claims in Attestation Evidence and Attestation Results are potentially
+PII (Personally Identifying Information) depending on the end-to-end use case of
+the attestation.
+Attestation that goes up to include containers and applications may further
+reveal details about a specific system or user.
+
+In some cases, an attacker may be able to make inferences about attestations
+from the results or timing of the processing.
+For example, an attacker might be able to infer the value of specific claims if it knew that only certain values were accepted by the Relying Party.
 
 Evidence and Attestation Results data structures are expected to support
 integrity protection encoding (e.g., COSE, JOSE, X.509) and optionally might
