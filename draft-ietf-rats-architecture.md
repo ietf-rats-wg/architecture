@@ -983,6 +983,12 @@ This information might be particularly interesting to many attackers.
 For example, knowing that a device is
 running a weak version of firmware provides a way to aim attacks better.
 
+Every claim in Attestation Evidence and Attestation Results is potentially
+PII (Personally Identifying Information) depending on the end-end use case of
+the attestation.
+Attestation that goes up to include containers and applications may further
+reveal details about a specific system or user.
+
 Evidence and Attestation Results data structures are expected to support
 integrity protection encoding (e.g., COSE, JOSE, X.509) and optionally might
 support confidentiality protection (e.g., COSE, JOSE).
