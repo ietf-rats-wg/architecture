@@ -68,6 +68,7 @@ contributor:
   - name: Sarah C. Helbe
   - name: Andrew Guinn
   - name: Peter Lostcco
+    email: pete.loscocco@gmail.com
   - name: Eric Voit
   - name: Thomas Fossati
   - name: Paul Rowe
