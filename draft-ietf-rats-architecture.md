@@ -71,6 +71,7 @@ contributor:
     email: pete.loscocco@gmail.com
   - name: Eric Voit
   - name: Thomas Fossati
+    email: thomas.fossati@arm.com
   - name: Paul Rowe
   - name: Carsten Bormann
     email: cabo@tzi.org
