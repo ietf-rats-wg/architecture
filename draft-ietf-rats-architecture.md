@@ -1015,7 +1015,6 @@ an Attestation Result for any other purpose.
 
 ## Attester and Attestation Key Protection
 
-(this is a crude first pass to see what interest there is in this)
 
 Implementers need to pay close attention to the isolation and protection of the Attester and the factory processes for provisioning the Attestation Key Material. When either of these are compromised, the remote attestation becomes worthless because the attacker can forge Evidence.
 
@@ -1037,13 +1036,13 @@ At medium level security, a special restricted operating environment like a Trus
 For high level security, specialized hardware will likely be used providing protection against chip decapping attacks, power supply and clock glitching, faulting injection and RF and power side channel attacks.
 
 
-### Factory Key Provisioning Processes
+### Attestation Key Provisioning Processes
 
-Factory key provisioning is the process that occurs in the factory or elsewhere that establishes the signing key material on the device and the verification key material off the device. Sometimes this is referred to as “personalization”. 
+Attestation key provisioning is the process that occurs in the factory or elsewhere that establishes the signing key material on the device and the verification key material off the device. Sometimes this is referred to as “personalization”. 
 
 One way to provision a key is to first generate it external to the device and then copy the key onto the device. In this case, confidentiality of the generator, as well as the path over which the key is provisioned, is necessary. This can be achieved in a number of ways.
 
-Confidentiality can be achieved entirely with physical factory security involving no encryption at all. For low-security use cases, this might be simply locking doors and limiting personnel that can enter the factory. For high-security use cases, this might involve a special area of the factory accessible only to select security-trained personnel.
+Confidentiality can be achieved entirely with physical provisioning facility security involving no encryption at all. For low-security use cases, this might be simply locking doors and limiting personnel that can enter the facility. For high-security use cases, this might involve a special area of the facility accessible only to select security-trained personnel.
 
 Cryptography can also be used to support confidentiality, but keys that are used to then provision attestation keys must somehow have been provisioned securely beforehand (a recursive problem).
 
