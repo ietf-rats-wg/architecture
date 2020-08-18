@@ -813,8 +813,8 @@ component or user on the device.
 
 ## Attestation Results
 
-Attestation Results are the input used by the Relying Party to decide whether it will trust a particular device, allow access to some content or data, allow a financial transaction or other.
-Attestation Results may be a Boolean simply indicating compliance or non-compliance, or a rich set of Claims about the device, against which the Relying Party applies its Appraisal Policy for Attestation Results.
+Attestation Results are the input used by the Relying Party to decide the extent to which it will trust a particular Attester, and allow it to access some data or perform some operation.
+Attestation Results may be a Boolean simply indicating compliance or non-compliance, or a rich set of Claims about the Attester, against which the Relying Party applies its Appraisal Policy for Attestation Results.
 
 Attestation Results may indicate compliance or non-compliance with a Verifier's Appraisal Policy.
 A result that indicates non-compliance can be used by an Attester (in the passport model) or
