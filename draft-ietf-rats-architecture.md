@@ -1017,19 +1017,20 @@ an Attestation Result for any other purpose.
 
 (this is a crude first pass to see what interest there is in this)
 
-Implementors need to pay close attention to the isolation and protection of the Attester and the factory processes for provisioning the Attestation Key Material. When these are compromised, the attestation becomes worthless because the attacker can forge attestations.
+Implementers need to pay close attention to the isolation and protection of the Attester and the factory processes for provisioning the Attestation Key Material. When either of these are compromised, the remote attestation becomes worthless because the attacker can forge Evidence.
 
-Attestation applies to use cases with a range of security requirements, so the protections discussed here range from low to high security where low security  may be only application or process isolation by the devices operating system and high security involves specialized HW to defend against physical attacks on a chip.
+Remote attestation applies to use cases with a range of security requirements, so the protections discussed here range from low to high security where low security  may be only application or process isolation by the device's operating system and high security involves specialized hardware to defend against physical attacks on a chip.
 
 ### On-Device Attester and Key Protection
 
 It is assumed that the Attester is located in an isolated environment of a device like a process, a dedicated chip a TEE or such that collects the Claims, formats them and signs them with an Attestation Key. The Attester must be protected from unauthorized modification to ensure it behaves correctly. There must also be confidentiality so that the signing key is not captured and used elsewhere to forge evidence.
 
-In many cases the user or owner of the device must not be able to modify or inspect the Attester. For example the owner or user of a mobile phone of FIDO authenticator is not trusted. The point of the attestation is for the relying party to be able to trust the device even though they don’t trust the user or owner. 
+In many cases the user or owner of the device must not be able to modify or exfiltrate keys from the Attesting Environment of the Attester. 
+For example the owner or user of a mobile phone or FIDO authenticator is not trusted. 
+The point of remote attestation is for the Relying Party to be able to trust the Attester even though they don’t trust the user or owner. 
 
-In other cases the user or owner is simply trying to monitor a remote device and it is OK for them to be able to modify or inspect the Attester. For example, the owner of a router may wish to monitor the state of a router in a wiring closet far away.
 
-Some of the measures for low security include process or application isolation by a high-level operating system, perhaps restricting access root or system privilege. For extremely simple single-use devices that don’t use a protected mode operating system, like a sound bar, the isolation might only be the plastic housing for the device.
+Some of the measures for low level security include process or application isolation by a high-level operating system, and perhaps restricting access to root or system privilege. For extremely simple single-use devices that don’t use a protected mode operating system, like a Bluetooth speaker, the isolation might only be the plastic housing for the device.
 
 At medium level security, a special restricted operating environment like a Trusted Execution Environment (TEE) might be used. In this case, only security-oriented software has access to the Attester and key material. 
 
@@ -1044,7 +1045,7 @@ One way to provision a key is to first generate it external to the device and th
 
 Confidentiality can be achieved entirely with physical factory security involving no encryption at all. For low-security use cases, this might be simply locking doors and limiting personnel that can enter the factory. For high-security use cases, this might involve a special area of the factory accessible only to select security-trained personnel.
 
-Cryptography can also be used to help implement the confidentiality, but note that the keys used to provision the attestation key must somehow have been provisioned confidentially before.
+Cryptography can also be used to support confidentiality, but keys that are used to then provision attestation keys must somehow have been provisioned securely beforehand (a recursive problem).
 
 In many cases both some physical security and some cryptography will be necessary and useful to establish confidentiality.
 
