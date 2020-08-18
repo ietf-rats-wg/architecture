@@ -1051,7 +1051,8 @@ In many cases both some physical security and some cryptography will be necessar
 
 Another way to provision the key material is to generate it on the device and export the verification key. If public key cryptography is being used, then only integrity is necessary. Confidentiality is not necessary.
 
-In all cases, the factory process must be sure that it only establishes key material in Attesters that are made by the manufacturer and configured correctly. For many use cases, this will involve physical security at the factory, for example to make sure an attacker doesn't do a "midnight" production run of some counterfeit or incorrectly configured devices.
+In all cases, the Attestation Key provisioning process must be sure that it only establishes key material in Attesters that are made by the manufacturer and configured correctly. 
+For many use cases, this will involve physical security at the facility, to prevent unauthorized devices from being manufactured that may be counterfeit or incorrectly configured.
 
 ## Integrity Protection
 Any solution that conveys information used for security purposes, whether
