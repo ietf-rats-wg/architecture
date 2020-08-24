@@ -78,6 +78,14 @@ informative:
     author:
       org: "Trusted Computing Group"
     target: "https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1p62_Part1_Architecture_7july2020.pdf"
+  WebAuthN:
+    title: Web Authentication: An API for accessing Public Key Credentials
+    author: The W3C
+    target: https://www.w3.org/TR/webauthn-1/ 
+  CTAP:
+    title: Client to Authenticator Protocol
+    author: The FIDO Alliance
+    target: https://fidoalliance.org/specs/fido-v2.0-id-20180227/fido-client-to-authenticator-protocol-v2.0-id-20180227.html
 
 --- abstract
 
@@ -318,18 +326,18 @@ permission to continue operating (i.e., not reboot) for a period of time
 
 ## FIDO Biometric Authentication
 
-In the Fast IDentity Online (FIDO) protocol, the device in the user’s hand authenticates the human user, whether by biometrics (such as fingerprints), or by PIN and password.
-The comparison of the input from the user to the reference or expected values is done by the device, often a mobile phone, not the relying party.
-For the relying party to know that the authentication is trustworthy, the relying party needs to know that the authenticator part of the device is trustworthy.
+In the Fast IDentity Online (FIDO) protocol {{WebAuthN}}, {{CTAP}}, the device in the user’s hand authenticates the human user, whether by biometrics (such as fingerprints), or by PIN and password.
+FIDO authentication puts a large amount of trust in the device compared to typical password authentication because it is the device that verifies the biometric, PIN and password inputs from the user, not the server.
+For the relying party to know that the authentication is trustworthy, the relying party needs to know that the Authenticator part of the device is trustworthy.
 The FIDO protocol employs attestation for this. 
 
-The FIDO protocol supports several attestation protocols and a mechanism by which new ones can be registered and added. Attestation defined by RATS is thus a candidate for use by FIDO. 
+The FIDO protocol supports several attestation protocols and a mechanism by which new ones can be registered and added. Attestation defined by RATS is thus a candidate for use in the FIDO protocol. 
 
 Other biometric authentication protocols such as the Chinese IFAA standard and WeChat Pay as well as Google Pay make use of attestation in one form or another.
 
 Attester: 
 
-:The FIDO Authenticator.
+: Every FIDO Authenticator contains an Attester.
 
 Relying Party: 
 
