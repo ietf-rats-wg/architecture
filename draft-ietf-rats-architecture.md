@@ -320,7 +320,7 @@ permission to continue operating (i.e., not reboot) for a period of time
 
 In the Fast IDentity Online (FIDO) protocol, the device in the user’s hand authenticates the human user, whether by biometrics (such as fingerprints), or by PIN and password.
 The comparison of the input from the user to the reference or expected values is done by the device, often a mobile phone, not the relying party.
-For the relying party to know that the authentication is trustworthy the relying party needs to know that the authenticator part of the device is trustworthy.
+For the relying party to know that the authentication is trustworthy, the relying party needs to know that the authenticator part of the device is trustworthy.
 The FIDO protocol employs attestation for this. 
 
 The FIDO protocol supports several attestation protocols and a mechanism by which new ones can be registered and added. Attestation defined by RATS is thus a candidate for use by FIDO. 
