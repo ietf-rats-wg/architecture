@@ -318,7 +318,7 @@ permission to continue operating (i.e., not reboot) for a period of time
 
 ## FIDO Biometric Authentication
 
-In the FIDO protocol, it is the device in the user’s hand that authenticates the human user by biometrics like fingerprints or PIN and password.
+In the Fast IDentity Online (FIDO) protocol, the device in the user’s hand authenticates the human user, whether by biometrics (such as fingerprints), or by PIN and password.
 The comparison of the input from the user to the reference or expected values is done by the device, often a mobile phone, not the relying party.
 For the relying party to know that the authentication is trustworthy the relying party needs to know that the authenticator part of the device is trustworthy.
 The FIDO protocol employs attestation for this. 
