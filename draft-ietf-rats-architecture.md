@@ -80,11 +80,11 @@ informative:
     target: "https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1p62_Part1_Architecture_7july2020.pdf"
   WebAuthN:
     title: Web Authentication: An API for accessing Public Key Credentials
-    author: The W3C
+    author: W3C
     target: https://www.w3.org/TR/webauthn-1/ 
   CTAP:
     title: Client to Authenticator Protocol
-    author: The FIDO Alliance
+    author: FIDO Alliance
     target: https://fidoalliance.org/specs/fido-v2.0-id-20180227/fido-client-to-authenticator-protocol-v2.0-id-20180227.html
 
 --- abstract
@@ -328,10 +328,10 @@ permission to continue operating (i.e., not reboot) for a period of time
 
 In the Fast IDentity Online (FIDO) protocol {{WebAuthN}}, {{CTAP}}, the device in the user’s hand authenticates the human user, whether by biometrics (such as fingerprints), or by PIN and password.
 FIDO authentication puts a large amount of trust in the device compared to typical password authentication because it is the device that verifies the biometric, PIN and password inputs from the user, not the server.
-For the relying party to know that the authentication is trustworthy, the relying party needs to know that the Authenticator part of the device is trustworthy.
-The FIDO protocol employs attestation for this. 
+For the Relying Party to know that the authentication is trustworthy, the Relying Party needs to know that the Authenticator part of the device is trustworthy.
+The FIDO protocol employs remote attestation for this. 
 
-The FIDO protocol supports several attestation protocols and a mechanism by which new ones can be registered and added. Attestation defined by RATS is thus a candidate for use in the FIDO protocol. 
+The FIDO protocol supports several remote attestation protocols and a mechanism by which new ones can be registered and added. Remote attestation defined by RATS is thus a candidate for use in the FIDO protocol. 
 
 Other biometric authentication protocols such as the Chinese IFAA standard and WeChat Pay as well as Google Pay make use of attestation in one form or another.
 
