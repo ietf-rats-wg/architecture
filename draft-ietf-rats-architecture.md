@@ -328,7 +328,7 @@ permission to continue operating (i.e., not reboot) for a period of time
 An Attester creates Evidence that is conveyed to a Verifier.
 
 The Verifier uses the Evidence, and any Endorsements from Endorsers,
-by applying an Evidence Appraisal Policy to assess the trustworthiness of the Attester,
+by applying an Appraisal Policy for Evidence to assess the trustworthiness of the Attester,
 and generates Attestation Results for use by Relying Parties.  The Appraisal Policy for Evidence
 might be obtained from an Endorser along with the Endorsements, or might be obtained
 via some other mechanism such as being configured in the Verifier by an
