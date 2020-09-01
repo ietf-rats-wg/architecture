@@ -1149,7 +1149,7 @@ or might be defined relative to some other timestamp or timeticks counter.
 
 | ID | Event                       | Explanation of event
 |----|-----------------------------|-----------------------
-| VC | Value created               | A value to appear in a Claim was created.  In some cases, a value may have technically existed before an Attester became aware of it but the Attester might have no idea how long it has had that value.  In such a case, the Value created time is the time at which the Claim containing the copy of the value was created.
+| VG | Value generated             | A value to appear in a Claim was created.  In some cases, a value may have technically existed before an Attester became aware of it but the Attester might have no idea how long it has had that value.  In such a case, the Value created time is the time at which the Claim containing the copy of the value was created.
 | HD | Handle distribution         | A centrally generated identifier for time-bound recentness across a domain of devices is successfully distributed to Attesters.
 | NS | Nonce sent                  | A nonce not predictable to an Attester (recentness & uniqueness) is sent to an Attester.
 | NR | Nonce relayed               | A nonce is relayed to an Attester by another entity.
@@ -1178,7 +1178,7 @@ timestamp can directly compare it to its own clock and timestamps.
    .----------.                     .----------.  .---------------.
    | Attester |                     | Verifier |  | Relying Party |
    '----------'                     '----------'  '---------------'
-     time(VC)                             |               |
+     time(VG)                             |               |
         |                                 |               |
         ~                                 ~               ~
         |                                 |               |
@@ -1202,10 +1202,10 @@ it at time(RG) by checking `time(RG) - time(EG) < Threshold`, where the
 Verifier's threshold is large enough to account for the maximum
 permitted clock skew between the Verifier and the Attester.
 
-If time(VC) is also included in the Evidence along with the claim value
+If time(VG) is also included in the Evidence along with the claim value
 generated at that time, and the Verifier decides that it can trust the
-time(VC) value, the Verifier can also determine whether the claim value is
-recent by checking `time(RG) - time(VC) < Threshold`, again where the threshold
+time(VG) value, the Verifier can also determine whether the claim value is
+recent by checking `time(RG) - time(VG) < Threshold`, again where the threshold
 is large enough to account for the maximum permitted clock skew between
 the Verifier and the Attester.
 
@@ -1238,14 +1238,14 @@ delta between two events from the sender can be used by the receiver.
    .----------.                     .----------.  .---------------.
    | Attester |                     | Verifier |  | Relying Party |
    '----------'                     '----------'  '---------------'
-     time(VCa)                            |               |
+     time(VGa)                            |               |
         |                                 |               |
         ~                                 ~               ~
         |                                 |               |
         |<--Nonce1---------------------time(NSv)          |
      time(EGa)                            |               |
         |---Evidence--------------------->|               |
-        |   {Nonce1, time(EGa)-time(VCa)} |               |
+        |   {Nonce1, time(EGa)-time(VGa)} |               |
         |                              time(RGv)          |
         |<--Attestation Result------------|               |
         |   {time(RXv)-time(RGv)}         |               |
@@ -1267,8 +1267,8 @@ The Verifier cannot, however, simply rely on a Nonce to
 determine whether the value of a claim is recent, since the claim value
 might have been generated long before the nonce was sent by the Verifier.
 However, if the Verifier decides that the Attester can be trusted to
-correctly provide the delta time(EGa)-time(VCa), then it can determine recency
-by checking `time(RGv)-time(NSv) + time(EGa)-time(VCa) < Threshold`.
+correctly provide the delta time(EGa)-time(VGa), then it can determine recency
+by checking `time(RGv)-time(NSv) + time(EGa)-time(VGa) < Threshold`.
 
 Similarly if, based on an Attestation Result from a Verifier it trusts,
 the Relying Party decides that the Attester can be trusted to correctly
@@ -1296,7 +1296,7 @@ clocks between the Attester, Verifier, and Relying Party.
 .----------.         .---------------.              .----------.
 | Attester |         | Relying Party |              | Verifier |
 '----------'         '---------------'              '----------'
-  time(VC)                   |                           |
+  time(VG)                   |                           |
         |                    |                           |
         ~                    ~                           ~
         |                    |                           |
@@ -1326,7 +1326,7 @@ the Relying Party needs to send one to an Attester.
 .----------.         .---------------.              .----------.
 | Attester |         | Relying Party |              | Verifier |
 '----------'         '---------------'              '----------'
-  time(VCa)                  |                           |
+  time(VGa)                  |                           |
      |                       |                           |
      ~                       ~                           ~
      |                       |                           |
