@@ -1151,8 +1151,7 @@ or might be defined relative to some other timestamp or timeticks counter.
 
 | ID | Event                       | Explanation of event
 |----|-----------------------------|-----------------------
-| VG | Value generation            | A value to appear in a Claim was created.
-| AA | Attester awareness          | An Attesting Environment starts to be aware of a new/changed Claim value.
+| VG | Value generated             | A value to appear in a Claim was created.  In some cases, a value may have technically existed before an Attester became aware of it but the Attester might have no idea how long it has had that value.  In such a case, the Value created time is the time at which the Claim containing the copy of the value was created.
 | HD | Handle distribution         | A centrally generated identifier for time-bound recentness across a domain of devices is successfully distributed to Attesters.
 | NS | Nonce sent                  | A nonce not predictable to an Attester (recentness & uniqueness) is sent to an Attester.
 | NR | Nonce relayed               | A nonce is relayed to an Attester by another entity.
@@ -1174,6 +1173,8 @@ The following example illustrates a hypothetical Passport Model
 solution that uses timestamps and requires roughly synchronized
 clocks between the Attester, Verifier, and Relying Party, which
 depends on using a secure clock synchronization mechanism.
+As a result, the receiver of a conceptual message containing a
+timestamp can directly compare it to its own clock and timestamps.
 
 ~~~~
    .----------.                     .----------.  .---------------.
@@ -1228,48 +1229,55 @@ The following example illustrates a hypothetical Passport Model
 solution that uses nonces and thus does not require that any clocks
 are synchronized.
 
+As a result, the receiver of a conceptual message containing a
+timestamp cannot directly compare it to its own clock or timestamps.
+Thus we use a suffix (a for Attester, v for verifier, and r for Relying
+Party) on the IDs below indicating which clock generated them,
+since times from different clocks cannot be compared.  Only the
+delta between two events from the sender can be used by the receiver.
+
 ~~~~
    .----------.                     .----------.  .---------------.
    | Attester |                     | Verifier |  | Relying Party |
    '----------'                     '----------'  '---------------'
-     time(VG)                             |               |
+     time(VG_a)                           |               |
         |                                 |               |
         ~                                 ~               ~
         |                                 |               |
-        |<---Nonce1--------------------time(NS)           |
-     time(EG)                             |               |
-        |----Evidence-------------------->|               |
-        |     {Nonce1, time(EG)-time(VG)} |               |
-        |                              time(RG)           |
-        |<---Attestation Result-----------|               |
-        |     {time(RX)-time(RG)}         |               |
+        |<--Nonce1---------------------time(NS_v)         |
+     time(EG_a)                           |               |
+        |---Evidence--------------------->|               |
+        | {Nonce1, time(EG_a)-time(VG_a)} |               |
+        |                              time(RG_v)         |
+        |<--Attestation Result------------|               |
+        |   {time(RX_v)-time(RG_v)}       |               |
         ~                                                 ~
         |                                                 |
-        |<---Nonce2------------------------------------time(NS')
-     time(RR)
-        |----Attestation Result{time(RX)-time(RG)}---->time(RA)
-        |    Nonce2, time(RR)-time(EG)                    |
+        |<--Nonce2-------------------------------------time(NS_r)
+     time(RRa)
+        |---Attestation Result{time(RX_v)-time(RG_v)}->time(RA_r)
+        |   Nonce2, time(RR_a)-time(EG_a)                 |
         ~                                                 ~
         |                                                 |
-        |                                              time(OP)
+        |                                              time(OP_r)
 ~~~~
 
 In this example solution, the Verifier can check whether the Evidence is
-fresh at time(RG) by verifying that `time(RG) - time(NS) < Threshold`.
+fresh at `time(RG_v)` by verifying that `time(RG_v)-time(NS_v) < Threshold`.
 
 The Verifier cannot, however, simply rely on a Nonce to
 determine whether the value of a claim is recent, since the claim value
 might have been generated long before the nonce was sent by the Verifier.
 However, if the Verifier decides that the Attester can be trusted to
-correctly provide the delta time(EG)-time(VG), then it can determine recency
-by checking `time(RG)-time(NS) + time(EG)-time(VG) < Threshold`.
+correctly provide the delta `time(EG_a)-time(VG_a)`, then it can determine recency
+by checking `time(RG_v)-time(NS_v) + time(EG_a)-time(VG_a) < Threshold`.
 
 Similarly if, based on an Attestation Result from a Verifier it trusts,
 the Relying Party decides that the Attester can be trusted to correctly
 provide time deltas, then it can determine whether the Attestation
 Result is fresh by checking
-`time(OP) - time(NS') + time(RR)-time(EG) < Threshold`.
-Although the Nonce2 and time(RR)-time(EG) values cannot be inside
+`time(OP_r)-time(NS_r) + time(RR_a)-time(EG_a) < Threshold`.
+Although the Nonce2 and `time(RR_a)-time(EG_a)` values cannot be inside
 the Attestation Result, they might be signed by the Attester such
 that the Attestation Result vouches for the Attester's signing
 capability.
@@ -1277,8 +1285,8 @@ capability.
 The Relying Party must still be careful, however, to not allow continued
 use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
-in terms of time(RX)-time(RG), then the Relying Party can check
-`time(OP) - time(NS') < time(RX)-time(RG)`.
+in terms of `time(RX_v)-time(RG_v)`, then the Relying Party can check
+`time(OP_r)-time(NS_r) < time(RX_v)-time(RG_v)`.
 
 ## Example 3: Timestamp-based Background-Check Model Example
 
@@ -1320,21 +1328,21 @@ the Relying Party needs to send one to an Attester.
 .----------.         .---------------.              .----------.
 | Attester |         | Relying Party |              | Verifier |
 '----------'         '---------------'              '----------'
-  time(VG)                   |                           |
+  time(VG_a)                 |                           |
      |                       |                           |
      ~                       ~                           ~
      |                       |                           |
-     |                       |<-----Nonce-------------time(NS)
-     |<---Nonce-----------time(NR)                       |
-  time(EG)                   |                           |
+     |                       |<-------Nonce-----------time(NS_v)
+     |<---Nonce-----------time(NR_r)                     |
+  time(EG_a)                 |                           |
      |----Evidence{Nonce}--->|                           |
-     |                    time(ER)--Evidence{Nonce}----->|
-     |                       |                        time(RG)
-     |                    time(RA)<-Attestation Result---|
-     |                       |      {time(RX)-time(RG)}  |
+     |                    time(ER_r)--Evidence{Nonce}--->|
+     |                       |                        time(RG_v)
+     |                    time(RA_r)<-Attestation Result-|
+     |                       |   {time(RX_v)-time(RG_v)} |
      ~                       ~                           ~
      |                       |                           |
-     |                    time(OP)                       |
+     |                    time(OP_r)                     |
 ~~~~
 
 The Verifier can check whether the Evidence is fresh, and whether a claim
@@ -1342,10 +1350,10 @@ value is recent, the same as in Example 2 above.
 
 However, unlike in Example 2, the Relying Party can use the Nonce to
 determine whether the Attestation Result is fresh, by verifying that
-`time(OP) - time(NR) < Threshold`.
+`time(OP_r)-time(NR_r) < Threshold`.
 
 The Relying Party must still be careful, however, to not allow continued
 use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
-in terms of time(RX)-time(RG), then the Relying Party can check
-`time(OP) - time(ER) < time(RX)-time(RG)`.
+in terms of `time(RX_v)-time(RG_v)`, then the Relying Party can check
+`time(OP_r)-time(ER_r) < time(RX_v)-time(RG_v)`.
