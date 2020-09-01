@@ -1306,7 +1306,7 @@ Receipt of a new handle invalidates a previously received handle.
 
 In this example, Evidence generation based on received handles always uses the current (most recent) handle.
 As handles are distributed over the network, all involved entities receive a fresh handle at roughly the same time.
-The time that represents this event is named Handle received: time(HR_x). Due to distribution over the network, there is some jitter with respect to time(HR_x) for each involved entity.
+Due to distribution over the network, there is some jitter with respect to the time the Handle is received, time(HR), for each involved entity.
 To compensate for this jitter, there is a small period of overlap (a specified offset) in which both a current handle and corresponding former handle are valid in Evidence appraisal: `validity-duration = time(HR_v') + offset - time(HR_v)`. The offset is typically based on a network's round trip time.
 Analogously, the generation of valid Evidence is only possible, if the age of the handle used is lower than the validity-duration: `time(HR_v) - time(EG_a) < validity-duration`.
 
