@@ -1167,7 +1167,7 @@ but is just representative enough to highlight various timing considerations.
 All times are relative to the local clocks, indicated by an "a" (Attester),
 "v" (Verifier), or "r" (Relying Party) suffix.
 
-How and if clocks are synchronized only depends upon the model.
+How and if clocks are synchronized depends upon the model.
 
 ## Example 1: Timestamp-based Passport Model Example
 
