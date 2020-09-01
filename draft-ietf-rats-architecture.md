@@ -361,14 +361,13 @@ An Attester creates Evidence that is conveyed to a Verifier.
 The Verifier uses the Evidence, and any Endorsements from Endorsers,
 by applying an Appraisal Policy for Evidence to assess the trustworthiness of the Attester,
 and generates Attestation Results for use by Relying Parties.  The Appraisal Policy for Evidence
-might be obtained from an Endorser along with the Endorsements, or might be obtained
-via some other mechanism such as being configured in the Verifier by an
-administrator.
+might be obtained from an Endorser along with the Endorsements, and/or might be obtained
+via some other mechanism such as being configured in the Verifier by the Verifier Owner.
 
 The Relying Party uses Attestation Results by applying its own
 Appraisal Policy to make application-specific decisions such as authorization decisions.
-The Appraisal Policy for Attestation Results might, for example, be configured in the Relying Party
-by an administrator.
+The Appraisal Policy for Attestation Results is configured in the Relying Party by the Relying Party Owner, 
+and/or is programmed into the Relying Party.
 
 ## Appraisal Policies
 
