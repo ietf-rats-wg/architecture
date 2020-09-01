@@ -366,7 +366,7 @@ via some other mechanism such as being configured in the Verifier by the Verifie
 
 The Relying Party uses Attestation Results by applying its own
 Appraisal Policy to make application-specific decisions such as authorization decisions.
-The Appraisal Policy for Attestation Results is configured in the Relying Party by the Relying Party Owner, 
+The Appraisal Policy for Attestation Results is configured in the Relying Party by the Relying Party Owner,
 and/or is programmed into the Relying Party.
 
 ## Appraisal Policies
@@ -1297,7 +1297,7 @@ The only entity that requires access to a source of time is the entity taking on
 Handles are different from nonces as they can be used more than once and can be used by more than one entity at the same time.
 Handles are different from timestamps as they do not have to convey information about a point in time, but their reception creates that information.
 The reception of a handle is similar to the event that increments a relative tickcounter.
-Receipt of a new handle invalidates a previously received handle. 
+Receipt of a new handle invalidates a previously received handle.
 
 In this example, Evidence generation based on received handles always uses the current (most recent) handle.
 As handles are distributed over the network, all involved entities receive a fresh handle at roughly the same time.
