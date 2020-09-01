@@ -398,15 +398,12 @@ and {{compositedevice}}.  Other examples may exist, and the examples
 discussed could even be combined into even more complex implementations.
 
 Claims are collected from Target Environments, as shown in {{twotypes-env}}.
-That is, Attesting Environments collect the raw values and
-the information to be represented in claims, such as by doing some
-measurement of a Target Environment's code, memory, and/or registers.
+That is, Attesting Environments collect the values and the information to be represented in Claims, by reading system registers and variables, calling into subsystems, taking measurements on code or memory and so on of the Target Environment.
 Attesting Environments then format the claims appropriately, and typically
 use key material and
 cryptographic functions, such as signing or cipher algorithms, to
 create Evidence.
-Places that Attesting Environments can exist
-include Trusted  Execution Environments (TEE), embedded Secure Elements
+There is no limit to or requirement on the places that an Attesting Environment can exist, but they typically are in Trusted Execution Environments (TEE), embedded Secure Elements
 (eSE), and BIOS firmware.
 An execution environment may not, by default, be capable of claims collection
 for a given Target Environment.
