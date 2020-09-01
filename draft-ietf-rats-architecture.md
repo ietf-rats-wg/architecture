@@ -1261,21 +1261,21 @@ delta between two events from the sender can be used by the receiver.
 ~~~~
 
 In this example solution, the Verifier can check whether the Evidence is
-fresh at time(RGv) by verifying that `time(RGv)-time(NSv) < Threshold`.
+fresh at `time(RG_v)` by verifying that `time(RG_v)-time(NS_v) < Threshold`.
 
 The Verifier cannot, however, simply rely on a Nonce to
 determine whether the value of a claim is recent, since the claim value
 might have been generated long before the nonce was sent by the Verifier.
 However, if the Verifier decides that the Attester can be trusted to
-correctly provide the delta time(EGa)-time(VGa), then it can determine recency
-by checking `time(RGv)-time(NSv) + time(EGa)-time(VGa) < Threshold`.
+correctly provide the delta `time(EG_a)-time(VG_a)`, then it can determine recency
+by checking `time(RG_v)-time(NS_v) + time(EG_a)-time(VG_a) < Threshold`.
 
 Similarly if, based on an Attestation Result from a Verifier it trusts,
 the Relying Party decides that the Attester can be trusted to correctly
 provide time deltas, then it can determine whether the Attestation
 Result is fresh by checking
-`time(OPr)-time(NSr) + time(RRa)-time(EGa) < Threshold`.
-Although the Nonce2 and time(RRa)-time(EGa) values cannot be inside
+`time(OP_r)-time(NS_r) + time(RR_a)-time(EG_a) < Threshold`.
+Although the Nonce2 and `time(RR_a)-time(EG_a)` values cannot be inside
 the Attestation Result, they might be signed by the Attester such
 that the Attestation Result vouches for the Attester's signing
 capability.
@@ -1283,8 +1283,8 @@ capability.
 The Relying Party must still be careful, however, to not allow continued
 use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
-in terms of time(RXv)-time(RGv), then the Relying Party can check
-`time(OPr)-time(NSr) < time(RXv)-time(RGv)`.
+in terms of `time(RX_v)-time(RG_v)`, then the Relying Party can check
+`time(OP_r)-time(NS_r) < time(RX_v)-time(RG_v)`.
 
 ## Example 3: Timestamp-based Background-Check Model Example
 
