@@ -65,7 +65,7 @@ informative:
   RFC8322:
   OPCUA:
     author:
-      org: OPC Foundation
+      org: "OPC Foundation"
     title: "OPC Unified Architecture Specification, Part 2: Security Model, Release 1.03"
     date: 2015-11-25
     target: https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-2-security-model/
@@ -79,12 +79,14 @@ informative:
       org: "Trusted Computing Group"
     target: "https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1p62_Part1_Architecture_7july2020.pdf"
   WebAuthN:
-    title: Web Authentication: An API for accessing Public Key Credentials
-    author: W3C
-    target: https://www.w3.org/TR/webauthn-1/ 
+    title: "Web Authentication: An API for accessing Public Key Credentials"
+    author:
+      org: W3C
+    target: https://www.w3.org/TR/webauthn-1/
   CTAP:
-    title: Client to Authenticator Protocol
-    author: FIDO Alliance
+    title: "Client to Authenticator Protocol"
+    author:
+      org: FIDO Alliance
     target: https://fidoalliance.org/specs/fido-v2.0-id-20180227/fido-client-to-authenticator-protocol-v2.0-id-20180227.html
 
 --- abstract
@@ -329,17 +331,17 @@ permission to continue operating (i.e., not reboot) for a period of time
 In the Fast IDentity Online (FIDO) protocol {{WebAuthN}}, {{CTAP}}, the device in the user’s hand authenticates the human user, whether by biometrics (such as fingerprints), or by PIN and password.
 FIDO authentication puts a large amount of trust in the device compared to typical password authentication because it is the device that verifies the biometric, PIN and password inputs from the user, not the server.
 For the Relying Party to know that the authentication is trustworthy, the Relying Party needs to know that the Authenticator part of the device is trustworthy.
-The FIDO protocol employs remote attestation for this. 
+The FIDO protocol employs remote attestation for this.
 
-The FIDO protocol supports several remote attestation protocols and a mechanism by which new ones can be registered and added. Remote attestation defined by RATS is thus a candidate for use in the FIDO protocol. 
+The FIDO protocol supports several remote attestation protocols and a mechanism by which new ones can be registered and added. Remote attestation defined by RATS is thus a candidate for use in the FIDO protocol.
 
 Other biometric authentication protocols such as the Chinese IFAA standard and WeChat Pay as well as Google Pay make use of attestation in one form or another.
 
-Attester: 
+Attester:
 
 : Every FIDO Authenticator contains an Attester.
 
-Relying Party: 
+Relying Party:
 
 : Any web site, mobile application back end or service that does biometric authentication.
 
@@ -1054,21 +1056,21 @@ Remote attestation applies to use cases with a range of security requirements, s
 
 It is assumed that the Attester is located in an isolated environment of a device like a process, a dedicated chip a TEE or such that collects the Claims, formats them and signs them with an Attestation Key. The Attester must be protected from unauthorized modification to ensure it behaves correctly. There must also be confidentiality so that the signing key is not captured and used elsewhere to forge evidence.
 
-In many cases the user or owner of the device must not be able to modify or exfiltrate keys from the Attesting Environment of the Attester. 
-For example the owner or user of a mobile phone or FIDO authenticator is not trusted. 
-The point of remote attestation is for the Relying Party to be able to trust the Attester even though they don’t trust the user or owner. 
+In many cases the user or owner of the device must not be able to modify or exfiltrate keys from the Attesting Environment of the Attester.
+For example the owner or user of a mobile phone or FIDO authenticator is not trusted.
+The point of remote attestation is for the Relying Party to be able to trust the Attester even though they don’t trust the user or owner.
 
 
 Some of the measures for low level security include process or application isolation by a high-level operating system, and perhaps restricting access to root or system privilege. For extremely simple single-use devices that don’t use a protected mode operating system, like a Bluetooth speaker, the isolation might only be the plastic housing for the device.
 
-At medium level security, a special restricted operating environment like a Trusted Execution Environment (TEE) might be used. In this case, only security-oriented software has access to the Attester and key material. 
+At medium level security, a special restricted operating environment like a Trusted Execution Environment (TEE) might be used. In this case, only security-oriented software has access to the Attester and key material.
 
 For high level security, specialized hardware will likely be used providing protection against chip decapping attacks, power supply and clock glitching, faulting injection and RF and power side channel attacks.
 
 
 ### Attestation Key Provisioning Processes
 
-Attestation key provisioning is the process that occurs in the factory or elsewhere that establishes the signing key material on the device and the verification key material off the device. Sometimes this is referred to as “personalization”. 
+Attestation key provisioning is the process that occurs in the factory or elsewhere that establishes the signing key material on the device and the verification key material off the device. Sometimes this is referred to as “personalization”.
 
 One way to provision a key is to first generate it external to the device and then copy the key onto the device. In this case, confidentiality of the generator, as well as the path over which the key is provisioned, is necessary. This can be achieved in a number of ways.
 
