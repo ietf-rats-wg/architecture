@@ -366,7 +366,7 @@ via some other mechanism such as being configured in the Verifier by the Verifie
 
 The Relying Party uses Attestation Results by applying its own
 Appraisal Policy to make application-specific decisions such as authorization decisions.
-The Appraisal Policy for Attestation Results is configured in the Relying Party by the Relying Party Owner, 
+The Appraisal Policy for Attestation Results is configured in the Relying Party by the Relying Party Owner,
 and/or is programmed into the Relying Party.
 
 ## Appraisal Policies
@@ -1164,6 +1164,11 @@ Using the table above, a number of hypothetical examples of how a solution might
 a solution might be built.  This list is not intended to be complete,
 but is just representative enough to highlight various timing considerations.
 
+All times are relative to the local clocks, indicated by an "a" (Attester),
+"v" (Verifier), or "r" (Relying Party) suffix.
+
+How and if clocks are synchronized depends upon the model.
+
 ## Example 1: Timestamp-based Passport Model Example
 
 The following example illustrates a hypothetical Passport Model
@@ -1177,48 +1182,48 @@ timestamp can directly compare it to its own clock and timestamps.
    .----------.                     .----------.  .---------------.
    | Attester |                     | Verifier |  | Relying Party |
    '----------'                     '----------'  '---------------'
-     time(VG)                             |               |
+     time(VG_a)                           |               |
         |                                 |               |
         ~                                 ~               ~
         |                                 |               |
-     time(EG)                             |               |
-        |------Evidence{time(EG)}-------->|               |
-        |                              time(RG)           |
+     time(EG_a)                           |               |
+        |------Evidence{time(EG_a)}------>|               |
+        |                              time(RG_v)         |
         |<-----Attestation Result---------|               |
-        |      {time(RG),time(RX)}        |               |
+        |      {time(RG_v),time(RX_v)}    |               |
         ~                                                 ~
         |                                                 |
-        |------Attestation Result{time(RG),time(RX)}-->time(RA)
+        |----Attestation Result{time(RG_v),time(RX_v)}-->time(RA_r)
         |                                                 |
         ~                                                 ~
         |                                                 |
-        |                                              time(OP)
+        |                                              time(OP_r)
         |                                                 |
 ~~~~
 
 The Verifier can check whether the Evidence is fresh when appraising
-it at time(RG) by checking `time(RG) - time(EG) < Threshold`, where the
+it at time(RG_v) by checking `time(RG_v) - time(EG_a) < Threshold`, where the
 Verifier's threshold is large enough to account for the maximum
 permitted clock skew between the Verifier and the Attester.
 
-If time(VG) is also included in the Evidence along with the claim value
+If time(VG_a) is also included in the Evidence along with the claim value
 generated at that time, and the Verifier decides that it can trust the
-time(VG) value, the Verifier can also determine whether the claim value is
-recent by checking `time(RG) - time(VG) < Threshold`, again where the threshold
+time(VG_a) value, the Verifier can also determine whether the claim value is
+recent by checking `time(RG_v) - time(VG_a) < Threshold`, again where the threshold
 is large enough to account for the maximum permitted clock skew between
 the Verifier and the Attester.
 
 The Relying Party can check whether the Attestation Result is fresh
-when appraising it at time(RA) by checking `time(RA) - time(RG) < Threshold`,
+when appraising it at time(RA_r) by checking `time(RA_r) - time(RG_v) < Threshold`,
 where the Relying Party's threshold is large enough to account for the
 maximum permitted clock skew between the Relying Party and the Verifier.
 The result might then be used for some time (e.g., throughout the lifetime
-of a connection established at time(RA)).  The Relying Party must be
+of a connection established at time(RA_r)).  The Relying Party must be
 careful, however, to not allow continued use beyond the period for which
 it deems the Attestation Result to remain fresh enough.  Thus,
-it might allow use (at time(OP)) as long as `time(OP) - time(RG) < Threshold`.
-However, if the Attestation Result contains an expiry time time(RX) then
-it could explicitly check `time(OP) < time(RX)`.
+it might allow use (at time(OP_r)) as long as `time(OP_r) - time(RG_v) < Threshold`.
+However, if the Attestation Result contains an expiry time time(RX_v) then
+it could explicitly check `time(OP_r) < time(RX_v)`.
 
 ## Example 2: Nonce-based Passport Model Example
 
@@ -1228,10 +1233,8 @@ are synchronized.
 
 As a result, the receiver of a conceptual message containing a
 timestamp cannot directly compare it to its own clock or timestamps.
-Thus we use a suffix (a for Attester, v for verifier, and r for Relying
-Party) on the IDs below indicating which clock generated them,
-since times from different clocks cannot be compared.  Only the
-delta between two events from the sender can be used by the receiver.
+Thus we use a suffix ("a" for Attester, "v" for Verifier, and "r" for Relying Party) on the IDs below indicating which clock generated them, since times from different clocks cannot be compared.
+Only the delta between two events from the sender can be used by the receiver.
 
 ~~~~
    .----------.                     .----------.  .---------------.
@@ -1297,15 +1300,15 @@ The only entity that requires access to a source of time is the entity taking on
 Handles are different from nonces as they can be used more than once and can be used by more than one entity at the same time.
 Handles are different from timestamps as they do not have to convey information about a point in time, but their reception creates that information.
 The reception of a handle is similar to the event that increments a relative tickcounter.
-Receipt of a new handle invalidates a previously received handle. 
+Receipt of a new handle invalidates a previously received handle.
 
 In this example, Evidence generation based on received handles always uses the current (most recent) handle.
 As handles are distributed over the network, all involved entities receive a fresh handle at roughly the same time.
-The time that represents this event is named Handle received: time(HR). Due to distribution over the network, there is some jitter with respect to time(HR) for each involved entity.
-To compensate for this jitter, there is a small period of overlap (a specified offset) in which both a current handle and corresponding former handle are valid in Evidence appraisal: `validity-duration = time(HR') + offset - time(HR)`. The offset is typically based on a network's round trip time.
-Analogously, the generation of valid Evidence is only possible, if the age of the handle used is lower than the validity-duration: `time(HR) - time(EG) < validity-duration`.
+Due to distribution over the network, there is some jitter with respect to the time the Handle is received, time(HR), for each involved entity.
+To compensate for this jitter, there is a small period of overlap (a specified offset) in which both a current handle and corresponding former handle are valid in Evidence appraisal: `validity-duration = time(HR'_v) + offset - time(HR_v)`. The offset is typically based on a network's round trip time.
+Analogously, the generation of valid Evidence is only possible, if the age of the handle used is lower than the validity-duration: `time(HR_v) - time(EG_a) < validity-duration`.
 
-From the point of view of a Verifier, the generation of valid Evidence is only possible, if the age of the handle used in the Evidence generation is younger than the duration of the distribution interval -- "(time(HD')-time(HD)) - (time(HR)-time(EG)) \< validity-duration".
+From the point of view of a Verifier, the generation of valid Evidence is only possible, if the age of the handle used in the Evidence generation is younger than the duration of the distribution interval -- "(time(HR'_v)-time(HR_v)) - (time(HR_a)-time(EG_a)) \< validity-duration".
 
 Due to the validity-duration of handles, multiple different pieces of Evidence can be generated based on the same handle.
 The resulting granularity (time resolution) of Evidence freshness is typically lower than the resolution of clock-based tickcounters.
@@ -1317,29 +1320,29 @@ The following example illustrates a hypothetical Background-Check Model solution
    .----------.   | Handle      |   .----------.  .---------------.
    | Attester |   | Distributor |   | Verifier |  | Relying Party |
    '----------'   '-------------'   '----------'  '---------------'
-     time(VG)            |                |               |
+     time(VG_a)          |                |               |
         |                |                |               |
         ~                ~                ~               ~
         |                |                |               |
-     time(HR)<-----------+-------------time(HR)------->time(HR)
+     time(HR_a)<---------+-------------time(HR_v)------>time(HR_r)
         |                |                |               |
-     time(EG)            |                |               |
-        |------Evidence{time(EG)}-------->|               |
-        |      {Handle1,time(EG)-time(VG)}|               |
-        |                |             time(RG)           |
+     time(EG_a)          |                |               |
+        |----Evidence{time(EG_a)}-------->|               |
+        | {Handle1,time(EG_a)-time(VG_a)}|                |
+        |                |             time(RG_v)         |
         |<-----Attestation Result---------|               |
-        |      {time(RG),time(RX)}        |               |
+        |   {time(RG_v),time(RX_v)}       |               |
         |                |                                |
         ~                ~                                ~
         |                |                                |
-     time(HR')<----------'---------------------------->time(HR')
+     time(HR_a')<--------'---------------------------->time(HR_r')
         |                                                 |
-     time(RR)
-        |----Attestation Result{time(RX)-time(RG)}---->time(RA)
-        |    {Handle2, time(RR)-time(EG)}                 |
+     time(RR_a)                                           /
+        |--Attestation Result{time(RX_v)-time(RG_v)}-->time(RA_r)
+        |    {Handle2, time(RR_a)-time(EG_a)}             |
         ~                                                 ~
         |                                                 |
-        |                                              time(OP)
+        |                                              time(OP_r)
         |                                                 |
 ~~~~
 
@@ -1350,22 +1353,22 @@ solution that uses timestamps and requires roughly synchronized
 clocks between the Attester, Verifier, and Relying Party.
 
 ~~~~
-.----------.         .---------------.              .----------.
-| Attester |         | Relying Party |              | Verifier |
-'----------'         '---------------'              '----------'
-  time(VG)                   |                           |
-        |                    |                           |
-        ~                    ~                           ~
-        |                    |                           |
-  time(EG)                   |                           |
-        |----Evidence------->|                           |
-        |    {time(EG)}   time(ER)--Evidence{time(EG)}-->|
-        |                    |                        time(RG)
-        |                 time(RA)<-Attestation Result---|
-        |                    |        {time(RX)}         |
-        ~                    ~                           ~
-        |                    |                           |
-        |                 time(OP)                       |
+.----------.         .---------------.                .----------.
+| Attester |         | Relying Party |                | Verifier |
+'----------'         '---------------'                '----------'
+  time(VG_a)                 |                             |
+        |                    |                             |
+        ~                    ~                             ~
+        |                    |                             |
+  time(EG_a)                 |                             |
+        |----Evidence------->|                             |
+        |   {time(EG_a)} time(ER_r)--Evidence{time(EG_a)}->|
+        |                    |                        time(RG_v)
+        |                 time(RA_r)<-Attestation Result---|
+        |                    |           {time(RX_v)}      |
+        ~                    ~                             ~
+        |                    |                             |
+        |                 time(OP_r)                       |
 ~~~~
 
 The time considerations in this example are equivalent to those
