@@ -13,6 +13,6 @@ endif
 IETFUSER=mcr+ietf@sandelman.ca
 # because "make upload" never works for MCR. Yes, there are better ways.
 
-upload: draft-ietf-rats-architecture-02.xml
-	curl -S -F "user=${IETFUSER}" -F "xml=@draft-ietf-rats-architecture-02.xml" https://datatracker.ietf.org/api/submit
+mcrsend: draft-ietf-rats-architecture-06.xml
+	curl -S -F "user=${IETFUSER}" -F "xml=@draft-ietf-rats-architecture-06.xml" https://datatracker.ietf.org/api/submit
 
