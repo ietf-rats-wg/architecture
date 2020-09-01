@@ -1156,6 +1156,7 @@ or might be defined relative to some other timestamp or timeticks counter.
 | HD | Handle distribution         | A centrally generated identifier for time-bound recentness across a domain of devices is successfully distributed to Attesters.
 | NS | Nonce sent                  | A nonce not predictable to an Attester (recentness & uniqueness) is sent to an Attester.
 | NR | Nonce relayed               | A nonce is relayed to an Attester by another entity.
+| HR | Handle received             | A handle distributed by a Handle Distributor was received
 | EG | Evidence generation         | An Attester creates Evidence from collected Claims.
 | ER | Evidence relayed            | A Relying Party relays Evidence to a Verifier.
 | RG | Result generation           | A Verifier appraises Evidence and generates an Attestation Result.
@@ -1280,7 +1281,65 @@ valid.  Thus, if the Attestation Result sends a validity lifetime
 in terms of time(RX)-time(RG), then the Relying Party can check
 `time(OP) - time(NS') < time(RX)-time(RG)`.
 
-## Example 3: Timestamp-based Background-Check Model Example
+## Example 3: Handle-based Passport Model Example
+
+Handles are a third option to establish time-keeping next to nonces or timestamps.
+Handles are opaque data intended to be available to all RATS roles that interact with each other, such as the Attester or Verifier, in specified intervals.
+To enable this availability, handles are distributed centrally by the Handle Distributor role over the network.
+As any other role, the Handle Distributor role can be taken on by a dedicated entity or collapsed with other roles, such as a Verifier.
+The use of handles can compensate for a lack of clocks or other sources of time on entities taking on RATS roles.
+The only entity that requires access to a source of time is the entity taking on the role of Handle Distributor.
+
+Handles are different to nonces as they are not used only once and are used by more than one entity at the same time.
+Handles are different to timestamps as they do not have to convey information about a point in time, but their reception creates that information.
+The reception of a handle is similar to the event that increments a relative tickcounter.
+The event at which a handle is received a new (most recent) handle outdates (and therefore invalidates) the former received handle.
+
+In this example, Evidence generation based on received handles always uses the current (most recent) handle.
+As handles are distributed over the network, all involved entities receive a fresh handle at roughly the same time.
+The time that represents this event is named Handle received: time(HR). Due to distribution over the network, there is some jitter with respect to time(HR) for each involved entity.
+To compensate for this jitter, there is a small period of overlap (a specified offset) in which both a current handle and corresponding former handle are valid in Evidence appraisal: `validity-duration = time(HR') + offset - time(HR)`. The offset is typically based on a network's round trip time.
+Analogously, the generation of valid Evidence is only possible, if the age of the handle used is lower than the validity-duration: `delta(time(EG),time(HR) < validity-duration`.
+
+From the point of view of a Verifier, the generation of valid Evidence is only possible, if the age of the handle used in the Evidence generation is younger than the duration of the distribution interval -- "delta(time(HD),time(EG)) \< delta(time(HD),time(HD'))".
+
+Due to the validity-duration of handles, multiple different pieces of Evidence can be generated based on the same handle.
+The resulting granularity (time resolution) of Evidence freshness is typically lower than the resolution of clock-based tickcounters.
+
+The following example illustrates a hypothetical Background-Check Model solution that uses handles and requires a trustworthy time source available to the Handle Distributor role.
+
+~~~~
+                  .-------------.
+   .----------.   | Handle      |   .----------.  .---------------.
+   | Attester |   | Distributor |   | Verifier |  | Relying Party |
+   '----------'   '-------------'   '----------'  '---------------'
+     time(VG)            |                |               |
+        |                |                |               |
+        ~                ~                ~               ~
+        |                |                |               |
+     time(HR)<-----------+-------------time(HR)------->time(HR)
+        |                |                |               |
+     time(EG)            |                |               |
+        |------Evidence{time(EG)}-------->|               |
+        |      {Handle1,time(EG)-time(VG)}|               |
+        |                |             time(RG)           |
+        |<-----Attestation Result---------|               |
+        |      {time(RG),time(RX)}        |               |
+        |                |                                |
+        ~                ~                                ~
+        |                |                                |
+     time(HR')<----------'---------------------------->time(HR')
+        |                                                 |
+     time(RR)
+        |----Attestation Result{time(RX)-time(RG)}---->time(RA)
+        |    {Handle2, time(RR)-time(EG)}                 |
+        ~                                                 ~
+        |                                                 |
+        |                                              time(OP)
+        |                                                 |
+~~~~
+
+## Example 4: Timestamp-based Background-Check Model Example
 
 The following example illustrates a hypothetical Background-Check Model
 solution that uses timestamps and requires roughly synchronized
@@ -1308,7 +1367,7 @@ clocks between the Attester, Verifier, and Relying Party.
 The time considerations in this example are equivalent to those
 discussed under Example 1 above.
 
-## Example 4: Nonce-based Background-Check Model Example
+## Example 5: Nonce-based Background-Check Model Example
 
 The following example illustrates a hypothetical Background-Check Model
 solution that uses nonces and thus does not require that any clocks
