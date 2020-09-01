@@ -1233,10 +1233,8 @@ are synchronized.
 
 As a result, the receiver of a conceptual message containing a
 timestamp cannot directly compare it to its own clock or timestamps.
-Thus we use a suffix (a for Attester, v for verifier, and r for Relying
-Party) on the IDs below indicating which clock generated them,
-since times from different clocks cannot be compared.  Only the
-delta between two events from the sender can be used by the receiver.
+Thus we use a suffix ("a" for Attester, "v" for Verifier, and "r" for Relying Party) on the IDs below indicating which clock generated them, since times from different clocks cannot be compared.
+Only the delta between two events from the sender can be used by the receiver.
 
 ~~~~
    .----------.                     .----------.  .---------------.
