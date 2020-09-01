@@ -1238,26 +1238,26 @@ delta between two events from the sender can be used by the receiver.
    .----------.                     .----------.  .---------------.
    | Attester |                     | Verifier |  | Relying Party |
    '----------'                     '----------'  '---------------'
-     time(VGa)                            |               |
+     time(VG_a)                           |               |
         |                                 |               |
         ~                                 ~               ~
         |                                 |               |
-        |<--Nonce1---------------------time(NSv)          |
-     time(EGa)                            |               |
+        |<--Nonce1---------------------time(NS_v)         |
+     time(EG_a)                           |               |
         |---Evidence--------------------->|               |
-        |   {Nonce1, time(EGa)-time(VGa)} |               |
-        |                              time(RGv)          |
+        | {Nonce1, time(EG_a)-time(VG_a)} |               |
+        |                              time(RG_v)         |
         |<--Attestation Result------------|               |
-        |   {time(RXv)-time(RGv)}         |               |
+        |   {time(RX_v)-time(RG_v)}       |               |
         ~                                                 ~
         |                                                 |
-        |<--Nonce2-------------------------------------time(NSr)
+        |<--Nonce2-------------------------------------time(NS_r)
      time(RRa)
-        |---Attestation Result{time(RXv)-time(RGv)}--->time(RAr)
-        |   Nonce2, time(RRa)-time(EGa)                   |
+        |---Attestation Result{time(RX_v)-time(RG_v)}->time(RA_r)
+        |   Nonce2, time(RR_a)-time(EG_a)                 |
         ~                                                 ~
         |                                                 |
-        |                                              time(OPr)
+        |                                              time(OP_r)
 ~~~~
 
 In this example solution, the Verifier can check whether the Evidence is
@@ -1326,21 +1326,21 @@ the Relying Party needs to send one to an Attester.
 .----------.         .---------------.              .----------.
 | Attester |         | Relying Party |              | Verifier |
 '----------'         '---------------'              '----------'
-  time(VGa)                  |                           |
+  time(VG_a)                 |                           |
      |                       |                           |
      ~                       ~                           ~
      |                       |                           |
-     |                       |<------Nonce------------time(NSv)
-     |<---Nonce-----------time(NRr)                      |
-  time(EGa)                  |                           |
+     |                       |<-------Nonce-----------time(NS_v)
+     |<---Nonce-----------time(NR_r)                     |
+  time(EG_a)                 |                           |
      |----Evidence{Nonce}--->|                           |
-     |                    time(ERr)--Evidence{Nonce}---->|
-     |                       |                        time(RGv)
-     |                    time(RAr)<-Attestation Result--|
-     |                       |     {time(RXv)-time(RGv)} |
+     |                    time(ER_r)--Evidence{Nonce}--->|
+     |                       |                        time(RG_v)
+     |                    time(RA_r)<-Attestation Result-|
+     |                       |   {time(RX_v)-time(RG_v)} |
      ~                       ~                           ~
      |                       |                           |
-     |                    time(OPr)                      |
+     |                    time(OP_r)                     |
 ~~~~
 
 The Verifier can check whether the Evidence is fresh, and whether a claim
@@ -1348,10 +1348,10 @@ value is recent, the same as in Example 2 above.
 
 However, unlike in Example 2, the Relying Party can use the Nonce to
 determine whether the Attestation Result is fresh, by verifying that
-`time(OPr)-time(NRr) < Threshold`.
+`time(OP_r)-time(NR_r) < Threshold`.
 
 The Relying Party must still be careful, however, to not allow continued
 use beyond the period for which it deems the Attestation Result to remain
 valid.  Thus, if the Attestation Result sends a validity lifetime
-in terms of time(RXv)-time(RGv), then the Relying Party can check
-`time(OPr)-time(ERr) < time(RXv)-time(RGv)`.
+in terms of `time(RX_v)-time(RG_v)`, then the Relying Party can check
+`time(OP_r)-time(ER_r) < time(RX_v)-time(RG_v)`.
