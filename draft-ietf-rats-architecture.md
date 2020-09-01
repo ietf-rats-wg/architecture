@@ -1317,7 +1317,7 @@ The following example illustrates a hypothetical Background-Check Model solution
         |                |                |               |
         ~                ~                ~               ~
         |                |                |               |
-     time(HR)<-----------+-------------time(HR)------->time(HR)
+     time(HRa)<----------+-------------time(HRv)------>time(HRr)
         |                |                |               |
      time(EG)            |                |               |
         |------Evidence{time(EG)}-------->|               |
@@ -1328,7 +1328,7 @@ The following example illustrates a hypothetical Background-Check Model solution
         |                |                                |
         ~                ~                                ~
         |                |                                |
-     time(HR')<----------'---------------------------->time(HR')
+     time(HRa')<----------'-------------------------->time(HRr')
         |                                                 |
      time(RR)
         |----Attestation Result{time(RX)-time(RG)}---->time(RA)
