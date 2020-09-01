@@ -1310,7 +1310,7 @@ Due to distribution over the network, there is some jitter with respect to the t
 To compensate for this jitter, there is a small period of overlap (a specified offset) in which both a current handle and corresponding former handle are valid in Evidence appraisal: `validity-duration = time(HR'_v) + offset - time(HR_v)`. The offset is typically based on a network's round trip time.
 Analogously, the generation of valid Evidence is only possible, if the age of the handle used is lower than the validity-duration: `time(HR_v) - time(EG_a) < validity-duration`.
 
-From the point of view of a Verifier, the generation of valid Evidence is only possible, if the age of the handle used in the Evidence generation is younger than the duration of the distribution interval -- "(time(HD')-time(HD)) - (time(HR_a)-time(EG_a)) \< validity-duration".
+From the point of view of a Verifier, the generation of valid Evidence is only possible, if the age of the handle used in the Evidence generation is younger than the duration of the distribution interval -- "(time(HR'_v)-time(HR_v)) - (time(HR_a)-time(EG_a)) \< validity-duration".
 
 Due to the validity-duration of handles, multiple different pieces of Evidence can be generated based on the same handle.
 The resulting granularity (time resolution) of Evidence freshness is typically lower than the resolution of clock-based tickcounters.
