@@ -133,7 +133,7 @@ This document uses the following terms.
 
 Appraisal Policy for Evidence:
 
-: A set of rules, reference values and such that is used by a Verifier to evaluate the Evidence from an Attester. Compare /security policy/ in {{RFC4949}}
+: A set of rules that informs a Verifier regarding the appraisal of the Evidence, e.g., "byte-compare Claims in little-endian with reference values in big-endian". Compare /security policy/ in {{RFC4949}}.
 
 Appraisal Policy for Attestation Results:
 
