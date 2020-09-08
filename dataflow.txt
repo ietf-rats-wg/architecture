@@ -1,25 +1,27 @@
-           ************   ************     ****************
-           * Endorser *   * Verifier *     * Relying Party*
-           ************   *  Owner   *     *  Owner       *
-                 |        ************     ****************
-                 |              |                 |
-     Endorsements|              |                 |
-                 |              |Appraisal        |
-                 |              |Policy           |
-                 |              |for              | Appraisal
-                 |              |Evidence         | Policy for
-                 |              |                 | Attestation
-                 |              |                 |  Results
-                 v              v                 |
-               .-----------------.                |
-        .----->|     Verifier    |------.         |
-        |      '-----------------'      |         |
-        |                               |         |
-        |                    Attestation|         |
-        |                    Results    |         |
-        | Evidence                      |         |
-        |                               |         |
-        |                               v         v
-  .----------.                      .-----------------.
-  | Attester |                      | Relying Party   |
-  '----------'                      '-----------------'
+                    ************
+                    * Endorser *
+                    ************ ************    *****************
+                            |    * Verifier *    * Relying Party *
+                            |    *  Owner   *    *  Owner        *
+*******************         |    ************    *****************
+*   Reference     *         |          |                 |
+*      Value      *----.    |          |                 |
+*    Provider     *    |  Endorsements |Appraisal        |
+*******************    |    |          |Policy for       |
+              Reference|    |          |Evidence         | Appraisal  
+                 Values|    |          |                 | Policy for 
+                       |    |          |                 | Attestation
+                       |    |          |                 |  Result    
+                       |    |          v                 |
+                       v    v                            |
+                     .-----------------.                 |
+               .---->|     Verifier    |-------.         |
+               |     '-----------------'       |         |
+               |                    Attestation|         |
+               |                    Results    |         |
+               | Evidence                      |         |
+               |                               |         |
+               |                               v         v
+         .----------.                      .-----------------.
+         | Attester |                      | Relying Party   |
+         '----------'                      '-----------------'
