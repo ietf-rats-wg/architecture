@@ -718,6 +718,13 @@ could establish trust in a Verifier as discussed above.
 
 ## Attester
 
+The Attester proves it is trustworthy to the Verifier by using key material provisioned into it by the Endorser.
+The proof is by the signing or authenticating of Attestation Evidence (see discussion on freshness elsewhere in this document).
+The Endorser only puts this key material into Attesters that it trusts.
+This part of the Attester is often known as, or performed by, a root of trust.
+The security strength or value of the overall Attestation depends greatly on the security strength of the implementation of the root of trust.
+See further discussion in Security Considerations.
+
 In some scenarios, Evidence might contain sensitive information such as
 Personally Identifiable Information.
 Thus, an Attester must trust entities to which it conveys Evidence, to not
@@ -743,19 +750,9 @@ in order to bootstrap the sequence.
 
 ## Verifier
 
-The Verifier trusts (or more specifically, the Verifier's security
-policy is written in a way that configures the Verifier to trust) a
-manufacturer, or the manufacturer's hardware, so as to be able to
-appraise the trustworthiness of that manufacturer's devices.  In solutions
-with weaker security, a Verifier might be configured to implicitly
-trust firmware or even software (e.g., a hypervisor).  That is, it
-might appraise the trustworthiness of an application component, operating
-system component, or service under the assumption that information
-provided about it by the lower-layer hypervisor or firmware is true.
-A stronger level of assurance of security comes when information can be vouched
-for by hardware or by ROM code, especially if such hardware is
-physically resistant to hardware tampering.  The component that is
-implicitly trusted is often referred to as a Root of Trust.
+The Verifier trusts (or more specifically, the Verifier's security policy is written in a way that configures the Verifier to trust) an Endorser who supplies an Endorsement which contains information by which the Verifier can come to trust the Attester.
+Typically, that information is a key used to verify the signature on Attestation Evidence which proves that the Attester has the private key that is only put into trustworthy devices by the Endorser.
+That is, the Verifier comes to trust the Attester transitively through the Endorser.
 
 A conveyance protocol that provides authentication and integrity protection can be used
 to convey unprotected Evidence, assuming the following properties exists:
