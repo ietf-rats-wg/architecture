@@ -166,6 +166,15 @@ Evidence:
 : A set of information about an Attester that is to be appraised by a Verifier.
 Evidence may include configuration data, measurements, telemetry, or inferences.
 
+Reference Value Provider:
+
+: An entity (typically a manufacturer) whose Reference Values help Verifiers appraise the authenticity of Evidence.
+
+Reference Values:
+
+: A set of values against which values of Claims can be compared as part of
+applying an Appraisal Policy for Evidence.
+
 Relying Party:
 
 : A role performed by an entity that depends on the validity of information about an Attester, for purposes of reliably applying application specific actions.  Compare /relying party/ in {{RFC4949}}
@@ -374,15 +383,17 @@ and/or is programmed into the Relying Party.
 The Verifier, when appraising Evidence, or the Relying Party, when
 appraising Attestation Results, checks the values of some claims
 against constraints specified in its Appraisal Policy.  Such constraints might
-involve a comparison for equality against a reference value, or a check for being in
-a range bounded by reference values, or membership in a set of reference values,
+involve a comparison for equality against a Reference Value, or a check for being in
+a range bounded by Reference Values, or membership in a set of Reference Values,
 or a check against values in other claims, or any other test.
 
-Such reference values might be specified as part of the Appraisal Policy itself,
+## Reference Values
+
+Reference Values used in appraisal might be specified as part of the Appraisal Policy itself,
 or might be obtained from a separate source, such as an Endorsement, and then used by
 the Appraisal Policy.
 
-The actual data format and semantics of any reference values are specific to
+The actual data format and semantics of any Reference Values are specific to
 claims and implementations. This architecture document does not define any
 general purpose format for them or general means for comparison.
 
@@ -823,7 +834,7 @@ private key is only known inside the device's hardware.  Thus, when Evidence and
 are used together, an appraisal procedure can be conducted based on Appraisal Policies that may not be specific to the
 device instance, but merely specific to the manufacturer providing the Endorsement. For example,
 an Appraisal Policy might simply check that devices from a given manufacturer have information
-matching a set of known-good reference values, or an Appraisal Policy might have a set of more complex
+matching a set of known-good Reference Values, or an Appraisal Policy might have a set of more complex
 logic on how to appraise the validity of information.
 
 However, while an Appraisal Policy that treats all devices from a given manufacturer the same
@@ -851,7 +862,7 @@ An Attestation Result that indicates compliance can be used by a Relying Party t
 authorization decisions based on the Relying Party's Appraisal Policy.  The simplest such
 policy might be to simply authorize any party supplying a compliant Attestation Result
 signed by a trusted Verifier.  A more complex policy might also entail comparing information
-provided in the result against known-good reference values, or applying more complex logic
+provided in the result against known-good Reference Values, or applying more complex logic
 on such information.
 
 Thus, Attestation Results often need to include detailed information about the Attester,
