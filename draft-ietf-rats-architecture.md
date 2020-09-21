@@ -1330,7 +1330,7 @@ The operating system vendor is at the center. It sets the architecture and the l
 * Generates large quantities of ECDSA key pairs to be used as per-device attestation keys
 * Signs the public keys using an attestation PKI and root that they control creating per-device certificates.
 * Securely sends the private keys and certificates to the device OEM in batches to be used in manufacturing
-* Authors the device SW that is the Attester and ships it to the OEMs. This is a part of the OS.
+* Authors the device software that is the Attester and ships it to the OEMs. This is a part of the OS.
 * Publishes the root certificate and definition of the claims
 
 The device OEM does the manufacturing. It performs the following:
