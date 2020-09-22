@@ -155,7 +155,7 @@ Claim:
 
 Endorsement:
 
-: A secure statement that some entity (typically a manufacturer) vouches for the integrity of an Attester's signing capability
+: A secure statement that some entity (typically a manufacturer) vouches for the integrity of an Attesting Environment's various capabilities such as Claims collection and Evidence signing
 
 Endorser:
 
