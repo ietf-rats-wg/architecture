@@ -750,7 +750,9 @@ in order to bootstrap the sequence.
 
 ## Verifier
 
-The Verifier trusts (or more specifically, the Verifier's security policy is written in a way that configures the Verifier to trust) an Endorser who supplies an Endorsement which contains information by which the Verifier can come to trust the Attester.
+The Verifier trusts (or more specifically, the Verifier's security
+policy is written in a way that configures the Verifier to trust) an
+Endorser who supplies an Endorsement which contains information by which the Verifier can come to trust the Attester.
 Typically, that information is a key used to verify the signature on Attestation Evidence which proves that the Attester has the private key that is only put into trustworthy devices by the Endorser.
 That is, the Verifier comes to trust the Attester transitively through the Endorser.
 
