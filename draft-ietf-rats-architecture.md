@@ -719,11 +719,11 @@ could establish trust in a Verifier as discussed above.
 ## Attester
 
 The Attester proves it is trustworthy to the Verifier by using key material provisioned into it by the Endorser.
-The proof is by the signing or authenticating of Attestation Evidence (see discussion on freshness elsewhere in this document).
+The proof is by the signing or authenticating of Attestation Evidence. See {{freshness}}.
 The Endorser only puts this key material into Attesters that it trusts.
 This part of the Attester is often known as, or performed by, a root of trust.
 The security strength or value of the overall Attestation depends greatly on the security strength of the implementation of the root of trust.
-See further discussion in Security Considerations.
+See {{security-considerations}}.
 
 In some scenarios, Evidence might contain sensitive information such as
 Personally Identifiable Information.
@@ -898,7 +898,7 @@ a different format.
 ~~~~
 {:multievidence #multievidence_diag title="Multiple Attesters and Relying Parties with Different Formats"}
 
-# Freshness
+# Freshness {#freshness}
 
 A remote entity (Verifier or Relying Party) may need to learn the point in time
 (i.e., the "epoch") an Evidence or Attestation Result has been produced.  This
@@ -1010,7 +1010,7 @@ an Attester can first act as a Relying Party and ask for the Verifier's own
 Attestation Result, and appraising it just as a Relying Party would appraise
 an Attestation Result for any other purpose.
 
-# Security Considerations
+# Security Considerations {#security-considerations}
 
 ## Attester and Attestation Key Protection
 
