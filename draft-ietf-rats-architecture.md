@@ -173,7 +173,11 @@ Reference Value Provider:
 Reference Values:
 
 : A set of values against which values of Claims can be compared as part of
-applying an Appraisal Policy for Evidence.
+applying an Appraisal Policy for Evidence.  Reference Values are sometimes
+referred to in other documents as known-good values, golden measurements,
+or nominal values, although those terms typically assume comparison for
+equality, whereas here Reference Values might be more general and be used
+in any sort of comparison.
 
 Relying Party:
 
@@ -834,7 +838,7 @@ private key is only known inside the device's hardware.  Thus, when Evidence and
 are used together, an appraisal procedure can be conducted based on Appraisal Policies that may not be specific to the
 device instance, but merely specific to the manufacturer providing the Endorsement. For example,
 an Appraisal Policy might simply check that devices from a given manufacturer have information
-matching a set of known-good Reference Values, or an Appraisal Policy might have a set of more complex
+matching a set of Reference Values, or an Appraisal Policy might have a set of more complex
 logic on how to appraise the validity of information.
 
 However, while an Appraisal Policy that treats all devices from a given manufacturer the same
@@ -862,7 +866,7 @@ An Attestation Result that indicates compliance can be used by a Relying Party t
 authorization decisions based on the Relying Party's Appraisal Policy.  The simplest such
 policy might be to simply authorize any party supplying a compliant Attestation Result
 signed by a trusted Verifier.  A more complex policy might also entail comparing information
-provided in the result against known-good Reference Values, or applying more complex logic
+provided in the result against Reference Values, or applying more complex logic
 on such information.
 
 Thus, Attestation Results often need to include detailed information about the Attester,
