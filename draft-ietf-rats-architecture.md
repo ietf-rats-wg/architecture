@@ -805,10 +805,10 @@ to convey unprotected Evidence, assuming the following properties exists:
    2. All unprotected Evidence that is conveyed is supplied exclusively by the Attesting Environment that has the key  material that protects the conveyance channel
    3. The Root of Trust protects both the conveyance channel key material and the Attesting Environment with equivalent strength protections.
 
-## Endorser and Verifier Owner
+## Endorser, Reference Value Provider, and Verifier Owner
 
-In some scenarios, the Endorser and Verifier Owner may need to trust the Verifier
-before giving the Endorsement and Appraisal Policy to it.  This can be done
+In some scenarios, the Endorser, Reference Value Provider, and Verifier Owner may need to trust the Verifier
+before giving the Endorsement, Reference Values, or Appraisal Policy to it.  This can be done
 similarly to how a Relying Party might establish trust in a Verifier as
 discussed above, and in such a case, mutual attestation might even
 be needed as discussed in {{rpowner-trust}}.
