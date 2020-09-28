@@ -718,12 +718,15 @@ could establish trust in a Verifier as discussed above.
 
 ## Attester
 
-The Attester proves it is trustworthy to the Verifier by using key material provisioned into it by the Endorser.
-The proof is by the signing or authenticating of Attestation Evidence. See {{freshness}}.
-The Endorser only puts this key material into Attesters that it trusts.
+Attesters prove their trustworthiness to Verifiers via key material that is established in their Attesting Environments by an Attester manufacturer and/or an Endorser.
+The proof is by the signing or authenticating of Evidence. See {{freshness}}.
+The Attester manufacturer and/or Endorser only puts this key material into Attesters that it trusts.
 This part of the Attester is often known as, or performed by, a root of trust.
 The security strength or value of the overall Attestation depends greatly on the security strength of the implementation of the root of trust.
-See {{security-considerations}}.
+See {{security-considerations}} for discussion on security strength.
+
+There is also a non-remote attestation use case where the Attester and Verifier are directly connected such that cryptographic proof of trustworthiness is unnecessary (e.g., they are on the same chip).
+See {{security-considerations}} for discussion on security strength.
 
 In some scenarios, Evidence might contain sensitive information such as
 Personally Identifiable Information.
@@ -750,11 +753,13 @@ in order to bootstrap the sequence.
 
 ## Verifier
 
-The Verifier trusts (or more specifically, the Verifier's security
-policy is written in a way that configures the Verifier to trust) an
-Endorser who supplies an Endorsement which contains information by which the Verifier can come to trust the Attester.
-Typically, that information is a key used to verify the signature on Attestation Evidence which proves that the Attester has the private key that is only put into trustworthy devices by the Endorser.
-That is, the Verifier comes to trust the Attester transitively through the Endorser.
+The Verifier is configured with key material from the Attester manufacturer and/or the Endorser.  
+It uses this key material to verify the signed evidence it received from the Attester and thus comes to trust the Attester. 
+That is, the Verifier comes to trust the Attester transitively through the Attester manufacturer and/or Endorser.
+
+There is also a non-remote use case where the Verifier is configured to directly trust the Attester without use of keys and signed evidence because the connection is direct (e.g., it is on the same chip). 
+
+See {{security-considerations}} for discussion on security strength.
 
 A conveyance protocol that provides authentication and integrity protection can be used
 to convey unprotected Evidence, assuming the following properties exists:
