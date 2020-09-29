@@ -750,7 +750,7 @@ such trust in a Verifier "B", would be for B to first act as an Attester
 where A acts as a combined Verifier/Relying Party.  If A then accepts B as
 trustworthy, it can choose to accept B as a Verifier for other Attesters.
 
-As another example, the Relying Party can establish trust in the Verifier by out of band establishment of key material, combined with a protocol like TLS to communicate. 
+As another example, the Relying Party can establish trust in the Verifier by out of band establishment of key material, combined with a protocol like TLS to communicate.
 There is an assumption that between the establishment of the trusted key material and the creation of the Evidence, that the Verifier has not been compromised.
 
 Similarly, the Relying Party also needs to trust the Relying Party Owner
@@ -787,6 +787,21 @@ in order to bootstrap the sequence.
 
 ## Verifier
 
+The Verifier trusts (or more specifically, the Verifier's security
+policy is written in a way that configures the Verifier to trust) a
+manufacturer, or the manufacturer's hardware, so as to be able to
+appraise the trustworthiness of that manufacturer's devices.
+
+In solutions with weaker security, a Verifier might be configured to implicitly
+trust firmware or even software (e.g., a hypervisor).
+That is, it might appraise the trustworthiness of an application component, operating
+system component, or service under the assumption that information
+provided about it by the lower-layer hypervisor or firmware is true.
+A stronger level of assurance of security comes when information can be vouched
+for by hardware or by ROM code, especially if such hardware is
+physically resistant to hardware tampering.
+The component that is implicitly trusted is often referred to as a root of trust.
+
 The manufacturer of the Attester arranges for its Attesting Environment to be provisioned with key material.
 
 The signing key material is typically in the form of an asymmetric key pair (e.g., an RSA or ECDSA private key
@@ -794,20 +809,6 @@ and a manufacturer signed IDevID certificate) secured in the Attester.
 
 The Verifier is provided with an appropriate trust anchor, or provided with a database of public keys (rather than certificates), or even carefully secured lists of symmetric keys.
 The nature of how the Verifier manages to validate the signatures produced by the Attester is critical to the secure operation an Attestation system, but is not the subject of standardization within this architecture.
-
-The Verifier trusts (or more specifically, the Verifier's security
-policy is written in a way that configures the Verifier to trust) a
-manufacturer, or the manufacturer's hardware, so as to be able to
-appraise the trustworthiness of that manufacturer's devices.  In solutions
-with weaker security, a Verifier might be configured to implicitly
-trust firmware or even software (e.g., a hypervisor).  That is, it
-might appraise the trustworthiness of an application component, operating
-system component, or service under the assumption that information
-provided about it by the lower-layer hypervisor or firmware is true.
-A stronger level of assurance of security comes when information can be vouched
-for by hardware or by ROM code, especially if such hardware is
-physically resistant to hardware tampering.  The component that is
-implicitly trusted is often referred to as a root of trust.
 
 A conveyance protocol that provides authentication and integrity protection can be used
 to convey unprotected Evidence, assuming the following properties exists:
