@@ -762,6 +762,16 @@ could establish trust in a Verifier as discussed above.
 
 ## Attester
 
+The manufacturer of the Attester arranges to provision keying material into into the Attester.
+As an Endorser, this manufacturer also arranges for the Verifier to be able to verify signatures from this keying material.
+
+This is typically in the form of asymmetric keypairs (e.g., an RSA or ECDSA private key
+and a manufacturer signed IDevID certificate) secured in the Attester, with an appropriate trust anchor provided to the Verifier.
+But, these Endorsements may come in many other forms including databases of public keys (rather than certificates), or even carefully secured lists of symmetric keys.
+The nature of how the Verifier manages to validate the signatures produced by the Attester is critical to the secure operation an Attestation system, but is not the subject of standardization within this architecture.
+
+See {{security-considerations}} for discussion on security strength.
+
 In some scenarios, Evidence might contain sensitive information such as
 Personally Identifiable Information.
 Thus, an Attester must trust entities to which it conveys Evidence, to not
