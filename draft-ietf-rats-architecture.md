@@ -762,16 +762,6 @@ could establish trust in a Verifier as discussed above.
 
 ## Attester
 
-The manufacturer of the Attester arranges for its Attesting Environment to be provisioned with key material.
-
-The signing key material is typically in the form of an asymmetric key pair (e.g., an RSA or ECDSA private key
-and a manufacturer signed IDevID certificate) secured in the Attester.
-
-The Verifier is provided with an appropriate trust anchor, or provided with a database of public keys (rather than certificates), or even carefully secured lists of symmetric keys.
-The nature of how the Verifier manages to validate the signatures produced by the Attester is critical to the secure operation an Attestation system, but is not the subject of standardization within this architecture.
-
-See {{security-considerations}} for discussion on security strength.
-
 In some scenarios, Evidence might contain sensitive information such as
 Personally Identifiable Information.
 Thus, an Attester must trust entities to which it conveys Evidence, to not
@@ -797,6 +787,15 @@ in order to bootstrap the sequence.
 
 ## Verifier
 
+The manufacturer of the Attester arranges for its Attesting Environment to be provisioned with key material.
+
+The signing key material is typically in the form of an asymmetric key pair (e.g., an RSA or ECDSA private key
+and a manufacturer signed IDevID certificate) secured in the Attester.
+
+The Verifier is provided with an appropriate trust anchor, or provided with a database of public keys (rather than certificates), or even carefully secured lists of symmetric keys.
+The nature of how the Verifier manages to validate the signatures produced by the Attester is critical to the secure operation an Attestation system, but is not the subject of standardization within this architecture.
+
+See {{security-considerations}} for discussion on security strength.
 The Verifier trusts (or more specifically, the Verifier's security
 policy is written in a way that configures the Verifier to trust) a
 manufacturer, or the manufacturer's hardware, so as to be able to
