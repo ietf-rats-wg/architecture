@@ -795,7 +795,6 @@ and a manufacturer signed IDevID certificate) secured in the Attester.
 The Verifier is provided with an appropriate trust anchor, or provided with a database of public keys (rather than certificates), or even carefully secured lists of symmetric keys.
 The nature of how the Verifier manages to validate the signatures produced by the Attester is critical to the secure operation an Attestation system, but is not the subject of standardization within this architecture.
 
-See {{security-considerations}} for discussion on security strength.
 The Verifier trusts (or more specifically, the Verifier's security
 policy is written in a way that configures the Verifier to trust) a
 manufacturer, or the manufacturer's hardware, so as to be able to
@@ -816,6 +815,8 @@ to convey unprotected Evidence, assuming the following properties exists:
    1. The key material used to authenticate and integrity protect the conveyance channel is trusted by the Verifier to speak for the Attesting Environment(s) that collected claims about the Target Environment(s).
    2. All unprotected Evidence that is conveyed is supplied exclusively by the Attesting Environment that has the key  material that protects the conveyance channel
    3. The root of trust protects both the conveyance channel key material and the Attesting Environment with equivalent strength protections.
+
+See {{security-considerations}} for discussion on security strength.
 
 ## Endorser, Reference Value Provider, and Verifier Owner
 
