@@ -157,7 +157,7 @@ Endorsement:
 
 Endorser:
 
-: An entity (typically a manufacturer) whose Endorsements are required for Verifiers to appraise the authenticity of Evidence.
+: An role performed by an entity (typically a manufacturer) whose Endorsements are required for Verifiers to appraise the authenticity of Evidence.
 
 Evidence:
 
@@ -170,7 +170,7 @@ Relying Party:
 
 Relying Party Owner:
 
-: An entity (typically an administrator), that is authorized to configure Appraisal Policy for Attestation Results in a Relying Party.
+: An role performed by an entity (typically an administrator), that is authorized to configure Appraisal Policies for Attestation Results for Relying Party.
 
 Verifier:
 
@@ -179,7 +179,7 @@ Verifier:
 
 Verifier Owner:
 
-: An entity (typically an administrator), that is authorized to configure Appraisal Policy for Evidence in a Verifier.
+: An role performed by an entity (typically an administrator), that is authorized to configure Appraisal Policy for Evidence in a Verifier. A Verifier Owner manages the trust anchors of a Verifier via trust decisions.
 
 # Reference Use Cases {#referenceusecases}
 
