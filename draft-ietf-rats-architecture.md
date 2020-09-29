@@ -763,7 +763,7 @@ could establish trust in a Verifier as discussed above.
 ## Attester
 
 The manufacturer of the Attester arranges for the Attester to be provisioned with key material.
-As an Endorser, this manufacturer also arranges for the Verifier to be able to verify signatures from this keying material.
+As an Endorser, this manufacturer also arranges for the Verifier to be able to verify signatures from this key material.
 
 The key material is typically in the form of asymmetric keypairs (e.g., an RSA or ECDSA private key
 and a manufacturer signed IDevID certificate) secured in the Attester, with an appropriate trust anchor provided to the Verifier.
