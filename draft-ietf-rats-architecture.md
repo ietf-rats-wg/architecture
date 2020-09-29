@@ -750,6 +750,9 @@ such trust in a Verifier "B", would be for B to first act as an Attester
 where A acts as a combined Verifier/Relying Party.  If A then accepts B as
 trustworthy, it can choose to accept B as a Verifier for other Attesters.
 
+As another example, the Relying Party can establish trust in the Verifier by out of band establishment of key material, combined with a protocol like TLS to communicate. 
+There is an assumption that between the establishment of the trusted key material and the creation of the Evidence, that the Verifier has not been compromised.
+
 Similarly, the Relying Party also needs to trust the Relying Party Owner
 for providing its Appraisal Policy for Attestation Results, and
 in some scenarios the Relying Party might even require that the
@@ -767,7 +770,7 @@ The Verifier might share this information with other authorized parties, accordi
 In the background-check model, this Evidence may also be revealed to Relying Party(s).
 
 In some cases where Evidence contains sensitive information, an Attester
-might even require that a Verifier first go through a remote attestation procedure with it before the Attester
+might even require that a Verifier first go through a TLS authentication or a remote attestation procedure with it before the Attester
 will send the sensitive Evidence.  This can be done by having the
 Attester first act as a Verifier/Relying Party, and the Verifier act as its
 own Attester, as discussed above.
@@ -778,7 +781,7 @@ The Relying Party Owner might also require that the
 Relying Party first act as an Attester, providing Evidence that the Owner
 can appraise, before the Owner would give the Relying Party an updated
 policy that might contain sensitive information.  In such a case,
-mutual attestation might be needed, in which case typically one side's
+mutual authentication or attestation might be needed, in which case typically one side's
 Evidence must be considered safe to share with an untrusted entity,
 in order to bootstrap the sequence.
 
@@ -810,7 +813,7 @@ to convey unprotected Evidence, assuming the following properties exists:
 In some scenarios, the Endorser, Reference Value Provider, and Verifier Owner may need to trust the Verifier
 before giving the Endorsement, Reference Values, or Appraisal Policy to it.  This can be done
 similarly to how a Relying Party might establish trust in a Verifier as
-discussed above, and in such a case, mutual attestation might even
+discussed above, and in such a case, mutual authentication or attestation might even
 be needed as discussed in {{rpowner-trust}}.
 
 # Conceptual Messages {#messages}
