@@ -723,7 +723,6 @@ The proof is by the signing or authenticating of Evidence. See {{freshness}}.
 The Attester manufacturer and/or Endorser only puts this key material into Attesters that it trusts.
 This part of the Attester is often known as, or performed by, a root of trust.
 The security strength or value of the overall Attestation depends greatly on the security strength of the implementation of the root of trust.
-See {{security-considerations}} for discussion on security strength.
 
 There is also a non-remote attestation use case where the Attester and Verifier are directly connected such that cryptographic proof of trustworthiness is unnecessary (e.g., they are on the same chip).
 See {{security-considerations}} for discussion on security strength.
