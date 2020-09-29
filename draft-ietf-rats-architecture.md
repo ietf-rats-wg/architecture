@@ -734,7 +734,9 @@ For example, one explicit way for a Relying Party "A" to establish
 such trust in a Verifier "B", would be for B to first act as an Attester
 where A acts as a combined Verifier/Relying Party.  If A then accepts B as
 trustworthy, it can choose to accept B as a Verifier for other Attesters.
-TLS authentication of the Verifier by the Relying Party is also a possible solution.
+
+As another example, the Relying Party can establish trust in the Verifier by out of band establishment of key material, combined with a protocol like TLS to communicate. 
+There is an assumption that between the establishment of the trusted key material and the creation of the Evidence, that the Verifier has not been compromised.
 
 Similarly, the Relying Party also needs to trust the Relying Party Owner
 for providing its Appraisal Policy for Attestation Results, and
