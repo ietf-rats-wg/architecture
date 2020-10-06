@@ -1068,7 +1068,7 @@ an Attester can first act as a Relying Party and ask for the Verifier's own
 Attestation Result, and appraising it just as a Relying Party would appraise
 an Attestation Result for any other purpose.
 
-# Security Considerations
+# Security Considerations {#security-considerations}
 
 ## Attester and Attestation Key Protection
 
