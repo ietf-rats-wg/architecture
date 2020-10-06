@@ -791,6 +791,29 @@ The Verifier trusts (or more specifically, the Verifier's security
 policy is written in a way that configures the Verifier to trust) a
 manufacturer, or the manufacturer's hardware, so as to be able to
 appraise the trustworthiness of that manufacturer's devices.
+In a typical solution, a Verifier comes to trust an Attester
+indirectly by having an Endorser (such as a manufacturer) vouch for
+the Attester's ability to securely generate Evidence.
+In some solutions, a Verifier might be configured to directly
+trust an Attester by having the Verifier have the Attester's key
+material (rather than the Endorser's) in its trust anchor store.
+
+Such direct trust must first be established at the time of trust anchor
+store configuration either by checking with an Endorser at that
+time, or by conducting a security analysis of the specific device.
+Having the Attester directly in the trust anchor store narrows
+the Verifier's trust to only specific devices rather than all devices
+the Endorser might vouch for, such as all devices manufactured by the
+same manufacturer in the case that the Endorser is a manufacturer.
+
+Such narrowing is often important since physical possession of a device
+can also be used to conduct a number of attacks, and so a device in
+a physically secure environment (such as one's own premises) may be
+considered trusted whereas devices owned by others would not be.
+This often results in a desire to either have the owner run their
+own Endorser that would only Endorse devices one owns, or to use
+Attesters directly in the trust anchor store.   When there are many
+Attesters owned, the use of an Endorser becomes more scalable.
 
 In solutions with weaker security, a Verifier might be configured to implicitly
 trust firmware or even software (e.g., a hypervisor).
