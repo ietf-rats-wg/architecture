@@ -794,6 +794,7 @@ appraise the trustworthiness of that manufacturer's devices.
 In a typical solution, a Verifier comes to trust an Attester
 indirectly by having an Endorser (such as a manufacturer) vouch for
 the Attester's ability to securely generate Evidence.
+
 In some solutions, a Verifier might be configured to directly
 trust an Attester by having the Verifier have the Attester's key
 material (rather than the Endorser's) in its trust anchor store.
