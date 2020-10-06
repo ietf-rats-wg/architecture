@@ -805,7 +805,7 @@ The component that is implicitly trusted is often referred to as a root of trust
 The manufacturer of the Attester arranges for its Attesting Environment to be provisioned with key material.
 
 The signing key material is typically in the form of an asymmetric key pair (e.g., an RSA or ECDSA private key
-and a manufacturer signed IDevID certificate) secured in the Attester.
+and a manufacturer-signed IDevID certificate) secured in the Attester.
 
 The Verifier is provided with an appropriate trust anchor, or provided with a database of public keys (rather than certificates), or even carefully secured lists of symmetric keys.
 The nature of how the Verifier manages to validate the signatures produced by the Attester is critical to the secure operation an Attestation system, but is not the subject of standardization within this architecture.
