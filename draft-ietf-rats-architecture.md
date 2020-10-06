@@ -208,10 +208,10 @@ Remote attestation is desired to prevent vulnerable or
 compromised devices from getting access to the network and potentially
 harming others.
 
-Typically, solutions start with a specific component (called a "Root of Trust") that
+Typically, solutions start with a specific component (called a "root of trust") that
 provides device identity and protected storage for measurements.
 The system components perform a series of measurements that may be
-signed by the Root of Trust, considered as Evidence about the hardware,
+signed by the root of trust, considered as Evidence about the hardware,
 firmware, BIOS, software, etc. that is running.
 
 Attester:
@@ -420,7 +420,7 @@ By definition, the Attester role creates Evidence.
 An Attester may consist of one or
 more nested or staged environments, adding complexity to the architectural
 structure. 
-The unifying component is the Root of Trust and the nested, staged,
+The unifying component is the root of trust and the nested, staged,
 or chained attestation Evidence produced. 
 The nested or chained structure
 includes Claims, collected by the Attester to aid in the assurance or
@@ -781,14 +781,14 @@ provided about it by the lower-layer hypervisor or firmware is true.
 A stronger level of assurance of security comes when information can be vouched
 for by hardware or by ROM code, especially if such hardware is
 physically resistant to hardware tampering.  The component that is
-implicitly trusted is often referred to as a Root of Trust.
+implicitly trusted is often referred to as a root of trust.
 
 A conveyance protocol that provides authentication and integrity protection can be used
 to convey unprotected Evidence, assuming the following properties exists:
 
    1. The key material used to authenticate and integrity protect the conveyance channel is trusted by the Verifier to speak for the Attesting Environment(s) that collected claims about the Target Environment(s).
    2. All unprotected Evidence that is conveyed is supplied exclusively by the Attesting Environment that has the key  material that protects the conveyance channel
-   3. The Root of Trust protects both the conveyance channel key material and the Attesting Environment with equivalent strength protections.
+   3. The root of trust protects both the conveyance channel key material and the Attesting Environment with equivalent strength protections.
 
 ## Endorser and Verifier Owner
 
@@ -1099,7 +1099,7 @@ security properties, including:
 architecture to protect against replay attacks.
 
 To assess the security provided by a particular Appraisal Policy, it
-is important to understand the strength of the Root of Trust, e.g.,
+is important to understand the strength of the root of trust, e.g.,
 whether it is mutable software, or firmware that is read-only after
 boot, or immutable hardware/ROM.
 
