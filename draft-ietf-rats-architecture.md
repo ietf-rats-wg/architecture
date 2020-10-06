@@ -824,7 +824,7 @@ provided about it by the lower-layer firmware or software is true.
 A stronger level of assurance of security comes when information can be vouched
 for by hardware or by ROM code, especially if such hardware is
 physically resistant to hardware tampering.
-The component that is implicitly trusted is often referred to as a root of trust.
+In most cases, components that have to be vouched for via Endorsements because no Evidence can be created about them are referred to as a roots of trust.
 
 The manufacturer of the Attester arranges for its Attesting Environment to be provisioned with key material.
 
