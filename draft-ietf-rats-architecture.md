@@ -55,6 +55,28 @@ author:
   org: Huawei Technologies
   email: william.panwei@huawei.com
 
+contributor:
+  - name: Monty Wiseman
+    email: montywiseman32@gmail.com
+  - name: Liang Xia
+    email: frank.xialiang@huawei.com
+  - name: Laurence Lundblade
+    email: lgl@island-resort.com
+  - name: Eliot Lear
+    email: elear@cisco.com
+  - name: Jessica Fitzgerald-McKay
+  - name: Sarah C. Helbe
+  - name: Andrew Guinn
+  - name: Peter Lostcco
+    email: pete.loscocco@gmail.com
+  - name: Eric Voit
+  - name: Thomas Fossati
+    email: thomas.fossati@arm.com
+  - name: Paul Rowe
+  - name: Carsten Bormann
+    email: cabo@tzi.org
+  - name: Giri Mandyam
+    email: mandyam@qti.qualcomm.com
 
 normative:
   RFC7519:
@@ -1180,7 +1202,7 @@ Frank Xia,
 and
 David Wooten.
 
-# Contributors
+# Notable Contributions
 
 Thomas Hardjono created older versions of the terminology section in collaboration with Ned Smith.
 Eric Voit provided the conceptual separation between Attestation Provision Flows and Attestation Evidence Flows.
