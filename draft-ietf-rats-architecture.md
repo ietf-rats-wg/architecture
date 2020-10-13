@@ -989,8 +989,8 @@ for Evidence.
 Freshness is assessed based on the Appraisal Policy for Evidence or Attestation Results,
 that compares the estimated epoch against an "expiry" threshold defined locally to that policy.  
 There is, however, always a
-race condition possible in that the state of the Attester, and the Appraisal
-Policy for Evidence, might change immediately after the Evidence or Attestation
+race condition possible in that the state of the Attester, and the
+Appraisal Policies might change immediately after the Evidence or Attestation
 Result was generated.  The goal is merely to narrow their recentness to
 something the Verifier (for Evidence) or Relying Party (for Attestation Result)
 is willing to accept.  Freshness is a key component for enabling caching and
