@@ -979,7 +979,7 @@ a different format.
 
 # Freshness
 
-A remote entity (Verifier or Relying Party) may need to learn the point in time
+A Verifier or Relying Party may need to learn the point in time
 (i.e., the "epoch") an Evidence or Attestation Result has been produced.  This
 is essential in deciding whether the included Claims and their values can be
 considered fresh, meaning they still reflect the latest state of the Attester,
@@ -1013,8 +1013,8 @@ synchronization mechanism.
 
 <!-- Implicit Timekeeping using Nonces -->
 
-A second approach places the onus of timekeeping solely on the appraising
-entity, i.e., the Verifier (for Evidence), or the Relying Party (for
+A second approach places the onus of timekeeping solely on the appraiser,
+i.e., the Verifier (for Evidence), or the Relying Party (for
 Attestation Results), and might be suitable, for example, in case the Attester does not have
 a reliable clock or time synchronisation is otherwise impaired.  In this
 approach, a non-predictable nonce is sent by the appraising entity, and the
