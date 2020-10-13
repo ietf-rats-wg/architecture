@@ -107,7 +107,7 @@ a remote peer (the "Relying Party") to decide whether to consider that
 Attester a trustworthy peer or not.
 RATS are facilitated by an additional vital party, the Verifier.
 
-The Verifier appraises Evidence via Appraisal Policies and creates
+The Verifier appraises Evidence via appraisal policies and creates
 the Attestation Results to support Relying Parties in their decision
 process.
 This documents defines a flexible architecture consisting of attestation roles
@@ -378,7 +378,7 @@ might be obtained from an Endorser along with the Endorsements, and/or might be 
 via some other mechanism such as being configured in the Verifier by the Verifier Owner.
 
 The Relying Party uses Attestation Results by applying its own
-Appraisal Policy to make application-specific decisions such as authorization decisions.
+pppraisal policy to make application-specific decisions such as authorization decisions.
 The Appraisal Policy for Attestation Results is configured in the Relying Party by the Relying Party Owner,
 and/or is programmed into the Relying Party.
 
@@ -386,16 +386,16 @@ and/or is programmed into the Relying Party.
 
 The Verifier, when appraising Evidence, or the Relying Party, when
 appraising Attestation Results, checks the values of some claims
-against constraints specified in its Appraisal Policy.  Such constraints might
+against constraints specified in its appraisal policy.  Such constraints might
 involve a comparison for equality against a Reference Value, or a check for being in
 a range bounded by Reference Values, or membership in a set of Reference Values,
 or a check against values in other claims, or any other test.
 
 ## Reference Values
 
-Reference Values used in appraisal might be specified as part of the Appraisal Policy itself,
+Reference Values used in appraisal might be specified as part of the appraisal policy itself,
 or might be obtained from a separate source, such as an Endorsement, and then used by
-the Appraisal Policy.
+the appraisal policy.
 
 The actual data format and semantics of any Reference Values are specific to
 claims and implementations. This architecture document does not define any
@@ -536,7 +536,7 @@ For example, in this Composite Device scenario, the entity inside
 the lead Attester can also take on the role of a Verifier, and the
 outside entity of Verifier can take on the role of a Relying Party.
 After collecting the Evidence of other Attesters, this inside Verifier uses
-Endorsements and Appraisal Policies (obtained the same way as any other
+Endorsements and appraisal policies (obtained the same way as any other
 Verifier) in the verification process to generate Attestation Results.
 The inside Verifier then conveys the Attestation Results of other Attesters,
 whether in the same conveyance protocol as the Evidence or not,
@@ -566,16 +566,16 @@ desk analogy, the passport issuing agency is a Verifier, the passport is an Atte
 Result, and the immigration desk is a Relying Party.
 
 In this model, an Attester conveys Evidence to a Verifier, which compares
-the Evidence against its Appraisal Policy.  The Verifier then gives back
+the Evidence against its appraisal policy.  The Verifier then gives back
 an Attestation Result.  If the Attestation Result was a successful one,
 the Attester can then present the Attestation Result to a Relying Party,
-which then compares the Attestation Result against its own Appraisal Policy.
+which then compares the Attestation Result against its own appraisal policy.
 
 There are three ways in which the process may fail.  First, the Verifier may
 refuse to issue the Attestation Result due to some error in processing, or
 some missing input to the Verifier.
 The second way in which the process may fail is when the Attestation Result is
-examined by the Relying Party, and based upon the Appraisal Policy, the
+examined by the Relying Party, and based upon the appraisal policy, the
 result does not pass the policy.
 The third way is when the Verifier is unreachable.
 
@@ -588,7 +588,7 @@ Attester-Verifier remote attestation protocol.
 ~~~~
       +-------------+
       |             | Compare Evidence
-      |   Verifier  | against Appraisal Policy
+      |   Verifier  | against appraisal policy
       |             |
       +-------------+
            ^    |
@@ -598,8 +598,8 @@ Attester-Verifier remote attestation protocol.
       +----------+              +---------+
       |          |------------->|         |Compare Attestation
       | Attester | Attestation  | Relying | Result against
-      |          |    Result    |  Party  | Appraisal
-      +----------+              +---------+  Policy
+      |          |    Result    |  Party  | appraisal
+      +----------+              +---------+  policy
 ~~~~
 {: #passport title="Passport Model"}
 
@@ -615,7 +615,7 @@ and a former employer or government agency that issues a report is a Verifier.
 
 In this model, an Attester conveys Evidence to a Relying Party, which simply
 passes it on to a Verifier.  The Verifier then compares the Evidence against
-its Appraisal Policy, and returns an Attestation Result to the Relying Party.
+its appraisal policy, and returns an Attestation Result to the Relying Party.
 The Relying Party then compares the Attestation Result against its own
 appraisal policy.
 
@@ -639,8 +639,8 @@ if the Relying Party is a constrained node.
 ~~~~
                                +-------------+
                                |             | Compare Evidence
-                               |   Verifier  | against Appraisal
-                               |             | Policy
+                               |   Verifier  | against appraisal
+                               |             | policy
                                +-------------+
                                     ^    |
                             Evidence|    |Attestation
@@ -649,7 +649,7 @@ if the Relying Party is a constrained node.
    +------------+               +-------------+
    |            |-------------->|             | Compare Attestation
    |   Attester |   Evidence    |   Relying   | Result against
-   |            |               |    Party    | Appraisal Policy
+   |            |               |    Party    | appraisal policy
    +------------+               +-------------+
 ~~~~
 {: #backgroundcheck title="Background-Check Model"}
@@ -676,7 +676,7 @@ plans to support in the TEEP architecture {{-teep-arch}}.
 ~~~~
       +-------------+
       |             | Compare Evidence
-      |   Verifier  | against Appraisal Policy
+      |   Verifier  | against appraisal policy
       |             |
       +-------------+
            ^    |
@@ -686,7 +686,7 @@ plans to support in the TEEP architecture {{-teep-arch}}.
       +-------------+
       |             | Compare
       |   Relying   | Attestation Result
-      |   Party 2   | against Appraisal Policy
+      |   Party 2   | against appraisal policy
       +-------------+
            ^    |
    Evidence|    |Attestation
@@ -695,7 +695,7 @@ plans to support in the TEEP architecture {{-teep-arch}}.
       +----------+               +----------+
       |          |-------------->|          | Compare Attestation
       | Attester |  Attestation  |  Relying | Result against
-      |          |     Result    |  Party 1 | Appraisal Policy
+      |          |     Result    |  Party 1 | appraisal policy
       +----------+               +----------+
 ~~~~
 {: #combination title="Example Combination"}
@@ -754,7 +754,7 @@ As another example, the Relying Party can establish trust in the Verifier by out
 There is an assumption that between the establishment of the trusted key material and the creation of the Evidence, that the Verifier has not been compromised.
 
 Similarly, the Relying Party also needs to trust the Relying Party Owner
-for providing its Appraisal Policy for Attestation Results, and
+for providing its appraisal policy for Attestation Results, and
 in some scenarios the Relying Party might even require that the
 Relying Party Owner go through a remote attestation procedure with it before the Relying Party will accept
 an updated policy. This can be done similarly to how a Relying Party
@@ -843,7 +843,7 @@ See {{security-considerations}} for discussion on security strength.
 ## Endorser, Reference Value Provider, and Verifier Owner
 
 In some scenarios, the Endorser, Reference Value Provider, and Verifier Owner may need to trust the Verifier
-before giving the Endorsement, Reference Values, or Appraisal Policy to it.  This can be done
+before giving the Endorsement, Reference Values, or appraisal policy to it.  This can be done
 similarly to how a Relying Party might establish trust in a Verifier as
 discussed above, and in such a case, mutual authentication or attestation might even
 be needed as discussed in {{rpowner-trust}}.
@@ -870,14 +870,14 @@ An Endorsement is a secure statement that some entity (e.g., a manufacturer) vou
 device's signing capability.  For example, if the signing capability is in hardware, then
 an Endorsement might be a manufacturer certificate that signs a public key whose corresponding
 private key is only known inside the device's hardware.  Thus, when Evidence and such an Endorsement
-are used together, an appraisal procedure can be conducted based on Appraisal Policies that may not be specific to the
+are used together, an appraisal procedure can be conducted based on appraisal policies that may not be specific to the
 device instance, but merely specific to the manufacturer providing the Endorsement. For example,
-an Appraisal Policy might simply check that devices from a given manufacturer have information
-matching a set of Reference Values, or an Appraisal Policy might have a set of more complex
+an appraisal policy might simply check that devices from a given manufacturer have information
+matching a set of Reference Values, or an appraisal policy might have a set of more complex
 logic on how to appraise the validity of information.
 
-However, while an Appraisal Policy that treats all devices from a given manufacturer the same
-may be appropriate for some use cases, it would be inappropriate to use such an Appraisal Policy
+However, while an appraisal policy that treats all devices from a given manufacturer the same
+may be appropriate for some use cases, it would be inappropriate to use such an appraisal policy
 as the sole means of authorization for use cases that wish to constrain *which* compliant devices
 are considered authorized for some purpose.  For example, an enterprise using remote attestation for
 Network Endpoint Assessment may not wish to let every healthy laptop from the same
@@ -890,7 +890,7 @@ component or user on the device.
 ## Attestation Results
 
 Attestation Results are the input used by the Relying Party to decide the extent to which it will trust a particular Attester, and allow it to access some data or perform some operation.
-Attestation Results may be a Boolean simply indicating compliance or non-compliance with a Verifier's Appraisal Policy, or a rich set of Claims about the Attester, against which the Relying Party applies its Appraisal Policy for Attestation Results.
+Attestation Results may be a Boolean simply indicating compliance or non-compliance with a Verifier's appraisal policy, or a rich set of Claims about the Attester, against which the Relying Party applies its Appraisal Policy for Attestation Results.
 
 A result that indicates non-compliance can be used by an Attester (in the passport model) or
 a Relying Party (in the background-check model) to indicate that the Attester
@@ -898,7 +898,7 @@ should not be treated as authorized and may be in need of remediation.  In some 
 it may even indicate that the Evidence itself cannot be authenticated as being correct.
 
 An Attestation Result that indicates compliance can be used by a Relying Party to make
-authorization decisions based on the Relying Party's Appraisal Policy.  The simplest such
+authorization decisions based on the Relying Party's appraisal policy.  The simplest such
 policy might be to simply authorize any party supplying a compliant Attestation Result
 signed by a trusted Verifier.  A more complex policy might also entail comparing information
 provided in the result against Reference Values, or applying more complex logic
@@ -909,14 +909,14 @@ for use by Relying Parties, much like physical passports and drivers licenses in
 personal information such as name and date of birth.  Unlike Evidence, which is often
 very device- and vendor-specific, Attestation Results can be vendor-neutral if the Verifier
 has a way to generate vendor-agnostic information based on the appraisal of vendor-specific
-information in Evidence.  This allows a Relying Party's Appraisal Policy to be simpler,
+information in Evidence.  This allows a Relying Party's appraisal policy to be simpler,
 potentially based on standard ways of expressing the information, while still allowing
 interoperability with heterogeneous devices.
 
 Finally, whereas Evidence is signed by the device (or indirectly by a manufacturer, if
 Endorsements are used), Attestation Results are signed by a Verifier, allowing a Relying
 Party to only need a trust relationship with one entity, rather than a larger set of
-entities, for purposes of its Appraisal Policy.
+entities, for purposes of its appraisal policy.
 
 # Claims Encoding Formats
 
@@ -987,10 +987,10 @@ and that any Attestation Result was generated using the latest Appraisal Policy
 for Evidence.
 
 Freshness is assessed based on the Appraisal Policy for Evidence or Attestation Results,
-that compares the estimated epoch against an "expiry" threshold defined locally to that policy.  
+that compares the estimated epoch against an "expiry" threshold defined locally to that policy.
 There is, however, always a
 race condition possible in that the state of the Attester, and the
-Appraisal Policies might change immediately after the Evidence or Attestation
+appraisal policies might change immediately after the Evidence or Attestation
 Result was generated.  The goal is merely to narrow their recentness to
 something the Verifier (for Evidence) or Relying Party (for Attestation Result)
 is willing to accept.  Freshness is a key component for enabling caching and
@@ -1133,7 +1133,7 @@ For many use cases, this will involve physical security at the facility, to prev
 ## Integrity Protection
 Any solution that conveys information used for security purposes, whether
 such information is in the form of Evidence, Attestation Results,
-Endorsements, or Appraisal Policy must support end-to-end integrity protection
+Endorsements, or appraisal policy must support end-to-end integrity protection
 and replay attack prevention, and often also needs to support additional
 security properties, including:
 
@@ -1147,15 +1147,15 @@ security properties, including:
 {{freshness}} discusses ways in which freshness can be used in this
 architecture to protect against replay attacks.
 
-To assess the security provided by a particular Appraisal Policy, it
+To assess the security provided by a particular appraisal policy, it
 is important to understand the strength of the root of trust, e.g.,
 whether it is mutable software, or firmware that is read-only after
 boot, or immutable hardware/ROM.
 
-It is also important that the Appraisal Policy was itself obtained
-securely.  As such, if Appraisal Policies for a Relying Party or for a Verifier
+It is also important that the appraisal policy was itself obtained
+securely.  As such, if appraisal policies for a Relying Party or for a Verifier
 can be configured via a network protocol, the ability to create Evidence about
-the integrity of the entity providing the Appraisal Policy needs to be
+the integrity of the entity providing the appraisal policy needs to be
 considered.
 
 The security of conveyed information may be applied at different layers, whether by a conveyance protocol, or an information encoding format. This architecture expects attestation messages (i.e., Evidence, Attestation Results, Endorsements and Policies) are end-to-end protected based on the role interaction context.
