@@ -816,8 +816,6 @@ own Endorser that would only Endorse devices one owns, or to use
 Attesters directly in the trust anchor store.   When there are many
 Attesters owned, the use of an Endorser becomes more scalable.
 
-In solutions with weaker security, a Verifier might be configured to implicitly
-trust firmware or even software (e.g., a hypervisor).
 That is, it might appraise the trustworthiness of an application component, operating
 system component, or service under the assumption that information
 provided about it by the lower-layer firmware or software is true.
