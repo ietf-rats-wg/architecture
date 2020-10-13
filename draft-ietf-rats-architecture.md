@@ -523,7 +523,7 @@ each router is an Attester and the main router is the lead Attester.
 ~~~~ COMPOSITE
 {::include composite-attester.txt}
 ~~~~
-{: #composite title="Conceptual Data Flow for a Composite Device"}
+{: #composite title="Composite Device"}
 
 In the Composite Device, each Attester generates its own Evidence by its
 Attesting Environment(s) collecting the claims from its Target Environment(s).
@@ -987,7 +987,7 @@ and that any Attestation Result was generated using the latest Appraisal Policy
 for Evidence.
 
 Freshness is assessed based on the Appraisal Policy for Evidence or Attestation Results,
-that compares the estimated epoch against an "expiry" threshold defined locally to that policy.  
+that compares the estimated epoch against an "expiry" threshold defined locally to that policy.
 There is, however, always a
 race condition possible in that the state of the Attester, and the
 Appraisal Policies might change immediately after the Evidence or Attestation
