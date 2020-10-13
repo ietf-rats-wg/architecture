@@ -754,7 +754,7 @@ As another example, the Relying Party can establish trust in the Verifier by out
 There is an assumption that between the establishment of the trusted key material and the creation of the Evidence, that the Verifier has not been compromised.
 
 Similarly, the Relying Party also needs to trust the Relying Party Owner
-for providing its appraisal policy for Attestation Results, and
+for providing its Appraisal Policy for Attestation Results, and
 in some scenarios the Relying Party might even require that the
 Relying Party Owner go through a remote attestation procedure with it before the Relying Party will accept
 an updated policy. This can be done similarly to how a Relying Party
