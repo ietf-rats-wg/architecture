@@ -986,9 +986,9 @@ considered fresh, meaning they still reflect the latest state of the Attester,
 and that any Attestation Result was generated using the latest Appraisal Policy
 for Evidence.
 
-Freshness is assessed based on a policy defined by the consuming entity,
-Verifier or Relying Party, that compares the estimated epoch against an
-"expiry" threshold defined locally to that policy.  There is, however, always a
+Freshness is assessed based on the Appraisal Policy for Evidence or Attestation Results,
+that compares the estimated epoch against an "expiry" threshold defined locally to that policy.  
+There is, however, always a
 race condition possible in that the state of the Attester, and the Appraisal
 Policy for Evidence, might change immediately after the Evidence or Attestation
 Result was generated.  The goal is merely to narrow their recentness to
@@ -1013,8 +1013,7 @@ synchronization mechanism.
 
 <!-- Implicit Timekeeping using Nonces -->
 
-A second approach places the onus of timekeeping solely on the appraiser,
-i.e., the Verifier (for Evidence), or the Relying Party (for
+A second approach places the onus of timekeeping solely on the Verifier (for Evidence), or the Relying Party (for
 Attestation Results), and might be suitable, for example, in case the Attester does not have
 a reliable clock or time synchronisation is otherwise impaired.  In this
 approach, a non-predictable nonce is sent by the appraising entity, and the
