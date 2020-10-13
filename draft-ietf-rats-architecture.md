@@ -825,8 +825,7 @@ physically resistant to hardware tampering.
 In most cases, components that have to be vouched for via Endorsements because no Evidence is generated about them are referred to as roots of trust.
 
 The manufacturer of the Attester arranges for its Attesting Environment to be provisioned with key material.
-
-The signing key material is typically in the form of an asymmetric key pair (e.g., an RSA or ECDSA private key
+The key material is typically in the form of an asymmetric key pair (e.g., an RSA or ECDSA private key
 and a manufacturer-signed IDevID certificate) secured in the Attester.
 
 The Verifier is provided with an appropriate trust anchor, or provided with a database of public keys (rather than certificates), or even carefully secured lists of symmetric keys.
