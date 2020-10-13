@@ -750,7 +750,7 @@ such trust in a Verifier "B", would be for B to first act as an Attester
 where A acts as a combined Verifier/Relying Party.  If A then accepts B as
 trustworthy, it can choose to accept B as a Verifier for other Attesters.
 
-As another example, the Relying Party can establish trust in the Verifier by out of band establishment of key material, combined with a protocol like TLS to communicate. 
+As another example, the Relying Party can establish trust in the Verifier by out of band establishment of key material, combined with a protocol like TLS to communicate.
 There is an assumption that between the establishment of the trusted key material and the creation of the Evidence, that the Verifier has not been compromised.
 
 Similarly, the Relying Party also needs to trust the Relying Party Owner
@@ -790,16 +790,46 @@ in order to bootstrap the sequence.
 The Verifier trusts (or more specifically, the Verifier's security
 policy is written in a way that configures the Verifier to trust) a
 manufacturer, or the manufacturer's hardware, so as to be able to
-appraise the trustworthiness of that manufacturer's devices.  In solutions
-with weaker security, a Verifier might be configured to implicitly
-trust firmware or even software (e.g., a hypervisor).  That is, it
-might appraise the trustworthiness of an application component, operating
+appraise the trustworthiness of that manufacturer's devices.
+In a typical solution, a Verifier comes to trust an Attester
+indirectly by having an Endorser (such as a manufacturer) vouch for
+the Attester's ability to securely generate Evidence.
+
+In some solutions, a Verifier might be configured to directly
+trust an Attester by having the Verifier have the Attester's key
+material (rather than the Endorser's) in its trust anchor store.
+
+Such direct trust must first be established at the time of trust anchor
+store configuration either by checking with an Endorser at that
+time, or by conducting a security analysis of the specific device.
+Having the Attester directly in the trust anchor store narrows
+the Verifier's trust to only specific devices rather than all devices
+the Endorser might vouch for, such as all devices manufactured by the
+same manufacturer in the case that the Endorser is a manufacturer.
+
+Such narrowing is often important since physical possession of a device
+can also be used to conduct a number of attacks, and so a device in
+a physically secure environment (such as one's own premises) may be
+considered trusted whereas devices owned by others would not be.
+This often results in a desire to either have the owner run their
+own Endorser that would only Endorse devices one owns, or to use
+Attesters directly in the trust anchor store.   When there are many
+Attesters owned, the use of an Endorser becomes more scalable.
+
+That is, it might appraise the trustworthiness of an application component, operating
 system component, or service under the assumption that information
-provided about it by the lower-layer hypervisor or firmware is true.
+provided about it by the lower-layer firmware or software is true.
 A stronger level of assurance of security comes when information can be vouched
 for by hardware or by ROM code, especially if such hardware is
-physically resistant to hardware tampering.  The component that is
-implicitly trusted is often referred to as a root of trust.
+physically resistant to hardware tampering.
+In most cases, components that have to be vouched for via Endorsements because no Evidence is generated about them are referred to as roots of trust.
+
+The manufacturer of the Attester arranges for its Attesting Environment to be provisioned with key material.
+The key material is typically in the form of an asymmetric key pair (e.g., an RSA or ECDSA private key
+and a manufacturer-signed IDevID certificate) secured in the Attester.
+
+The Verifier is provided with an appropriate trust anchor, or provided with a database of public keys (rather than certificates), or even carefully secured lists of symmetric keys.
+The nature of how the Verifier manages to validate the signatures produced by the Attester is critical to the secure operation an Attestation system, but is not the subject of standardization within this architecture.
 
 A conveyance protocol that provides authentication and integrity protection can be used
 to convey unprotected Evidence, assuming the following properties exists:
@@ -807,6 +837,8 @@ to convey unprotected Evidence, assuming the following properties exists:
    1. The key material used to authenticate and integrity protect the conveyance channel is trusted by the Verifier to speak for the Attesting Environment(s) that collected claims about the Target Environment(s).
    2. All unprotected Evidence that is conveyed is supplied exclusively by the Attesting Environment that has the key  material that protects the conveyance channel
    3. The root of trust protects both the conveyance channel key material and the Attesting Environment with equivalent strength protections.
+
+See {{security-considerations}} for discussion on security strength.
 
 ## Endorser, Reference Value Provider, and Verifier Owner
 
@@ -1057,7 +1089,7 @@ an Attester can first act as a Relying Party and ask for the Verifier's own
 Attestation Result, and appraising it just as a Relying Party would appraise
 an Attestation Result for any other purpose.
 
-# Security Considerations
+# Security Considerations {#security-considerations}
 
 ## Attester and Attestation Key Protection
 
