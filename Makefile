@@ -10,9 +10,9 @@ else
 	    -b main https://github.com/martinthomson/i-d-template $(LIBDIR)
 endif
 
-IETFUSER=mcr+ietf@sandelman.ca
 # because "make upload" never works for MCR. Yes, there are better ways.
-
-mcrsend: draft-ietf-rats-architecture-06.xml
-	curl -S -F "user=${IETFUSER}" -F "xml=@draft-ietf-rats-architecture-06.xml" https://datatracker.ietf.org/api/submit
+VER=07
+IETFUSER=mcr+ietf@sandelman.ca
+mcrsend: draft-ietf-rats-architecture-${VER}.xml
+	curl -S -F "user=${IETFUSER}" -F "xml=@draft-ietf-rats-architecture-${VER}.xml" https://datatracker.ietf.org/api/submit
 
