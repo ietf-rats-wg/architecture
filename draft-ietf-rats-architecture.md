@@ -545,7 +545,7 @@ each router is an Attester and the main router is the lead Attester.
 ~~~~ COMPOSITE
 {::include composite-attester.txt}
 ~~~~
-{: #composite title="Conceptual Data Flow for a Composite Device"}
+{: #composite title="Composite Device"}
 
 In the Composite Device, each Attester generates its own Evidence by its
 Attesting Environment(s) collecting the claims from its Target Environment(s).
