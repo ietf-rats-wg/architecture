@@ -272,7 +272,7 @@ a model the Attester already has in encrypted form, to the requester.
 
 Attester:
 
-: A device desiring to run an ML model to do inferencing
+: A device desiring to run an ML model
 
 Relying Party:
 
