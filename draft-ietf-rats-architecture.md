@@ -1299,9 +1299,13 @@ it could explicitly check `time(OP_r) < time(RX_v)`.
 ## Example 2: Nonce-based Passport Model Example
 
 The following example illustrates a hypothetical Passport Model
-solution that uses nonces and thus does not require that any clocks
-are synchronized.
+solution that uses nonces instead of timestamps.  Compared to the
+timestamp-based example, it requires an extra round trip time
+to retrieve a nonce, and requires that the Verifier and Relying Party
+track state to remember the nonce for some period of time.
 
+The advantage is that it does not require that any clocks
+are synchronized. 
 As a result, the receiver of a conceptual message containing a
 timestamp cannot directly compare it to its own clock or timestamps.
 Thus we use a suffix ("a" for Attester, "v" for Verifier, and "r" for Relying Party) on the IDs below indicating which clock generated them, since times from different clocks cannot be compared.
@@ -1326,8 +1330,8 @@ Only the delta between two events from the sender can be used by the receiver.
         |                                                 |
         |<--Nonce2-------------------------------------time(NS_r)
      time(RRa)
-        |---Attestation Result{time(RX_v)-time(RG_v)}->time(RA_r)
-        |   Nonce2, time(RR_a)-time(EG_a)                 |
+        |---Attestation Result{time(RX_v)-time(RG_v),->time(RA_r)
+        |   Nonce2, time(RR_a)-time(EG_a)}                |
         ~                                                 ~
         |                                                 |
         |                                              time(OP_r)
