@@ -132,7 +132,7 @@ RATS are facilitated by an additional vital party, the Verifier.
 The Verifier appraises Evidence via appraisal policies and creates
 the Attestation Results to support Relying Parties in their decision
 process.
-This documents defines a flexible architecture consisting of attestation roles
+This document defines a flexible architecture consisting of attestation roles
 and their interactions via conceptual messages.
 Additionally, this document defines a universal set of terms that can be mapped to various existing and emerging Remote Attestation Procedures.
 Common topological models and the data flows associated with them, such as
@@ -148,7 +148,7 @@ Trust is a choice one makes about another system.
 Trustworthiness is a quality about the other system that can be used in making one's decision to trust it or not.  This is subtle difference and being
 familiar with the difference is crucial for using this document.
 Additionally, the concepts of freshness and trust relationships with
-respect to RATS are elaborated on to enable implementers in order to choose
+respect to RATS are elaborated on to enable implementers to choose
 appropriate solutions to compose their Remote Attestation Procedures.
 
 # Terminology {#terminology}
@@ -227,7 +227,7 @@ document does not intend to have a complete list, only to have a set of use
 cases that collectively cover all the functionality required in the architecture.
 
 Each use case includes a description followed by a summary of the
-Attester and a Relying Party roles.
+Attester and Relying Party roles.
 
 ## Network Endpoint Assessment
 
@@ -238,7 +238,7 @@ audit, anomaly detection, record maintenance and/or trending reports (logging).
 The network operator may also want a policy
 by which full access is only granted to devices that meet some definition
 of hygiene, and so wants to get claims about such information and verify
-their validity.
+its validity.
 Remote attestation is desired to prevent vulnerable or
 compromised devices from getting access to the network and potentially
 harming others.
@@ -294,7 +294,7 @@ Attester:
 
 Relying Party:
 
-: An entity that holds confidential data for retrieval by other entities
+: An entity that holds confidential data for release to authorized entities
 
 ## Critical Infrastructure Control
 
@@ -302,7 +302,7 @@ In this use case, potentially dangerous physical equipment
 (e.g., power grid, traffic control, hazardous chemical processing, etc.)
 is connected to a network.  The organization managing such infrastructure
 needs to ensure that only authorized code and users can control such
-processes, and they are protected from malware or other adversaries.
+processes, and they are protected from malware or other threats.
 When a protocol operation can affect some critical
 system, the device attached to the critical equipment thus wants some
 assurance that the requester has not been compromised.  As such,
@@ -353,7 +353,7 @@ to the systems' health, then it forces a reboot.
 
 Attester:
 
-: The device that is desired to keep from being held hostage for
+: The device that should be protected from being held hostage for
 a long period of time
 
 Relying Party:
@@ -400,7 +400,7 @@ might be obtained from an Endorser along with the Endorsements, and/or might be 
 via some other mechanism such as being configured in the Verifier by the Verifier Owner.
 
 The Relying Party uses Attestation Results by applying its own
-pppraisal policy to make application-specific decisions such as authorization decisions.
+appraisal policy to make application-specific decisions such as authorization decisions.
 The Appraisal Policy for Attestation Results is configured in the Relying Party by the Relying Party Owner,
 and/or is programmed into the Relying Party.
 
@@ -633,7 +633,7 @@ education or previous experience, the employer will contact the respective insti
 former employers to validate the claim. Volunteer organizations often perform police background
 checks on volunteers in order to determine the volunteer's trustworthiness.
 Thus, in this analogy, a prospective volunteer is an Attester, the organization is the Relying Party,
-and a former employer or government agency that issues a report is a Verifier.
+and the agency that issues a report is a Verifier.
 
 In this model, an Attester conveys Evidence to a Relying Party, which simply
 passes it on to a Verifier.  The Verifier then compares the Evidence against
@@ -1037,7 +1037,7 @@ synchronization mechanism.
 
 A second approach places the onus of timekeeping solely on the Verifier (for Evidence), or the Relying Party (for
 Attestation Results), and might be suitable, for example, in case the Attester does not have
-a reliable clock or time synchronisation is otherwise impaired.  In this
+a reliable clock or time synchronization is otherwise impaired.  In this
 approach, a non-predictable nonce is sent by the appraising entity, and the
 nonce is then signed and included along with the Claims in the Evidence or
 Attestation Result.  After checking that the sent and received nonces are the
