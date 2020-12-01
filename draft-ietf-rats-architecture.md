@@ -185,7 +185,7 @@ Endorser:
 
 Evidence:
 
-: A set of information about an Attester that is to be appraised by a Verifier.
+: A signed set of Claims about an Attester that is to be appraised by a Verifier.
 Evidence may include configuration data, measurements, telemetry, or inferences.
 
 Reference Value Provider:
