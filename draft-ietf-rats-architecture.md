@@ -190,7 +190,7 @@ Evidence may include configuration data, measurements, telemetry, or inferences.
 
 Reference Value Provider:
 
-: An entity (typically a manufacturer) whose Reference Values help Verifiers appraise the authenticity of Evidence.
+: An entity (typically a manufacturer) whose Reference Values help Verifiers appraise Evidence to  determine if acceptable known claims have been recorded by the Attester
 
 Reference Values:
 
