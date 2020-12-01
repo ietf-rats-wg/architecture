@@ -418,7 +418,7 @@ or a check against values in other claims, or any other test.
 Reference Values used in appraisal come from a Reference Value Provider
 and are then used by the appraisal policy.
 They might be conveyed in any number of ways, including:
-* as part of the appraisal policy itself, if the Verifier Owner either acquires Reference Values from a Reference Value Provider or is itself a Reference Value Provider;
+* as part of the appraisal policy itself, if the Verifier Owner either: acquires Reference Values from a Reference Value Provider or is itself a Reference Value Provider;
 * as part of an Endorsement, if the Endorser either acquires Reference Values from a Reference Value Provider or is itself a Reference Value Provider; or
 * via separate communication.
 
