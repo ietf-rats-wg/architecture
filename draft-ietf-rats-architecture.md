@@ -341,8 +341,9 @@ Relying Party:
 
 ## Hardware Watchdog
 
-One significant problem is malware that holds a device hostage and does not allow it to reboot to prevent updates from being applied.
-This is a significant problem, because it allows a fleet of devices to be held hostage for ransom.
+There is a class of malware that holds a device hostage and does
+not allow it to reboot to prevent updates from being applied.
+This can be a significant problem, because it allows a fleet of devices to be held hostage for ransom.
 
 In the case, the Relying Party is the watchdog timer in the TPM/secure
 enclave itself, as described in {{TCGarch}} section 43.3.
@@ -400,7 +401,7 @@ might be obtained from an Endorser along with the Endorsements, and/or might be 
 via some other mechanism such as being configured in the Verifier by the Verifier Owner.
 
 The Relying Party uses Attestation Results by applying its own
-pppraisal policy to make application-specific decisions such as authorization decisions.
+appraisal policy to make application-specific decisions such as authorization decisions.
 The Appraisal Policy for Attestation Results is configured in the Relying Party by the Relying Party Owner,
 and/or is programmed into the Relying Party.
 
@@ -1074,7 +1075,7 @@ A more detailed discussion with examples appears in {{time-considerations}}.
 
 The conveyance of Evidence and the resulting Attestation Results
 reveal a great deal of information about the internal state of a
-device as well as any users the device is associated with.
+device as well as potentially any users of the device.
 In many cases, the whole point of the Attestation process is
 to provide reliable information about the type of the device and the
 firmware/software that the device is running.
@@ -1115,7 +1116,7 @@ an Attestation Result for any other purpose.
 ## Attester and Attestation Key Protection
 
 
-Implementers need to pay close attention to the isolation and protection of the Attester and the factory processes for provisioning the Attestation Key Material. When either of these are compromised, the remote attestation becomes worthless because the attacker can forge Evidence.
+Implementers need to pay close attention to the isolation and protection of the Attester and the factory processes for provisioning the Attestation key material. When either of these are compromised, the remote attestation becomes worthless because the attacker can forge Evidence.
 
 Remote attestation applies to use cases with a range of security requirements, so the protections discussed here range from low to high security where low security  may be only application or process isolation by the device's operating system and high security involves specialized hardware to defend against physical attacks on a chip.
 
