@@ -124,7 +124,7 @@ remote attestation procedures (RATS).
 # Introduction
 
 In Remote Attestation Procedures (RATS), one peer (the "Attester")
-produces believable information about itself - Evidence - to enable
+produces information about itself - Evidence - to enable
 a remote peer (the "Relying Party") to decide whether to consider that
 Attester a trustworthy peer or not.
 RATS are facilitated by an additional vital party, the Verifier.
