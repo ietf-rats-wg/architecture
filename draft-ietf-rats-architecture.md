@@ -1300,7 +1300,7 @@ it could explicitly check `time(OP_r) < time(RX_v)`.
 
 The following example illustrates a hypothetical Passport Model
 solution that uses nonces instead of timestamps.  Compared to the
-timestamp-based example, it requires an extra round trip time
+timestamp-based example, it requires an extra round trip
 to retrieve a nonce, and requires that the Verifier and Relying Party
 track state to remember the nonce for some period of time.
 
