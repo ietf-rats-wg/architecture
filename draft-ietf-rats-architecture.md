@@ -633,7 +633,7 @@ education or previous experience, the employer will contact the respective insti
 former employers to validate the claim. Volunteer organizations often perform police background
 checks on volunteers in order to determine the volunteer's trustworthiness.
 Thus, in this analogy, a prospective volunteer is an Attester, the organization is the Relying Party,
-and the agency that issues a report is a Verifier.
+and the organization that issues a report is a Verifier.
 
 In this model, an Attester conveys Evidence to a Relying Party, which simply
 passes it on to a Verifier.  The Verifier then compares the Evidence against
