@@ -621,9 +621,11 @@ Result, and the immigration desk is a Relying Party.
 
 In this model, an Attester conveys Evidence to a Verifier, which compares
 the Evidence against its appraisal policy.  The Verifier then gives back
-an Attestation Result.  If the Attestation Result was a successful one,
-the Attester can then present the Attestation Result to a Relying Party,
-which then compares the Attestation Result against its own appraisal policy.
+an Attestation Result.
+If the Attestation Result was a successful one, the Attester
+can then present the Attestation Result (and possibly additional Claims)
+to a Relying Party, which then compares this information against its own
+appraisal policy.
 
 There are three ways in which the process may fail.  First, the Verifier may
 refuse to issue the Attestation Result due to some error in processing, or
