@@ -1312,8 +1312,9 @@ permitted clock skew between the Verifier and the Attester.
 If time(VG_a) is also included in the Evidence along with the claim value
 generated at that time, and the Verifier decides that it can trust the
 time(VG_a) value, the Verifier can also determine whether the claim value is
-recent by checking `time(RG_v) - time(VG_a) < Threshold`, again where the threshold
-is large enough to account for the maximum permitted clock skew between
+recent by checking `time(RG_v) - time(VG_a) < Threshold`, where the threshold
+is decided by the Appraisal Policy for Evidence, and again needs to take
+into account the maximum permitted clock skew between
 the Verifier and the Attester.
 
 The Relying Party can check whether the Attestation Result is fresh
