@@ -550,7 +550,7 @@ Produces: Reference Values.
 
 Claim:
 : A piece of asserted information, often in the form of a name/value pair. Claims make up the usual structure of Evidence.
-(Compare /claim/ in {{RFC7519}}).
+Compare /claim/ in {{RFC7519}}.
 
 Endorsement:
 
