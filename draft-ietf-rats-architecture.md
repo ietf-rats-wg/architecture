@@ -1270,6 +1270,8 @@ but is just representative enough to highlight various timing considerations.
 All times are relative to the local clocks, indicated by an "a" (Attester),
 "v" (Verifier), or "r" (Relying Party) suffix.
 
+Times with an appended Prime (') indicate a second instance of the same event.
+
 How and if clocks are synchronized depends upon the model.
 
 ## Example 1: Timestamp-based Passport Model Example
