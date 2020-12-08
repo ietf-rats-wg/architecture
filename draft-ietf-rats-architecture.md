@@ -114,7 +114,7 @@ informative:
 --- abstract
 
 In network protocol exchanges it is often the case that
-one entity requires believeable evidence about the operational state of a remote
+one entity requires believable evidence about the operational state of a remote
 peer.  Such evidence is typically conveyed as claims
 about the peer's software and hardware platform, and is subsequently appraised in order
 to assess the peer's trustworthiness.  The process of generating and
