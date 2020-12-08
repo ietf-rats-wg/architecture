@@ -113,11 +113,15 @@ informative:
 
 --- abstract
 
-In network protocol exchanges, it is often the case that
-one entity (a Relying Party) requires evidence about a remote peer to assess the peer's
-trustworthiness, and a way to appraise such evidence. The evidence is typically a set of claims
-about its software and hardware platform. This document describes an architecture for such
-remote attestation procedures (RATS).
+In network protocol exchanges it is often the case that
+one entity requires believable evidence about the operational state of a remote
+peer.  Such evidence is typically conveyed as claims
+about the peer's software and hardware platform, and is subsequently appraised in order
+to assess the peer's trustworthiness.  The process of generating and
+appraising this kind of evidence is known as remote
+attestation.  This document describes an architecture for remote attestation
+procedures that generate, convey, and appraise evidence about a peer's
+operational state.
 
 --- middle
 
