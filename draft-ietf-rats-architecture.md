@@ -118,7 +118,7 @@ one entity requires believable evidence about the operational state of a remote
 peer.  Such evidence is typically conveyed as claims
 about the peer's software and hardware platform, and is subsequently appraised in order
 to assess the peer's trustworthiness.  The process of generating and
-appraising this kind of evidence goes under the name of remote
+appraising this kind of evidence is known as remote
 attestation.  This document describes an architecture for remote attestation
 procedures that generate, convey, and appraise evidence about a peer's
 operational state.
