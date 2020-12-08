@@ -946,7 +946,11 @@ component or user on the device.
 ## Attestation Results
 
 Attestation Results are the input used by the Relying Party to decide the extent to which it will trust a particular Attester, and allow it to access some data or perform some operation.
+
 Attestation Results may be a Boolean simply indicating compliance or non-compliance with a Verifier's appraisal policy, or a rich set of Claims about the Attester, against which the Relying Party applies its Appraisal Policy for Attestation Results.
+
+The quality of the Attestation Results depend upon the ability of the Verifier to evaluate the Attester.
+Different Attesters have a different _Strength of Function_ (cf: Common Criteria citation XXX), which results in the Attestation Results being qualitatively different in strength.
 
 A result that indicates non-compliance can be used by an Attester (in the passport model) or
 a Relying Party (in the background-check model) to indicate that the Attester
