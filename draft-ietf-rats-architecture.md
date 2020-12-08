@@ -1363,9 +1363,9 @@ Only the delta between two events from the sender can be used by the receiver.
         ~                                                 ~
         |                                                 |
         |<--Nonce2-------------------------------------time(NS_r)
-     time(RRa)
-        |---Attestation Result{time(RX_v)-time(RG_v),->time(RA_r)
-        |        Nonce2, time(RR_a)-time(EG_a)}           |
+     time(RR_a)                                           |
+        |--[Attestation Result{time(RX_v)-time(RG_v)}, -->|time(RA_r)
+        |        Nonce2, time(RR_a)-time(EG_a)]           |
         ~                                                 ~
         |                                                 |
         |                                              time(OP_r)
