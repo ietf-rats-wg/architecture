@@ -175,7 +175,7 @@ Attester and Relying Party roles.
 ## Network Endpoint Assessment
 
 Network operators want a trustworthy report that includes identity
-and version of information of the hardware and software on the
+and version information about the hardware and software on the
 machines attached to their network, for purposes such as inventory,
 audit, anomaly detection, record maintenance and/or trending reports (logging).
 The network operator may also want a policy
@@ -190,7 +190,7 @@ Typically, solutions start with a specific component (called a "root of trust") 
 provides device identity and protected storage for measurements.
 The system components perform a series of measurements that may be
 signed by the root of trust, considered as Evidence about the hardware,
-firmware, BIOS, software, etc. that is running.
+firmware, BIOS, software, etc. that is present.
 
 Attester:
 
@@ -198,7 +198,8 @@ Attester:
 
 Relying Party:
 
-: A network infrastructure device such as a router, switch, or access point
+: A network infrastructure device such as a router, switch, or access point,
+responsible for admission of the device into the network
 
 ## Confidential Machine Learning (ML) Model Protection
 
@@ -226,9 +227,9 @@ Relying Party:
 This is a generalization of the ML model use case above, where
 the data can be any highly confidential data, such as health data
 about customers, payroll data about employees, future business plans, etc.
-An assessment of system state is made against a set of policies
-to evaluate the state of a system using attestations for the system
-requesting data. Attestation is desired to prevent leaking data to
+As part of the attestation procedure, an assessment is made against a set
+of policies to evaluate the state of the system which is requesting
+the confidential data.  Attestation is desired to prevent leaking data to
 compromised devices.
 
 Attester:
@@ -377,11 +378,11 @@ Target Environment. In some implementations, the Attesting and Target Environmen
 might be combined.
 Other implementations might have multiple Attesting and Target Environments,
 such as in the examples described in more detail in {{layered-attestation}}
-and {{compositedevice}}.  Other examples may exist, and the examples
-discussed could even be combined into even more complex implementations.
+and {{compositedevice}}.  Other examples may exist.  Besides, the examples
+discussed could be combined into even more complex implementations.
 
 Claims are collected from Target Environments, as shown in {{twotypes-env}}.
-That is, Attesting Environments collect the values and the information to be represented in Claims, by reading system registers and variables, calling into subsystems, taking measurements on code or memory and so on of the Target Environment.
+That is, Attesting Environments collect the values and the information to be represented in Claims, by reading system registers and variables, calling into subsystems, taking measurements on code, memory or other security related assets of the Target Environment.
 Attesting Environments then format the claims appropriately, and typically
 use key material and
 cryptographic functions, such as signing or cipher algorithms, to
@@ -410,9 +411,8 @@ The nested or chained structure
 includes Claims, collected by the Attester to aid in the assurance or
 believability of the attestation Evidence.
 
-{{layered}} depicts an example of a device that includes (A) a BIOS stored
-in read-only memory in this example, (B) an updatable bootloader, and (C)
-an operating system kernel.
+The device in {{layered}} includes (A) a BIOS stored in read-only memory,
+(B) an updatable bootloader, and (C) an operating system kernel.
 
 {:layered: artwork-align="center"}
 ~~~~ LAYERED
@@ -424,7 +424,7 @@ Attesting Environment A, the read-only BIOS in this example,
 has to ensure the integrity of the bootloader (Target Environment B).
 There are
 potentially multiple kernels to boot, and the decision is up to the bootloader.
-Only a bootloader with intact integrity will make an appropriate decision. Therefore, these Claims have to be measured securely.
+Only a bootloader with intact integrity will make an appropriate decision. Therefore, the relevant Claims have to be measured securely.
 At this stage of the boot-cycle of the
 device, the Claims collected typically cannot be composed into Evidence.
 
@@ -779,7 +779,7 @@ out-of-scope of RATS, but they are presumed to exist in order to convey
 conceptual messages appropriately between roles.
 
 For example, an entity that both connects to a wide-area network and to a system bus is taking on both the Attester and Verifier roles.
-As a system bus entity, a Verifier consumes Evidence from other devices
+As a system bus-connected entity, a Verifier consumes Evidence from other devices
 connected to the system bus that implement Attester roles. As a wide-area
 network connected entity, it may implement an Attester role. The entity, as a
 system bus Verifier, may choose to fully isolate its role as a wide-area
@@ -792,7 +792,7 @@ the corresponding conceptual messages as defined in this document.
 
 ## Relying Party
 
-The scope of this document is scenarios for which a Relying Party
+This document covers scenarios for which a Relying Party
 trusts a Verifier that can appraise the trustworthiness of
 information about an Attester.  Such trust might come by the Relying
 Party trusting the Verifier (or its public key) directly, or might
@@ -828,12 +828,12 @@ In some scenarios, Evidence might contain sensitive information such as
 Personally Identifiable Information.
 Thus, an Attester must trust entities to which it conveys Evidence, to not
 reveal sensitive data to unauthorized parties.
-The Verifier might share this information with other authorized parties, according to rules that it controls.
+The Verifier might share this information with other authorized parties, according to some predefined rules.
 In the background-check model, this Evidence may also be revealed to Relying Party(s).
 
-In some cases where Evidence contains sensitive information, an Attester
-might even require that a Verifier first go through a TLS authentication or a remote attestation procedure with it before the Attester
-will send the sensitive Evidence.  This can be done by having the
+When Evidence contains sensitive information, an Attester
+typically requires that a Verifier authenticates itself (e.g., at TLS session establishment) and might even request a remote attestation before the Attester
+sends the sensitive Evidence.  This can be done by having the
 Attester first act as a Verifier/Relying Party, and the Verifier act as its
 own Attester, as discussed above.
 
@@ -891,7 +891,7 @@ The key material is typically in the form of an asymmetric key pair (e.g., an RS
 and a manufacturer-signed IDevID certificate) secured in the Attester.
 
 The Verifier is provided with an appropriate trust anchor, or provided with a database of public keys (rather than certificates), or even carefully secured lists of symmetric keys.
-The nature of how the Verifier manages to validate the signatures produced by the Attester is critical to the secure operation an Attestation system, but is not the subject of standardization within this architecture.
+The nature of how the Verifier manages to validate the signatures produced by the Attester is critical to the secure operation of an Attestation system, but is not the subject of standardization within this architecture.
 
 A conveyance protocol that provides authentication and integrity protection can be used
 to convey unprotected Evidence, assuming the following properties exists:
@@ -953,7 +953,7 @@ component or user on the device.
 
 Attestation Results are the input used by the Relying Party to decide the extent to which it will trust a particular Attester, and allow it to access some data or perform some operation.
 
-Attestation Results may be a Boolean simply indicating compliance or non-compliance with a Verifier's appraisal policy, or a rich set of Claims about the Attester, against which the Relying Party applies its Appraisal Policy for Attestation Results.
+Attestation Results may carry a boolean value indicating compliance or non-compliance with a Verifier's appraisal policy, or a richer set of Claims about the Attester, against which the Relying Party applies its Appraisal Policy for Attestation Results.
 
 The quality of the Attestation Results depend upon the ability of the Verifier to evaluate the Attester.
 Different Attesters have a different _Strength of Function_ {{strengthoffunction}}, which results in the Attestation Results being qualitatively different in strength.
@@ -1165,7 +1165,7 @@ Remote attestation applies to use cases with a range of security requirements, s
 
 ### On-Device Attester and Key Protection
 
-It is assumed that the Attester is located in an isolated environment of a device like a process, a dedicated chip a TEE or such that collects the Claims, formats them and signs them with an Attestation Key. The Attester must be protected from unauthorized modification to ensure it behaves correctly. There must also be confidentiality so that the signing key is not captured and used elsewhere to forge evidence.
+It is assumed that the Attester is located in an isolated environment of a device like a process, a dedicated chip, a TEE or such that collects the Claims, formats them and signs them with an Attestation Key. The Attester must be protected from unauthorized modification to ensure it behaves correctly. There must also be confidentiality so that the signing key is not captured and used elsewhere to forge evidence.
 
 In many cases the user or owner of the device must not be able to modify or exfiltrate keys from the Attesting Environment of the Attester.
 For example the owner or user of a mobile phone or FIDO authenticator is not trusted.
@@ -1224,7 +1224,7 @@ can be configured via a network protocol, the ability to create Evidence about
 the integrity of the entity providing the appraisal policy needs to be
 considered.
 
-The security of conveyed information may be applied at different layers, whether by a conveyance protocol, or an information encoding format. This architecture expects attestation messages (i.e., Evidence, Attestation Results, Endorsements and Policies) are end-to-end protected based on the role interaction context.
+The security of conveyed information may be applied at different layers, whether by a conveyance protocol, or an information encoding format. This architecture expects attestation messages (i.e., Evidence, Attestation Results, Endorsements, Reference Values and Policies) are end-to-end protected based on the role interaction context.
 For example, if an Attester produces Evidence that is relayed through some other entity that doesn't implement the Attester or the intended Verifier roles, then the relaying entity should not expect to have access to the Evidence.
 
 # IANA Considerations
@@ -1237,7 +1237,6 @@ Special thanks go to
 Jörg Borchert,
 Nancy Cam-Winget,
 Jessica Fitzgerald-McKay,
-Thomas Fossati,
 Diego Lopez,
 Laurence Lundblade,
 Paul Rowe,
