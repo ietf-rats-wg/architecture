@@ -411,7 +411,7 @@ The nested or chained structure
 includes Claims, collected by the Attester to aid in the assurance or
 believability of the attestation Evidence.
 
-The device in {{layered}} includes (A) a BIOS stored in read-only memory,
+The device illustrated in {{layered}} includes (A) a BIOS stored in read-only memory,
 (B) an updatable bootloader, and (C) an operating system kernel.
 
 {:layered: artwork-align="center"}
