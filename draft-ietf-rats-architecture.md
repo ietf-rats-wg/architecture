@@ -826,7 +826,7 @@ could establish trust in a Verifier as discussed above.
 ## Attester
 
 In some scenarios, Evidence might contain sensitive information such as
-Personally Identifiable Information (PII).
+Personally Identifiable Information (PII) or system identifiable information.
 Thus, an Attester must trust entities to which it conveys Evidence, to not
 reveal sensitive data to unauthorized parties.
 The Verifier might share this information with other authorized parties, according to a governing policy that address the handling of sensitive information (potentially included in Appraisal Policies for Evidence).
