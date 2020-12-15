@@ -198,7 +198,7 @@ Attester:
 
 Relying Party:
 
-: A network infrastructure device such as a router, switch, or access point,
+: Network equipment such as a router, switch, or access point,
 responsible for admission of the device into the network
 
 ## Confidential Machine Learning (ML) Model Protection
