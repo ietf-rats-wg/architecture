@@ -1059,7 +1059,8 @@ race condition possible in that the state of the Attester, and the
 appraisal policies might change immediately after the Evidence or Attestation
 Result was generated.  The goal is merely to narrow their recentness to
 something the Verifier (for Evidence) or Relying Party (for Attestation Result)
-is willing to accept.  Freshness is a key component for enabling caching and
+is willing to accept.  Some flexibility on the freshness requirement, however,
+is a key component for enabling caching and
 reuse of both Evidence and Attestation Results, which is especially valuable in
 cases where their computation uses a substantial part of the resource budget
 (e.g., energy in constrained devices).
