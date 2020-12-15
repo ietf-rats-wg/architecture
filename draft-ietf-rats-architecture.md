@@ -829,7 +829,7 @@ In some scenarios, Evidence might contain sensitive information such as
 Personally Identifiable Information (PII).
 Thus, an Attester must trust entities to which it conveys Evidence, to not
 reveal sensitive data to unauthorized parties.
-The Verifier might share this information with other authorized parties, according to some predefined rules.
+The Verifier might share this information with other authorized parties, according to predefined rules that address the handling of PII (potentially included in Appraisal Policies for Evidence).
 In the background-check model, this Evidence may also be revealed to Relying Party(s).
 
 When Evidence contains sensitive information, an Attester
