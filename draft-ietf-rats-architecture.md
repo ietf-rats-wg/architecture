@@ -382,7 +382,7 @@ and {{compositedevice}}.  Other examples may exist.  Besides, the examples
 discussed could be combined into even more complex implementations.
 
 Claims are collected from Target Environments, as shown in {{twotypes-env}}.
-That is, Attesting Environments collect the values and the information to be represented in Claims, by reading system registers and variables, calling into subsystems, taking measurements on code, memory or other security related assets of the Target Environment.
+That is, Attesting Environments collect the values and the information to be represented in Claims, by reading system registers and variables, calling into subsystems, taking measurements on code, memory, or other security related assets of the Target Environment.
 Attesting Environments then format the claims appropriately, and typically
 use key material and
 cryptographic functions, such as signing or cipher algorithms, to
