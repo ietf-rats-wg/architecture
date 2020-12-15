@@ -723,7 +723,8 @@ One variation of the background-check model is where the Relying Party
 and the Verifier are on the same machine, performing both functions together. 
 In this case, there is no need for a protocol between the two.
 
-It is also worth pointing out that the choice of model is generally up to the Relying Party. 
+It is also worth pointing out that the choice of model depends on the use case, and that different applications may use different models while still interacting with the same Attester or Verifier.
+
 The same device may need to create Evidence for different Relying Parties and/or different use cases. 
 For instance, it would provide Evidence to a network infrastructure device to gain access to the network, and
 to a server holding confidential data to gain access to that data.
