@@ -228,7 +228,7 @@ This is a generalization of the ML model use case above, where
 the data can be any highly confidential data, such as health data
 about customers, payroll data about employees, future business plans, etc.
 As part of the attestation procedure, an assessment is made against a set
-of policies to evaluate the state of the system which is requesting
+of policies to evaluate the state of the system that is requesting
 the confidential data.  Attestation is desired to prevent leaking data to
 compromised devices.
 
