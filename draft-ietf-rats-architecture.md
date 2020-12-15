@@ -424,7 +424,8 @@ Attesting Environment A, the read-only BIOS in this example,
 has to ensure the integrity of the bootloader (Target Environment B).
 There are
 potentially multiple kernels to boot, and the decision is up to the bootloader.
-Only a bootloader with intact integrity will make an appropriate decision. Therefore, the relevant Claims have to be measured securely.
+Only a bootloader with intact integrity will make an appropriate decision. 
+Therefore, the Claims relating to the integrity of the bootloader have to be measured securely.
 At this stage of the boot-cycle of the
 device, the Claims collected typically cannot be composed into Evidence.
 
