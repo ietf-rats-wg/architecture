@@ -954,7 +954,7 @@ component or user on the device.
 
 Attestation Results are the input used by the Relying Party to decide the extent to which it will trust a particular Attester, and allow it to access some data or perform some operation.
 
-Attestation Results may carry a boolean value indicating compliance or non-compliance with a Verifier's appraisal policy, or a richer set of Claims about the Attester, against which the Relying Party applies its Appraisal Policy for Attestation Results.
+Attestation Results may carry a boolean value indicating compliance or non-compliance with a Verifier's appraisal policy, or may carry a richer set of Claims about the Attester, against which the Relying Party applies its Appraisal Policy for Attestation Results.
 
 The quality of the Attestation Results depend upon the ability of the Verifier to evaluate the Attester.
 Different Attesters have a different _Strength of Function_ {{strengthoffunction}}, which results in the Attestation Results being qualitatively different in strength.
@@ -1166,7 +1166,7 @@ Remote attestation applies to use cases with a range of security requirements, s
 
 ### On-Device Attester and Key Protection
 
-It is assumed that the Attester is located in an isolated environment of a device like a process, a dedicated chip, a TEE or such that collects the Claims, formats them and signs them with an Attestation Key. The Attester must be protected from unauthorized modification to ensure it behaves correctly. There must also be confidentiality so that the signing key is not captured and used elsewhere to forge evidence.
+It is assumed that the Attester is located in an isolated environment of a device like a process, a dedicated chip a TEE or such that collects the Claims, formats them and signs them with an Attestation Key. The Attester must be protected from unauthorized modification to ensure it behaves correctly. There must also be confidentiality so that the signing key is not captured and used elsewhere to forge evidence.
 
 In many cases the user or owner of the device must not be able to modify or exfiltrate keys from the Attesting Environment of the Attester.
 For example the owner or user of a mobile phone or FIDO authenticator is not trusted.
@@ -1225,7 +1225,7 @@ can be configured via a network protocol, the ability to create Evidence about
 the integrity of the entity providing the appraisal policy needs to be
 considered.
 
-The security of conveyed information may be applied at different layers, whether by a conveyance protocol, or an information encoding format. This architecture expects attestation messages (i.e., Evidence, Attestation Results, Endorsements, Reference Values and Policies) are end-to-end protected based on the role interaction context.
+The security of conveyed information may be applied at different layers, whether by a conveyance protocol, or an information encoding format. This architecture expects attestation messages (i.e., Evidence, Attestation Results, Endorsements, Reference Values, and Policies) are end-to-end protected based on the role interaction context.
 For example, if an Attester produces Evidence that is relayed through some other entity that doesn't implement the Attester or the intended Verifier roles, then the relaying entity should not expect to have access to the Evidence.
 
 # IANA Considerations
