@@ -303,8 +303,9 @@ a long period of time
 
 Relying Party:
 
-: A remote server that will securely grant the Attester
-permission to continue operating (i.e., not reboot) for a period of time
+: The watchdog capable to trigger a procedure that resets a device into
+a known, good operational state.
+
 
 ## FIDO Biometric Authentication
 
