@@ -1159,13 +1159,18 @@ an Attestation Result for any other purpose.
 ## Attester and Attestation Key Protection
 
 
-Implementers need to pay close attention to the isolation and protection of the Attester and the factory processes for provisioning the Attestation key material. When either of these are compromised, the remote attestation becomes worthless because the attacker can forge Evidence.
+Implementers need to pay close attention to the isolation and protection of the Attester and the factory processes for provisioning the Attestation key material. If either of these are compromised, the remote attestation becomes worthless because the attacker can forge Evidence.
 
 Remote attestation applies to use cases with a range of security requirements, so the protections discussed here range from low to high security where low security  may be only application or process isolation by the device's operating system and high security involves specialized hardware to defend against physical attacks on a chip.
 
 ### On-Device Attester and Key Protection
 
-It is assumed that the Attester is located in an isolated environment of a device like a process, a dedicated chip a TEE or such that collects the Claims, formats them and signs them with an Attestation Key. The Attester must be protected from unauthorized modification to ensure it behaves correctly. There must also be confidentiality so that the signing key is not captured and used elsewhere to forge evidence.
+It is assumed that an Attesting Environment is sufficiently isolated from the
+Target Environment it collects Claims for and signs them with an Attestation
+Key, so that the Target Environment cannot forge Evidence about itself.  Such
+an isolated environment might be provided by a process, a dedicated chip,
+a TEE, a virtual machine, or another secure mode of operation.
+The Attesting Environment must be protected from unauthorized modification to ensure it behaves correctly. There must also be confidentiality so that the signing key is not captured and used elsewhere to forge Evidence.
 
 In many cases the user or owner of the device must not be able to modify or exfiltrate keys from the Attesting Environment of the Attester.
 For example the owner or user of a mobile phone or FIDO authenticator is not trusted.
