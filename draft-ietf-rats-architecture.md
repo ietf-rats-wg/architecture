@@ -725,8 +725,8 @@ In this case, there is no need for a protocol between the two.
 
 It is also worth pointing out that the choice of model is generally up to the Relying Party. 
 The same device may need to create Evidence for different Relying Parties and/or different use cases. 
-For instance, it would provide Evidence to a network infrastructure device to gain access to the network, and
-to a server holding confidential data to gain access to that data.
+For instance, it would use one model to provide Evidence to a network infrastructure device to gain access to the network, and
+the other model to provide Evidence to a server holding confidential data to gain access to that data.
 As such, both models may simultaneously be in use by the same device.
 
 {{combination}} shows another example of a combination where Relying Party 1 uses the
