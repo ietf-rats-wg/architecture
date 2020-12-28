@@ -222,7 +222,7 @@ Relying Party:
 
 : A server or service holding ML models it desires to protect
 
-## Confidential Data Retrieval
+## Confidential Data Protection
 
 This is a generalization of the ML model use case above, where
 the data can be any highly confidential data, such as health data
