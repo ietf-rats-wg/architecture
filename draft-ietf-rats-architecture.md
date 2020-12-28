@@ -303,7 +303,7 @@ a long period of time
 
 Relying Party:
 
-: A remote server that will securely grant the Attester
+: A watchdog timer inside the device that will securely grant the Attester
 permission to continue operating (i.e., not reboot) for a period of time
 
 ## FIDO Biometric Authentication
