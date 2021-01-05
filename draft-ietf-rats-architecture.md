@@ -1007,7 +1007,10 @@ The following diagram illustrates a relationship to which remote attestation is 
 In this diagram, the protocol between Attester and a Relying Party
 can be any new or existing protocol (e.g., HTTP(S), COAP(S),
 ROLIE {{RFC8322}},
-802.1x, OPC UA, etc.), depending on the use case.
+802.1x, OPC UA {{OPCUA}}, etc.), depending on the use case.
+
+Such protocols typically already have mechanisms for passing security information for purposes of authentication and authorization.
+Common formats include JWTs {{RFC7519}}, CWTs {{RFC8392}}, and X.509 certificates.
 
 Retrofitting already deployed protocols with remote attestation requires
 adding RATS conceptual messages to the existing data flows. This must be
