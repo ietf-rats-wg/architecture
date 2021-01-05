@@ -605,7 +605,7 @@ in any sort of comparison.
 Used By: Verifier;
 Produced By: Reference Value Provider.
 
-# Topological Models {#overview}
+# Topological Patterns {#overview}
 
 {{dataflow}} shows a data-flow diagram for communication between an Attester,
 a Verifier, and a Relying Party. The Attester conveys its Evidence to the Verifier
