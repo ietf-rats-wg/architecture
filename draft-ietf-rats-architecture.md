@@ -93,6 +93,12 @@ informative:
     target: https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-2-security-model/
     seriesinfo:
       OPC 10000-2
+
+  TCG-DICE:
+    author:
+      org: "Trusted Computing Group"
+    title: "DICE Certificate Profiles"
+    target: https://trustedcomputinggroup.org/wp-content/uploads/DICE-Certificate-Profiles-r01_3june2020-1.pdf
   I-D.birkholz-rats-tuda: rats-tuda
   I-D.ietf-teep-architecture: teep-arch
   TCGarch:
@@ -1004,24 +1010,21 @@ The following diagram illustrates a relationship to which remote attestation is 
 In this diagram, the protocol between Attester and a Relying Party
 can be any new or existing protocol (e.g., HTTP(S), COAP(S),
 ROLIE {{RFC8322}},
-802.1x, OPC UA, etc.), depending on the use case.  Such
-protocols typically already have mechanisms for passing security
-information for purposes of authentication and authorization.  Common
-formats include JWTs {{RFC7519}}, CWTs {{RFC8392}}, and X.509 certificates.
+802.1x, OPC UA {{OPCUA}}, etc.), depending on the use case.
 
-To enable remote attestation to be added to existing protocols, enabling a higher
-level of assurance against malware for example, it is important that
-information needed for appraising the Attester be usable with existing
-protocols that have constraints around what formats they can transport.
-For example, OPC UA {{OPCUA}} (probably the most common protocol in
-industrial IoT environments) is defined to carry X.509 certificates and so
-security information must be embedded into an X.509 certificate to be passed
-in the protocol.  Thus, remote attestation related information could be natively
-encoded in X.509 certificate extensions, or could be natively encoded in
-some other format (e.g., a CWT) which in turn is then encoded in an X.509
-certificate extension.
+Such protocols typically already have mechanisms for passing security information for purposes of authentication and authorization.
+Common formats include JWTs {{RFC7519}}, CWTs {{RFC8392}}, and X.509 certificates.
 
-Especially for constrained nodes, however, there is a desire to minimize
+Retrofitting already deployed protocols with remote attestation requires
+adding RATS conceptual messages to the existing data flows. This must be
+done in a way that doesn't degrade the security properties of the system
+and should use the native extension mechanisms provided by the underlying
+protocol. For example, if the TLS handshake is to be extended with
+remote attestation capabilities, attestation Evidence may be embedded
+in an ad hoc X.509 certificate extension (e.g., {{TCG-DICE}}), or into a new
+TLS Certificate Type (e.g., {{?I-D.tschofenig-tls-cwt}}).
+
+Especially for constrained nodes there is a desire to minimize
 the amount of parsing code needed in a Relying Party, in order to both
 minimize footprint and to minimize the attack surface area.  So while
 it would be possible to embed a CWT inside a JWT, or a JWT inside an
