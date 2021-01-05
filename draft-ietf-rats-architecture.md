@@ -303,7 +303,7 @@ a long period of time
 
 Relying Party:
 
-: The watchdog capable to trigger a procedure that resets a device into
+: A watchdog capable of triggering a procedure that resets a device into
 a known, good operational state.
 
 
