@@ -605,14 +605,15 @@ in any sort of comparison.
 Used By: Verifier;
 Produced By: Reference Value Provider.
 
-# Topological Models {#overview}
+# Topological Patterns {#overview}
 
-{{dataflow}} shows a basic model for communication between an Attester,
+{{dataflow}} shows a data-flow diagram for communication between an Attester,
 a Verifier, and a Relying Party. The Attester conveys its Evidence to the Verifier
 for appraisal, and the Relying Party gets the Attestation Result from the Verifier.
-There are multiple other possible models. This section includes some reference
-models. This is not intended to be a restrictive list, and other variations may
-exist.
+This section refines it by describing two reference models,
+as well as one example composition thereof. The discussion
+that follows is for illustrative purposes only and does not constrain the
+interactions between RATS roles to the presented patterns.
 
 ## Passport Model
 
