@@ -85,6 +85,15 @@ normative:
 informative:
   RFC4949:
   RFC8322:
+  OPCUA:
+    author:
+      org: "OPC Foundation"
+    title: "OPC Unified Architecture Specification, Part 2: Security Model, Release 1.03"
+    date: 2015-11-25
+    target: https://opcfoundation.org/developer-tools/specifications-unified-architecture/part-2-security-model/
+    seriesinfo:
+      OPC 10000-2
+
   TCG-DICE:
     author:
       org: "Trusted Computing Group"
