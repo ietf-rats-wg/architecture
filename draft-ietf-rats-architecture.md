@@ -607,11 +607,11 @@ Produced By: Reference Value Provider.
 
 # Topological Models {#overview}
 
-{{dataflow}} shows an abstract model for communication between an Attester,
+{{dataflow}} shows a data-flow diagram for communication between an Attester,
 a Verifier, and a Relying Party. The Attester conveys its Evidence to the Verifier
 for appraisal, and the Relying Party gets the Attestation Result from the Verifier.
-This section refines it by describing two reference interaction schemes
-(topological models), as well as one possible compositions thereof. The discussion
+This section refines it by describing two reference models,
+as well as one example composition thereof. The discussion
 that follows is for illustrative purposes only and does not constrain the
 interactions between RATS roles to the presented patterns.
 
