@@ -1076,7 +1076,7 @@ a different format.
 ~~~~
 {:multievidence #multievidence_diag title="Multiple Attesters and Relying Parties with Different Formats"}
 
-# Freshness
+# Freshness {#freshness}
 
 A Verifier or Relying Party may need to learn the point in time
 (i.e., the "epoch") an Evidence or Attestation Result has been produced.  This
@@ -1341,7 +1341,8 @@ or might be defined relative to some other timestamp or timeticks counter.
 | VG | Value generated             | A value to appear in a Claim was created.  In some cases, a value may have technically existed before an Attester became aware of it but the Attester might have no idea how long it has had that value.  In such a case, the Value created time is the time at which the Claim containing the copy of the value was created.
 | NS | Nonce sent                  | A nonce not predictable to an Attester (recentness & uniqueness) is sent to an Attester.
 | NR | Nonce relayed               | A nonce is relayed to an Attester by another entity.
-| HR | Handle received             | A handle distributed by a Handle Distributor was received.
+| HT | Handle transmitted          | A new handle is transmitted by a Handle Distributor to instruct the receiving entities to transition to a new epoch.
+| HR | Handle received             | A handle is successfully received and processed by an entity.
 | EG | Evidence generation         | An Attester creates Evidence from collected Claims.
 | ER | Evidence relayed            | A Relying Party relays Evidence to a Verifier.
 | RG | Result generation           | A Verifier appraises Evidence and generates an Attestation Result.
@@ -1492,20 +1493,29 @@ in terms of `time(RX_v)-time(RG_v)`, then the Relying Party can check
 
 ## Example 3: Handle-based Passport Model Example
 
-The following example illustrates a hypothetical Passport Model
-solution that uses handles instead of nonces or timestamps.
-In this example, Evidence generation based on received handles always uses the current (most recent) handle.
-As handles are distributed over the network, all involved entities receive a fresh handle at roughly the same time.
-Due to distribution over the network, there is some jitter with respect to the time the Handle is received, time(HR), for each involved entity.
-To compensate for this jitter, there is a small period of overlap (a specified offset) in which both a current handle and corresponding former handle are valid in Evidence appraisal: `validity-duration = time(HR'_v) + offset - time(HR_v)`. The offset is typically based on a network's round trip time.
-Analogously, the generation of valid Evidence is only possible, if the age of the handle used is lower than the validity-duration: `time(HR_v) - time(EG_a) < validity-duration`.
+The example in {{fig-handle-passport}} illustrates a Handle-based interaction
+using the passport topology model.
 
-From the point of view of a Verifier, the generation of valid Evidence is only possible, if the age of the handle used in the Evidence generation is younger than the duration of the distribution interval -- "(time(HR'_v)-time(HR_v)) - (time(HR_a)-time(EG_a)) \< validity-duration".
+The Handle Distributor broadcasts handle `H` which starts a new
+epoch `E` for a protocol participant upon reception at `time(HR)`.
 
-Due to the validity-duration of handles, multiple different pieces of Evidence can be generated based on the same handle.
-The resulting granularity (time resolution) of Evidence freshness is typically lower than the resolution of clock-based tickcounters.
+The Attester generates Evidence incorporating handle `H` and conveys it to the
+Verifier.
 
-The following example illustrates a hypothetical Background-Check Model solution that uses handles and requires a trustworthy time source available to the Handle Distributor role.
+The Verifier appraises that the received handle `H` is "fresh" according to the
+definition provided in {{freshness}}, and generates an Attestation Result.  The
+Attestation Result is conveyed to the Attester.
+
+After the transmission of handle `H'` a new epoch `E'` is
+established when `H'` is received by each protocol participant.  The Attester
+relays the Attestation Result obtained during epoch `E` (associated with handle
+`H`) to the Relying Party using the handle for the current epoch `H'`.
+
+In the illustrated scenario, the Handle for relaying an Attestation Result to
+the Relying Party is fresh, while the handle that was used to generate the
+handle is stale. This indicates that at least one epoch has passed in between,
+which can be taken into account in Appraisal Policies for Attestation Results
+about freshness.
 
 ~~~~
                   .-------------.
@@ -1516,27 +1526,23 @@ The following example illustrates a hypothetical Background-Check Model solution
         |                |                |               |
         ~                ~                ~               ~
         |                |                |               |
-     time(HR_a)<---------+-------------time(HR_v)------>time(HR_r)
+     time(HR_a)<---------+-----------time(HR_v)----->time(HR_r)
         |                |                |               |
      time(EG_a)          |                |               |
-        |----Evidence{time(EG_a)}-------->|               |
-        | {Handle1,time(EG_a)-time(VG_a)}|                |
+        |--E{H,time(VG_a)}--------------->|               |
+        |                |                |               |
         |                |             time(RG_v)         |
-        |<-----Attestation Result---------|               |
-        |   {time(RG_v),time(RX_v)}       |               |
-        |                |                                |
-        ~                ~                                ~
-        |                |                                |
-     time(HR_a')<--------'---------------------------->time(HR_r')
-        |                                                 |
-     time(RR_a)                                           /
-        |--Attestation Result{time(RX_v)-time(RG_v)}-->time(RA_r)
-        |    {Handle2, time(RR_a)-time(EG_a)}             |
-        ~                                                 ~
-        |                                                 |
-        |                                              time(OP_r)
-        |                                                 |
+        |<----------------R{H,time(RX_v)}-|               |
+        |                |                |               |
+     time(HR'_a)<--------+---------time(HR'_v)---->time(HR'_r)
+        |                |                |               |
+     time(RR_a)          |                |               |
+        |--RR{H',R{H,time(RX_v)}}--------------------->time(RA_r)
+        |                |                |               |
+        ~                ~                ~               ~
+        |                |                |               |
 ~~~~
+{: #fig-handle-passport title="Handle-based Passport Model"}
 
 ## Example 4: Timestamp-based Background-Check Model Example
 
