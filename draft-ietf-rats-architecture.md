@@ -781,9 +781,7 @@ conceptual messages appropriately between roles.
 For example, an entity that both connects to a wide-area network and to a system bus is taking on both the Attester and Verifier roles.
 As a system bus entity, a Verifier consumes Evidence from other devices
 connected to the system bus that implement Attester roles. As a wide-area
-network connected entity, it may implement an Attester role. The entity, as a
-system bus Verifier, may choose to fully isolate its role as a wide-area
-network Attester.
+network connected entity, it may implement an Attester role.
 
 In essence, an entity that combines more than one role creates and consumes
 the corresponding conceptual messages as defined in this document.
@@ -1159,7 +1157,10 @@ an Attestation Result for any other purpose.
 ## Attester and Attestation Key Protection
 
 
-Implementers need to pay close attention to the isolation and protection of the Attester and the factory processes for provisioning the Attestation key material. If either of these are compromised, the remote attestation becomes worthless because the attacker can forge Evidence.
+Implementers need to pay close attention to the protection of the Attester and the factory processes for provisioning the Attestation key material. If either of these are compromised, the remote attestation becomes worthless because the attacker can forge Evidence.
+For example, a Target Environment should not be able to tamper with the
+Attesting Environment that measures it, by isolating the two environments
+from each other in some way.
 
 Remote attestation applies to use cases with a range of security requirements, so the protections discussed here range from low to high security where low security  may be only application or process isolation by the device's operating system and high security involves specialized hardware to defend against physical attacks on a chip.
 
