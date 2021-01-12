@@ -702,7 +702,7 @@ However, like in the Passport model, an Attestation Result is still consumed by 
 Relying Party.  Code footprint and attack surface area can be minimized by
 using a serialization format for which the Relying Party already needs a
 parser to support the protocol between the Attester and Relying Party,
-which may be an existing standard or widely deployed resource access protocol
+which may be an existing standard or widely deployed resource access protocol.
 Such minimization is especially important if the Relying Party is a
 constrained node.
 
