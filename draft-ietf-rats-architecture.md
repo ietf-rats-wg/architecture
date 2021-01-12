@@ -642,9 +642,8 @@ can then present the Attestation Result (and possibly additional Claims)
 to a Relying Party, which then compares this information against its own
 appraisal policy.
 
-There are three ways in which the process may fail.  First, the Verifier may
-refuse to issue the Attestation Result due to some error in processing, or
-some missing input to the Verifier.
+There are three ways in which the process may fail.
+First, the Verifier may refuse to issue the Attestation Result due to some error in processing, or some missing input to the Verifier.
 The second way in which the process may fail is when the Attestation Result is
 examined by the Relying Party, and based upon the appraisal policy, the
 result does not pass the policy.
