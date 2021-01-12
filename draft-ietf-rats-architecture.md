@@ -699,13 +699,12 @@ The only requirement is that the Evidence can be *encapsulated in* the format
 required by the resource access protocol between the Attester and Relying Party.
 
 However, like in the Passport model, an Attestation Result is still consumed by the
-Relying Party and so the serialization format of the Attestation Result is still
-important.  If the Relying Party is a constrained node whose purpose is to serve
-a given type resource using a standard resource access protocol, it already needs
-the parser(s) required by that existing protocol.  Hence, the ability to let the
-Relying Party obtain an Attestation Result in the same serialization format allows
-minimizing the code footprint and attack surface area of the Relying Party, especially
-if the Relying Party is a constrained node.
+Relying Party.  Code footprint and attack surface area can be minimized by
+using a serialization format for which the Relying Party already needs a
+parser to support the protocol between the Attester and Relying Party,
+which may be an existing standard or widely deployed resource access protocol
+Such minimization is especially important if the Relying Party is a
+constrained node.
 
 ~~~~
                                +-------------+
