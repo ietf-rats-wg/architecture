@@ -431,7 +431,7 @@ Attesting Environment A, the read-only BIOS in this example,
 has to ensure the integrity of the bootloader (Target Environment B).
 There are
 potentially multiple kernels to boot, and the decision is up to the bootloader.
-Only a bootloader with intact integrity will make an appropriate decision. 
+Only a bootloader with intact integrity will make an appropriate decision.
 Therefore, the Claims relating to the integrity of the bootloader have to be measured securely.
 At this stage of the boot-cycle of the
 device, the Claims collected typically cannot be composed into Evidence.
@@ -1337,7 +1337,7 @@ permitted clock skew between the Verifier and the Attester.
 If time(VG_a) is also included in the Evidence along with the claim value
 generated at that time, and the Verifier decides that it can trust the
 time(VG_a) value, the Verifier can also determine whether the claim value is
-recent by checking `time(RG_v) - time(VG_a) < Threshold`.  
+recent by checking `time(RG_v) - time(VG_a) < Threshold`.
 The threshold is decided by the Appraisal Policy for Evidence, and again needs to take
 into account the maximum permitted clock skew between
 the Verifier and the Attester.
