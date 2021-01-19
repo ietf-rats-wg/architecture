@@ -331,7 +331,7 @@ Attester:
 
 Relying Party:
 
-: Any web site, mobile application back-end, or service that relies on digestible authentication data based on biometric information.
+: Any web site, mobile application back-end, or service that relies on authentication data based on biometric information.
 
 # Architectural Overview
 
