@@ -105,7 +105,8 @@ informative:
     title: "Trusted Platform Module Library - Part 1: Architecture"
     author:
       org: "Trusted Computing Group"
-    target: "https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1p62_Part1_Architecture_7july2020.pdf"
+    target: "https://trustedcomputinggroup.org/wp-content/uploads/TCG_TPM2_r1p59_Part1_Architecture_pub.pdf"
+    date: 2019-11-08
   WebAuthN:
     title: "Web Authentication: An API for accessing Public Key Credentials"
     author:
