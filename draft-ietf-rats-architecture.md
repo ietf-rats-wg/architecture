@@ -249,14 +249,14 @@ Relying Party:
 
 ## Critical Infrastructure Control
 
-In this use case, potentially dangerous physical equipment
+In this use case, potentially harmful physical equipment
 (e.g., power grid, traffic control, hazardous chemical processing, etc.)
 is connected to a network.  The organization managing such infrastructure
 needs to ensure that only authorized code and users can control such
-processes, and they are protected from malware or other threats.
-When a protocol operation can affect some critical
-system, the device attached to the critical equipment thus wants some
-assurance that the requester has not been compromised.  As such,
+processes, and that these processes are protected from unauthorized manipulation or other threats.
+When a protocol operation can affect a component of a critical
+system, the device attached to the critical equipment requires some assurances depending on the security context, including that: the requester and the triggering sensor have not been compromised, and the requesters and actors act on applicable policies,
+As such,
 remote attestation can be used to only accept commands from requesters
 that are within policy.
 
