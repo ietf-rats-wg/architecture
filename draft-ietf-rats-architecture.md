@@ -395,11 +395,10 @@ Attesting Environments then format the claims appropriately, and typically
 use key material and
 cryptographic functions, such as signing or cipher algorithms, to
 create Evidence.
-There is no limit to or requirement on the places that an Attesting Environment can exist, but they typically are in Trusted Execution Environments (TEE), embedded Secure Elements
-(eSE), and BIOS firmware.
-An execution environment may not, by default, be capable of claims collection
-for a given Target Environment.
-Execution environments that are designed to be capable of claims collection are referred to in this document as Attesting Environments.
+There is no limit to or requirement on the places that an Attesting Environment can exist, but they typically are in a Trusted Plaform Module (TPM), a Trusted Execution Environments (TEE), an embedded Secure Elements
+(eSE), or BIOS firmware.
+An arbitrary execution environment may not, by default, be capable of claims collection for a given Target Environment.
+Execution environments that are designed specifically to be capable of claims collection are referred to in this document as Attesting Environments.
 
 {:twotypes-env: artwork-align="center"}
 ~~~~ TWOTYPES
