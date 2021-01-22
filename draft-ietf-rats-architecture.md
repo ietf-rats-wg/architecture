@@ -407,17 +407,15 @@ Execution environments that are designed specifically to be capable of claims co
 
 ## Layered Attestation Environments {#layered-attestation}
 
-By definition, the Attester role generates Evidence.  An Attester may consist
-of one or more nested environments (layers).  The root layers of an Attester
-are called roots of trust.  In order to appraise Evidence produced by an
-Attester, the Verifier needs to trust the Attester's root of trust.  Trust in
-the Attester's root of trust can be established either directly (e.g., the
-Verifier puts the root of trust's public key into its trust anchor store) or
-transitively via an Endorser (e.g., the Verifier puts the Endorser's public key
-into its trust anchor store).  In layered attestation, a root of trust is the
-initial Attesting Environment.  Claims can be collected from or about each
-layer, including roots of trust.  The corresponding claims can be structured in
-a nested fashion that reflects the nesting of the Attester's layers.
+By definition, the Attester role generates Evidence.
+An Attester may consist of one or
+more nested environments (layers).
+The root layers of an Attester are called roots of trust.
+In order to appraise Evidence produced by an Attester, the Verifier needs to trust the Attester's root of trust.
+Trust in the Attester's root of trust can be established either directly (e.g., the Verifier puts the root of trust's public key into its trust anchor store) or transitively via an Endorser (e.g., the Verifier puts the Endorser's public key into its trust anchor store).
+In layered attestation, a root of trust is the initial Attesting Environment.
+Claims can be collected from or about each layer, including roots of trust.
+The corresponding claims can be structured in a nested fashion that reflects the nesting of the Attester's layers.
 
 The device illustrated in {{layered}} includes (A) a BIOS stored in read-only memory,
 (B) an updatable bootloader, and (C) an operating system kernel.
