@@ -890,7 +890,7 @@ physically resistant to hardware tampering.
 In most cases, components that have to be vouched for via Endorsements because no Evidence is generated about them are referred to as roots of trust.
 
 The manufacturer having arranged for an Attesting Environment to be provisioned with key material with which to sign Evidence, the Verifier is then provided with
-some way of verifying the signature on the Evidence.  This may in the form of an appropriate trust anchor, or the Verifier may be provided with a database of public keys (rather than certificates), or even carefully secured lists of symmetric keys.
+some way of verifying the signature on the Evidence.  This may be in the form of an appropriate trust anchor, or the Verifier may be provided with a database of public keys (rather than certificates) or even carefully secured lists of symmetric keys.
 
 The nature of how the Verifier manages to validate the signatures produced by the Attester is critical to the secure operation of an Attestation system, but is not the subject of standardization within this architecture.
 
