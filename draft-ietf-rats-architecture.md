@@ -1052,35 +1052,35 @@ considered fresh, meaning they still reflect the latest state of the Attester,
 and that any Attestation Result was generated using the latest Appraisal Policy
 for Evidence.
 
-Freshness is assessed based on the Appraisal Policy for Evidence or Attestation Results,
+Freshness is assessed based on the Appraisal Policy for Evidence or Attestation Results
 that compares the estimated epoch against an "expiry" threshold defined locally to that policy.
 There is, however, always a
 race condition possible in that the state of the Attester, and the
 appraisal policies might change immediately after the Evidence or Attestation
 Result was generated.  The goal is merely to narrow their recentness to
 something the Verifier (for Evidence) or Relying Party (for Attestation Result)
-is willing to accept.  Some flexibility on the freshness requirement, however,
+is willing to accept.  Some flexibility on the freshness requirement
 is a key component for enabling caching and
 reuse of both Evidence and Attestation Results, which is especially valuable in
 cases where their computation uses a substantial part of the resource budget
 (e.g., energy in constrained devices).
 
-There are two common approaches for determining the epoch of an Evidence or
+There are three common approaches for determining the epoch of Evidence or an
 Attestation Result.
 
-<!-- Explicit Timekeeping using Synchronized Clocks -->
+## Explicit Timekeeping using Synchronized Clocks
 
 The first approach is to rely on synchronized and trustworthy clocks, and
 include a signed timestamp (see {{?I-D.birkholz-rats-tuda}}) along with the
-Claims in the Evidence or Attestation Result.  Timestamps can be added on a
-per-Claim basis, to distinguish the time of creation of Evidence or Attestation
+Claims in the Evidence or Attestation Result.  Timestamps can also be added on a
+per-Claim basis to distinguish the time of creation of Evidence or Attestation
 Result from the time that a specific Claim was generated.  The clock's
 trustworthiness typically requires additional Claims about the signer's time
 synchronization mechanism.
 
-<!-- Implicit Timekeeping using Nonces -->
+## Implicit Timekeeping using Nonces
 
-A second approach places the onus of timekeeping solely on the Verifier (for Evidence), or the Relying Party (for
+A second approach places the onus of timekeeping solely on the Verifier (for Evidence) or the Relying Party (for
 Attestation Results), and might be suitable, for example, in case the Attester does not have
 a reliable clock or time synchronization is otherwise impaired.  In this
 approach, a non-predictable nonce is sent by the appraising entity, and the
@@ -1095,16 +1095,47 @@ Attestation Result.  In this case the epoch is said to be rough because:
 * The time between the creation of Claims and the collection of Claims is
   indistinguishable.
 
+## Implicit Timekeeping using Epoch Handles
+
+A third approach relies on having epoch "handles"
+periodically sent to both the sender and receiver of Evidence or
+Attestation Results by some "Handle Distributor".
+
+Handles are different from nonces as they can be used more than once and
+can even be used by more than one entity at the same time.
+Handles are different from timestamps as they do not have to convey information about a point in time, i.e., they are not necessarily monotonically increasing integers.
+
+Like the nonce approach, this allows associating a "rough" epoch without
+requiring a reliable clock or time synchronization in order to generate or
+appraise the freshness of Evidence or Attestation Results.  Only the
+Handle Distributor requires access to a clock so it can periodically send
+new epoch handles.
+
+The most recent handle is included in the produced Evidence or Attestation
+Results, and the appraising entity can compare the handle in received
+Evidence or Attestation Results against the latest handle it received from
+the Handle Distributor to determine if it is within the current epoch.
+An actual solution also needs to take into account race conditions
+when transitioning to a new epoch, such as by using a counter signed
+by the Handle Distributor as the handle, or by including both the current and
+previous handles in messages and/or checks, by requiring retries
+in case of mismatching handles, or by buffering incoming messages
+that might be associated with a handle that the receiver has not yet
+obtained.
+
+Whereas the nonce approach typically requires the appraising entity
+to keep state for each nonce generated, the handle approach minimizes
+the state kept to be independent of the number of Attesters or Verifiers
+from which it expects to receive Evidence or Attestation Results, as long
+as all use the same Handle Distributor.
+
+## Discussion
+
 Implicit and explicit timekeeping can be combined into hybrid mechanisms.  For
 example, if clocks exist and are considered trustworthy but are not
 synchronized, a nonce-based exchange may be used to determine the (relative)
 time offset between the involved peers, followed by any number of timestamp
-based exchanges.  In another setup where all Roles (Attesters, Verifiers and
-Relying Parties) share the same broadcast channel, the nonce-based approach may
-be used to anchor all parties to the same (relative) timeline, without
-requiring synchronized clocks, by having a central entity emit nonces at
-regular intervals and have the "current" nonce included in the produced
-Evidence or Attestation Result.
+based exchanges.  
 
 It is important to note that the actual values in Claims might have been
 generated long before the Claims are signed.  If so, it is the signer's
@@ -1271,7 +1302,6 @@ or might be defined relative to some other timestamp or timeticks counter.
 | ID | Event                       | Explanation of event
 |----|-----------------------------|-----------------------
 | VG | Value generated             | A value to appear in a Claim was created.  In some cases, a value may have technically existed before an Attester became aware of it but the Attester might have no idea how long it has had that value.  In such a case, the Value created time is the time at which the Claim containing the copy of the value was created.
-| HD | Handle distribution         | A centrally generated identifier for time-bound recentness across a domain of devices is successfully distributed to Attesters.
 | NS | Nonce sent                  | A nonce not predictable to an Attester (recentness & uniqueness) is sent to an Attester.
 | NR | Nonce relayed               | A nonce is relayed to an Attester by another entity.
 | HR | Handle received             | A handle distributed by a Handle Distributor was received.
@@ -1425,18 +1455,8 @@ in terms of `time(RX_v)-time(RG_v)`, then the Relying Party can check
 
 ## Example 3: Handle-based Passport Model Example
 
-Handles are a third option to establish time-keeping next to nonces or timestamps.
-Handles are opaque data intended to be available to all RATS roles that interact with each other, such as the Attester or Verifier, in specified intervals.
-To enable this availability, handles are distributed centrally by the Handle Distributor role over the network.
-As any other role, the Handle Distributor role can be taken on by a dedicated entity or collapsed with other roles, such as a Verifier.
-The use of handles can compensate for a lack of clocks or other sources of time on entities taking on RATS roles.
-The only entity that requires access to a source of time is the entity taking on the role of Handle Distributor.
-
-Handles are different from nonces as they can be used more than once and can be used by more than one entity at the same time.
-Handles are different from timestamps as they do not have to convey information about a point in time, but their reception creates that information.
-The reception of a handle is similar to the event that increments a relative tickcounter.
-Receipt of a new handle invalidates a previously received handle.
-
+The following example illustrates a hypothetical Passport Model
+solution that uses handles instead of nonces or timestamps.
 In this example, Evidence generation based on received handles always uses the current (most recent) handle.
 As handles are distributed over the network, all involved entities receive a fresh handle at roughly the same time.
 Due to distribution over the network, there is some jitter with respect to the time the Handle is received, time(HR), for each involved entity.
