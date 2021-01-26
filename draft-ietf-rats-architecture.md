@@ -641,11 +641,13 @@ can then present the Attestation Result (and possibly additional Claims)
 to a Relying Party, which then compares this information against its own
 appraisal policy.
 
-Three ways in which the process fail are as follows.
+Three ways in which the process may fail include: 
 
-First, the Verifier may not issue a positive Attestation Result due to the Evidence not passing the Appraisal Policy for Evidence.
-The second way in which the process may fail is when the Attestation Result is examined by the Relying Party, and based upon the Appraisal Policy for Attestation Results, the result does not pass the policy.
-The third way is when the Verifier is unreachable or unavailable.
+* First, the Verifier may not issue a positive Attestation Result due to the Evidence not passing the Appraisal Policy for Evidence.
+
+* The second way in which the process may fail is when the Attestation Result is examined by the Relying Party, and based upon the Appraisal Policy for Attestation Results, the result does not pass the policy.
+
+* The third way is when the Verifier is unreachable or unavailable.
 
 Since the resource access protocol between the Attester and Relying Party
 includes an Attestation Result, in this model the details of that protocol
