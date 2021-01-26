@@ -1118,8 +1118,10 @@ the Handle Distributor to determine if it is within the current epoch.
 An actual solution also needs to take into account race conditions
 when transitioning to a new epoch, such as by using a counter signed
 by the Handle Distributor as the handle, or by including both the current and
-previous handles in messages and/or checks, or by requiring retries
-in case of mismatching handles.
+previous handles in messages and/or checks, by requiring retries
+in case of mismatching handles, or by buffering incoming messages
+that might be associated with a handle that the receiver has not yet
+obtained.
 
 Whereas the nonce approach typically requires the appraising entity
 to keep state for each nonce generated, the handle approach minimizes
