@@ -1113,7 +1113,7 @@ new epoch handles.
 
 The most recent handle is included in the produced Evidence or Attestation
 Results, and the appraising entity can compare the handle in received
-Evidence or Attestation Results against latest handle it received from
+Evidence or Attestation Results against the latest handle it received from
 the Handle Distributor to determine if it is within the current epoch.
 An actual solution also needs to take into account race conditions
 when transitioning to a new epoch, such as by using an epoch counter
