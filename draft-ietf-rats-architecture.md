@@ -1326,6 +1326,11 @@ timestamp can directly compare it to its own clock and timestamps.
         |                                                 |
 ~~~~
 
+In the figures above and in subsequent sections, curly braces
+indicate containment.  For example, the notation
+Evidence{foo} indicates that 'foo' is contained in the Evidence
+and is thus covered by its signature.
+
 The Verifier can check whether the Evidence is fresh when appraising
 it at time(RG_v) by checking `time(RG_v) - time(EG_a) < Threshold`, where the
 Verifier's threshold is large enough to account for the maximum
