@@ -1106,14 +1106,14 @@ can even be used by more than one entity at the same time.
 Handles are different from timestamps as they do not have to convey information about a point in time.
 
 Like the nonce approach, this allows associating a "rough" epoch without
-require a reliable clock or time synchronization in order to generate or
+requiring a reliable clock or time synchronization in order to generate or
 appraise the freshness of Evidence or Attestation Results.  Only the
 Handle Distributor requires access to a clock so it can periodically send
 new epoch handles.
 
 The most recent handle is included in the produced Evidence or Attestation
 Results, and the appraising entity can compare the handle in received
-Evidence or Attestation Results against latest handle it received from
+Evidence or Attestation Results against the latest handle it received from
 the Handle Distributor to determine if it is within the current epoch.
 An actual solution also needs to take into account race conditions
 when transitioning to a new epoch, such as by using a counter signed
