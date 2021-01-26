@@ -1103,7 +1103,7 @@ Attestation Results by some "Handle Distributor".
 
 Handles are different from nonces as they can be used more than once and
 can even be used by more than one entity at the same time.
-Handles are different from timestamps as they do not have to convey information about a point in time.
+Handles are different from timestamps as they do not have to convey information about a point in time, i.e., they are not necessarily monotonically increasing integers.
 
 Like the nonce approach, this allows associating a "rough" epoch without
 requiring a reliable clock or time synchronization in order to generate or
