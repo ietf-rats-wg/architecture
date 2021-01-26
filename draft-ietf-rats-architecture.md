@@ -1116,8 +1116,8 @@ Results, and the appraising entity can compare the handle in received
 Evidence or Attestation Results against latest handle it received from
 the Handle Distributor to determine if it is within the current epoch.
 An actual solution also needs to take into account race conditions
-when transitioning to a new epoch, such as by using an epoch counter
-in addition to an epoch handle, or by including both the current and
+when transitioning to a new epoch, such as by using a counter signed
+by the Handle Distributor as the handle, or by including both the current and
 previous handles in messages and/or checks, or by requiring retries
 in case of mismatching handles.
 
