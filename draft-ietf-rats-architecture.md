@@ -512,19 +512,21 @@ Attesting Environment(s) collecting the claims from its Target Environment(s).
 The lead Attester collects the Evidence of all other Attesters and then
 generates the Evidence of the whole Composite Attester.
 
+In this situation, the trust model described in {{trustmodel}} is also suitable for this inside Verifier.
+
+## Entity
 An entity can take on multiple RATS roles (e.g., Attester, Verifier, Relying
-Party, etc.) at the same time. The combination of roles can be arbitrary.
-For example, in this Composite Device scenario, the entity inside
+Party, etc.) at the same time. 
+Multiple entities can cooperate to implement a single RATS role as well.
+The combination of roles and entities can be arbitrary.
+For example, in the Composite Device scenario, the entity inside
 the lead Attester can also take on the role of a Verifier, and the
-outside entity of Verifier can take on the role of a Relying Party.
+outer entity of Verifier can take on the role of a Relying Party.
 After collecting the Evidence of other Attesters, this inside Verifier uses
 Endorsements and appraisal policies (obtained the same way as any other
 Verifier) in the verification process to generate Attestation Results.
-The inside Verifier then conveys the Attestation Results of other Attesters,
-whether in the same conveyance protocol as the Evidence or not,
-to the outside Verifier.
-
-In this situation, the trust model described in {{trustmodel}} is also suitable for this inside Verifier.
+The inside Verifier then conveys the Attestation Results of other Attesters to the outside Verifier,
+whether in the same conveyance protocol as the Evidence or not.
 
 # Terminology {#terminology}
 
