@@ -123,6 +123,11 @@ informative:
     target: "https://csrc.nist.gov/glossary/term/strength_of_function"
     author:
       org: "NISC"
+  CCC-DeepDive:
+    author:
+      org: "Confidential Computing Consortium"
+    title: "Confidential Computing Deep Dive v1.0"
+    target: https://confidentialcomputing.io/whitepaper-02-latest
 
 --- abstract
 
@@ -849,9 +854,10 @@ The Relying Party Owner might also require that the
 Relying Party first act as an Attester, providing Evidence that the Owner
 can appraise, before the Owner would give the Relying Party an updated
 policy that might contain sensitive information.  In such a case,
-mutual authentication or attestation might be needed, in which case typically one side's
+authentication or attestation in both directions might be needed, in which case typically one side's
 Evidence must be considered safe to share with an untrusted entity,
 in order to bootstrap the sequence.
+See {{privacy-considerations}} for more discussion.
 
 ## Verifier
 
@@ -910,9 +916,13 @@ See {{security-considerations}} for discussion on security strength.
 
 In some scenarios, the Endorser, Reference Value Provider, and Verifier Owner may need to trust the Verifier
 before giving the Endorsement, Reference Values, or appraisal policy to it.  This can be done
-similarly to how a Relying Party might establish trust in a Verifier as
-discussed above, and in such a case, mutual authentication or attestation might even
-be needed as discussed in {{rpowner-trust}}.
+similarly to how a Relying Party might establish trust in a Verifier.
+
+As discusssed in {{rpowner-trust}}, authentication or attestation in both directions might be
+needed, in which case typically one side's identity or
+Evidence must be considered safe to share with an untrusted entity,
+in order to bootstrap the sequence. 
+See {{privacy-considerations}} for more discussion.
 
 # Conceptual Messages {#messages}
 
@@ -1147,7 +1157,7 @@ and a nonce is obtained.
 
 A more detailed discussion with examples appears in {{time-considerations}}.
 
-# Privacy Considerations
+# Privacy Considerations {#privacy-considerations}
 
 The conveyance of Evidence and the resulting Attestation Results
 reveal a great deal of information about the internal state of a
@@ -1176,7 +1186,6 @@ Therefore, if confidentiality protection is omitted or unavailable, the protocol
 that convey Evidence or Attestation Results are responsible for detailing what
 kinds of information are disclosed, and to whom they are exposed.
 
-
 Furthermore, because Evidence might contain sensitive information,
 Attesters are responsible for only sending such Evidence to trusted
 Verifiers.
@@ -1186,6 +1195,11 @@ In such cases,
 an Attester can first act as a Relying Party and ask for the Verifier's own
 Attestation Result, and appraising it just as a Relying Party would appraise
 an Attestation Result for any other purpose.
+
+Another approach to deal with Evidence is to remove PII from the Evidence
+while still being able to verify that the Attester is one of a large set.
+This approach is often called "Direct Anonymous Attestation".  See
+{{CCC-DeepDive}} section 6.2 for more discussion.
 
 # Security Considerations {#security-considerations}
 
