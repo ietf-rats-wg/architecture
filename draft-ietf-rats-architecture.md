@@ -648,7 +648,7 @@ can then present the Attestation Result (and possibly additional Claims)
 to a Relying Party, which then compares this information against its own
 appraisal policy.
 
-Three ways in which the process may fail include: 
+Three ways in which the process may fail include:
 
 * First, the Verifier may not issue a positive Attestation Result due to the Evidence not passing the Appraisal Policy for Evidence.
 
@@ -923,7 +923,7 @@ similarly to how a Relying Party might establish trust in a Verifier.
 As discusssed in {{rpowner-trust}}, authentication or attestation in both directions might be
 needed, in which case typically one side's identity or
 Evidence must be considered safe to share with an untrusted entity,
-in order to bootstrap the sequence. 
+in order to bootstrap the sequence.
 See {{privacy-considerations}} for more discussion.
 
 # Conceptual Messages {#messages}
@@ -1148,7 +1148,7 @@ Implicit and explicit timekeeping can be combined into hybrid mechanisms.  For
 example, if clocks exist and are considered trustworthy but are not
 synchronized, a nonce-based exchange may be used to determine the (relative)
 time offset between the involved peers, followed by any number of timestamp
-based exchanges.  
+based exchanges.
 
 It is important to note that the actual values in Claims might have been
 generated long before the Claims are signed.  If so, it is the signer's
