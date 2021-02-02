@@ -126,7 +126,7 @@ informative:
   CCC-DeepDive:
     author:
       org: "Confidential Computing Consortium"
-    title: "Confidential Computing Deep Dive v1.0"
+    title: "Confidential Computing Deep Dive"
     target: https://confidentialcomputing.io/whitepaper-02-latest
 
 --- abstract
