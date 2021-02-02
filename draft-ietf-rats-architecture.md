@@ -129,6 +129,7 @@ informative:
       org: "Confidential Computing Consortium"
     title: "Confidential Computing Deep Dive"
     target: https://confidentialcomputing.io/whitepaper-02-latest
+    date: 2020-10-01
 
 --- abstract
 
@@ -1171,7 +1172,7 @@ For example, knowing that a device is
 running a weak version of firmware provides a way to aim attacks better.
 
 Many claims in Attestation Evidence and Attestation Results are potentially
-PII (Personally Identifying Information) depending on the end-to-end use case of
+Personally Identifying Information (PII) depending on the end-to-end use case of
 the attestation.
 Attestation that goes up to include containers and applications may further
 reveal details about a specific system or user.
