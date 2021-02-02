@@ -534,13 +534,13 @@ Attester:
 
 Relying Party:
 
-: A role performed by an entity (typically a device) that depends on the validity of information about an Attester, for purposes of reliably applying application specific actions.  Compare /relying party/ in {{RFC4949}}.
+: A role performed by an entity that depends on the validity of information about an Attester, for purposes of reliably applying application specific actions.  Compare /relying party/ in {{RFC4949}}.
 
 : Consumes: Attestation Results
 
 Verifier:
 
-: A role performed by an entity (typically a device) that appraises the validity of Evidence about an Attester
+: A role performed by an entity that appraises the validity of Evidence about an Attester
  and produces Attestation Results to be used by a Relying Party.
 
 : Consumes: Evidence, Reference Values, Endorsements, Appraisal Policy for Evidence
@@ -580,7 +580,7 @@ Compare /claim/ in {{RFC7519}}.
 
 Endorsement:
 
-: A secure statement that an Endorser vouches for the integrity of an Attester's various capabilities such as Claims collection and Evidence signing
+: A secure statement that an Endorser vouches for the integrity of an Attester's various capabilities such as Claims collection and Evidence signing.
 
 : Consumed By: Verifier
 
