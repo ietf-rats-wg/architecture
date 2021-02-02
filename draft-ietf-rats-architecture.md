@@ -386,15 +386,21 @@ general purpose format for them or general means for comparison.
 
 ## Two Types of Environments of an Attester
 
-An Attester consists of at least one Attesting Environment and at least one
-Target Environment. In some implementations, the Attesting and Target Environments
-might be combined.
+As shown in {{twotypes-env}}, an Attester consists of at least one Attesting Environment and at least one
+Target Environment.
+In some implementations, the Attesting and Target Environments might be combined.
 Other implementations might have multiple Attesting and Target Environments,
 such as in the examples described in more detail in {{layered-attestation}}
 and {{compositedevice}}.  Other examples may exist.  Besides, the examples
 discussed could be combined into even more complex implementations.
 
-Claims are collected from Target Environments, as shown in {{twotypes-env}}.
+{:twotypes-env: artwork-align="center"}
+~~~~ TWOTYPES
+{::include twotypes-env.txt}
+~~~~
+{:twotypes-env #twotypes-env title="Two Types of Environments"}
+
+Claims are collected from Target Environments.
 That is, Attesting Environments collect the values and the information to be represented in Claims, by reading system registers and variables, calling into subsystems, taking measurements on code, memory, or other security related assets of the Target Environment.
 Attesting Environments then format the claims appropriately, and typically
 use key material and
@@ -404,12 +410,6 @@ There is no limit to or requirement on the types of hardware or software environ
 (eSEs), Trusted Platform Modules (TPMs), or BIOS firmware.
 An arbitrary execution environment may not, by default, be capable of claims collection for a given Target Environment.
 Execution environments that are designed specifically to be capable of claims collection are referred to in this document as Attesting Environments.
-
-{:twotypes-env: artwork-align="center"}
-~~~~ TWOTYPES
-{::include twotypes-env.txt}
-~~~~
-{:twotypes-env #twotypes-env title="Two Types of Environments"}
 
 ## Layered Attestation Environments {#layered-attestation}
 
@@ -668,7 +668,7 @@ can then present the Attestation Result (and possibly additional Claims)
 to a Relying Party, which then compares this information against its own
 appraisal policy.
 
-Three ways in which the process may fail include: 
+Three ways in which the process may fail include:
 
 * First, the Verifier may not issue a positive Attestation Result due to the Evidence not passing the Appraisal Policy for Evidence.
 
@@ -943,7 +943,7 @@ similarly to how a Relying Party might establish trust in a Verifier.
 As discusssed in {{rpowner-trust}}, authentication or attestation in both directions might be
 needed, in which case typically one side's identity or
 Evidence must be considered safe to share with an untrusted entity,
-in order to bootstrap the sequence. 
+in order to bootstrap the sequence.
 See {{privacy-considerations}} for more discussion.
 
 # Conceptual Messages {#messages}
@@ -1168,7 +1168,7 @@ Implicit and explicit timekeeping can be combined into hybrid mechanisms.  For
 example, if clocks exist and are considered trustworthy but are not
 synchronized, a nonce-based exchange may be used to determine the (relative)
 time offset between the involved peers, followed by any number of timestamp
-based exchanges.  
+based exchanges.
 
 It is important to note that the actual values in Claims might have been
 generated long before the Claims are signed.  If so, it is the signer's
