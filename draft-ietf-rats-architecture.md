@@ -509,8 +509,9 @@ each router is an Attester and the main router is the lead Attester.
 
 In the Composite Device, each Attester generates its own Evidence by its
 Attesting Environment(s) collecting the claims from its Target Environment(s).
-The lead Attester collects the Evidence of all other Attesters and then
-generates the Evidence of the whole Composite Attester.
+The lead Attester collects the Evidence from the other Attesters and conveys it to a Verifier.
+Collection of Evidence from sub-entities may itself be a form of Claims collection that results in Evidence asserted by the lead Attester.
+The lead Attester generates the Evidence about the layout of the Composite Device, while sub-Attesters generate Evidence about their respective modules.
 
 An entity can take on multiple RATS roles (e.g., Attester, Verifier, Relying
 Party, etc.) at the same time. The combination of roles can be arbitrary.
