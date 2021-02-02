@@ -193,7 +193,7 @@ machines attached to their network, for purposes such as inventory,
 audit, anomaly detection, record maintenance and/or trending reports (logging).
 The network operator may also want a policy
 by which full access is only granted to devices that meet some definition
-of hygiene, and so wants to get claims about such information and verify
+of hygiene, and so wants to get Claims about such information and verify
 its validity.
 Remote attestation is desired to prevent vulnerable or
 compromised devices from getting access to the network and potentially
@@ -364,11 +364,11 @@ and/or is programmed into the Relying Party.
 ## Appraisal Policies
 
 The Verifier, when appraising Evidence, or the Relying Party, when
-appraising Attestation Results, checks the values of some claims
+appraising Attestation Results, checks the values of some Claims
 against constraints specified in its appraisal policy.  Such constraints might
 involve a comparison for equality against a Reference Value, or a check for being in
 a range bounded by Reference Values, or membership in a set of Reference Values,
-or a check against values in other claims, or any other test.
+or a check against values in other Claims, or any other test.
 
 ## Reference Values
 
@@ -380,7 +380,7 @@ They might be conveyed in any number of ways, including:
 * via separate communication.
 
 The actual data format and semantics of any Reference Values are specific to
-claims and implementations. This architecture document does not define any
+Claims and implementations. This architecture document does not define any
 general purpose format for them or general means for comparison.
 
 ## Two Types of Environments of an Attester
@@ -401,7 +401,7 @@ discussed could be combined into even more complex implementations.
 
 Claims are collected from Target Environments.
 That is, Attesting Environments collect the values and the information to be represented in Claims, by reading system registers and variables, calling into subsystems, taking measurements on code, memory, or other security related assets of the Target Environment.
-Attesting Environments then format the claims appropriately, and typically
+Attesting Environments then format the Claims appropriately, and typically
 use key material and
 cryptographic functions, such as signing or cipher algorithms, to
 create Evidence.
@@ -426,7 +426,7 @@ Trust in the Attester's root of trust can be established either directly (e.g., 
 In layered attestation, a root of trust is the initial Attesting Environment.
 Claims can be collected from or about each layer.
 The corresponding Claims can be structured in a nested fashion that reflects the nesting of the Attester's layers.
-Normally, Claims are not self-asserted, rather a previous layer acts as the Attesting Environment for the next layer. 
+Normally, Claims are not self-asserted, rather a previous layer acts as the Attesting Environment for the next layer.
 Claims about a root of trust typically are asserted by Endorsers.
 
 The device illustrated in {{layered}} includes (A) a BIOS stored in read-only memory,
@@ -480,7 +480,7 @@ that it measures, rather than only one as shown in {{layered}}.
 A Composite Device is an entity composed of multiple sub-entities such that its
 trustworthiness has to be determined by the appraisal of all these sub-entities.
 
-Each sub-entity has at least one Attesting Environment collecting the claims
+Each sub-entity has at least one Attesting Environment collecting the Claims
 from at least one Target Environment, then this sub-entity generates Evidence
 about its trustworthiness. Therefore each sub-entity can be called an Attester.
 Among all the Attesters, there may be only some which have the ability to communicate
@@ -489,7 +489,7 @@ with the Verifier while others do not.
 For example, a carrier-grade router consists of a chassis and multiple slots.
 The trustworthiness of the router depends on all its slots' trustworthiness.
 Each slot has an Attesting Environment such as a TEE collecting the
-claims of its boot process, after which it generates Evidence from the claims.
+Claims of its boot process, after which it generates Evidence from the Claims.
 Among these slots, only a main slot can communicate with the Verifier
 while other slots cannot. But other slots can communicate with the main
 slot by the links between them inside the router. So the main slot collects
@@ -514,7 +514,7 @@ each router is an Attester and the main router is the lead Attester.
 {: #composite title="Composite Device"}
 
 In the Composite Device, each Attester generates its own Evidence by its
-Attesting Environment(s) collecting the claims from its Target Environment(s).
+Attesting Environment(s) collecting the Claims from its Target Environment(s).
 The lead Attester collects the Evidence from the other Attesters and conveys it to a Verifier.
 Collection of Evidence from sub-entities may itself be a form of Claims collection that results in Evidence asserted by the lead Attester.
 The lead Attester generates the Evidence about the layout of the Composite Device, while sub-Attesters generate Evidence about their respective modules.
@@ -523,7 +523,7 @@ In this situation, the trust model described in {{trustmodel}} is also suitable 
 
 ## Implementation Considerations
 An entity can take on multiple RATS roles (e.g., Attester, Verifier, Relying
-Party, etc.) at the same time. 
+Party, etc.) at the same time.
 Multiple entities can cooperate to implement a single RATS role as well.
 The combination of roles and entities can be arbitrary.
 For example, in the Composite Device scenario, the entity inside
@@ -959,16 +959,16 @@ See {{privacy-considerations}} for more discussion.
 
 ## Evidence
 
-Evidence is a set of claims about the target environment that reveal operational
+Evidence is a set of Claims about the target environment that reveal operational
 status, health, configuration or construction that have security relevance.
 Evidence is evaluated by a Verifier to establish its relevance, compliance, and timeliness.
 Claims need to be collected in a manner that is reliable.
 Evidence needs to be securely associated with the target environment
-so that the Verifier cannot be tricked into accepting claims originating
+so that the Verifier cannot be tricked into accepting Claims originating
 from a different environment (that may be more trustworthy).
 Evidence also must be protected from man-in-the-middle attackers who may observe,
 change or misdirect Evidence as it travels from Attester to Verifier.
-The timeliness of Evidence can be captured using claims that pinpoint the time
+The timeliness of Evidence can be captured using Claims that pinpoint the time
 or interval when changes in operational status, health, and so forth occur.
 
 ## Endorsements
@@ -1069,14 +1069,14 @@ natively in the format that is natural for the Relying Party.
 This motivates having a common "information model" that describes
 the set of remote attestation related information in an encoding-agnostic
 way, and allowing multiple encoding formats (CWT, JWT, X.509, etc.)
-that encode the same information into the claims format needed by the
+that encode the same information into the Claims format needed by the
 Relying Party.
 
 The following diagram illustrates that Evidence and Attestation Results
 might each have multiple possible encoding formats, so that they can be
 conveyed by various existing protocols.  It also motivates why the Verifier
-might also be responsible for accepting Evidence that encodes claims in
-one format, while issuing Attestation Results that encode claims in
+might also be responsible for accepting Evidence that encodes Claims in
+one format, while issuing Attestation Results that encode Claims in
 a different format.
 
 {:multievidence: artwork-align="center"}
@@ -1169,10 +1169,10 @@ More generally, in order to prevent an appraising entity from generating false
 negatives (e.g., discarding Evidence that is deemed stale even if it is
 not), the appraising entity should keep an "epoch window" consisting of the
 most recently received handles.  The depth of such epoch window is directly
-proportional to the maximum network propagation delay between the first to receive the handle and the last to receive the handle, and it is inversely proportional to the epoch duration.  
+proportional to the maximum network propagation delay between the first to receive the handle and the last to receive the handle, and it is inversely proportional to the epoch duration.
 The appraising entity shall compare the
 handle carried in the received Evidence or Attestation Result with the handles
-in its epoch window to find a suitable match.  
+in its epoch window to find a suitable match.
 
 Whereas the nonce approach typically requires the appraising entity
 to keep state for each nonce generated, the handle approach minimizes
@@ -1219,7 +1219,7 @@ reveal details about a specific system or user.
 
 In some cases, an attacker may be able to make inferences about attestations
 from the results or timing of the processing.
-For example, an attacker might be able to infer the value of specific claims if it knew that only certain values were accepted by the Relying Party.
+For example, an attacker might be able to infer the value of specific Claims if it knew that only certain values were accepted by the Relying Party.
 
 Evidence and Attestation Results data structures are expected to support
 integrity protection encoding (e.g., COSE, JOSE, X.509) and optionally might
@@ -1559,7 +1559,7 @@ relays the Attestation Result obtained during epoch `E` (associated with handle
 `H`) to the Relying Party using the handle for the current epoch `H'`.
 If the Relying Party had not yet received `H'`, then the Attestation Result would be rejected, but in this example, it is received.
 
-In the illustrated scenario, the handle for relaying an Attestation Result to the Relying Party is current, while a previous handle was used to generate Verifier evaluated evidence. 
+In the illustrated scenario, the handle for relaying an Attestation Result to the Relying Party is current, while a previous handle was used to generate Verifier evaluated evidence.
 This indicates that at least one epoch transition has occurred, and the Attestation Results may only be as fresh as the previous epoch.
 
 ~~~~
