@@ -408,8 +408,8 @@ cryptographic functions, such as signing or cipher algorithms, to
 create Evidence.
 There is no limit to or requirement on the types of hardware or software environments that can be used to implement an Attesting Environment, for example: Trusted Execution Environments (TEEs), embedded Secure Elements
 (eSEs), Trusted Platform Modules (TPMs), or BIOS firmware.
-An arbitrary execution environment may not, by default, be capable of claims collection for a given Target Environment.
-Execution environments that are designed specifically to be capable of claims collection are referred to in this document as Attesting Environments.
+An arbitrary execution environment may not, by default, be capable of claims collection for a given Target Environment. For example, a requestor on a PCIe bus depends on the responder to provide correct information, the bus doesn't ensure the responder is supplying correct Claims. The requestor should have a Root of Trust that is independently verifiable by the responder.
+Environments that are designed specifically to be capable of Claims collection are referred to in this document as Attesting Environments.
 
 ## Layered Attestation Environments {#layered-attestation}
 
