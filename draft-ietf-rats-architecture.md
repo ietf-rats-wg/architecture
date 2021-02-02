@@ -100,6 +100,7 @@ informative:
     title: "DICE Certificate Profiles"
     target: https://trustedcomputinggroup.org/wp-content/uploads/DICE-Certificate-Profiles-r01_3june2020-1.pdf
   I-D.birkholz-rats-tuda: rats-tuda
+  I-D.birkholz-rats-uccs: uccs
   I-D.ietf-teep-architecture: teep-arch
   TCGarch:
     title: "Trusted Platform Module Library - Part 1: Architecture"
@@ -898,10 +899,10 @@ some way of verifying the signature on the Evidence.  This may be in the form of
 The nature of how the Verifier manages to validate the signatures produced by the Attester is critical to the secure operation of an Attestation system, but is not the subject of standardization within this architecture.
 
 A conveyance protocol that provides authentication and integrity protection can be used
-to convey unprotected Evidence, assuming the following properties exists:
+to convey Evidence that is otherwise unprotected (e.g., not signed). Appropriate conveyance of unprotected Evidence (e.g., {{-uccs}}) relies on the following conveyance protocol's protection capabilities:
 
-   1. The key material used to authenticate and integrity protect the conveyance channel is trusted by the Verifier to speak for the Attesting Environment(s) that collected claims about the Target Environment(s).
-   2. All unprotected Evidence that is conveyed is supplied exclusively by the Attesting Environment that has the key  material that protects the conveyance channel
+   1. The key material used to authenticate and integrity protect the conveyance channel is trusted by the Verifier to speak for the Attesting Environment(s) that collected Claims about the Target Environment(s).
+   2. All unprotected Evidence that is conveyed is supplied exclusively by the Attesting Environment that has the key material that protects the conveyance channel
    3. The root of trust protects both the conveyance channel key material and the Attesting Environment with equivalent strength protections.
 
 See {{security-considerations}} for discussion on security strength.
