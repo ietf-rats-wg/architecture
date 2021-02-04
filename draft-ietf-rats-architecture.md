@@ -1391,7 +1391,6 @@ timestamp can directly compare it to its own clock and timestamps.
         ~                                                 ~
         |                                                 |
         |                                              time(OP_r)
-        |                                                 |
 ~~~~
 
 In the figures above and in subsequent sections, curly braces
@@ -1529,18 +1528,21 @@ about freshness.
      time(HR_a)<---------+-----------time(HR_v)----->time(HR_r)
         |                |                |               |
      time(EG_a)          |                |               |
-        |--E{H,time(VG_a)}--------------->|               |
+        |---Evidence{H,time(VG_a)}------->|               |
         |                |                |               |
-        |                |             time(RG_v)         |
-        |<----------------R{H,time(RX_v)}-|               |
+        |                |           time(RG_v)           |
+        |<--Attestation Result------------|               |
+        |   {H,time(RX_v)}                |               |
         |                |                |               |
-     time(HR'_a)<--------+---------time(HR'_v)---->time(HR'_r)
+     time(HR'_a)<--------+-----------time(HR'_v)---->time(HR'_r)
         |                |                |               |
      time(RR_a)          |                |               |
-        |--RR{H',R{H,time(RX_v)}}--------------------->time(RA_r)
+        |---Attestation Result---------------------->time(RA_r)
+        |   {H',R{H,time(RX_v)}}          |               |
         |                |                |               |
         ~                ~                ~               ~
         |                |                |               |
+        |                |                |          time(OP_r)
 ~~~~
 {: #fig-handle-passport title="Handle-based Passport Model"}
 
