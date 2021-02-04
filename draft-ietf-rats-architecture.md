@@ -1295,11 +1295,8 @@ is important to understand the strength of the root of trust, e.g.,
 whether it is mutable software, or firmware that is read-only after
 boot, or immutable hardware/ROM.
 
-It is also important that the appraisal policy was itself obtained
-securely.  As such, if appraisal policies for a Relying Party or for a Verifier
-can be configured via a network protocol, the ability to create Evidence about
-the integrity of the entity providing the appraisal policy needs to be
-considered.
+It is also important that the appraisal policy was itself obtained securely.
+If an attacker can configure appraisal policies for a Relying Party or for a Verifier, then integrity of the process is compromised.
 
 The security of conveyed information may be applied at different layers, whether by a conveyance protocol, or an information encoding format. This architecture expects attestation messages (i.e., Evidence, Attestation Results, Endorsements, Reference Values, and Policies) are end-to-end protected based on the role interaction context.
 For example, if an Attester produces Evidence that is relayed through some other entity that doesn't implement the Attester or the intended Verifier roles, then the relaying entity should not expect to have access to the Evidence.
