@@ -1341,7 +1341,6 @@ or might be defined relative to some other timestamp or timeticks counter.
 | VG | Value generated             | A value to appear in a Claim was created.  In some cases, a value may have technically existed before an Attester became aware of it but the Attester might have no idea how long it has had that value.  In such a case, the Value created time is the time at which the Claim containing the copy of the value was created.
 | NS | Nonce sent                  | A nonce not predictable to an Attester (recentness & uniqueness) is sent to an Attester.
 | NR | Nonce relayed               | A nonce is relayed to an Attester by another entity.
-| HT | Handle transmitted          | A new handle is transmitted by a Handle Distributor to instruct the receiving entities to transition to a new epoch.
 | HR | Handle received             | A handle is successfully received and processed by an entity.
 | EG | Evidence generation         | An Attester creates Evidence from collected Claims.
 | ER | Evidence relayed            | A Relying Party relays Evidence to a Verifier.
