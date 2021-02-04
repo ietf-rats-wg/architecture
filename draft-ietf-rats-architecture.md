@@ -302,12 +302,11 @@ There is a class of malware that holds a device hostage and does
 not allow it to reboot to prevent updates from being applied.
 This can be a significant problem, because it allows a fleet of devices to be held hostage for ransom.
 
-In the case, the Relying Party is the watchdog timer in the TPM/secure
-enclave itself, as described in {{TCGarch}} section 43.3.
-The Attestation Results are returned to the device, and provided to the enclave.
-
+A solution to this problem is a watchdog timer implemented in a protected
+environment such as a Trusted Platform Module (TPM),
+as described in {{TCGarch}} section 43.3.
 If the watchdog does not receive regular, and fresh, Attestation Results as
-to the systems' health, then it forces a reboot.
+to the system's health, then it forces a reboot.
 
 Attester:
 
@@ -322,7 +321,7 @@ a known, good operational state.
 
 ## FIDO Biometric Authentication
 
-In the Fast IDentity Online (FIDO) protocol {{WebAuthN}}, {{CTAP}}, the device in the user’s hand authenticates the human user, whether by biometrics (such as fingerprints), or by PIN and password.
+In the Fast IDentity Online (FIDO) protocol {{WebAuthN}}, {{CTAP}}, the device in the user's hand authenticates the human user, whether by biometrics (such as fingerprints), or by PIN and password.
 FIDO authentication puts a large amount of trust in the device compared to typical password authentication because it is the device that verifies the biometric, PIN and password inputs from the user, not the server.
 For the Relying Party to know that the authentication is trustworthy, the Relying Party needs to know that the Authenticator part of the device is trustworthy.
 The FIDO protocol employs remote attestation for this.
@@ -408,8 +407,13 @@ cryptographic functions, such as signing or cipher algorithms, to
 create Evidence.
 There is no limit to or requirement on the types of hardware or software environments that can be used to implement an Attesting Environment, for example: Trusted Execution Environments (TEEs), embedded Secure Elements
 (eSEs), Trusted Platform Modules (TPMs), or BIOS firmware.
+
 An arbitrary execution environment may not, by default, be capable of claims collection for a given Target Environment.
 Execution environments that are designed specifically to be capable of claims collection are referred to in this document as Attesting Environments.
+For example, a TPM doesn't actively collect claims itself, it instead
+requires another component to feed various values to the TPM.
+Thus, an Attesting Environment in such a case would be the combination
+of the TPM together with whatever component is feeding it the measurements.
 
 ## Layered Attestation Environments {#layered-attestation}
 
