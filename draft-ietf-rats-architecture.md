@@ -1260,7 +1260,10 @@ For high level security, specialized hardware will likely be used providing prot
 
 Attestation key provisioning is the process that occurs in the factory or elsewhere that establishes the signing key material on the device and the verification key material off the device. Sometimes this is referred to as “personalization”.
 
-One way to provision a key is to first generate it external to the device and then copy the key onto the device. In this case, confidentiality of the generator, as well as the path over which the key is provisioned, is necessary. This can be achieved in a number of ways.
+One way to provision a key is to first generate it external to the device and then copy the key onto the device.
+In this case, confidentiality of the generator, as well as the path over which the key is provisioned, is necessary.
+The manufacturer needs to take care to protect it with measures consistent with its value.
+This can be achieved in a number of ways.
 
 Confidentiality can be achieved entirely with physical provisioning facility security involving no encryption at all. For low-security use cases, this might be simply locking doors and limiting personnel that can enter the facility. For high-security use cases, this might involve a special area of the facility accessible only to select security-trained personnel.
 
