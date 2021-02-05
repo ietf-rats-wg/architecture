@@ -999,7 +999,7 @@ a Relying Party (in the background-check model) to indicate that the Attester
 should not be treated as authorized and may be in need of remediation.  In some cases,
 it may even indicate that the Evidence itself cannot be authenticated as being correct.
 
-By default, the Relying Party assumes the Attester does not comply with Verifier appraisals. 
+By default, the Relying Party does not believe the Attester to be compliant. 
 Upon receipt of an authentic Attestation Result and given the Appraisal Policy for Relying Party is satisfied. 
 The Attester is allowed to perform the prescribed actions or access. 
 The simplest such Appraisal Policy might authorize granting the Attester full access or control over the resources guarded by the Relying Party.  
