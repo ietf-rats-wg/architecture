@@ -1160,8 +1160,8 @@ More generally, in order to prevent an appraising entity from generating false
 negatives (e.g., discarding Evidence that is deemed stale even if it is
 not), the appraising entity should keep an "epoch window" consisting of the
 most recently received handles.  The depth of such epoch window is directly
-proportional to the maximum network propagation delay and inversely
-proportional to the epoch duration.  The appraising entity shall compare the
+proportional to the maximum network propagation delay between the first to receive the handle and the last to receive the handle, and it is inversely proportional to the epoch duration.  
+The appraising entity shall compare the
 handle carried in the received Evidence or Attestation Result with the handles
 in its epoch window to find a suitable match.  Note that if the network
 round-trip time is negligible, the depth of the epoch window might be 1, i.e.,
