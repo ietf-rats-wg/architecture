@@ -1331,7 +1331,7 @@ compromised router) to mount a confusion attack where, for example, a Verifier
 is tricked into accepting Evidence coming from a past epoch as fresh, while in
 the meantime the Attester has been compromised.
 
-This attack is mitigated if the transport provides the ability to detect reordering and drop.
+Reordering and dropping attacks are mitigated if the transport provides the ability to detect reordering and drop.
 However, the delay attack described above can't be thwarted in this manner.
 
 
