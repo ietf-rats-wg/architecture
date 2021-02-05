@@ -1188,6 +1188,8 @@ and a nonce is obtained.
 
 A more detailed discussion with examples appears in {{time-considerations}}.
 
+For a discussion on the security of handles see {{handles-sec}}.
+
 # Privacy Considerations {#privacy-considerations}
 
 The conveyance of Evidence and the resulting Attestation Results
@@ -1312,6 +1314,35 @@ considered.
 
 The security of conveyed information may be applied at different layers, whether by a conveyance protocol, or an information encoding format. This architecture expects attestation messages (i.e., Evidence, Attestation Results, Endorsements, Reference Values, and Policies) are end-to-end protected based on the role interaction context.
 For example, if an Attester produces Evidence that is relayed through some other entity that doesn't implement the Attester or the intended Verifier roles, then the relaying entity should not expect to have access to the Evidence.
+
+## Handle-based Attestation {#handles-sec}
+
+Handles, described in {{epochfreshness}}, can be tampered with, dropped, delayed and
+reordered by an attacker.
+
+An attacker could be either external or belong to the distribution group, for
+example if one of the Attester entities have been compromised.
+
+An attacker who is able to tamper with handles can potentially lock all the
+participants in a certain epoch of choice for ever, effectively freezing time.
+This is problematic since it destroys the ability to ascertain freshness of
+Evidence and Attestation Results.
+
+To mitigate this threat, the transport should be at least integrity protected
+and provide origin authentication.
+
+Selective dropping of handles is equivalent to pinning the victim node to a past epoch.
+An attacker could drop handles to only some entities and not others, which will typically result in a denial of service due to the permanent staleness of the Attestation Result or Evidence.
+
+Delaying or reordering handles is equivalent to manipulating the victim's
+timeline at will.  This ability could be used by a malicious actor (e.g., a
+compromised router) to mount a confusion attack where, for example, a Verifier
+is tricked into accepting Evidence coming from a past epoch as fresh, while in
+the meantime the Attester has been compromised.
+
+Reordering and dropping attacks are mitigated if the transport provides the ability to detect reordering and drop.
+However, the delay attack described above can't be thwarted in this manner.
+
 
 # IANA Considerations
 
