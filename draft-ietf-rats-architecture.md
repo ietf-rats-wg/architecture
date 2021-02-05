@@ -1561,6 +1561,10 @@ If the Relying Party had not yet received `H'`, then the Attestation Result woul
 
 In the illustrated scenario, the handle for relaying an Attestation Result to the Relying Party is current, while a previous handle was used to generate Verifier evaluated evidence. 
 This indicates that at least one epoch transition has occurred, and the Attestation Results may only be as fresh as the previous epoch.
+If the Relying Party remembers the previous handle H during an epoch window
+as discussed in {{epochfreshness}}, and the message is received during
+that window, the Attestation Result is accepted as fresh, and otherwise
+it is rejected as stale.
 
 ~~~~
                   .-------------.
@@ -1571,20 +1575,20 @@ This indicates that at least one epoch transition has occurred, and the Attestat
         |                |                |               |
         ~                ~                ~               ~
         |                |                |               |
-     time(HR_a)<---------+-----------time(HR_v)----->time(HR_r)
+     time(HR_a)<------H--+--H--------time(HR_v)----->time(HR_r)
         |                |                |               |
      time(EG_a)          |                |               |
-        |---Evidence{H,time(EG_a)-time(VG_a)}----->|               |
+        |---Evidence--------------------->|               |
+        |   {H,time(EG_a)-time(VG_a)}     |               |
         |                |                |               |
         |                |           time(RG_v)           |
         |<--Attestation Result------------|               |
-        |   {H,time(RX_v)-time(RG_v)}                |               |
+        |   {H,time(RX_v)-time(RG_v)}     |               |
         |                |                |               |
-     time(HR'_a)<--------+-----------time(HR'_v)---->time(HR'_r)
+     time(HR'_a)<-----H'-+--H'-------time(HR'_v)---->time(HR'_r)
         |                |                |               |
-     time(RR_a)          |                |               |
-        |---Attestation Result---------------------->time(RA_r)
-        |   {H',R{H,time(RX_v)-time(RG_v)}}          |               |
+        |---[Attestation Result--------------------->time(RA_r)
+        |   {H,time(RX_v)-time(RG_v)},H'] |               |
         |                |                |               |
         ~                ~                ~               ~
         |                |                |               |
