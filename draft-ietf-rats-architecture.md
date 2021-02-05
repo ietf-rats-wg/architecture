@@ -1308,7 +1308,7 @@ For example, if an Attester produces Evidence that is relayed through some other
 
 ## Handle-based Attestation {#handles-sec}
 
-Handles, described in {{handles}}, can be tampered with, dropped, delayed and
+Handles, described in {{epochfreshness}}, can be tampered with, dropped, delayed and
 reordered by an attacker.
 
 An attacker could be either external or belong to the distribution group, for
