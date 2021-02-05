@@ -1322,9 +1322,8 @@ Evidence and Attestation Results.
 To mitigate this threat, the transport should be at least integrity protected
 and provide origin authentication.
 
-Dropping handles is equivalent to pinning the victim node to a past epoch, and
-will typically result in a denial of service due to the permanent staleness of
-the Attestation Result or Evidence.
+Selective dropping of handles is equivalent to pinning the victim node to a past epoch.
+An attacker could drop handles to only some entities and not others, which will typically result in a denial of service due to the permanent staleness of the Attestation Result or Evidence.
 
 Delaying or reordering handles is equivalent to manipulating the victim's
 timeline at will.  This ability could be used by a malicious actor (e.g., a
