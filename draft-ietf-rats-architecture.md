@@ -514,7 +514,7 @@ generates the Evidence of the whole Composite Attester.
 
 In this situation, the trust model described in {{trustmodel}} is also suitable for this inside Verifier.
 
-## Entity
+## Implementation Considerations
 An entity can take on multiple RATS roles (e.g., Attester, Verifier, Relying
 Party, etc.) at the same time. 
 Multiple entities can cooperate to implement a single RATS role as well.
