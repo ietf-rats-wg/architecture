@@ -1491,8 +1491,8 @@ in terms of `time(RX_v)-time(RG_v)`, then the Relying Party can check
 
 ## Example 3: Handle-based Passport Model Example
 
-The example in {{fig-handle-passport}} illustrates a Handle-based interaction
-using the passport topology model.
+The example in {{fig-handle-passport}} illustrates a hypothetical Passport Model
+solution that uses handles instead of nonces or timestamps.
 
 The Handle Distributor broadcasts handle `H` which starts a new
 epoch `E` for a protocol participant upon reception at `time(HR)`.
