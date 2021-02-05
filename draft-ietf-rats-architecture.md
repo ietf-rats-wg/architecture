@@ -1511,8 +1511,6 @@ relays the Attestation Result obtained during epoch `E` (associated with handle
 
 In the illustrated scenario, the handle for relaying an Attestation Result to the Relying Party is current, while a previous handle was used to generate Verifier evaluated evidence. 
 This indicates that at least one epoch transition has occurred, and the Attestation Results may only be as fresh as the previous epoch.
-which can be taken into account in Appraisal Policies for Attestation Results
-about freshness.
 
 ~~~~
                   .-------------.
