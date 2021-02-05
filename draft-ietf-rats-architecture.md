@@ -1509,9 +1509,8 @@ established when `H'` is received by each protocol participant.  The Attester
 relays the Attestation Result obtained during epoch `E` (associated with handle
 `H`) to the Relying Party using the handle for the current epoch `H'`.
 
-In the illustrated scenario, the Handle for relaying an Attestation Result to
-the Relying Party is fresh, while the handle that was used to generate the
-handle is stale. This indicates that at least one epoch has passed in between,
+In the illustrated scenario, the handle for relaying an Attestation Result to the Relying Party is current, while a previous handle was used to generate Verifier evaluated evidence. 
+This indicates that at least one epoch transition has occurred, and the Attestation Results may only be as fresh as the previous epoch.
 which can be taken into account in Appraisal Policies for Attestation Results
 about freshness.
 
