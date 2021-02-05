@@ -1157,7 +1157,7 @@ that might be associated with a handle that the receiver has not yet
 obtained.
 
 More generally, in order to prevent an appraising entity from generating false
-negatives (e.g., discarding Evidence that it is deemed stale even if it is
+negatives (e.g., discarding Evidence that is deemed stale even if it is
 not), the appraising entity should keep an "epoch window" consisting of the
 most recently received handles.  The depth of such epoch window is directly
 proportional to the maximum network propagation delay and inversely
