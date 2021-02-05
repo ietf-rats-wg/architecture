@@ -1156,6 +1156,15 @@ in case of mismatching handles, or by buffering incoming messages
 that might be associated with a handle that the receiver has not yet
 obtained.
 
+More generally, in order to prevent an appraising entity from generating false
+negatives (e.g., discarding Evidence that is deemed stale even if it is
+not), the appraising entity should keep an "epoch window" consisting of the
+most recently received handles.  The depth of such epoch window is directly
+proportional to the maximum network propagation delay between the first to receive the handle and the last to receive the handle, and it is inversely proportional to the epoch duration.  
+The appraising entity shall compare the
+handle carried in the received Evidence or Attestation Result with the handles
+in its epoch window to find a suitable match.  
+
 Whereas the nonce approach typically requires the appraising entity
 to keep state for each nonce generated, the handle approach minimizes
 the state kept to be independent of the number of Attesters or Verifiers
