@@ -1508,6 +1508,7 @@ After the transmission of handle `H'` a new epoch `E'` is
 established when `H'` is received by each protocol participant.  The Attester
 relays the Attestation Result obtained during epoch `E` (associated with handle
 `H`) to the Relying Party using the handle for the current epoch `H'`.
+If the Relying Party had not yet received `H'`, then the Attestation Result would be rejected, but in this example, it is received.
 
 In the illustrated scenario, the handle for relaying an Attestation Result to the Relying Party is current, while a previous handle was used to generate Verifier evaluated evidence. 
 This indicates that at least one epoch transition has occurred, and the Attestation Results may only be as fresh as the previous epoch.
