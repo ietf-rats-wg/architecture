@@ -1163,9 +1163,7 @@ most recently received handles.  The depth of such epoch window is directly
 proportional to the maximum network propagation delay between the first to receive the handle and the last to receive the handle, and it is inversely proportional to the epoch duration.  
 The appraising entity shall compare the
 handle carried in the received Evidence or Attestation Result with the handles
-in its epoch window to find a suitable match.  Note that if the network
-round-trip time is negligible, the depth of the epoch window might be 1, i.e.,
-consisting only of the handle associated with the current epoch.
+in its epoch window to find a suitable match.  
 
 Whereas the nonce approach typically requires the appraising entity
 to keep state for each nonce generated, the handle approach minimizes
