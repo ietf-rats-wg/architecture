@@ -1501,7 +1501,7 @@ The Attester generates Evidence incorporating handle `H` and conveys it to the
 Verifier.
 
 The Verifier appraises that the received handle `H` is "fresh" according to the
-definition provided in {{freshness}}, and generates an Attestation Result.  The
+definition provided in {{epochfreshness}} whereby retries are required in the case of mismatching handles, and generates an Attestation Result.  The
 Attestation Result is conveyed to the Attester.
 
 After the transmission of handle `H'` a new epoch `E'` is
