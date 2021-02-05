@@ -1128,7 +1128,7 @@ Attestation Result.  In this case the epoch is said to be rough because:
 * The time between the creation of Claims and the collection of Claims is
   indistinguishable.
 
-## Implicit Timekeeping using Epoch Handles
+## Implicit Timekeeping using Epoch Handles {#epochfreshness}
 
 A third approach relies on having epoch "handles"
 periodically sent to both the sender and receiver of Evidence or
