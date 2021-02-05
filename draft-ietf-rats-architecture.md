@@ -1525,17 +1525,17 @@ This indicates that at least one epoch transition has occurred, and the Attestat
      time(HR_a)<---------+-----------time(HR_v)----->time(HR_r)
         |                |                |               |
      time(EG_a)          |                |               |
-        |---Evidence{H,time(VG_a)}------->|               |
+        |---Evidence{H,time(EG_a)-time(VG_a)}----->|               |
         |                |                |               |
         |                |           time(RG_v)           |
         |<--Attestation Result------------|               |
-        |   {H,time(RX_v)}                |               |
+        |   {H,time(RX_v)-time(RG_v)}                |               |
         |                |                |               |
      time(HR'_a)<--------+-----------time(HR'_v)---->time(HR'_r)
         |                |                |               |
      time(RR_a)          |                |               |
         |---Attestation Result---------------------->time(RA_r)
-        |   {H',R{H,time(RX_v)}}          |               |
+        |   {H',R{H,time(RX_v)-time(RG_v)}}          |               |
         |                |                |               |
         ~                ~                ~               ~
         |                |                |               |
