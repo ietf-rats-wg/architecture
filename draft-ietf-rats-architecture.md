@@ -431,7 +431,7 @@ Normally, Claims are not self-asserted, rather a previous layer acts as the Atte
 Claims about a root of trust typically are asserted by Endorsers.
 
 The device illustrated in {{layered}} includes (A) a BIOS stored in read-only memory,
-(B) an updatable bootloader, and (C) an operating system kernel.
+(B) an operting stem kernel, and (C) an application or workload.
 
 {:layered: artwork-align="center"}
 ~~~~ LAYERED
