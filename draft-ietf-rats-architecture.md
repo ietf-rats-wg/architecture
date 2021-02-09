@@ -1000,8 +1000,8 @@ should not be treated as authorized and may be in need of remediation.  In some 
 it may even indicate that the Evidence itself cannot be authenticated as being correct.
 
 By default, the Relying Party does not believe the Attester to be compliant. 
-Upon receipt of an authentic Attestation Result and given the Appraisal Policy for Relying Party is satisfied. 
-The Attester is allowed to perform the prescribed actions or access. 
+Upon receipt of an authentic Attestation Result and given the Appraisal Policy for Attestation Results is satisfied, then
+the Attester is allowed to perform the prescribed actions or access. 
 The simplest such Appraisal Policy might authorize granting the Attester full access or control over the resources guarded by the Relying Party.  
 A more complex Appraisal Policy might involve using the information
 provided in the Attestation Result to compare against expected values, or to apply complex analysis
