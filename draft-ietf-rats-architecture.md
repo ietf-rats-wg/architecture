@@ -691,6 +691,7 @@ includes an Attestation Result, in this model the details of that protocol
 constrain the serialization format of the Attestation Result. The
 format of the Evidence on the other hand is only constrained by the
 Attester-Verifier remote attestation protocol.
+This implies that interoperability and standardization is more relevant for Attestation Results than it is for Evidence.
 
 ~~~~
       +-------------+
