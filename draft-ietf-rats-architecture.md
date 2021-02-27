@@ -77,6 +77,12 @@ contributor:
     email: cabo@tzi.org
   - name: Giri Mandyam
     email: mandyam@qti.qualcomm.com
+  - name: Kathleen Moriarty
+    email: kathleen.moriarty.ietf@gmail.com
+  - name: Guy Fedorkow
+    email: gfedorkow@juniper.net
+  - name: Simon Frost
+    email: Simon.Frost@arm.com
 
 normative:
   RFC7519:
