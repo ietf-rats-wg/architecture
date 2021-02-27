@@ -434,7 +434,7 @@ In layered attestation, a root of trust is the initial Attesting Environment.
 Claims can be collected from or about each layer.
 The corresponding Claims can be structured in a nested fashion that reflects the nesting of the Attester's layers.
 Normally, Claims are not self-asserted, rather a previous layer acts as the Attesting Environment for the next layer.
-Claims about a root of trust typically are asserted by Endorsers.
+Claims about a root of trust typically are asserted by an Endorser.
 
 The device illustrated in {{layered}} includes (A) a BIOS stored in read-only memory,
 (B) an operating system kernel, and (C) an application or workload.
