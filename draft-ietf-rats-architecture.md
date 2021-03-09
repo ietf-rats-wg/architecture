@@ -374,10 +374,12 @@ This activity is called the appraisal of Attestation Results.
 
 The Verifier, when appraising Evidence, or the Relying Party, when
 appraising Attestation Results, checks the values of some Claims
-against constraints specified in its appraisal policy.  Such constraints might
-involve a comparison for equality against a Reference Value, or a check for being in
-a range bounded by Reference Values, or membership in a set of Reference Values,
-or a check against values in other Claims, or any other test.
+against constraints specified in their appraisal policies. Examples of such constraints checking include:
+
+* comparison for equality against a Reference Value, or
+* a check for being in a range bounded by Reference Values, or
+* membership in a set of Reference Values, or
+* a check against values in other Claims.
 
 The actual data format and semantics of any Appraisal Policy is implementation specific.
 
