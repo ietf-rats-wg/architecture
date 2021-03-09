@@ -261,26 +261,25 @@ Relying Party:
 
 ## Critical Infrastructure Control
 
-In this use case, potentially harmful physical equipment
+Potentially harmful physical equipment
 (e.g., power grid, traffic control, hazardous chemical processing, etc.)
-is connected to a network.  The organization managing such infrastructure
-needs to ensure that only authorized code and users can control such
+is connected to a network in support of critical infrastructure.  The organization managing such infrastructure
+needs to ensure that only authorized code and users can control corresponding critical
 processes, and that these processes are protected from unauthorized manipulation or other threats.
-When a protocol operation can affect a component of a critical
-system, the device attached to the critical equipment requires some assurances depending on the security context, including that: the requesting device or application has not been compromised, and the requesters and actors act on applicable policies,
-As such,
-remote attestation can be used to only accept commands from requesters
+When a protocol operation can affect a critical system component of the 
+infrastructure, devices attached to that critical component require some assurances depending on the security context, including that: a requesting device or application has not been compromised, and the requesters and actors act on applicable policies.
+As such, RATS can be used to only accept commands from requesters
 that are within policy.
 
 Attester:
 
-: A device or application wishing to control physical equipment
+: A device or application wishing to control physical equipment.
 
 Relying Party:
 
 : A device or application connected to potentially dangerous physical
 equipment (hazardous chemical processing, traffic control, power grid,
-etc.)
+etc.).
 
 ## Trusted Execution Environment (TEE) Provisioning
 
