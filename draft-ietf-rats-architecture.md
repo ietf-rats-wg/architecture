@@ -405,8 +405,7 @@ Target Environment.
 In some implementations, the Attesting and Target Environments might be combined.
 Other implementations might have multiple Attesting and Target Environments,
 such as in the examples described in more detail in {{layered-attestation}}
-and {{compositedevice}}.  Other examples may exist.  Besides, the examples
-discussed could be combined into even more complex implementations.
+and {{compositedevice}}.  Other examples may exist. All compositions of Attesting and Target Environments discussed in this architecture can be combined into more complex implementations.
 
 {:twotypes-env: artwork-align="center"}
 ~~~~ TWOTYPES
@@ -419,12 +418,12 @@ That is, Attesting Environments collect the values and the information to be rep
 Attesting Environments then format the Claims appropriately, and typically
 use key material and
 cryptographic functions, such as signing or cipher algorithms, to
-create Evidence.
+generate Evidence.
 There is no limit to or requirement on the types of hardware or software environments that can be used to implement an Attesting Environment, for example: Trusted Execution Environments (TEEs), embedded Secure Elements
 (eSEs), Trusted Platform Modules (TPMs), or BIOS firmware.
 
-An arbitrary execution environment may not, by default, be capable of claims collection for a given Target Environment.
-Execution environments that are designed specifically to be capable of claims collection are referred to in this document as Attesting Environments.
+An arbitrary execution environment may not, by default, be capable of Claims collection for a given Target Environment.
+Execution environments that are designed specifically to be capable of Claims collection are referred to in this document as Attesting Environments.
 For example, a TPM doesn't actively collect claims itself, it instead
 requires another component to feed various values to the TPM.
 Thus, an Attesting Environment in such a case would be the combination
