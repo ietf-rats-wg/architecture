@@ -220,18 +220,18 @@ Relying Party:
 : Network equipment such as a router, switch, or access point,
 responsible for admission of the device into the network.
 
-## Confidential Machine Learning (ML) Model Protection
+## Confidential Machine Learning Model Protection
 
 A device manufacturer wants to protect its intellectual property.
-This is primarily the ML model it developed and runs in the devices purchased by its customers.
-The goals for the protection include preventing attackers, potentially
+The intellectual property's scope primarily encompasses the machine learning (ML) model that is deployed in the devices purchased by its customers.
+The protection goals include preventing attackers, potentially
 the customer themselves, from seeing the details of the model.
 
 This typically works by having some protected environment
 in the device go through a remote attestation with some manufacturer service
 that can assess its trustworthiness.  If remote attestation succeeds,
 then the manufacturer service releases either the model, or a key to decrypt
-a model the Attester already has in encrypted form, to the requester.
+a model already deployed on the  Attester in encrypted form, to the requester.
 
 Attester:
 
