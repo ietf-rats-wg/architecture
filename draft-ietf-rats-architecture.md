@@ -527,27 +527,27 @@ each router is an Attester and the main router is the lead Attester.
 ~~~~
 {: #composite title="Composite Device"}
 
-In the composite device, each Attester generates its own Evidence by its
+In a composite device, each Attester generates its own Evidence by its
 Attesting Environment(s) collecting the Claims from its Target Environment(s).
-The lead Attester collects the Evidence from the other Attesters and conveys it to a Verifier.
+The lead Attester collects Evidence from other Attesters and conveys it to a Verifier.
 Collection of Evidence from sub-entities may itself be a form of Claims collection that results in Evidence asserted by the lead Attester.
-The lead Attester generates the Evidence about the layout of the composite device, while sub-Attesters generate Evidence about their respective modules.
+The lead Attester generates Evidence about the layout of the whole composite device, while sub-Attesters generate Evidence about their respective (sub-)modules.
 
-In this situation, the trust model described in {{trustmodel}} is also suitable for this inside Verifier.
+In this scenario, the trust model described in {{trustmodel}} is can also be applied to this inside Verifier.
 
 ## Implementation Considerations
 An entity can take on multiple RATS roles (e.g., Attester, Verifier, Relying
 Party, etc.) at the same time.
 Multiple entities can cooperate to implement a single RATS role as well.
-The combination of roles and entities can be arbitrary.
+In essence, the combination of roles and entities can be arbitrary.
 For example, in the composite device scenario, the entity inside
 the lead Attester can also take on the role of a Verifier, and the
 outer entity of Verifier can take on the role of a Relying Party.
 After collecting the Evidence of other Attesters, this inside Verifier uses
-Endorsements and appraisal policies (obtained the same way as any other
-Verifier) in the verification process to generate Attestation Results.
+Endorsements and appraisal policies (obtained the same way as by any other
+Verifier) as part of the appraisal procedures that generate Attestation Results.
 The inside Verifier then conveys the Attestation Results of other Attesters to the outside Verifier,
-whether in the same conveyance protocol as the Evidence or not.
+whether in the same conveyance protocol as part of the Evidence or not.
 
 # Terminology {#terminology}
 
