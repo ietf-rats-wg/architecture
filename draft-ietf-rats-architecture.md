@@ -496,13 +496,13 @@ trustworthiness has to be determined by the appraisal of all these sub-entities.
 
 Each sub-entity has at least one Attesting Environment collecting the Claims
 from at least one Target Environment, then this sub-entity generates Evidence
-about its trustworthiness. Therefore each sub-entity can be called an Attester.
+about its trustworthiness. Therefore, each sub-entity can be called an Attester.
 Among all the Attesters, there may be only some which have the ability to communicate
 with the Verifier while others do not.
 
 For example, a carrier-grade router consists of a chassis and multiple slots.
 The trustworthiness of the router depends on all its slots' trustworthiness.
-Each slot has an Attesting Environment such as a TEE collecting the
+Each slot has an Attesting Environment, such as a TEE, collecting the
 Claims of its boot process, after which it generates Evidence from the Claims.
 Among these slots, only a main slot can communicate with the Verifier
 while other slots cannot. But other slots can communicate with the main
@@ -512,12 +512,12 @@ conveys the final Evidence to the Verifier. Therefore the router is a Composite
 Device, each slot is an Attester, and the main slot is the lead Attester.
 
 Another example is a multi-chassis router composed of multiple single carrier-grade routers.
-The multi-chassis router provides higher throughput by interconnecting
-multiple routers and can be logically treated as one router for simpler management.
-A multi-chassis router provides a management point that connects to the Verifier.
-Other routers are only connected to the main router by the network cables,
-and therefore they are managed and appraised via this main router's help.
-So, in this case, the multi-chassis router is the Composite Device,
+Multi-chassis router setups create redundancy groups that provide higher throughput by interconnecting
+multiple routers in these groups, which can be treated as one logical router for simpler management.
+A multi-chassis router setup provides a management point that connects to the Verifier and typically designated a main router in the group.
+Other routers in the multi-chassis setup are connected to the main router only via physical network links
+and are therefore managed and appraised via the main router's help.
+In consequence, a multi-chassis router setup is the Composite Device,
 each router is an Attester and the main router is the lead Attester.
 
 {{composite}} depicts the conceptual data flow for a Composite Device.
