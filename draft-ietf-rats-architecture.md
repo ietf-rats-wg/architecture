@@ -329,11 +329,11 @@ a known, good operational state.
 In the Fast IDentity Online (FIDO) protocol {{WebAuthN}}, {{CTAP}}, the device in the user's hand authenticates the human user, whether by biometrics (such as fingerprints), or by PIN and password.
 FIDO authentication puts a large amount of trust in the device compared to typical password authentication because it is the device that verifies the biometric, PIN and password inputs from the user, not the server.
 For the Relying Party to know that the authentication is trustworthy, the Relying Party needs to know that the Authenticator part of the device is trustworthy.
-The FIDO protocol employs remote attestation for this.
+The FIDO protocol employs Remote Attestation Procedures for this.
 
 The FIDO protocol supports several remote attestation protocols and a mechanism by which new ones can be registered and added. Remote attestation defined by RATS is thus a candidate for use in the FIDO protocol.
 
-Other biometric authentication protocols such as the Chinese IFAA standard and WeChat Pay as well as Google Pay make use of attestation in one form or another.
+Other biometric authentication protocols such as the Chinese IFAA standard and WeChat Pay as well as Google Pay make use of remote attestation in one form or another.
 
 Attester:
 
