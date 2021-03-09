@@ -164,12 +164,12 @@ process.
 This document defines a flexible architecture consisting of attestation roles
 and their interactions via conceptual messages.
 Additionally, this document defines a universal set of terms that can be mapped to various existing and emerging Remote Attestation Procedures.
-Common topological patterns and the data flows associated with them, such as
-the "Passport Model" and the "Background-Check Model" are illustrated.
-The purpose is to define useful terminology for attestation and enable readers to map
+Common topological patterns and the sequence of data flows associated with them, such as
+the "Passport Model" and the "Background-Check Model", are illustrated.
+The purpose is to define useful terminology for remote attestation and enable readers to map
 their solution architecture to the canonical attestation architecture provided here.
 Having a common terminology that provides well-understood meanings for common themes
-such as roles, device composition, topological patterns, and appraisal is vital for
+such as roles, device composition, topological patterns, and appraisal procedures is vital for
 semantic interoperability across solutions and platforms involving multiple vendors and providers.
 
 Amongst other things, this document is about trust and trustworthiness.
