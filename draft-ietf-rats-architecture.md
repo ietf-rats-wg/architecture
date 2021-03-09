@@ -248,7 +248,7 @@ the data can be any highly confidential data, such as health data
 about customers, payroll data about employees, future business plans, etc.
 As part of the Remote Attestation Procedures, an assessment is made against a set
 of policies to evaluate the state of the system that is requesting
-the confidential data.  Attestation is desired to prevent leaking data via 
+the confidential data.  Attestation is desired to prevent leaking data via
 compromised devices.
 
 Attester:
@@ -266,7 +266,7 @@ Potentially harmful physical equipment
 is connected to a network in support of critical infrastructure.  The organization managing such infrastructure
 needs to ensure that only authorized code and users can control corresponding critical
 processes, and that these processes are protected from unauthorized manipulation or other threats.
-When a protocol operation can affect a critical system component of the 
+When a protocol operation can affect a critical system component of the
 infrastructure, devices attached to that critical component require some assurances depending on the security context, including that: a requesting device or application has not been compromised, and the requesters and actors act on applicable policies.
 As such, RATS can be used to only accept commands from requesters
 that are within policy.
@@ -385,16 +385,18 @@ The actual data format and semantics of any Appraisal Policy is implementation s
 
 ## Reference Values
 
-Reference Values used in appraisal come from a Reference Value Provider
+Reference Values used in appraisal procedures come from a Reference Value Provider
 and are then used by the appraisal policy.
 They might be conveyed in any number of ways, including:
 
-* as part of the appraisal policy itself, if the Verifier Owner either: acquires Reference Values from a Reference Value Provider or is itself a Reference Value Provider;
-* as part of an Endorsement, if the Endorser either acquires Reference Values from a Reference Value Provider or is itself a Reference Value Provider; or
+* as part of the appraisal policy itself, if the Verifier Owner either: acquires Reference Values from a Reference Value Provider or is itself a Reference Value Provider, or
+* as part of an Endorsement, if the Endorser either acquires Reference Values from a Reference Value Provider or is itself a Reference Value Provider, or
 * via separate communication.
 
 The actual data format and semantics of any Reference Values are specific to
 Claims and implementations.
+This architecture document does not define any
+general purpose format for Reference Values or general means for comparison.
 
 ## Two Types of Environments of an Attester
 
