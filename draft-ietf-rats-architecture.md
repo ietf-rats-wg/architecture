@@ -184,12 +184,12 @@ appropriate solutions to compose their Remote Attestation Procedures.
 
 This section covers a number of representative use cases for remote attestation, independent of specific
 solutions.  The purpose is to provide motivation for various aspects of the
-architecture presented in this draft.  Many other use cases exist, and this
-document does not intend to have a complete list, only to have a set of use
+architecture presented in this document.  Many other use cases exist, and this
+document does not intend to have a complete list, only to illustrate a set of use
 cases that collectively cover all the functionality required in the architecture.
 
-Each use case includes a description followed by a summary of the
-Attester and Relying Party roles.
+Each use case includes an description followed by an additional summary of the
+Attester and Relying Party roles derived from the use case.
 
 ## Network Endpoint Assessment
 
