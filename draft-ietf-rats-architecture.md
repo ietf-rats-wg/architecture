@@ -353,18 +353,21 @@ Relying Party:
 ~~~~
 {:dataflow #dataflow title="Conceptual Data Flow"}
 
+The text below summarizes the activities conducted by the roles illustrated in {{dataflow}}.
+
 An Attester creates Evidence that is conveyed to a Verifier.
 
-The Verifier uses the Evidence, any Reference Values from Reference Value Providers, and any Endorsements from Endorsers,
-by applying an Appraisal Policy for Evidence to assess the trustworthiness of the Attester,
-and generates Attestation Results for use by Relying Parties.  The Appraisal Policy for Evidence
-might be obtained from an Endorser along with the Endorsements, and/or might be obtained
-via some other mechanism such as being configured in the Verifier by the Verifier Owner.
+An Verifier uses the Evidence, any Reference Values from Reference Value Providers, and any Endorsements from Endorsers,
+by applying an Appraisal Policy for Evidence to assess the trustworthiness of the Attester.
 
-The Relying Party uses Attestation Results by applying its own
-appraisal policy to make application-specific decisions such as authorization decisions.
-The Appraisal Policy for Attestation Results is configured in the Relying Party by the Relying Party Owner,
-and/or is programmed into the Relying Party.
+Consecutively, the Verifier generates Attestation Results for use by Relying Parties.  Appraisal Policies for Evidence
+might be obtained from an Endorser along with the Endorsements, and/or might be obtained
+via some other mechanism, such as being configured in the Verifier by the Verifier Owner.
+
+A Relying Party uses Attestation Results by applying its own
+appraisal policies to make application-specific decisions, such as authorization decisions.
+Appraisal Policies for Attestation Results are configured in the Relying Party by the Relying Party Owner,
+and/or are programmed into the Relying Party.
 
 ## Appraisal Policies
 
