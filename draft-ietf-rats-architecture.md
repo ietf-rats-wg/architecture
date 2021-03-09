@@ -281,25 +281,25 @@ Relying Party:
 equipment (hazardous chemical processing, traffic control, power grid,
 etc.).
 
-## Trusted Execution Environment (TEE) Provisioning
+## Trusted Execution Environment Provisioning
 
-A "Trusted Application Manager (TAM)" server is responsible
-for managing the applications running in the TEE of a client device.
-To do this, the TAM wants to assess the state of a TEE, or of applications
-in the TEE, of a client device.  The TEE conducts a remote attestation
-procedure with the TAM, which can
+A Trusted Application Manager (TAM) server is responsible
+for managing the applications running in a Trusted Execution Environment (TEE) of a client device.
+To achieve its purpose, the TAM needs to assess the state of a TEE, or of applications
+in the TEE, of a client device.  The TEE conducts Remote Attestation
+Procedure with the TAM, which can
 then decide whether the TEE is already in compliance with the TAM's latest
-policy, or if the TAM needs to uninstall, update, or install approved
+policy. Alternatively, the TAM has to uninstall, update, or install approved
 applications in the TEE to bring it back into compliance with the TAM's policy.
 
 Attester:
 
-: A device with a trusted execution environment capable of
-running trusted applications that can be updated
+: A device with a TEE capable of
+running trusted applications that can be updated.
 
 Relying Party:
 
-: A Trusted Application Manager
+: A TAM.
 
 ## Hardware Watchdog
 
