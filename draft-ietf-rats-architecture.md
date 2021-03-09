@@ -316,7 +316,7 @@ to the system's health, then it forces a reboot.
 Attester:
 
 : The device that should be protected from being held hostage for
-a long period of time
+a long period of time.
 
 Relying Party:
 
