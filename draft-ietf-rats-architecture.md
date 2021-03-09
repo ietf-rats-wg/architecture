@@ -182,7 +182,7 @@ appropriate solutions to compose their Remote Attestation Procedures.
 
 # Reference Use Cases {#referenceusecases}
 
-This section covers a number of representative use cases for remote attestation, independent of specific
+This section covers a number of representative generic use cases for remote attestation, independent of specific
 solutions.  The purpose is to provide motivation for various aspects of the
 architecture presented in this document.  Many other use cases exist, and this
 document does not intend to have a complete list, only to illustrate a set of use
@@ -205,20 +205,20 @@ Remote attestation is desired to prevent vulnerable or
 compromised devices from getting access to the network and potentially
 harming others.
 
-Typically, solutions start with a specific component (called a "root of trust") that
-provides device identity and protected storage for measurements.
+Typically, solutions start with a specific component (called a root of trust) that is intended to
+provide trustworthy device identity and protected storage for measurements.
 The system components perform a series of measurements that may be
-signed by the root of trust, considered as Evidence about the hardware,
-firmware, BIOS, software, etc. that is present.
+signed via functions provided by a root of trust, considered as Evidence about present system components, such as hardware,
+firmware, BIOS, software, etc.
 
 Attester:
 
-: A device desiring access to a network
+: A device desiring access to a network.
 
 Relying Party:
 
 : Network equipment such as a router, switch, or access point,
-responsible for admission of the device into the network
+responsible for admission of the device into the network.
 
 ## Confidential Machine Learning (ML) Model Protection
 
