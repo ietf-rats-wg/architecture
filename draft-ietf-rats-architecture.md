@@ -465,7 +465,7 @@ After the boot sequence is started, the BIOS conducts the
 most important and defining feature of layered attestation, which is that
 the successfully measured Target Environment B
 now becomes (or contains) an Attesting Environment for the next layer.
-This procedure in Layered Attestation is sometimes called "staging".
+This procedure in layered attestation is sometimes called "staging".
 It is important that the new Attesting Environment B not be
 able to alter any Claims about its own Target Environment B.
 This can be ensured having those Claims be either signed by Attesting
@@ -491,7 +491,7 @@ that it measures, rather than only one as shown in {{layered}}.
 
 ## Composite Device {#compositedevice}
 
-A Composite Device is an entity composed of multiple sub-entities such that its
+A composite device is an entity composed of multiple sub-entities such that its
 trustworthiness has to be determined by the appraisal of all these sub-entities.
 
 Each sub-entity has at least one Attesting Environment collecting the Claims
@@ -508,8 +508,8 @@ Among these slots, only a main slot can communicate with the Verifier
 while other slots cannot. But other slots can communicate with the main
 slot by the links between them inside the router. So the main slot collects
 the Evidence of other slots, produces the final Evidence of the whole router and
-conveys the final Evidence to the Verifier. Therefore the router is a Composite
-Device, each slot is an Attester, and the main slot is the lead Attester.
+conveys the final Evidence to the Verifier. Therefore the router is a composite
+device, each slot is an Attester, and the main slot is the lead Attester.
 
 Another example is a multi-chassis router composed of multiple single carrier-grade routers.
 Multi-chassis router setups create redundancy groups that provide higher throughput by interconnecting
@@ -517,21 +517,21 @@ multiple routers in these groups, which can be treated as one logical router for
 A multi-chassis router setup provides a management point that connects to the Verifier and typically designated a main router in the group.
 Other routers in the multi-chassis setup are connected to the main router only via physical network links
 and are therefore managed and appraised via the main router's help.
-In consequence, a multi-chassis router setup is the Composite Device,
+In consequence, a multi-chassis router setup is the composite device,
 each router is an Attester and the main router is the lead Attester.
 
-{{composite}} depicts the conceptual data flow for a Composite Device.
+{{composite}} depicts the conceptual data flow for a composite device.
 
 ~~~~ COMPOSITE
 {::include composite-attester.txt}
 ~~~~
 {: #composite title="Composite Device"}
 
-In the Composite Device, each Attester generates its own Evidence by its
+In the composite device, each Attester generates its own Evidence by its
 Attesting Environment(s) collecting the Claims from its Target Environment(s).
 The lead Attester collects the Evidence from the other Attesters and conveys it to a Verifier.
 Collection of Evidence from sub-entities may itself be a form of Claims collection that results in Evidence asserted by the lead Attester.
-The lead Attester generates the Evidence about the layout of the Composite Device, while sub-Attesters generate Evidence about their respective modules.
+The lead Attester generates the Evidence about the layout of the composite device, while sub-Attesters generate Evidence about their respective modules.
 
 In this situation, the trust model described in {{trustmodel}} is also suitable for this inside Verifier.
 
@@ -540,7 +540,7 @@ An entity can take on multiple RATS roles (e.g., Attester, Verifier, Relying
 Party, etc.) at the same time.
 Multiple entities can cooperate to implement a single RATS role as well.
 The combination of roles and entities can be arbitrary.
-For example, in the Composite Device scenario, the entity inside
+For example, in the composite device scenario, the entity inside
 the lead Attester can also take on the role of a Verifier, and the
 outer entity of Verifier can take on the role of a Relying Party.
 After collecting the Evidence of other Attesters, this inside Verifier uses
@@ -833,7 +833,7 @@ Internet Protocol. They can be using a loopback device or other IP-based
 communication between separate environments, but they do not have to.
 Alternative channels to convey conceptual messages include function calls, sockets, GPIO
 interfaces, local busses, or hypervisor calls. This type of conveyance is typically found
-in Composite Devices. Most importantly, these conveyance methods are
+in composite devices. Most importantly, these conveyance methods are
 out-of-scope of RATS, but they are presumed to exist in order to convey
 conceptual messages appropriately between roles.
 
