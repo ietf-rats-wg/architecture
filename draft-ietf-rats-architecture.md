@@ -90,6 +90,7 @@ normative:
 
 informative:
   RFC4949:
+  RFC5209:
   RFC8322:
   OPCUA:
     author:
@@ -964,7 +965,7 @@ In some scenarios, the Endorser, Reference Value Provider, and Verifier Owner ma
 before giving the Endorsement, Reference Values, or appraisal policy to it.  This can be done
 similarly to how a Relying Party might establish trust in a Verifier.
 
-As discusssed in {{rpowner-trust}}, authentication or attestation in both directions might be
+As discussed in {{rpowner-trust}}, authentication or attestation in both directions might be
 needed, in which case typically one side's identity or
 Evidence must be considered safe to share with an untrusted entity,
 in order to bootstrap the sequence.
@@ -976,7 +977,7 @@ See {{privacy-considerations}} for more discussion.
 
 Evidence is a set of Claims about the target environment that reveal operational
 status, health, configuration or construction that have security relevance.
-Evidence is evaluated by a Verifier to establish its relevance, compliance, and timeliness.
+Evidence is appraised by a Verifier to establish its relevance, compliance, and timeliness.
 Claims need to be collected in a manner that is reliable.
 Evidence needs to be securely associated with the target environment
 so that the Verifier cannot be tricked into accepting Claims originating
@@ -1002,7 +1003,7 @@ However, while an appraisal policy that treats all devices from a given manufact
 may be appropriate for some use cases, it would be inappropriate to use such an appraisal policy
 as the sole means of authorization for use cases that wish to constrain *which* compliant devices
 are considered authorized for some purpose.  For example, an enterprise using remote attestation for
-Network Endpoint Assessment may not wish to let every healthy laptop from the same
+Network Endpoint Assessment {{RFC5209}} may not wish to let every healthy laptop from the same
 manufacturer onto the network, but instead only want to let devices that it legally owns
 onto the network.  Thus, an Endorsement may be helpful information in authenticating
 information about a device, but is not necessarily sufficient to authorize access to
