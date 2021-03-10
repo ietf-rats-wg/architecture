@@ -1276,11 +1276,11 @@ Remote attestation applies to use cases with a range of security requirements, s
 ### On-Device Attester and Key Protection
 
 It is assumed that an Attesting Environment is sufficiently isolated from the
-Target Environment it collects Claims for and signs them with an Attestation
+Target Environment it collects Claims about and that it signs the resulting Claims set with an attestation
 Key, so that the Target Environment cannot forge Evidence about itself.  Such
 an isolated environment might be provided by a process, a dedicated chip,
 a TEE, a virtual machine, or another secure mode of operation.
-The Attesting Environment must be protected from unauthorized modification to ensure it behaves correctly. There must also be confidentiality so that the signing key is not captured and used elsewhere to forge Evidence.
+The Attesting Environment must be protected from unauthorized modification to ensure it behaves correctly. Confidentiality protection of the Attesting Environment is vital to protect the signing key in a way so it cannot be misused to forge Evidence.
 
 In many cases the user or owner of the device must not be able to modify or exfiltrate keys from the Attesting Environment of the Attester.
 For example the owner or user of a mobile phone or FIDO authenticator, having full control over the keys, might not be trusted to use the keys to report Evidence about the environment that protects the keys.
