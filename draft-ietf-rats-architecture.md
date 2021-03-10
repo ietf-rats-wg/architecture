@@ -828,7 +828,7 @@ in this document.
 An entity can aggregate more than one role into itself.
 These collapsed roles combine the duties of multiple roles.
 
-In these cases, interaction between these roles do not necessarily use the
+In cases where roles are aggregated, interaction between these roles do not necessarily use the
 Internet Protocol. They can be using a loopback device or other IP-based
 communication between separate environments, but they do not have to.
 Alternative channels to convey conceptual messages include function calls, sockets, GPIO
@@ -932,9 +932,9 @@ can also be used to conduct a number of attacks, and so a device in
 a physically secure environment (such as one's own premises) may be
 considered trusted whereas devices owned by others would not be.
 This often results in a desire to either have the owner run their
-own Endorser that would only Endorse devices one owns, or to use
+own Endorser that would only endorse devices one owns, or to use
 Attesters directly in the trust anchor store.   When there are many
-Attesters owned, the use of an Endorser becomes more scalable.
+Attesters owned, the use of an Endorser enables better scalability.
 
 That is, a Verifier might appraise the trustworthiness of an application component, operating
 system component, or service under the assumption that information
@@ -945,9 +945,9 @@ physically resistant to hardware tampering.
 In most cases, components that have to be vouched for via Endorsements because no Evidence is generated about them are referred to as roots of trust.
 
 The manufacturer having arranged for an Attesting Environment to be provisioned with key material with which to sign Evidence, the Verifier is then provided with
-some way of verifying the signature on the Evidence.  This may be in the form of an appropriate trust anchor, or the Verifier may be provided with a database of public keys (rather than certificates) or even carefully secured lists of symmetric keys.
+some way of verifying the signature on the Evidence.  This may be in the form of an appropriate trust anchor, or the Verifier may be provided with a database of public keys (rather than certificates) or even carefully curated and secured lists of symmetric keys.
 
-The nature of how the Verifier manages to validate the signatures produced by the Attester is critical to the secure operation of an Attestation system, but is not the subject of standardization within this architecture.
+The nature of how the Verifier manages to validate the signatures produced by the Attester is critical to the secure operation of a remote attestation system, but is not the subject of standardization within this architecture.
 
 A conveyance protocol that provides authentication and integrity protection can be used
 to convey Evidence that is otherwise unprotected (e.g., not signed). Appropriate conveyance of unprotected Evidence (e.g., {{-uccs}}) relies on the following conveyance protocol's protection capabilities:
