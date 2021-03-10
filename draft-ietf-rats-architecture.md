@@ -713,14 +713,14 @@ This implies that interoperability and standardization is more relevant for Atte
       |             |
       +-------------+
            ^    |
-   Evidence|    |Attestation
-           |    |  Result
+  Evidence |    | Attestation
+           |    |    Result
            |    v
       +----------+              +---------+
-      |          |------------->|         |Compare Attestation
+      |          |------------->|         | Compare Attestation
       | Attester | Attestation  | Relying | Result against
-      |          |    Result    |  Party  | appraisal
-      +----------+              +---------+  policy
+      |          |    Result    |  Party  | appraisal policy
+      +----------+              +---------+
 ~~~~
 {: #passport title="Passport Model"}
 
