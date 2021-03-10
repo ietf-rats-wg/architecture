@@ -1019,7 +1019,7 @@ Attestation Results are the input used by the Relying Party to decide the extent
 
 Attestation Results may carry a boolean value indicating compliance or non-compliance with a Verifier's appraisal policy, or may carry a richer set of Claims about the Attester, against which the Relying Party applies its Appraisal Policy for Attestation Results.
 
-The quality of the Attestation Results depend upon the ability of the Verifier to evaluate the Attester.
+The quality of the Attestation Results depends upon the ability of the Verifier to evaluate the Attester.
 Different Attesters have a different _Strength of Function_ {{strengthoffunction}}, which results in the Attestation Results being qualitatively different in strength.
 
 An Attestation Result that indicates non-compliance can be used by an Attester (in the passport model) or
@@ -1028,17 +1028,17 @@ should not be treated as authorized and may be in need of remediation.  In some 
 it may even indicate that the Evidence itself cannot be authenticated as being correct.
 
 By default, the Relying Party does not believe the Attester to be compliant.
-Upon receipt of an authentic Attestation Result and given the Appraisal Policy for Attestation Results is satisfied, then
+Upon receipt of an authentic Attestation Result and given the Appraisal Policy for Attestation Results is satisfied,
 the Attester is allowed to perform the prescribed actions or access.
-The simplest such Appraisal Policy might authorize granting the Attester full access or control over the resources guarded by the Relying Party.
-A more complex Appraisal Policy might involve using the information
+The simplest such appraisal policy might authorize granting the Attester full access or control over the resources guarded by the Relying Party.
+A more complex appraisal policy might involve using the information
 provided in the Attestation Result to compare against expected values, or to apply complex analysis
 of other information contained in the Attestation Result.
 
 Thus, Attestation Results often need to include detailed information about the Attester,
 for use by Relying Parties, much like physical passports and drivers licenses include
 personal information such as name and date of birth.  Unlike Evidence, which is often
-very device- and vendor-specific, Attestation Results can be vendor-neutral if the Verifier
+very device- and vendor-specific, Attestation Results can be vendor-neutral, if the Verifier
 has a way to generate vendor-agnostic information based on the appraisal of vendor-specific
 information in Evidence.  This allows a Relying Party's appraisal policy to be simpler,
 potentially based on standard ways of expressing the information, while still allowing
