@@ -533,7 +533,7 @@ The lead Attester collects Evidence from other Attesters and conveys it to a Ver
 Collection of Evidence from sub-entities may itself be a form of Claims collection that results in Evidence asserted by the lead Attester.
 The lead Attester generates Evidence about the layout of the whole composite device, while sub-Attesters generate Evidence about their respective (sub-)modules.
 
-In this scenario, the trust model described in {{trustmodel}} is can also be applied to this inside Verifier.
+In this scenario, the trust model described in {{trustmodel}} can also be applied to an inside Verifier.
 
 ## Implementation Considerations
 An entity can take on multiple RATS roles (e.g., Attester, Verifier, Relying
@@ -665,8 +665,8 @@ in any sort of comparison.
 
 {{dataflow}} shows a data-flow diagram for communication between an Attester,
 a Verifier, and a Relying Party. The Attester conveys its Evidence to the Verifier
-for appraisal, and the Relying Party gets the Attestation Result from the Verifier.
-This section refines it by describing two reference models,
+for appraisal, and the Relying Party receives the Attestation Result from the Verifier.
+This section refines the data-flow diagram by describing two reference models,
 as well as one example composition thereof. The discussion
 that follows is for illustrative purposes only and does not constrain the
 interactions between RATS roles to the presented patterns.
