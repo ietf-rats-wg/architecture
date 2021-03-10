@@ -714,12 +714,12 @@ This implies that interoperability and standardization is more relevant for Atte
        +------------+
            ^    |
   Evidence |    | Attestation
-           |    |    Result
+           |    | Result
            |    v
        +------------+              +-------------+
        |            |------------->|             | Compare Attestation
        |  Attester  | Attestation  |   Relying   | Result against
-       |            |    Result    |    Party    | appraisal policy
+       |            | Result       |    Party    | appraisal policy
        +------------+              +-------------+
 ~~~~
 {: #passport title="Passport Model"}
@@ -759,13 +759,13 @@ constrained node.
 ~~~~
                                 +-------------+
                                 |             | Compare Evidence
-                                |  Verifier   | against appraisal
+                                |   Verifier  | against appraisal
                                 |             | policy
                                 +-------------+
-                                     ^    |
-                            Evidence |    | Attestation
-                                     |    |    Result
-                                     |    v
+                                     ^   |
+                            Evidence |   | Attestation
+                                     |   | Result
+                                     |   v
    +------------+               +-------------+
    |            |-------------->|             | Compare Attestation
    |  Attester  |   Evidence    |   Relying   | Result against
@@ -800,24 +800,24 @@ plans to support in the TEEP architecture {{-teep-arch}}.
       |   Verifier  | against appraisal policy
       |             |
       +-------------+
-           ^    |
-   Evidence|    |Attestation
-           |    |  Result
-           |    v
+           ^   |
+  Evidence |   | Attestation
+           |   | Result
+           |   v
       +-------------+
       |             | Compare
       |   Relying   | Attestation Result
       |   Party 2   | against appraisal policy
       +-------------+
-           ^    |
-   Evidence|    |Attestation
-           |    |  Result
-           |    v
-      +----------+               +----------+
-      |          |-------------->|          | Compare Attestation
-      | Attester |  Attestation  |  Relying | Result against
-      |          |     Result    |  Party 1 | appraisal policy
-      +----------+               +----------+
+           ^   |
+  Evidence |   | Attestation
+           |   | Result
+           |   v
+      +-------------+               +-------------+
+      |             |-------------->|             | Compare Attestation
+      |   Attester  |  Attestation  |   Relying   | Result against
+      |             |     Result    |   Party 1   | appraisal policy
+      +-------------+               +-------------+
 ~~~~
 {: #combination title="Example Combination"}
 
