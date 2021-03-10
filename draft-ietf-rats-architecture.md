@@ -1266,13 +1266,12 @@ This approach is often called "Direct Anonymous Attestation".  See
 
 ## Attester and Attestation Key Protection
 
-
-Implementers need to pay close attention to the protection of the Attester and the factory processes for provisioning the Attestation key material. If either of these are compromised, the remote attestation becomes worthless because an attacker can forge Evidence or manipulate the Attesting Environment.
+Implementers need to pay close attention to the protection of the Attester and the factory processes for provisioning attestation key material. If either of these are compromised, intended levels of assurance for RATS are compromized because attackers can forge Evidence or manipulate the Attesting Environment.
 For example, a Target Environment should not be able to tamper with the
 Attesting Environment that measures it, by isolating the two environments
 from each other in some way.
 
-Remote attestation applies to use cases with a range of security requirements, so the protections discussed here range from low to high security where low security  may be only application or process isolation by the device's operating system and high security involves specialized hardware to defend against physical attacks on a chip.
+Remote attestation applies to use cases with a range of security requirements, so the protections discussed here range from low to high security where low security may be limited to application or process isolation by the device's operating system and high security may involve specialized hardware to defend against physical attacks on a chip.
 
 ### On-Device Attester and Key Protection
 
