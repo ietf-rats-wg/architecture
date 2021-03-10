@@ -1073,7 +1073,7 @@ done in a way that doesn't degrade the security properties of the system
 and should use the native extension mechanisms provided by the underlying
 protocol. For example, if the TLS handshake is to be extended with
 remote attestation capabilities, attestation Evidence may be embedded
-in an ad hoc X.509 certificate extension (e.g., {{TCG-DICE}}), or into a new
+in an ad-hoc X.509 certificate extension (e.g., {{TCG-DICE}}), or into a new
 TLS Certificate Type (e.g., {{?I-D.tschofenig-tls-cwt}}).
 
 Especially for constrained nodes there is a desire to minimize
@@ -1132,9 +1132,9 @@ Attestation Result.
 The first approach is to rely on synchronized and trustworthy clocks, and
 include a signed timestamp (see {{?I-D.birkholz-rats-tuda}}) along with the
 Claims in the Evidence or Attestation Result.  Timestamps can also be added on a
-per-Claim basis to distinguish the time of creation of Evidence or Attestation
+per-Claim basis to distinguish the time of generation of Evidence or Attestation
 Result from the time that a specific Claim was generated.  The clock's
-trustworthiness typically requires additional Claims about the signer's time
+trustworthiness can be established via Endorsements and typically requires additional Claims about the signer's time
 synchronization mechanism.
 
 In some use cases, however, a trustworthy clock might not be available. For
