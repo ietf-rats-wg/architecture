@@ -1225,31 +1225,29 @@ For a discussion on the security of handles see {{handles-sec}}.
 The conveyance of Evidence and the resulting Attestation Results
 reveal a great deal of information about the internal state of a
 device as well as potentially any users of the device.
-In many cases, the whole point of the Attestation process is
+In many cases, the whole point of attestation procedures is
 to provide reliable information about the type of the device and the
 firmware/software that the device is running.
 This information might be particularly interesting to many attackers.
 For example, knowing that a device is
 running a weak version of firmware provides a way to aim attacks better.
 
-Many Claims in Attestation Evidence and Attestation Results are potentially
+Many Claims in attestation Evidence and Attestation Results are potentially
 Personally Identifying Information) depending on the end-to-end use case of
-the attestation.
-Attestation that goes up to include containers and applications may further
-reveal details about a specific system or user.
+the remote attestation procedure.
+Remote attestation that goes up to include containers and applications may further
+reveal details about specific systems or users.
 
-In some cases, an attacker may be able to make inferences about attestations
-from the results or timing of the processing.
+In some cases, an attacker may be able to make inferences about the contents of attestation Evidence
+from the resulting effects or timing of the processing.
 For example, an attacker might be able to infer the value of specific Claims if it knew that only certain values were accepted by the Relying Party.
 
-Evidence and Attestation Results data structures are expected to support
-integrity protection encoding (e.g., COSE, JOSE, X.509) and optionally might
-support confidentiality protection (e.g., COSE, JOSE).
-Therefore, if confidentiality protection is omitted or unavailable, the protocols
+Evidence and Attestation Results are expected to be integrity protected (i.e. via signing or a secure channel) and optionally might be confidentiality protected via encryption.
+If confidentiality protection via signing the conceptual messages is omitted or unavailable, the protecting protocols
 that convey Evidence or Attestation Results are responsible for detailing what
 kinds of information are disclosed, and to whom they are exposed.
 
-Furthermore, because Evidence might contain sensitive information,
+As Evidence might contain sensitive information,
 Attesters are responsible for only sending such Evidence to trusted
 Verifiers.
 Some Attesters might want a stronger level of assurance of
