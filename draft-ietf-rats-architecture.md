@@ -1292,21 +1292,19 @@ Measures for a moderately protected system could include a special restricted op
 
 Measures for a highly protected system could include specialized hardware that is used to provide protection against chip decapping attacks, power supply and clock glitching, faulting injection and RF and power side channel attacks.
 
-
 ### Attestation Key Provisioning Processes
 
-Attestation key provisioning is the process that occurs in the factory or elsewhere that establishes the signing key material on the device and the verification key material off the device. Sometimes this is referred to as “personalization”.
+Attestation key provisioning is the process that occurs in the factory or elsewhere in order to establishes signing key material on the device and the validation key material off the device. Sometimes this is procedure is referred to as personalization or customization.
 
-One way to provision a key is to first generate it external to the device and then copy the key onto the device.
-In this case, confidentiality of the generator, as well as the path over which the key is provisioned, is necessary.
-The manufacturer needs to take care to protect it with measures consistent with its value.
-This can be achieved in a number of ways.
+One way to provision key material is to first generate it external to the device and then copy the key onto the device.
+In this case, confidentiality protection of the generator, as well as for the path over which the key is provisioned by, is necessary.
+The manufacturer needs to take care to protect corresponding key material with measures appropriate for its value.
 
-Confidentiality can be achieved entirely with physical provisioning facility security involving no encryption at all. For low-security use cases, this might be simply locking doors and limiting personnel that can enter the facility. For high-security use cases, this might involve a special area of the facility accessible only to select security-trained personnel.
+Confidentiality protection can be realized via physical provisioning facility security involving no encryption at all. For low-security use cases, this might be simply locking doors and limiting personnel that can enter the facility. For high-security use cases, this might involve a special area of the facility accessible only to select security-trained personnel.
 
-Cryptography can also be used to support confidentiality, but keys that are used to then provision attestation keys must somehow have been provisioned securely beforehand (a recursive problem).
+Typically, cryptography is used to enable confidentiality protection. This can result in recursive problems, as the key material used to provision attestation keys must again somehow have been provisioned securely beforehand.
 
-In many cases both some physical security and some cryptography will be necessary and useful to establish confidentiality.
+In general, a combination of some physical security measures and some cryptographic measures is used to establish confidentiality protection.
 
 Another way to provision the key material is to generate it on the device and export the verification key. If public key cryptography is being used, then only integrity is necessary. Confidentiality is not necessary.
 
