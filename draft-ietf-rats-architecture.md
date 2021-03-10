@@ -140,7 +140,7 @@ informative:
 
 In network protocol exchanges it is often the case that
 one entity requires believable evidence about the operational state of a remote
-peer.  Such evidence is typically conveyed as claims
+peer.  Such evidence is typically conveyed as Claims
 about the peer's software and hardware platform, and is subsequently appraised in order
 to assess the peer's trustworthiness.  The process of generating and
 appraising this kind of evidence is known as remote
@@ -424,7 +424,7 @@ There is no limit to or requirement on the types of hardware or software environ
 
 An arbitrary execution environment may not, by default, be capable of Claims collection for a given Target Environment.
 Execution environments that are designed specifically to be capable of Claims collection are referred to in this document as Attesting Environments.
-For example, a TPM doesn't actively collect claims itself, it instead
+For example, a TPM doesn't actively collect Claims itself, it instead
 requires another component to feed various values to the TPM.
 Thus, an Attesting Environment in such a case would be the combination
 of the TPM together with whatever component is feeding it the measurements.
@@ -677,9 +677,9 @@ The passport model is so named because of its resemblance to how nations issue
 passports to their citizens. The nature of the Evidence that an individual needs
 to provide to its local authority is specific to the country involved. The citizen
 retains control of the resulting passport document and presents it to other entities
-when it needs to assert a citizenship or identity claim, such as an airport immigration
+when it needs to assert a citizenship or identity Claim, such as an airport immigration
 desk. The passport is considered sufficient because it vouches for the citizenship and
-identity claims, and it is issued by a trusted authority. Thus, in this immigration
+identity Claims, and it is issued by a trusted authority. Thus, in this immigration
 desk analogy, the passport issuing agency is a Verifier, the passport is an Attestation
 Result, and the immigration desk is a Relying Party.
 
@@ -727,9 +727,9 @@ This implies that interoperability and standardization is more relevant for Atte
 ## Background-Check Model
 
 The background-check model is so named because of the resemblance of how employers and volunteer
-organizations perform background checks. When a prospective employee provides claims about
+organizations perform background checks. When a prospective employee provides Claims about
 education or previous experience, the employer will contact the respective institutions or
-former employers to validate the claim. Volunteer organizations often perform police background
+former employers to validate the Claim. Volunteer organizations often perform police background
 checks on volunteers in order to determine the volunteer's trustworthiness.
 Thus, in this analogy, a prospective volunteer is an Attester, the organization is the Relying Party,
 and the organization that issues a report is a Verifier.
@@ -1152,7 +1152,7 @@ same, the appraising entity knows that the Claims were signed after the nonce
 was generated.  This allows associating a "rough" epoch to the Evidence or
 Attestation Result.  In this case the epoch is said to be rough because:
 
-* The epoch applies to the entire claim set instead of a more granular
+* The epoch applies to the entire Claim set instead of a more granular
   association, and
 * The time between the creation of Claims and the collection of Claims is
   indistinguishable.
@@ -1231,7 +1231,7 @@ This information might be particularly interesting to many attackers.
 For example, knowing that a device is
 running a weak version of firmware provides a way to aim attacks better.
 
-Many claims in Attestation Evidence and Attestation Results are potentially
+Many Claims in Attestation Evidence and Attestation Results are potentially
 Personally Identifying Information) depending on the end-to-end use case of
 the attestation.
 Attestation that goes up to include containers and applications may further
@@ -1467,9 +1467,9 @@ it at time(RG_v) by checking `time(RG_v) - time(EG_a) < Threshold`, where the
 Verifier's threshold is large enough to account for the maximum
 permitted clock skew between the Verifier and the Attester.
 
-If time(VG_a) is also included in the Evidence along with the claim value
+If time(VG_a) is also included in the Evidence along with the Claim value
 generated at that time, and the Verifier decides that it can trust the
-time(VG_a) value, the Verifier can also determine whether the claim value is
+time(VG_a) value, the Verifier can also determine whether the Claim value is
 recent by checking `time(RG_v) - time(VG_a) < Threshold`.
 The threshold is decided by the Appraisal Policy for Evidence, and again needs to take
 into account the maximum permitted clock skew between
@@ -1532,7 +1532,7 @@ In this example solution, the Verifier can check whether the Evidence is
 fresh at `time(RG_v)` by verifying that `time(RG_v)-time(NS_v) < Threshold`.
 
 The Verifier cannot, however, simply rely on a Nonce to
-determine whether the value of a claim is recent, since the claim value
+determine whether the value of a Claim is recent, since the Claim value
 might have been generated long before the nonce was sent by the Verifier.
 However, if the Verifier decides that the Attester can be trusted to
 correctly provide the delta `time(EG_a)-time(VG_a)`, then it can determine recency
@@ -1669,7 +1669,7 @@ the Relying Party needs to send one to an Attester.
      |                    time(OP_r)                     |
 ~~~~
 
-The Verifier can check whether the Evidence is fresh, and whether a claim
+The Verifier can check whether the Evidence is fresh, and whether a Claim
 value is recent, the same as in Example 2 above.
 
 However, unlike in Example 2, the Relying Party can use the Nonce to
