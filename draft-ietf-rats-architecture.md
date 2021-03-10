@@ -707,20 +707,20 @@ Attester-Verifier remote attestation protocol.
 This implies that interoperability and standardization is more relevant for Attestation Results than it is for Evidence.
 
 ~~~~
-      +-------------+
-      |             | Compare Evidence
-      |   Verifier  | against appraisal policy
-      |             |
-      +-------------+
+       +------------+
+       |            | Compare Evidence
+       |  Verifier  | against appraisal policy
+       |            |
+       +------------+
            ^    |
   Evidence |    | Attestation
            |    |    Result
            |    v
-      +----------+              +---------+
-      |          |------------->|         | Compare Attestation
-      | Attester | Attestation  | Relying | Result against
-      |          |    Result    |  Party  | appraisal policy
-      +----------+              +---------+
+        +----------+              +---------+
+        |          |------------->|         | Compare Attestation
+        | Attester | Attestation  | Relying | Result against
+        |          |    Result    |  Party  | appraisal policy
+        +----------+              +---------+
 ~~~~
 {: #passport title="Passport Model"}
 
