@@ -1282,12 +1282,11 @@ an isolated environment might be provided by a process, a dedicated chip,
 a TEE, a virtual machine, or another secure mode of operation.
 The Attesting Environment must be protected from unauthorized modification to ensure it behaves correctly. Confidentiality protection of the Attesting Environment is vital to protect the signing key in a way so it cannot be misused to forge Evidence.
 
-In many cases the user or owner of the device must not be able to modify or exfiltrate keys from the Attesting Environment of the Attester.
-For example the owner or user of a mobile phone or FIDO authenticator, having full control over the keys, might not be trusted to use the keys to report Evidence about the environment that protects the keys.
-The point of remote attestation is for the Relying Party to be able to trust the Attester even though they don’t trust the user or owner.
+In many cases the user or owner of a device that takes on the role of Attester must not be able to modify or extract keys from its Attesting Environments.
+For example, the owner or user of a mobile phone or FIDO authenticator, having full control over the keys, might not be trusted to use the keys to report Evidence about the environment that protects the keys.
+An essential value-add of remote attestation is for the Relying Party to be able to trust the Attester even if the user or owner is not trusted.
 
-
-Some of the measures for a minimally protected system might include process or application isolation by a high-level operating system, and perhaps restricting access to root or system privilege. For extremely simple single-use devices that don’t use a protected mode operating system, like a Bluetooth speaker, the isolation might only be the plastic housing for the device.
+Some of the measures for a minimally protected system might include process or application isolation provided by a high-level operating system, and restricted access to root or system privileges. In contrast, For really simple single-use devices that don’t use a protected mode operating system, like a Bluetooth speaker, the only factual isolation might be a sturdy housing of the device.
 
 Measures for a moderately protected system could include a special restricted operating environment like a Trusted Execution Environment (TEE) might be used. In this case, only security-oriented software has access to the Attester and key material.
 
