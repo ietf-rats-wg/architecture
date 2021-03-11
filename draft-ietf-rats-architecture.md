@@ -1064,24 +1064,24 @@ can be any new or existing protocol (e.g., HTTP(S), COAP(S),
 ROLIE {{RFC8322}},
 802.1x, OPC UA {{OPCUA}}, etc.), depending on the use case.
 
-Such protocols typically already have mechanisms for passing security information for purposes of authentication and authorization.
+Typically, such protocols already have mechanisms for passing security information for authentication and authorization purposes.
 Common formats include JWTs {{RFC7519}}, CWTs {{RFC8392}}, and X.509 certificates.
 
 Retrofitting already deployed protocols with remote attestation requires
 adding RATS conceptual messages to the existing data flows. This must be
-done in a way that doesn't degrade the security properties of the system
-and should use the native extension mechanisms provided by the underlying
-protocol. For example, if the TLS handshake is to be extended with
+done in a way that does not degrade the security properties of the systems involved
+and should use native extension mechanisms provided by the underlying
+protocol. For example, if a TLS handshake is to be extended with
 remote attestation capabilities, attestation Evidence may be embedded
 in an ad-hoc X.509 certificate extension (e.g., {{TCG-DICE}}), or into a new
 TLS Certificate Type (e.g., {{?I-D.tschofenig-tls-cwt}}).
 
 Especially for constrained nodes there is a desire to minimize
 the amount of parsing code needed in a Relying Party, in order to both
-minimize footprint and to minimize the attack surface area.  So while
+minimize footprint and to minimize the attack surface. While
 it would be possible to embed a CWT inside a JWT, or a JWT inside an
 X.509 extension, etc., there is a desire to encode the information
-natively in the format that is natural for the Relying Party.
+natively in formats that are already supported by the Relying Party.
 
 This motivates having a common "information model" that describes
 the set of remote attestation related information in an encoding-agnostic
@@ -1090,7 +1090,7 @@ that encode the same information into the Claims format needed by the
 Relying Party.
 
 The following diagram illustrates that Evidence and Attestation Results
-might each have multiple possible encoding formats, so that they can be
+might be expressed via multiple potential encoding formats, so that they can be
 conveyed by various existing protocols.  It also motivates why the Verifier
 might also be responsible for accepting Evidence that encodes Claims in
 one format, while issuing Attestation Results that encode Claims in
