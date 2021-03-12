@@ -1114,8 +1114,6 @@ considered fresh, meaning they still reflect the latest state of the Attester,
 and that any Attestation Result was generated using the latest Appraisal Policy
 for Evidence.
 
-Freshness is assessed based on the Appraisal Policy for Evidence or Attestation Results
-that compares the estimated epoch against an "expiry" threshold defined locally to that policy.
 There is, however, always a
 race condition possible in that the state of the Attester, and the
 appraisal policies might change immediately after the Evidence or Attestation
@@ -1263,7 +1261,7 @@ an Attestation Result for any other purpose.
 Another approach to deal with Evidence is to remove PII from the Evidence
 while still being able to verify that the Attester is one of a large set.
 This approach is often called "Direct Anonymous Attestation".  See
-{{CCC-DeepDive}} section 6.2 for more discussion.
+{{CCC-DeepDive}} section 6.2 for more discussion and .
 
 # Security Considerations {#security-considerations}
 
