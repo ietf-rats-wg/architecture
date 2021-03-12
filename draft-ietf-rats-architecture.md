@@ -1336,7 +1336,8 @@ boot, or immutable hardware/ROM.
 It is also important that the appraisal policy was itself obtained securely.
 If an attacker can configure appraisal policies for a Relying Party or for a Verifier, then integrity of the process is compromised.
 
-Security protections in RATS may be applied at different layers, whether by a conveyance protocol, or an information encoding format. This architecture expects conceptual messages (see {{messages}}) to be end-to-end protected based on the role interaction context.
+Security protections in RATS may be applied at different layers, whether by a conveyance protocol, or an information encoding format.
+This architecture expects conceptual messages (see {{messages}}) to be end-to-end protected based on the role interaction context.
 For example, if an Attester produces Evidence that is relayed through some other entity that doesn't implement the Attester or the intended Verifier roles, then the relaying entity should not expect to have access to the Evidence.
 
 ## Handle-based Attestation {#handles-sec}
@@ -1386,7 +1387,7 @@ Frank Xia,
 and
 David Wooten.
 
-# Contributors
+# Notable Contributions
 
 Thomas Hardjono created initial versions of the terminology section in collaboration with Ned Smith.
 Eric Voit provided the conceptual separation between Attestation Provision Flows and Attestation Evidence Flows.
