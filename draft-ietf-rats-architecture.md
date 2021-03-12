@@ -1343,6 +1343,9 @@ For example, if an Attester produces Evidence that is relayed through some other
 Handles, described in {{epochfreshness}}, can be tampered with, replayed, dropped, delayed, and
 reordered by an attacker.
 
+An attacker could be either external or belong to the distribution group, for
+example, if one of the Attester entities have been compromised.
+
 An attacker who is able to tamper with handles can potentially lock all the
 participants in a certain epoch of choice for ever, effectively freezing time.
 This is problematic since it destroys the ability to ascertain freshness of
@@ -1382,7 +1385,7 @@ Frank Xia,
 and
 David Wooten.
 
-# Notable Contributions
+# Additional Contributors
 
 Thomas Hardjono created older versions of the terminology section in collaboration with Ned Smith.
 Eric Voit provided the conceptual separation between Attestation Provision Flows and Attestation Evidence Flows.
