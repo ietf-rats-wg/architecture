@@ -1418,7 +1418,7 @@ This list is not intended to be complete,
 but is just representative enough to highlight various timing considerations.
 
 All times are relative to the local clocks, indicated by an "_a" (Attester),
-"_v" (Verifier), or "r" (Relying Party) suffix.
+"_v" (Verifier), or "_r" (Relying Party) suffix.
 
 Times with an appended Prime (') indicate a second instance of the same event.
 
