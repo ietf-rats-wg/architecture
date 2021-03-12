@@ -232,7 +232,7 @@ This typically works by having some protected environment
 in the device go through a remote attestation with some manufacturer service
 that can assess its trustworthiness.  If remote attestation succeeds,
 then the manufacturer service releases either the model, or a key to decrypt
-a model already deployed on the  Attester in encrypted form, to the requester.
+a model already deployed on the Attester in encrypted form, to the requester.
 
 Attester:
 
