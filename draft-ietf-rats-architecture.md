@@ -1247,7 +1247,7 @@ If confidentiality protection via signing the conceptual messages is omitted or 
 that convey Evidence or Attestation Results are responsible for detailing what
 kinds of information are disclosed, and to whom they are exposed.
 
-As Evidence might contain sensitive information,
+As Evidence might contain sensitive or confidential information,
 Attesters are responsible for only sending such Evidence to trusted
 Verifiers.
 Some Attesters might want a stronger level of assurance of
@@ -1266,7 +1266,7 @@ This approach is often called "Direct Anonymous Attestation".  See
 
 ## Attester and Attestation Key Protection
 
-Implementers need to pay close attention to the protection of the Attester and the factory processes for provisioning attestation key material. If either of these are compromised, intended levels of assurance for RATS are compromized because attackers can forge Evidence or manipulate the Attesting Environment.
+Implementers need to pay close attention to the protection of the Attester and the manufacturing processes for provisioning attestation key material. If either of these are compromised, intended levels of assurance for RATS are compromised because attackers can forge Evidence or manipulate the Attesting Environment.
 For example, a Target Environment should not be able to tamper with the
 Attesting Environment that measures it, by isolating the two environments
 from each other in some way.
@@ -1277,16 +1277,16 @@ Remote attestation applies to use cases with a range of security requirements, s
 
 It is assumed that an Attesting Environment is sufficiently isolated from the
 Target Environment it collects Claims about and that it signs the resulting Claims set with an attestation
-Key, so that the Target Environment cannot forge Evidence about itself.  Such
+key, so that the Target Environment cannot forge Evidence about itself.  Such
 an isolated environment might be provided by a process, a dedicated chip,
 a TEE, a virtual machine, or another secure mode of operation.
 The Attesting Environment must be protected from unauthorized modification to ensure it behaves correctly. Confidentiality protection of the Attesting Environment is vital to protect the signing key in a way so it cannot be misused to forge Evidence.
 
 In many cases the user or owner of a device that takes on the role of Attester must not be able to modify or extract keys from its Attesting Environments.
 For example, the owner or user of a mobile phone or FIDO authenticator, having full control over the keys, might not be trusted to use the keys to report Evidence about the environment that protects the keys.
-An essential value-add of remote attestation is for the Relying Party to be able to trust the Attester even if the user or owner is not trusted.
+An essential value-add provided by RATS is for the Relying Party to be able to trust the Attester even if the user or owner is not trusted.
 
-Measures for a minimally protected system might include process or application isolation provided by a high-level operating system, and restricted access to root or system privileges. In contrast, For really simple single-use devices that don’t use a protected mode operating system, like a Bluetooth speaker, the only factual isolation might be a sturdy housing of the device.
+Measures for a minimally protected system might include process or application isolation provided by a high-level operating system, and restricted access to root or system privileges. In contrast, For really simple single-use devices that don’t use a protected mode operating system, like a Bluetooth speaker, the only factual isolation might be the sturdy housing of the device.
 
 Measures for a moderately protected system could include a special restricted operating environment, such as a TEE. In this case, only security-oriented software has access to the Attester and key material.
 
@@ -1302,7 +1302,7 @@ The manufacturer needs to take care to protect corresponding key material with m
 
 Confidentiality protection can be realized via physical provisioning facility security involving no encryption at all. For low-security use cases, this might be simply locking doors and limiting personnel that can enter the facility. For high-security use cases, this might involve a special area of the facility accessible only to select security-trained personnel.
 
-Typically, cryptography is used to enable confidentiality protection. This can result in recursive problems, as the key material used to provision attestation keys must again somehow have been provisioned securely beforehand.
+Typically, cryptography is used to enable confidentiality protection. This can result in recursive problems, as the key material used to provision attestation keys must again somehow have been provisioned securely beforehand (requiring an additional level of protection, and so on).
 
 In general, a combination of some physical security measures and some cryptographic measures is used to establish confidentiality protection.
 
@@ -1335,7 +1335,7 @@ boot, or immutable hardware/ROM.
 It is also important that the appraisal policy was itself obtained securely.
 If an attacker can configure appraisal policies for a Relying Party or for a Verifier, then integrity of the process is compromised.
 
-The security protecting conveyed information may be applied at different layers, whether by a conveyance protocol, or an information encoding format. This architecture expects attestation messages (i.e., Evidence, Attestation Results, Endorsements, Reference Values, and Policies) are end-to-end protected based on the role interaction context.
+Security protected conveyed information in RATS may be applied at different layers, whether by a conveyance protocol, or an information encoding format. This architecture expects conceptual messages (see {{{messages}}) to be end-to-end protected based on the role interaction context.
 For example, if an Attester produces Evidence that is relayed through some other entity that doesn't implement the Attester or the intended Verifier roles, then the relaying entity should not expect to have access to the Evidence.
 
 ## Handle-based Attestation {#handles-sec}
