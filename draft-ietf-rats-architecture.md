@@ -1386,7 +1386,7 @@ Frank Xia,
 and
 David Wooten.
 
-# Notable Contributions
+# Contributors
 
 Thomas Hardjono created initial versions of the terminology section in collaboration with Ned Smith.
 Eric Voit provided the conceptual separation between Attestation Provision Flows and Attestation Evidence Flows.
