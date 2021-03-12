@@ -183,7 +183,7 @@ appropriate solutions to compose their Remote Attestation Procedures.
 
 # Reference Use Cases {#referenceusecases}
 
-This section covers a number of representative generic use cases for remote attestation, independent of specific
+This section covers a number of representative and generic use cases for remote attestation, independent of specific
 solutions.  The purpose is to provide motivation for various aspects of the
 architecture presented in this document.  Many other use cases exist, and this
 document does not intend to have a complete list, only to illustrate a set of use
