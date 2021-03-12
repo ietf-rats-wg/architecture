@@ -1387,7 +1387,7 @@ David Wooten.
 
 # Additional Contributors
 
-Thomas Hardjono created older versions of the terminology section in collaboration with Ned Smith.
+Thomas Hardjono created initial versions of the terminology section in collaboration with Ned Smith.
 Eric Voit provided the conceptual separation between Attestation Provision Flows and Attestation Evidence Flows.
 Monty Wisemen created the content structure of the first three architecture drafts.
 Carsten Bormann provided many of the motivational building blocks with respect to the Internet Threat Model.
@@ -1396,8 +1396,8 @@ Carsten Bormann provided many of the motivational building blocks with respect t
 
 The table below defines a number of relevant events, with an ID that
 is used in subsequent diagrams.  The times of said events might be
-defined in terms of an absolute clock time such as Coordinated Universal Time,
-or might be defined relative to some other timestamp or timeticks counter.
+defined in terms of an absolute clock time, such as the Coordinated Universal Time timescale,
+or might be defined relative to some other timestamp or timeticks counter, such as a clock resetting its epoch each time it is powered on.
 
 | ID | Event                       | Explanation of event
 |----|-----------------------------|-----------------------
@@ -1414,11 +1414,11 @@ or might be defined relative to some other timestamp or timeticks counter.
 | RX | Result expiry               | An Attestation Result should no longer be accepted, according to the Verifier that generated it.
 
 Using the table above, a number of hypothetical examples of how a solution might be built are illustrated below.
-a solution might be built.  This list is not intended to be complete,
+This list is not intended to be complete,
 but is just representative enough to highlight various timing considerations.
 
-All times are relative to the local clocks, indicated by an "a" (Attester),
-"v" (Verifier), or "r" (Relying Party) suffix.
+All times are relative to the local clocks, indicated by an "_a" (Attester),
+"_v" (Verifier), or "r" (Relying Party) suffix.
 
 Times with an appended Prime (') indicate a second instance of the same event.
 
