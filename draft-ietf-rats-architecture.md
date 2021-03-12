@@ -189,7 +189,7 @@ architecture presented in this document.  Many other use cases exist, and this
 document does not intend to have a complete list, only to illustrate a set of use
 cases that collectively cover all the functionality required in the architecture.
 
-Each use case includes an description followed by an additional summary of the
+Each use case includes a description followed by an additional summary of the
 Attester and Relying Party roles derived from the use case.
 
 ## Network Endpoint Assessment
