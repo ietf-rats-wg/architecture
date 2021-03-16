@@ -424,19 +424,19 @@ of the TPM together with whatever component is feeding it the measurements.
 
 ## Layered Attestation Environments {#layered-attestation}
 
-For layered attestation there is a root Attester and several other attesters that are not roots.
-The root attester is also called the initial Attester.
+For layered attestation the Attester is made up of a root Attesting Environment and several other Attesting Environments that are not roots.
+The root Attesting Environment is also called the initial Attesting Environment.
 
-The Verifier comes to trust the root Attester in any of the normal ways, for example, through an Endorsement.
-Trust in the Attesters layered above are not established in any of the normal ways.
-Instead, the root attester provides Evidence about the other attester layers. 
+The Verifier comes to trust the root Attesting Environment in any of the normal ways, for example, through an Endorsement.
+Trust in the Attester Environments layered above are not established in any of the normal ways.
+Instead, the root Attesting Environment provides Evidence about the other Attesting Environment layers. 
 
-That is, the root Attester collects and provides claims about Attester in the layer immediately above.
-The Verifier evaluates that Evidence against policy and comes to trust or not trust the Attester layer above.
-This proceeds up through the layers with the layer immediately below an Attester providing the Evidence needed by the Verifier to trust it.
+That is, the root Attesting Environment collects and provides claims about Attesting Environment in the layer immediately above.
+The Verifier evaluates that Evidence against policy and comes to trust or not trust the Attesting Environment layer above.
+This proceeds up through the layers with the layer immediately below an Attesting Environment providing the Evidence needed by the Verifier to trust it.
 
-The trust must be established one layer at a time starting from the root Attester.
-A Verifier must not trust an upper layer Attester unless it has come to trust all the Attesters layered below all the way down to the root.
+The trust must be established one layer at a time starting from the root Attesting Environment.
+A Verifier must not trust an upper layer Attesting Environment unless it has come to trust all the Attesting Environments layered below all the way down to the root.
 
 The device illustrated in {{layered}} includes (A) a BIOS stored in read-only memory,
 (B) an operating system kernel, and (C) an application or workload.
