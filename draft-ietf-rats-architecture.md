@@ -376,6 +376,8 @@ involve a comparison for equality against a Reference Value, or a check for bein
 a range bounded by Reference Values, or membership in a set of Reference Values,
 or a check against values in other Claims, or any other test.
 
+The actual data format and semantics of any Appraisal Policy is implementation specific.
+
 ## Reference Values
 
 Reference Values used in appraisal come from a Reference Value Provider
@@ -387,8 +389,7 @@ They might be conveyed in any number of ways, including:
 * via separate communication.
 
 The actual data format and semantics of any Reference Values are specific to
-Claims and implementations. This architecture document does not define any
-general purpose format for them or general means for comparison.
+Claims and implementations.
 
 ## Two Types of Environments of an Attester
 
