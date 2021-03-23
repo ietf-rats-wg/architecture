@@ -1419,6 +1419,10 @@ Times with an appended Prime (') indicate a second instance of the same event.
 
 How and if clocks are synchronized depends upon the model.
 
+In the figures below, curly braces indicate containment.
+For example, the notation Evidence{foo} indicates that 'foo' is contained in the Evidence
+and is thus covered by its signature.
+
 ## Example 1: Timestamp-based Passport Model Example
 
 The following example illustrates a hypothetical Passport Model
@@ -1449,11 +1453,6 @@ timestamp can directly compare it to its own clock and timestamps.
         |                                                 |
         |                                              time(OP_r)
 ~~~~
-
-In the figures above and in subsequent sections, curly braces
-indicate containment.  For example, the notation
-Evidence{foo} indicates that 'foo' is contained in the Evidence
-and is thus covered by its signature.
 
 The Verifier can check whether the Evidence is fresh when appraising
 it at time(RG_v) by checking `time(RG_v) - time(EG_a) < Threshold`, where the
