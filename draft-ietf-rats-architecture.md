@@ -358,7 +358,7 @@ The text below summarizes the activities conducted by the roles illustrated in {
 
 An Attester creates Evidence that is conveyed to a Verifier.
 
-An Verifier uses the Evidence, any Reference Values from Reference Value Providers, and any Endorsements from Endorsers,
+A Verifier uses the Evidence, any Reference Values from Reference Value Providers, and any Endorsements from Endorsers,
 by applying an Appraisal Policy for Evidence to assess the trustworthiness of the Attester. This activity is called the appraisal of Evidence.
 
 Consecutively, the Verifier generates Attestation Results for use by Relying Parties.  Appraisal Policies for Evidence
