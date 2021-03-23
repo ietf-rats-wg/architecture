@@ -361,7 +361,8 @@ An Attester creates Evidence that is conveyed to a Verifier.
 A Verifier uses the Evidence, any Reference Values from Reference Value Providers, and any Endorsements from Endorsers,
 by applying an Appraisal Policy for Evidence to assess the trustworthiness of the Attester. This activity is called the appraisal of Evidence.
 
-Consecutively, the Verifier generates Attestation Results for use by Relying Parties.  Appraisal Policies for Evidence
+Subsequently, the Verifier generates Attestation Results for use by Relying Parties.
+The Appraisal Policy for Evidence
 might be obtained from an Endorser along with the Endorsements, and/or might be obtained
 via some other mechanism, such as being configured in the Verifier by the Verifier Owner.
 
@@ -375,7 +376,8 @@ This activity is called the appraisal of Attestation Results.
 
 The Verifier, when appraising Evidence, or the Relying Party, when
 appraising Attestation Results, checks the values of some Claims
-against constraints specified in their appraisal policies. Examples of such constraints checking include:
+against constraints specified in its appraisal policy.
+Examples of such constraints checking include:
 
 * comparison for equality against a Reference Value, or
 * a check for being in a range bounded by Reference Values, or
@@ -515,11 +517,12 @@ device, each slot is an Attester, and the main slot is the lead Attester.
 Another example is a multi-chassis router composed of multiple single carrier-grade routers.
 Multi-chassis router setups create redundancy groups that provide higher throughput by interconnecting
 multiple routers in these groups, which can be treated as one logical router for simpler management.
-A multi-chassis router setup provides a management point that connects to the Verifier and typically designated a main router in the group.
+A multi-chassis router setup provides a management point that connects to the Verifier.
+Typically one router in the group is designated as the main router.
 Other routers in the multi-chassis setup are connected to the main router only via physical network links
 and are therefore managed and appraised via the main router's help.
-In consequence, a multi-chassis router setup is the composite device,
-each router is an Attester and the main router is the lead Attester.
+In consequence, a multi-chassis router setup is a composite device,
+each router is an Attester, and the main router is the lead Attester.
 
 {{composite}} depicts the conceptual data flow for a composite device.
 
@@ -1104,7 +1107,7 @@ a different format.
 
 # Freshness {#freshness}
 
-A Verifier or Relying Party may need to learn the point in time
+A Verifier or Relying Party might need to learn the point in time
 (i.e., the "epoch") an Evidence or Attestation Result has been produced.  This
 is essential in deciding whether the included Claims and their values can be
 considered fresh, meaning they still reflect the latest state of the Attester,
@@ -1134,7 +1137,7 @@ include a signed timestamp (see {{?I-D.birkholz-rats-tuda}}) along with the
 Claims in the Evidence or Attestation Result.  Timestamps can also be added on a
 per-Claim basis to distinguish the time of generation of Evidence or Attestation
 Result from the time that a specific Claim was generated.  The clock's
-trustworthiness can be established via Endorsements and typically requires additional Claims about the signer's time
+trustworthiness can generally be established via Endorsements and typically requires additional Claims about the signer's time
 synchronization mechanism.
 
 In some use cases, however, a trustworthy clock might not be available. For
@@ -1232,17 +1235,17 @@ This information might be particularly interesting to many attackers.
 For example, knowing that a device is
 running a weak version of firmware provides a way to aim attacks better.
 
-Many Claims in attestation Evidence and Attestation Results are potentially
-Personally Identifying Information) depending on the end-to-end use case of
+Many Claims in Evidence and Attestation Results are potentially
+Personally Identifying Information (PII) depending on the end-to-end use case of
 the remote attestation procedure.
-Remote attestation that goes up to include containers and applications may further
+Remote attestation that goes up to include containers and applications, e.g., a blood pressure monitor, may further
 reveal details about specific systems or users.
 
-In some cases, an attacker may be able to make inferences about the contents of attestation Evidence
+In some cases, an attacker may be able to make inferences about the contents of Evidence
 from the resulting effects or timing of the processing.
 For example, an attacker might be able to infer the value of specific Claims if it knew that only certain values were accepted by the Relying Party.
 
-Evidence and Attestation Results are expected to be integrity protected (i.e. via signing or a secure channel) and optionally might be confidentiality protected via encryption.
+Evidence and Attestation Results are expected to be integrity protected (i.e., either via signing or a secure channel) and optionally might be confidentiality protected via encryption.
 If confidentiality protection via signing the conceptual messages is omitted or unavailable, the protecting protocols
 that convey Evidence or Attestation Results are responsible for detailing what
 kinds of information are disclosed, and to whom they are exposed.
@@ -1271,7 +1274,7 @@ For example, a Target Environment should not be able to tamper with the
 Attesting Environment that measures it, by isolating the two environments
 from each other in some way.
 
-Remote attestation applies to use cases with a range of security requirements, so the protections discussed here range from low to high security where low security may be limited to application or process isolation by the device's operating system and high security may involve specialized hardware to defend against physical attacks on a chip.
+Remote attestation applies to use cases with a range of security requirements, so the protections discussed here range from low to high security where low security may be limited to application or process isolation by the device's operating system, and high security may involve specialized hardware to defend against physical attacks on a chip.
 
 ### On-Device Attester and Key Protection
 
@@ -1294,10 +1297,10 @@ Measures for a highly protected system could include specialized hardware that i
 
 ### Attestation Key Provisioning Processes
 
-Attestation key provisioning is the process that occurs in the factory or elsewhere in order to establishes signing key material on the device and the validation key material off the device. Sometimes this is procedure is referred to as personalization or customization.
+Attestation key provisioning is the process that occurs in the factory or elsewhere to establish signing key material on the device and the validation key material off the device. Sometimes this is procedure is referred to as personalization or customization.
 
 One way to provision key material is to first generate it external to the device and then copy the key onto the device.
-In this case, confidentiality protection of the generator, as well as for the path over which the key is provisioned by, is necessary.
+In this case, confidentiality protection of the generator, as well as for the path over which the key is provisioned, is necessary.
 The manufacturer needs to take care to protect corresponding key material with measures appropriate for its value.
 
 Confidentiality protection can be realized via physical provisioning facility security involving no encryption at all. For low-security use cases, this might be simply locking doors and limiting personnel that can enter the facility. For high-security use cases, this might involve a special area of the facility accessible only to select security-trained personnel.
@@ -1306,7 +1309,7 @@ Typically, cryptography is used to enable confidentiality protection. This can r
 
 In general, a combination of some physical security measures and some cryptographic measures is used to establish confidentiality protection.
 
-Another way to provision key material is to generate it on the device and export the validation key. If public-key cryptography is being used, then only integrity is necessary. Confidentiality is not necessary.
+Another way to provision key material is to generate it on the device and export the validation key. If public-key cryptography is being used, then only integrity is necessary. Confidentiality of public keys is not necessary.
 
 In all cases, attestation key provisioning must ensure that only attestation key material that is generated by a valid Endorser is established in Attesters.
 
@@ -1335,7 +1338,7 @@ boot, or immutable hardware/ROM.
 It is also important that the appraisal policy was itself obtained securely.
 If an attacker can configure appraisal policies for a Relying Party or for a Verifier, then integrity of the process is compromised.
 
-Security protected conveyed information in RATS may be applied at different layers, whether by a conveyance protocol, or an information encoding format. This architecture expects conceptual messages (see {{messages}}) to be end-to-end protected based on the role interaction context.
+Security protections in RATS may be applied at different layers, whether by a conveyance protocol, or an information encoding format. This architecture expects conceptual messages (see {{messages}}) to be end-to-end protected based on the role interaction context.
 For example, if an Attester produces Evidence that is relayed through some other entity that doesn't implement the Attester or the intended Verifier roles, then the relaying entity should not expect to have access to the Evidence.
 
 ## Handle-based Attestation {#handles-sec}
