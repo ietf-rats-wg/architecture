@@ -1135,7 +1135,7 @@ include a signed timestamp (see {{?I-D.birkholz-rats-tuda}}) along with the
 Claims in the Evidence or Attestation Result.  Timestamps can also be added on a
 per-Claim basis to distinguish the time of generation of Evidence or Attestation
 Result from the time that a specific Claim was generated.  The clock's
-trustworthiness can be established via Endorsements and typically requires additional Claims about the signer's time
+trustworthiness can generally be established via Endorsements and typically requires additional Claims about the signer's time
 synchronization mechanism.
 
 In some use cases, however, a trustworthy clock might not be available. For
@@ -1261,7 +1261,7 @@ an Attestation Result for any other purpose.
 Another approach to deal with Evidence is to remove PII from the Evidence
 while still being able to verify that the Attester is one of a large set.
 This approach is often called "Direct Anonymous Attestation".  See
-{{CCC-DeepDive}} section 6.2 for more discussion and .
+{{CCC-DeepDive}} section 6.2 for more discussion.
 
 # Security Considerations {#security-considerations}
 
