@@ -1283,13 +1283,13 @@ Target Environment it collects Claims about and that it signs the resulting Clai
 key, so that the Target Environment cannot forge Evidence about itself.  Such
 an isolated environment might be provided by a process, a dedicated chip,
 a TEE, a virtual machine, or another secure mode of operation.
-The Attesting Environment must be protected from unauthorized modification to ensure it behaves correctly. Confidentiality protection of the Attesting Environment is vital to protect the signing key in a way so it cannot be misused to forge Evidence.
+The Attesting Environment must be protected from unauthorized modification to ensure it behaves correctly. Confidentiality protection of the Attesting Environment's signing key is vital so it cannot be misused to forge Evidence.
 
 In many cases the user or owner of a device that takes on the role of Attester must not be able to modify or extract keys from its Attesting Environments.
-For example, the owner or user of a mobile phone or FIDO authenticator, having full control over the keys, might not be trusted to use the keys to report Evidence about the environment that protects the keys.
+For example, the owner or user of a mobile phone or FIDO authenticator might not be trusted to use the keys to report Evidence about the environment that protects the keys.
 An essential value-add provided by RATS is for the Relying Party to be able to trust the Attester even if the user or owner is not trusted.
 
-Measures for a minimally protected system might include process or application isolation provided by a high-level operating system, and restricted access to root or system privileges. In contrast, For really simple single-use devices that don’t use a protected mode operating system, like a Bluetooth speaker, the only factual isolation might be the sturdy housing of the device.
+Measures for a minimally protected system might include process or application isolation provided by a high-level operating system, and restricted access to root or system privileges. In contrast, For really simple single-use devices that don't use a protected mode operating system, like a Bluetooth speaker, the only factual isolation might be the sturdy housing of the device.
 
 Measures for a moderately protected system could include a special restricted operating environment, such as a TEE. In this case, only security-oriented software has access to the Attester and key material.
 
