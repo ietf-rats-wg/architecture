@@ -366,8 +366,8 @@ might be obtained from an Endorser along with the Endorsements, and/or might be 
 via some other mechanism, such as being configured in the Verifier by the Verifier Owner.
 
 A Relying Party uses Attestation Results by applying its own
-appraisal policies to make application-specific decisions, such as authorization decisions.
-Appraisal Policies for Attestation Results are configured in the Relying Party by the Relying Party Owner,
+appraisal policy to make application-specific decisions, such as authorization decisions.
+The Appraisal Policy for Attestation Results is configured in the Relying Party by the Relying Party Owner,
 and/or are programmed into the Relying Party.
 This activity is called the appraisal of Attestation Results.
 
