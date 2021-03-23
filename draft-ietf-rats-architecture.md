@@ -138,19 +138,34 @@ informative:
 
 --- abstract
 
-In network protocol exchanges it is often the case that
-one entity requires believable evidence about the operational state of a remote
-peer.  Such evidence is typically conveyed as claims
-about the peer's software and hardware platform, and is subsequently appraised in order
-to assess the peer's trustworthiness.  The process of generating and
-appraising this kind of evidence is known as remote
-attestation.  This document describes an architecture for remote attestation
-procedures that generate, convey, and appraise evidence about a peer's
-operational state.
+In network protocol exchanges it is useful for one end of a
+communication to know if the other end is in a proper operating state.
+This memo provides an architectural overview of the entities involved
+that make such tests possible through the process of generating,
+conveying, and evaluating evidentiary claims.  An attempt is made to
+provide for a model that is neutral toward processor architectures,
+the content of claims, and protocols.
 
 --- middle
 
 # Introduction
+
+How should one system know that another system can be trusted?  This
+age old question has new interest and relevance in a world where
+trusted computing elements are maturing in processor architectures.
+
+Systems that have been attested and verified to be in a good state
+(for some value of "good") can improve overall system posture.
+Conversely, systems that cannot be attested and verified to be in a
+good state can be taken out of service, or otherwise flagged for repair.
+
+For example:
+
+ * A bank back-end system might refuse to transact with another system
+   that is not known to be in a good state.
+
+ * A healthcare system might refuse to transmit electronic healthcare
+   records to a system that is not known to be in a good state.
 
 In Remote Attestation Procedures (RATS), one peer (the "Attester")
 produces believable information about itself - Evidence - to enable
