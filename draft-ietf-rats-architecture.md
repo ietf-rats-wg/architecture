@@ -1129,11 +1129,15 @@ Result from the time that a specific Claim was generated.  The clock's
 trustworthiness typically requires additional Claims about the signer's time
 synchronization mechanism.
 
+In some use cases, however, a trustworthy clock might not be available. For
+example, in many Trusted Execution Environments (TEEs) today, a clock is only
+available outside the TEE and so cannot be trusted by the TEE.
+
 ## Implicit Timekeeping using Nonces
 
 A second approach places the onus of timekeeping solely on the Verifier (for Evidence) or the Relying Party (for
 Attestation Results), and might be suitable, for example, in case the Attester does not have
-a reliable clock or time synchronization is otherwise impaired.  In this
+a trustworthy clock or time synchronization is otherwise impaired.  In this
 approach, a non-predictable nonce is sent by the appraising entity, and the
 nonce is then signed and included along with the Claims in the Evidence or
 Attestation Result.  After checking that the sent and received nonces are the
@@ -1157,7 +1161,7 @@ can even be used by more than one entity at the same time.
 Handles are different from timestamps as they do not have to convey information about a point in time, i.e., they are not necessarily monotonically increasing integers.
 
 Like the nonce approach, this allows associating a "rough" epoch without
-requiring a reliable clock or time synchronization in order to generate or
+requiring a trustworthy clock or time synchronization in order to generate or
 appraise the freshness of Evidence or Attestation Results.  Only the
 Handle Distributor requires access to a clock so it can periodically send
 new epoch handles.
