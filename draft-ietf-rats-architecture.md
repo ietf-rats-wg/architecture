@@ -929,7 +929,7 @@ own Endorser that would only Endorse devices one owns, or to use
 Attesters directly in the trust anchor store.   When there are many
 Attesters owned, the use of an Endorser becomes more scalable.
 
-That is, it might appraise the trustworthiness of an application component, operating
+That is, a Verifier might appraise the trustworthiness of an application component, operating
 system component, or service under the assumption that information
 provided about it by the lower-layer firmware or software is true.
 A stronger level of assurance of security comes when information can be vouched
