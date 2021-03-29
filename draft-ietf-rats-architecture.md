@@ -823,7 +823,7 @@ Verifier Owner and Reference Value Provider roles are combined. Similarly,
 Reference Values might be conveyed as part of an Endorsement if the Endorser
 and Reference Value Provider roles are combined.
 
-Interactions between roles agrregated into the same entity do not necessarily use the
+Interactions between roles aggregated into the same entity do not necessarily use the
 Internet Protocol. Such interactions might use a loopback device or other IP-based
 communication between separate environments, but they do not have to.
 Alternative channels to convey conceptual messages include function calls, sockets, GPIO
