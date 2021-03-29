@@ -1176,48 +1176,48 @@ Attestation Result.  In this case the epoch is said to be rough because:
 * The time between the creation of Claims and the collection of Claims is
   indistinguishable.
 
-## Implicit Timekeeping using Epoch Handles {#epochfreshness}
+## Implicit Timekeeping using Epoch IDs {#epochfreshness}
 
-A third approach relies on having epoch "handles"
+A third approach relies on having epoch identifiers (or "IDs")
 periodically sent to both the sender and receiver of Evidence or
-Attestation Results by some "Handle Distributor".
+Attestation Results by some "Epoch ID Distributor".
 
-Handles are different from nonces as they can be used more than once and
+Epoch IDs are different from nonces as they can be used more than once and
 can even be used by more than one entity at the same time.
-Handles are different from timestamps as they do not have to convey information about a point in time, i.e., they are not necessarily monotonically increasing integers.
+Epoch IDs are different from timestamps as they do not have to convey information about a point in time, i.e., they are not necessarily monotonically increasing integers.
 
 Like the nonce approach, this allows associating a "rough" epoch without
 requiring a trustworthy clock or time synchronization in order to generate or
 appraise the freshness of Evidence or Attestation Results.  Only the
-Handle Distributor requires access to a clock so it can periodically send
-new epoch handles.
+Epoch ID Distributor requires access to a clock so it can periodically send
+new epoch IDs.
 
-The most recent handle is included in the produced Evidence or Attestation
-Results, and the appraising entity can compare the handle in received
-Evidence or Attestation Results against the latest handle it received from
-the Handle Distributor to determine if it is within the current epoch.
+The most recent epoch ID is included in the produced Evidence or Attestation
+Results, and the appraising entity can compare the epoch ID in received
+Evidence or Attestation Results against the latest epoch ID it received from
+the Epoch ID Distributor to determine if it is within the current epoch.
 An actual solution also needs to take into account race conditions
 when transitioning to a new epoch, such as by using a counter signed
-by the Handle Distributor as the handle, or by including both the current and
-previous handles in messages and/or checks, by requiring retries
-in case of mismatching handles, or by buffering incoming messages
-that might be associated with a handle that the receiver has not yet
+by the Epoch ID Distributor as the epoch ID, or by including both the current and
+previous epoch IDs in messages and/or checks, by requiring retries
+in case of mismatching epoch IDs, or by buffering incoming messages
+that might be associated with a epoch ID that the receiver has not yet
 obtained.
 
 More generally, in order to prevent an appraising entity from generating false
 negatives (e.g., discarding Evidence that is deemed stale even if it is
 not), the appraising entity should keep an "epoch window" consisting of the
-most recently received handles.  The depth of such epoch window is directly
-proportional to the maximum network propagation delay between the first to receive the handle and the last to receive the handle, and it is inversely proportional to the epoch duration.
+most recently received epoch IDs.  The depth of such epoch window is directly
+proportional to the maximum network propagation delay between the first to receive the epoch ID and the last to receive the epoch ID, and it is inversely proportional to the epoch duration.
 The appraising entity shall compare the
-handle carried in the received Evidence or Attestation Result with the handles
+epoch ID carried in the received Evidence or Attestation Result with the epoch IDs
 in its epoch window to find a suitable match.
 
 Whereas the nonce approach typically requires the appraising entity
-to keep state for each nonce generated, the handle approach minimizes
+to keep state for each nonce generated, the epoch ID approach minimizes
 the state kept to be independent of the number of Attesters or Verifiers
 from which it expects to receive Evidence or Attestation Results, as long
-as all use the same Handle Distributor.
+as all use the same Epoch ID Distributor.
 
 ## Discussion
 
@@ -1236,7 +1236,7 @@ and a nonce is obtained.
 
 A more detailed discussion with examples appears in {{time-considerations}}.
 
-For a discussion on the security of handles see {{handles-sec}}.
+For a discussion on the security of epoch IDs see {{epochids-sec}}.
 
 # Privacy Considerations {#privacy-considerations}
 
@@ -1358,15 +1358,15 @@ Security protections in RATS may be applied at different layers, whether by a co
 This architecture expects conceptual messages (see {{messages}}) to be end-to-end protected based on the role interaction context.
 For example, if an Attester produces Evidence that is relayed through some other entity that doesn't implement the Attester or the intended Verifier roles, then the relaying entity should not expect to have access to the Evidence.
 
-## Handle-based Attestation {#handles-sec}
+## Epoch ID-based Attestation {#epochids-sec}
 
-Handles, described in {{epochfreshness}}, can be tampered with, replayed, dropped, delayed, and
+Epoch IDs, described in {{epochfreshness}}, can be tampered with, replayed, dropped, delayed, and
 reordered by an attacker.
 
 An attacker could be either external or belong to the distribution group, for
 example, if one of the Attester entities have been compromised.
 
-An attacker who is able to tamper with handles can potentially lock all the
+An attacker who is able to tamper with epoch IDs can potentially lock all the
 participants in a certain epoch of choice for ever, effectively freezing time.
 This is problematic since it destroys the ability to ascertain freshness of
 Evidence and Attestation Results.
@@ -1374,10 +1374,10 @@ Evidence and Attestation Results.
 To mitigate this threat, the transport should be at least integrity protected
 and provide origin authentication.
 
-Selective dropping of handles is equivalent to pinning the victim node to a past epoch.
-An attacker could drop handles to only some entities and not others, which will typically result in a denial of service due to the permanent staleness of the Attestation Result or Evidence.
+Selective dropping of epoch IDs is equivalent to pinning the victim node to a past epoch.
+An attacker could drop epoch IDs to only some entities and not others, which will typically result in a denial of service due to the permanent staleness of the Attestation Result or Evidence.
 
-Delaying or reordering handles is equivalent to manipulating the victim's
+Delaying or reordering epoch IDs is equivalent to manipulating the victim's
 timeline at will.  This ability could be used by a malicious actor (e.g., a
 compromised router) to mount a confusion attack where, for example, a Verifier
 is tricked into accepting Evidence coming from a past epoch as fresh, while in
@@ -1424,7 +1424,7 @@ or might be defined relative to some other timestamp or timeticks counter, such 
 | VG | Value generated             | A value to appear in a Claim was created.  In some cases, a value may have technically existed before an Attester became aware of it but the Attester might have no idea how long it has had that value.  In such a case, the Value created time is the time at which the Claim containing the copy of the value was created.
 | NS | Nonce sent                  | A nonce not predictable to an Attester (recentness & uniqueness) is sent to an Attester.
 | NR | Nonce relayed               | A nonce is relayed to an Attester by another entity.
-| HR | Handle received             | A handle is successfully received and processed by an entity.
+| IR | Epoch ID received           | An epoch ID is successfully received and processed by an entity.
 | EG | Evidence generation         | An Attester creates Evidence from collected Claims.
 | ER | Evidence relayed            | A Relying Party relays Evidence to a Verifier.
 | RG | Result generation           | A Verifier appraises Evidence and generates an Attestation Result.
@@ -1571,63 +1571,63 @@ valid.  Thus, if the Attestation Result sends a validity lifetime
 in terms of `time(RX_v)-time(RG_v)`, then the Relying Party can check
 `time(OP_r)-time(NS_r) < time(RX_v)-time(RG_v)`.
 
-## Example 3: Handle-based Passport Model Example
+## Example 3: Epoch ID-based Passport Model Example
 
-The example in {{fig-handle-passport}} illustrates a hypothetical Passport Model
-solution that uses handles instead of nonces or timestamps.
+The example in {{fig-epochid-passport}} illustrates a hypothetical Passport Model
+solution that uses epoch IDs instead of nonces or timestamps.
 
-The Handle Distributor broadcasts handle `H` which starts a new
-epoch `E` for a protocol participant upon reception at `time(HR)`.
+The Epoch ID Distributor broadcasts epoch ID `I` which starts a new
+epoch `E` for a protocol participant upon reception at `time(IR)`.
 
-The Attester generates Evidence incorporating handle `H` and conveys it to the
+The Attester generates Evidence incorporating epoch ID `I` and conveys it to the
 Verifier.
 
-The Verifier appraises that the received handle `H` is "fresh" according to the
-definition provided in {{epochfreshness}} whereby retries are required in the case of mismatching handles, and generates an Attestation Result.  The
+The Verifier appraises that the received epoch ID `I` is "fresh" according to the
+definition provided in {{epochfreshness}} whereby retries are required in the case of mismatching epoch IDs, and generates an Attestation Result.  The
 Attestation Result is conveyed to the Attester.
 
-After the transmission of handle `H'` a new epoch `E'` is
-established when `H'` is received by each protocol participant.  The Attester
-relays the Attestation Result obtained during epoch `E` (associated with handle
-`H`) to the Relying Party using the handle for the current epoch `H'`.
-If the Relying Party had not yet received `H'`, then the Attestation Result would be rejected, but in this example, it is received.
+After the transmission of epoch ID `I'` a new epoch `E'` is
+established when `I'` is received by each protocol participant.  The Attester
+relays the Attestation Result obtained during epoch `E` (associated with epoch ID
+`I`) to the Relying Party using the epoch ID for the current epoch `I'`.
+If the Relying Party had not yet received `I'`, then the Attestation Result would be rejected, but in this example, it is received.
 
-In the illustrated scenario, the handle for relaying an Attestation Result to the Relying Party is current, while a previous handle was used to generate Verifier evaluated evidence.
+In the illustrated scenario, the epoch ID for relaying an Attestation Result to the Relying Party is current, while a previous epoch ID was used to generate Verifier evaluated evidence.
 This indicates that at least one epoch transition has occurred, and the Attestation Results may only be as fresh as the previous epoch.
-If the Relying Party remembers the previous handle H during an epoch window
+If the Relying Party remembers the previous epoch ID `I` during an epoch window
 as discussed in {{epochfreshness}}, and the message is received during
 that window, the Attestation Result is accepted as fresh, and otherwise
 it is rejected as stale.
 
 ~~~~
                   .-------------.
-   .----------.   | Handle      |   .----------.  .---------------.
+   .----------.   | Epoch ID    |   .----------.  .---------------.
    | Attester |   | Distributor |   | Verifier |  | Relying Party |
    '----------'   '-------------'   '----------'  '---------------'
      time(VG_a)          |                |               |
         |                |                |               |
         ~                ~                ~               ~
         |                |                |               |
-     time(HR_a)<------H--+--H--------time(HR_v)----->time(HR_r)
+     time(IR_a)<------I--+--I--------time(IR_v)----->time(IR_r)
         |                |                |               |
      time(EG_a)          |                |               |
         |---Evidence--------------------->|               |
-        |   {H,time(EG_a)-time(VG_a)}     |               |
+        |   {I,time(EG_a)-time(VG_a)}     |               |
         |                |                |               |
         |                |           time(RG_v)           |
         |<--Attestation Result------------|               |
-        |   {H,time(RX_v)-time(RG_v)}     |               |
+        |   {I,time(RX_v)-time(RG_v)}     |               |
         |                |                |               |
-     time(HR'_a)<-----H'-+--H'-------time(HR'_v)---->time(HR'_r)
+     time(IR'_a)<-----I'-+--I'-------time(IR'_v)---->time(IR'_r)
         |                |                |               |
         |---[Attestation Result--------------------->time(RA_r)
-        |   {H,time(RX_v)-time(RG_v)},H'] |               |
+        |   {I,time(RX_v)-time(RG_v)},I'] |               |
         |                |                |               |
         ~                ~                ~               ~
         |                |                |               |
         |                |                |          time(OP_r)
 ~~~~
-{: #fig-handle-passport title="Handle-based Passport Model"}
+{: #fig-epochid-passport title="Epoch ID-based Passport Model"}
 
 ## Example 4: Timestamp-based Background-Check Model Example
 
