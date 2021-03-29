@@ -404,11 +404,6 @@ The actual data format and semantics of any Appraisal Policy is implementation s
 
 Reference Values used in appraisal procedures come from a Reference Value Provider
 and are then used by the appraisal policy.
-They might be conveyed in any number of ways, including:
-
-* as part of the appraisal policy itself, if the Verifier Owner either: acquires Reference Values from a Reference Value Provider or is itself a Reference Value Provider, or
-* as part of an Endorsement, if the Endorser either acquires Reference Values from a Reference Value Provider or is itself a Reference Value Provider, or
-* via separate communication.
 
 The actual data format and semantics of any Reference Values are specific to
 Claims and implementations.
@@ -844,11 +839,20 @@ plans to support in the TEEP architecture {{-teep-arch}}.
 
 An entity in the RATS architecture includes at least one of the roles defined
 in this document.
-An entity can aggregate more than one role into itself.
-These collapsed roles combine the duties of multiple roles.
 
-In cases where roles are aggregated, interaction between these roles do not necessarily use the
-Internet Protocol. They can be using a loopback device or other IP-based
+An entity can aggregate more than one role into itself, such as being both
+a Verifier and a Relying Party, or being both a Reference Value Provider and
+an Endorser.
+As such, any conceptual messages (see {{messages}} for more
+discussion) originating from such roles might also be combined. For example,
+Reference Values might be conveyed as part of an appraisal policy if the
+Verifier Owner and Reference Value Provider roles are combined. Similarly,
+Reference Values might be conveyed as part of an Endorsement if the Endorser
+and Reference Value Provider roles are combined.
+
+Interactions between roles agrregated into the same entity do not necessarily use the
+Internet Protocol.
+Such interactions might use a loopback device or other IP-based
 communication between separate environments, but they do not have to.
 Alternative channels to convey conceptual messages include function calls, sockets, GPIO
 interfaces, local busses, or hypervisor calls. This type of conveyance is typically found
