@@ -1407,7 +1407,7 @@ or might be defined relative to some other timestamp or timeticks counter.
 | RG | Result generation           | A Verifier appraises Evidence and generates an Attestation Result.
 | RR | Result relayed              | A Relying Party relays an Attestation Result to a Relying Party.
 | RA | Result appraised            | The Relying Party appraises Attestation Results.
-| OP | Operation performed         | The Relying Party performs some operation requested by the Attester.  For example, acting upon some message just received across a session created earlier at time(RA).
+| OP | Operation performed         | The Relying Party performs some operation requested by the Attester via a resource access protocol as depicted in {{clientserver}}, e.g., across a session created earlier at time(RA).
 | RX | Result expiry               | An Attestation Result should no longer be accepted, according to the Verifier that generated it.
 
 Using the table above, a number of hypothetical examples of how a solution might be built are illustrated below.
