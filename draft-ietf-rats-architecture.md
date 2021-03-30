@@ -359,7 +359,8 @@ The text below summarizes the activities conducted by the roles illustrated in {
 An Attester creates Evidence that is conveyed to a Verifier.
 
 A Verifier uses the Evidence, any Reference Values from Reference Value Providers, and any Endorsements from Endorsers,
-by applying an Appraisal Policy for Evidence to assess the trustworthiness of the Attester. This activity is called the appraisal of Evidence.
+by applying an Appraisal Policy for Evidence to assess the trustworthiness of the Attester. 
+This procedure is called the appraisal of Evidence.
 
 Subsequently, the Verifier generates Attestation Results for use by Relying Parties.
 The Appraisal Policy for Evidence
@@ -370,7 +371,7 @@ A Relying Party uses Attestation Results by applying its own
 appraisal policy to make application-specific decisions, such as authorization decisions.
 The Appraisal Policy for Attestation Results is configured in the Relying Party by the Relying Party Owner,
 and/or are programmed into the Relying Party.
-This activity is called the appraisal of Attestation Results.
+This procedure is called the appraisal of Attestation Results.
 
 ## Appraisal Policies
 
