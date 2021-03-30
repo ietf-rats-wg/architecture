@@ -1113,7 +1113,8 @@ is essential in deciding whether the included Claims and their values can be
 considered fresh, meaning they still reflect the latest state of the Attester,
 and that any Attestation Result was generated using the latest Appraisal Policy
 for Evidence.
-
+Freshness is assessed based on the Appraisal Policy for Evidence or Attestation Results
+that compares the estimated epoch against an "expiry" threshold defined locally to that policy.
 There is, however, always a
 race condition possible in that the state of the Attester, and the
 appraisal policies might change immediately after the Evidence or Attestation
