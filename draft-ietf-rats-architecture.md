@@ -359,7 +359,7 @@ The text below summarizes the activities conducted by the roles illustrated in {
 An Attester creates Evidence that is conveyed to a Verifier.
 
 A Verifier uses the Evidence, any Reference Values from Reference Value Providers, and any Endorsements from Endorsers,
-by applying an Appraisal Policy for Evidence to assess the trustworthiness of the Attester. 
+by applying an Appraisal Policy for Evidence to assess the trustworthiness of the Attester.
 This procedure is called the appraisal of Evidence.
 
 Subsequently, the Verifier generates Attestation Results for use by Relying Parties.
@@ -508,11 +508,12 @@ For example, a carrier-grade router consists of a chassis and multiple slots.
 The trustworthiness of the router depends on all its slots' trustworthiness.
 Each slot has an Attesting Environment, such as a TEE, collecting the
 Claims of its boot process, after which it generates Evidence from the Claims.
-Among these slots, only a main slot can communicate with the Verifier
+
+Among these slots, only a "main" slot can communicate with the Verifier
 while other slots cannot. But other slots can communicate with the main
-slot by the links between them inside the router. So the main slot collects
-the Evidence of other slots, produces the final Evidence of the whole router and
-conveys the final Evidence to the Verifier. Therefore the router is a composite
+slot by the links between them inside the router.
+So the main slot collects the Evidence of other slots, produces the final Evidence of the whole router and conveys the final Evidence to the Verifier.
+Therefore the router is a composite
 device, each slot is an Attester, and the main slot is the lead Attester.
 
 Another example is a multi-chassis router composed of multiple single carrier-grade routers.
