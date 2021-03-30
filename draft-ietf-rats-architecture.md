@@ -1085,7 +1085,7 @@ the amount of parsing code needed in a Relying Party, in order to both
 minimize footprint and to minimize the attack surface. While
 it would be possible to embed a CWT inside a JWT, or a JWT inside an
 X.509 extension, etc., there is a desire to encode the information
-natively in formats that are already supported by the Relying Party.
+natively in a format that is already supported by the Relying Party.
 
 This motivates having a common "information model" that describes
 the set of remote attestation related information in an encoding-agnostic
