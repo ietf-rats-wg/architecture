@@ -269,7 +269,7 @@ needs to ensure that only authorized code and users can control corresponding cr
 processes, and that these processes are protected from unauthorized manipulation or other threats.
 When a protocol operation can affect a critical system component of the
 infrastructure, devices attached to that critical component require some assurances depending on the security context, including that: a requesting device or application has not been compromised, and the requesters and actors act on applicable policies.
-As such, RATS can be used to only accept commands from requesters
+As such, remote attestation can be used to only accept commands from requesters
 that are within policy.
 
 Attester:
