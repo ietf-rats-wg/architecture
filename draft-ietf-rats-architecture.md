@@ -151,9 +151,7 @@ the content of claims, and protocols.
 
 # Introduction
 
-How can one system know that another system can be trusted?  This
-age old question has new interest and relevance in a world where
-trusted computing elements are maturing in processor architectures.
+The question of how one system can know that another system can be trusted has found new interest and relevance in a world where trusted computing elements are maturing in processor architectures.
 
 Systems that have been attested and verified to be in a good state
 (for some value of "good") can improve overall system posture.
