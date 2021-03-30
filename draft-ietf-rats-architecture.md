@@ -140,7 +140,7 @@ informative:
 --- abstract
 
 In network protocol exchanges it is often useful for one end of a
-communication to know whether the other end is in a proper operating state.
+communication to know whether the other end is in an intended operating state.
 This memo provides an architectural overview of the entities involved
 that make such tests possible through the process of generating,
 conveying, and evaluating evidentiary claims.  An attempt is made to
