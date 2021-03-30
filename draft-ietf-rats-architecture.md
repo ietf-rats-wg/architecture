@@ -139,8 +139,8 @@ informative:
 
 --- abstract
 
-In network protocol exchanges it is useful for one end of a
-communication to know if the other end is in a proper operating state.
+In network protocol exchanges it is often useful for one end of a
+communication to know whether the other end is in a proper operating state.
 This memo provides an architectural overview of the entities involved
 that make such tests possible through the process of generating,
 conveying, and evaluating evidentiary claims.  An attempt is made to
@@ -151,7 +151,7 @@ the content of claims, and protocols.
 
 # Introduction
 
-How should one system know that another system can be trusted?  This
+How can one system know that another system can be trusted?  This
 age old question has new interest and relevance in a world where
 trusted computing elements are maturing in processor architectures.
 
