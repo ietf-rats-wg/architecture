@@ -90,6 +90,7 @@ normative:
 
 informative:
   RFC4949:
+  RFC5209:
   RFC8322:
   OPCUA:
     author:
@@ -140,7 +141,7 @@ informative:
 
 In network protocol exchanges it is often the case that
 one entity requires believable evidence about the operational state of a remote
-peer.  Such evidence is typically conveyed as claims
+peer.  Such evidence is typically conveyed as Claims
 about the peer's software and hardware platform, and is subsequently appraised in order
 to assess the peer's trustworthiness.  The process of generating and
 appraising this kind of evidence is known as remote
@@ -164,12 +165,12 @@ process.
 This document defines a flexible architecture consisting of attestation roles
 and their interactions via conceptual messages.
 Additionally, this document defines a universal set of terms that can be mapped to various existing and emerging Remote Attestation Procedures.
-Common topological models and the data flows associated with them, such as
-the "Passport Model" and the "Background-Check Model" are illustrated.
-The purpose is to define useful terminology for attestation and enable readers to map
+Common topological patterns and the sequence of data flows associated with them, such as
+the "Passport Model" and the "Background-Check Model", are illustrated.
+The purpose is to define useful terminology for remote attestation and enable readers to map
 their solution architecture to the canonical attestation architecture provided here.
 Having a common terminology that provides well-understood meanings for common themes
-such as roles, device composition, topological models, and appraisal is vital for
+such as roles, device composition, topological patterns, and appraisal procedures is vital for
 semantic interoperability across solutions and platforms involving multiple vendors and providers.
 
 Amongst other things, this document is about trust and trustworthiness.
@@ -182,14 +183,14 @@ appropriate solutions to compose their Remote Attestation Procedures.
 
 # Reference Use Cases {#referenceusecases}
 
-This section covers a number of representative use cases for remote attestation, independent of specific
+This section covers a number of representative and generic use cases for remote attestation, independent of specific
 solutions.  The purpose is to provide motivation for various aspects of the
-architecture presented in this draft.  Many other use cases exist, and this
-document does not intend to have a complete list, only to have a set of use
+architecture presented in this document.  Many other use cases exist, and this
+document does not intend to have a complete list, only to illustrate a set of use
 cases that collectively cover all the functionality required in the architecture.
 
-Each use case includes a description followed by a summary of the
-Attester and Relying Party roles.
+Each use case includes a description followed by an additional summary of the
+Attester and Relying Party roles derived from the use case.
 
 ## Network Endpoint Assessment
 
@@ -205,41 +206,41 @@ Remote attestation is desired to prevent vulnerable or
 compromised devices from getting access to the network and potentially
 harming others.
 
-Typically, solutions start with a specific component (called a "root of trust") that
-provides device identity and protected storage for measurements.
+Typically, solutions start with a specific component (called a root of trust) that is intended to
+provide trustworthy device identity and protected storage for measurements.
 The system components perform a series of measurements that may be
-signed by the root of trust, considered as Evidence about the hardware,
-firmware, BIOS, software, etc. that is present.
+signed via functions provided by a root of trust, considered as Evidence about present system components, such as hardware,
+firmware, BIOS, software, etc.
 
 Attester:
 
-: A device desiring access to a network
+: A device desiring access to a network.
 
 Relying Party:
 
 : Network equipment such as a router, switch, or access point,
-responsible for admission of the device into the network
+responsible for admission of the device into the network.
 
-## Confidential Machine Learning (ML) Model Protection
+## Confidential Machine Learning Model Protection
 
 A device manufacturer wants to protect its intellectual property.
-This is primarily the ML model it developed and runs in the devices purchased by its customers.
-The goals for the protection include preventing attackers, potentially
+The intellectual property's scope primarily encompasses the machine learning (ML) model that is deployed in the devices purchased by its customers.
+The protection goals include preventing attackers, potentially
 the customer themselves, from seeing the details of the model.
 
 This typically works by having some protected environment
 in the device go through a remote attestation with some manufacturer service
 that can assess its trustworthiness.  If remote attestation succeeds,
 then the manufacturer service releases either the model, or a key to decrypt
-a model the Attester already has in encrypted form, to the requester.
+a model already deployed on the Attester in encrypted form, to the requester.
 
 Attester:
 
-: A device desiring to run an ML model
+: A device desiring to run an ML model.
 
 Relying Party:
 
-: A server or service holding ML models it desires to protect
+: A server or service holding ML models it desires to protect.
 
 ## Confidential Data Protection
 
@@ -248,59 +249,58 @@ the data can be any highly confidential data, such as health data
 about customers, payroll data about employees, future business plans, etc.
 As part of the attestation procedure, an assessment is made against a set
 of policies to evaluate the state of the system that is requesting
-the confidential data.  Attestation is desired to prevent leaking data to
+the confidential data.  Attestation is desired to prevent leaking data via
 compromised devices.
 
 Attester:
 
-: An entity desiring to retrieve confidential data
+: An entity desiring to retrieve confidential data.
 
 Relying Party:
 
-: An entity that holds confidential data for release to authorized entities
+: An entity that holds confidential data for release to authorized entities.
 
 ## Critical Infrastructure Control
 
-In this use case, potentially harmful physical equipment
+Potentially harmful physical equipment
 (e.g., power grid, traffic control, hazardous chemical processing, etc.)
-is connected to a network.  The organization managing such infrastructure
-needs to ensure that only authorized code and users can control such
+is connected to a network in support of critical infrastructure.  The organization managing such infrastructure
+needs to ensure that only authorized code and users can control corresponding critical
 processes, and that these processes are protected from unauthorized manipulation or other threats.
-When a protocol operation can affect a component of a critical
-system, the device attached to the critical equipment requires some assurances depending on the security context, including that: the requesting device or application has not been compromised, and the requesters and actors act on applicable policies,
-As such,
-remote attestation can be used to only accept commands from requesters
+When a protocol operation can affect a critical system component of the
+infrastructure, devices attached to that critical component require some assurances depending on the security context, including that: a requesting device or application has not been compromised, and the requesters and actors act on applicable policies.
+As such, remote attestation can be used to only accept commands from requesters
 that are within policy.
 
 Attester:
 
-: A device or application wishing to control physical equipment
+: A device or application wishing to control physical equipment.
 
 Relying Party:
 
 : A device or application connected to potentially dangerous physical
 equipment (hazardous chemical processing, traffic control, power grid,
-etc.)
+etc.).
 
-## Trusted Execution Environment (TEE) Provisioning
+## Trusted Execution Environment Provisioning
 
-A "Trusted Application Manager (TAM)" server is responsible
-for managing the applications running in the TEE of a client device.
-To do this, the TAM wants to assess the state of a TEE, or of applications
-in the TEE, of a client device.  The TEE conducts a remote attestation
-procedure with the TAM, which can
+A Trusted Application Manager (TAM) server is responsible
+for managing the applications running in a Trusted Execution Environment (TEE) of a client device.
+To achieve its purpose, the TAM needs to assess the state of a TEE, or of applications
+in the TEE, of a client device.  The TEE conducts Remote Attestation
+Procedures with the TAM, which can
 then decide whether the TEE is already in compliance with the TAM's latest
-policy, or if the TAM needs to uninstall, update, or install approved
+policy. If not, the TAM has to uninstall, update, or install approved
 applications in the TEE to bring it back into compliance with the TAM's policy.
 
 Attester:
 
-: A device with a trusted execution environment capable of
-running trusted applications that can be updated
+: A device with a TEE capable of
+running trusted applications that can be updated.
 
 Relying Party:
 
-: A Trusted Application Manager
+: A TAM.
 
 ## Hardware Watchdog
 
@@ -317,7 +317,7 @@ to the system's health, then it forces a reboot.
 Attester:
 
 : The device that should be protected from being held hostage for
-a long period of time
+a long period of time.
 
 Relying Party:
 
@@ -334,7 +334,7 @@ The FIDO protocol employs remote attestation for this.
 
 The FIDO protocol supports several remote attestation protocols and a mechanism by which new ones can be registered and added. Remote attestation defined by RATS is thus a candidate for use in the FIDO protocol.
 
-Other biometric authentication protocols such as the Chinese IFAA standard and WeChat Pay as well as Google Pay make use of attestation in one form or another.
+Other biometric authentication protocols such as the Chinese IFAA standard and WeChat Pay as well as Google Pay make use of remote attestation in one form or another.
 
 Attester:
 
@@ -354,42 +354,53 @@ Relying Party:
 ~~~~
 {:dataflow #dataflow title="Conceptual Data Flow"}
 
+The text below summarizes the activities conducted by the roles illustrated in {{dataflow}}.
+
 An Attester creates Evidence that is conveyed to a Verifier.
 
-The Verifier uses the Evidence, any Reference Values from Reference Value Providers, and any Endorsements from Endorsers,
-by applying an Appraisal Policy for Evidence to assess the trustworthiness of the Attester,
-and generates Attestation Results for use by Relying Parties.  The Appraisal Policy for Evidence
-might be obtained from an Endorser along with the Endorsements, and/or might be obtained
-via some other mechanism such as being configured in the Verifier by the Verifier Owner.
+A Verifier uses the Evidence, any Reference Values from Reference Value Providers, and any Endorsements from Endorsers,
+by applying an Appraisal Policy for Evidence to assess the trustworthiness of the Attester. 
+This procedure is called the appraisal of Evidence.
 
-The Relying Party uses Attestation Results by applying its own
-appraisal policy to make application-specific decisions such as authorization decisions.
+Subsequently, the Verifier generates Attestation Results for use by Relying Parties.
+The Appraisal Policy for Evidence
+might be obtained from an Endorser along with the Endorsements, and/or might be obtained
+via some other mechanism, such as being configured in the Verifier by the Verifier Owner.
+
+A Relying Party uses Attestation Results by applying its own
+appraisal policy to make application-specific decisions, such as authorization decisions.
 The Appraisal Policy for Attestation Results is configured in the Relying Party by the Relying Party Owner,
-and/or is programmed into the Relying Party.
+and/or are programmed into the Relying Party.
+This procedure is called the appraisal of Attestation Results.
 
 ## Appraisal Policies
 
 The Verifier, when appraising Evidence, or the Relying Party, when
 appraising Attestation Results, checks the values of some Claims
-against constraints specified in its appraisal policy.  Such constraints might
-involve a comparison for equality against a Reference Value, or a check for being in
-a range bounded by Reference Values, or membership in a set of Reference Values,
-or a check against values in other Claims, or any other test.
+against constraints specified in its appraisal policy.
+Examples of such constraints checking include:
+
+* comparison for equality against a Reference Value, or
+* a check for being in a range bounded by Reference Values, or
+* membership in a set of Reference Values, or
+* a check against values in other Claims.
 
 The actual data format and semantics of any Appraisal Policy is implementation specific.
 
 ## Reference Values
 
-Reference Values used in appraisal come from a Reference Value Provider
+Reference Values used in appraisal procedures come from a Reference Value Provider
 and are then used by the appraisal policy.
 They might be conveyed in any number of ways, including:
 
-* as part of the appraisal policy itself, if the Verifier Owner either: acquires Reference Values from a Reference Value Provider or is itself a Reference Value Provider;
-* as part of an Endorsement, if the Endorser either acquires Reference Values from a Reference Value Provider or is itself a Reference Value Provider; or
+* as part of the appraisal policy itself, if the Verifier Owner either: acquires Reference Values from a Reference Value Provider or is itself a Reference Value Provider, or
+* as part of an Endorsement, if the Endorser either acquires Reference Values from a Reference Value Provider or is itself a Reference Value Provider, or
 * via separate communication.
 
 The actual data format and semantics of any Reference Values are specific to
 Claims and implementations.
+This architecture document does not define any
+general purpose format for Reference Values or general means for comparison.
 
 ## Two Types of Environments of an Attester
 
@@ -398,8 +409,7 @@ Target Environment.
 In some implementations, the Attesting and Target Environments might be combined.
 Other implementations might have multiple Attesting and Target Environments,
 such as in the examples described in more detail in {{layered-attestation}}
-and {{compositedevice}}.  Other examples may exist.  Besides, the examples
-discussed could be combined into even more complex implementations.
+and {{compositedevice}}.  Other examples may exist. All compositions of Attesting and Target Environments discussed in this architecture can be combined into more complex implementations.
 
 {:twotypes-env: artwork-align="center"}
 ~~~~ TWOTYPES
@@ -412,13 +422,13 @@ That is, Attesting Environments collect the values and the information to be rep
 Attesting Environments then format the Claims appropriately, and typically
 use key material and
 cryptographic functions, such as signing or cipher algorithms, to
-create Evidence.
+generate Evidence.
 There is no limit to or requirement on the types of hardware or software environments that can be used to implement an Attesting Environment, for example: Trusted Execution Environments (TEEs), embedded Secure Elements
 (eSEs), Trusted Platform Modules (TPMs), or BIOS firmware.
 
-An arbitrary execution environment may not, by default, be capable of claims collection for a given Target Environment.
-Execution environments that are designed specifically to be capable of claims collection are referred to in this document as Attesting Environments.
-For example, a TPM doesn't actively collect claims itself, it instead
+An arbitrary execution environment may not, by default, be capable of Claims collection for a given Target Environment.
+Execution environments that are designed specifically to be capable of Claims collection are referred to in this document as Attesting Environments.
+For example, a TPM doesn't actively collect Claims itself, it instead
 requires another component to feed various values to the TPM.
 Thus, an Attesting Environment in such a case would be the combination
 of the TPM together with whatever component is feeding it the measurements.
@@ -459,7 +469,7 @@ After the boot sequence is started, the BIOS conducts the
 most important and defining feature of layered attestation, which is that
 the successfully measured Target Environment B
 now becomes (or contains) an Attesting Environment for the next layer.
-This procedure in Layered Attestation is sometimes called "staging".
+This procedure in layered attestation is sometimes called "staging".
 It is important that the new Attesting Environment B not be
 able to alter any Claims about its own Target Environment B.
 This can be ensured having those Claims be either signed by Attesting
@@ -485,63 +495,64 @@ that it measures, rather than only one as shown in {{layered}}.
 
 ## Composite Device {#compositedevice}
 
-A Composite Device is an entity composed of multiple sub-entities such that its
+A composite device is an entity composed of multiple sub-entities such that its
 trustworthiness has to be determined by the appraisal of all these sub-entities.
 
 Each sub-entity has at least one Attesting Environment collecting the Claims
 from at least one Target Environment, then this sub-entity generates Evidence
-about its trustworthiness. Therefore each sub-entity can be called an Attester.
+about its trustworthiness. Therefore, each sub-entity can be called an Attester.
 Among all the Attesters, there may be only some which have the ability to communicate
 with the Verifier while others do not.
 
 For example, a carrier-grade router consists of a chassis and multiple slots.
 The trustworthiness of the router depends on all its slots' trustworthiness.
-Each slot has an Attesting Environment such as a TEE collecting the
+Each slot has an Attesting Environment, such as a TEE, collecting the
 Claims of its boot process, after which it generates Evidence from the Claims.
 Among these slots, only a main slot can communicate with the Verifier
 while other slots cannot. But other slots can communicate with the main
 slot by the links between them inside the router. So the main slot collects
 the Evidence of other slots, produces the final Evidence of the whole router and
-conveys the final Evidence to the Verifier. Therefore the router is a Composite
-Device, each slot is an Attester, and the main slot is the lead Attester.
+conveys the final Evidence to the Verifier. Therefore the router is a composite
+device, each slot is an Attester, and the main slot is the lead Attester.
 
 Another example is a multi-chassis router composed of multiple single carrier-grade routers.
-The multi-chassis router provides higher throughput by interconnecting
-multiple routers and can be logically treated as one router for simpler management.
-A multi-chassis router provides a management point that connects to the Verifier.
-Other routers are only connected to the main router by the network cables,
-and therefore they are managed and appraised via this main router's help.
-So, in this case, the multi-chassis router is the Composite Device,
-each router is an Attester and the main router is the lead Attester.
+Multi-chassis router setups create redundancy groups that provide higher throughput by interconnecting
+multiple routers in these groups, which can be treated as one logical router for simpler management.
+A multi-chassis router setup provides a management point that connects to the Verifier.
+Typically one router in the group is designated as the main router.
+Other routers in the multi-chassis setup are connected to the main router only via physical network links
+and are therefore managed and appraised via the main router's help.
+In consequence, a multi-chassis router setup is a composite device,
+each router is an Attester, and the main router is the lead Attester.
 
-{{composite}} depicts the conceptual data flow for a Composite Device.
+{{composite}} depicts the conceptual data flow for a composite device.
 
 ~~~~ COMPOSITE
 {::include composite-attester.txt}
 ~~~~
 {: #composite title="Composite Device"}
 
-In the Composite Device, each Attester generates its own Evidence by its
+In a composite device, each Attester generates its own Evidence by its
 Attesting Environment(s) collecting the Claims from its Target Environment(s).
-The lead Attester collects the Evidence from the other Attesters and conveys it to a Verifier.
+The lead Attester collects Evidence from other Attesters and conveys it to a Verifier.
 Collection of Evidence from sub-entities may itself be a form of Claims collection that results in Evidence asserted by the lead Attester.
-The lead Attester generates the Evidence about the layout of the Composite Device, while sub-Attesters generate Evidence about their respective modules.
+The lead Attester generates Evidence about the layout of the whole composite device, while sub-Attesters generate Evidence about their respective (sub-)modules.
 
-In this situation, the trust model described in {{trustmodel}} is also suitable for this inside Verifier.
+In this scenario, the trust model described in {{trustmodel}} can also be applied to an inside Verifier.
 
 ## Implementation Considerations
 An entity can take on multiple RATS roles (e.g., Attester, Verifier, Relying
 Party, etc.) at the same time.
 Multiple entities can cooperate to implement a single RATS role as well.
-The combination of roles and entities can be arbitrary.
-For example, in the Composite Device scenario, the entity inside
+In essence, the combination of roles and entities can be arbitrary.
+For example, in the composite device scenario, the entity inside
 the lead Attester can also take on the role of a Verifier, and the
 outer entity of Verifier can take on the role of a Relying Party.
 After collecting the Evidence of other Attesters, this inside Verifier uses
-Endorsements and appraisal policies (obtained the same way as any other
-Verifier) in the verification process to generate Attestation Results.
+Endorsements and appraisal policies (obtained the same way as by any other
+Verifier) as part of the appraisal procedures that generate Attestation Results.
 The inside Verifier then conveys the Attestation Results of other Attesters to the outside Verifier,
-whether in the same conveyance protocol as the Evidence or not.
+whether in the same conveyance protocol as part of the Evidence or not.
 
 # Terminology {#terminology}
 
@@ -659,8 +670,8 @@ in any sort of comparison.
 
 {{dataflow}} shows a data-flow diagram for communication between an Attester,
 a Verifier, and a Relying Party. The Attester conveys its Evidence to the Verifier
-for appraisal, and the Relying Party gets the Attestation Result from the Verifier.
-This section refines it by describing two reference models,
+for appraisal, and the Relying Party receives the Attestation Result from the Verifier.
+This section refines the data-flow diagram by describing two reference models,
 as well as one example composition thereof. The discussion
 that follows is for illustrative purposes only and does not constrain the
 interactions between RATS roles to the presented patterns.
@@ -671,9 +682,9 @@ The passport model is so named because of its resemblance to how nations issue
 passports to their citizens. The nature of the Evidence that an individual needs
 to provide to its local authority is specific to the country involved. The citizen
 retains control of the resulting passport document and presents it to other entities
-when it needs to assert a citizenship or identity claim, such as an airport immigration
+when it needs to assert a citizenship or identity Claim, such as an airport immigration
 desk. The passport is considered sufficient because it vouches for the citizenship and
-identity claims, and it is issued by a trusted authority. Thus, in this immigration
+identity Claims, and it is issued by a trusted authority. Thus, in this immigration
 desk analogy, the passport issuing agency is a Verifier, the passport is an Attestation
 Result, and the immigration desk is a Relying Party.
 
@@ -701,29 +712,29 @@ Attester-Verifier remote attestation protocol.
 This implies that interoperability and standardization is more relevant for Attestation Results than it is for Evidence.
 
 ~~~~
-      +-------------+
-      |             | Compare Evidence
-      |   Verifier  | against appraisal policy
-      |             |
-      +-------------+
+       +------------+
+       |            | Compare Evidence
+       |  Verifier  | against appraisal policy
+       |            |
+       +------------+
            ^    |
-   Evidence|    |Attestation
-           |    |  Result
+  Evidence |    | Attestation
+           |    | Result
            |    v
-      +----------+              +---------+
-      |          |------------->|         |Compare Attestation
-      | Attester | Attestation  | Relying | Result against
-      |          |    Result    |  Party  | appraisal
-      +----------+              +---------+  policy
+       +------------+              +-------------+
+       |            |------------->|             | Compare Attestation
+       |  Attester  | Attestation  |   Relying   | Result against
+       |            | Result       |    Party    | appraisal policy
+       +------------+              +-------------+
 ~~~~
 {: #passport title="Passport Model"}
 
 ## Background-Check Model
 
 The background-check model is so named because of the resemblance of how employers and volunteer
-organizations perform background checks. When a prospective employee provides claims about
+organizations perform background checks. When a prospective employee provides Claims about
 education or previous experience, the employer will contact the respective institutions or
-former employers to validate the claim. Volunteer organizations often perform police background
+former employers to validate the Claim. Volunteer organizations often perform police background
 checks on volunteers in order to determine the volunteer's trustworthiness.
 Thus, in this analogy, a prospective volunteer is an Attester, the organization is the Relying Party,
 and the organization that issues a report is a Verifier.
@@ -751,18 +762,18 @@ Such minimization is especially important if the Relying Party is a
 constrained node.
 
 ~~~~
-                               +-------------+
-                               |             | Compare Evidence
-                               |   Verifier  | against appraisal
-                               |             | policy
-                               +-------------+
-                                    ^    |
-                            Evidence|    |Attestation
-                                    |    |  Result
-                                    |    v
+                                +-------------+
+                                |             | Compare Evidence
+                                |   Verifier  | against appraisal
+                                |             | policy
+                                +-------------+
+                                     ^   |
+                            Evidence |   | Attestation
+                                     |   | Result
+                                     |   v
    +------------+               +-------------+
    |            |-------------->|             | Compare Attestation
-   |   Attester |   Evidence    |   Relying   | Result against
+   |  Attester  |   Evidence    |   Relying   | Result against
    |            |               |    Party    | appraisal policy
    +------------+               +-------------+
 ~~~~
@@ -794,24 +805,24 @@ plans to support in the TEEP architecture {{-teep-arch}}.
       |   Verifier  | against appraisal policy
       |             |
       +-------------+
-           ^    |
-   Evidence|    |Attestation
-           |    |  Result
-           |    v
+           ^   |
+  Evidence |   | Attestation
+           |   | Result
+           |   v
       +-------------+
       |             | Compare
       |   Relying   | Attestation Result
       |   Party 2   | against appraisal policy
       +-------------+
-           ^    |
-   Evidence|    |Attestation
-           |    |  Result
-           |    v
-      +----------+               +----------+
-      |          |-------------->|          | Compare Attestation
-      | Attester |  Attestation  |  Relying | Result against
-      |          |     Result    |  Party 1 | appraisal policy
-      +----------+               +----------+
+           ^   |
+  Evidence |   | Attestation
+           |   | Result
+           |   v
+      +-------------+               +-------------+
+      |             |-------------->|             | Compare Attestation
+      |   Attester  |  Attestation  |   Relying   | Result against
+      |             |     Result    |   Party 1   | appraisal policy
+      +-------------+               +-------------+
 ~~~~
 {: #combination title="Example Combination"}
 
@@ -822,12 +833,12 @@ in this document.
 An entity can aggregate more than one role into itself.
 These collapsed roles combine the duties of multiple roles.
 
-In these cases, interaction between these roles do not necessarily use the
+In cases where roles are aggregated, interaction between these roles do not necessarily use the
 Internet Protocol. They can be using a loopback device or other IP-based
 communication between separate environments, but they do not have to.
 Alternative channels to convey conceptual messages include function calls, sockets, GPIO
 interfaces, local busses, or hypervisor calls. This type of conveyance is typically found
-in Composite Devices. Most importantly, these conveyance methods are
+in composite devices. Most importantly, these conveyance methods are
 out-of-scope of RATS, but they are presumed to exist in order to convey
 conceptual messages appropriately between roles.
 
@@ -926,9 +937,9 @@ can also be used to conduct a number of attacks, and so a device in
 a physically secure environment (such as one's own premises) may be
 considered trusted whereas devices owned by others would not be.
 This often results in a desire to either have the owner run their
-own Endorser that would only Endorse devices one owns, or to use
+own Endorser that would only endorse devices one owns, or to use
 Attesters directly in the trust anchor store.   When there are many
-Attesters owned, the use of an Endorser becomes more scalable.
+Attesters owned, the use of an Endorser enables better scalability.
 
 That is, a Verifier might appraise the trustworthiness of an application component, operating
 system component, or service under the assumption that information
@@ -939,9 +950,9 @@ physically resistant to hardware tampering.
 In most cases, components that have to be vouched for via Endorsements because no Evidence is generated about them are referred to as roots of trust.
 
 The manufacturer having arranged for an Attesting Environment to be provisioned with key material with which to sign Evidence, the Verifier is then provided with
-some way of verifying the signature on the Evidence.  This may be in the form of an appropriate trust anchor, or the Verifier may be provided with a database of public keys (rather than certificates) or even carefully secured lists of symmetric keys.
+some way of verifying the signature on the Evidence.  This may be in the form of an appropriate trust anchor, or the Verifier may be provided with a database of public keys (rather than certificates) or even carefully curated and secured lists of symmetric keys.
 
-The nature of how the Verifier manages to validate the signatures produced by the Attester is critical to the secure operation of an Attestation system, but is not the subject of standardization within this architecture.
+The nature of how the Verifier manages to validate the signatures produced by the Attester is critical to the secure operation of a remote attestation system, but is not the subject of standardization within this architecture.
 
 A conveyance protocol that provides authentication and integrity protection can be used
 to convey Evidence that is otherwise unprotected (e.g., not signed). Appropriate conveyance of unprotected Evidence (e.g., {{-uccs}}) relies on the following conveyance protocol's protection capabilities:
@@ -958,7 +969,7 @@ In some scenarios, the Endorser, Reference Value Provider, and Verifier Owner ma
 before giving the Endorsement, Reference Values, or appraisal policy to it.  This can be done
 similarly to how a Relying Party might establish trust in a Verifier.
 
-As discusssed in {{rpowner-trust}}, authentication or attestation in both directions might be
+As discussed in {{rpowner-trust}}, authentication or attestation in both directions might be
 needed, in which case typically one side's identity or
 Evidence must be considered safe to share with an untrusted entity,
 in order to bootstrap the sequence.
@@ -970,7 +981,7 @@ See {{privacy-considerations}} for more discussion.
 
 Evidence is a set of Claims about the target environment that reveal operational
 status, health, configuration or construction that have security relevance.
-Evidence is evaluated by a Verifier to establish its relevance, compliance, and timeliness.
+Evidence is appraised by a Verifier to establish its relevance, compliance, and timeliness.
 Claims need to be collected in a manner that is reliable.
 Evidence needs to be securely associated with the target environment
 so that the Verifier cannot be tricked into accepting Claims originating
@@ -996,7 +1007,7 @@ However, while an appraisal policy that treats all devices from a given manufact
 may be appropriate for some use cases, it would be inappropriate to use such an appraisal policy
 as the sole means of authorization for use cases that wish to constrain *which* compliant devices
 are considered authorized for some purpose.  For example, an enterprise using remote attestation for
-Network Endpoint Assessment may not wish to let every healthy laptop from the same
+Network Endpoint Assessment {{RFC5209}} may not wish to let every healthy laptop from the same
 manufacturer onto the network, but instead only want to let devices that it legally owns
 onto the network.  Thus, an Endorsement may be helpful information in authenticating
 information about a device, but is not necessarily sufficient to authorize access to
@@ -1057,24 +1068,24 @@ can be any new or existing protocol (e.g., HTTP(S), COAP(S),
 ROLIE {{RFC8322}},
 802.1x, OPC UA {{OPCUA}}, etc.), depending on the use case.
 
-Such protocols typically already have mechanisms for passing security information for purposes of authentication and authorization.
+Typically, such protocols already have mechanisms for passing security information for authentication and authorization purposes.
 Common formats include JWTs {{RFC7519}}, CWTs {{RFC8392}}, and X.509 certificates.
 
 Retrofitting already deployed protocols with remote attestation requires
 adding RATS conceptual messages to the existing data flows. This must be
-done in a way that doesn't degrade the security properties of the system
-and should use the native extension mechanisms provided by the underlying
-protocol. For example, if the TLS handshake is to be extended with
+done in a way that does not degrade the security properties of the systems involved
+and should use native extension mechanisms provided by the underlying
+protocol. For example, if a TLS handshake is to be extended with
 remote attestation capabilities, attestation Evidence may be embedded
-in an ad hoc X.509 certificate extension (e.g., {{TCG-DICE}}), or into a new
+in an ad-hoc X.509 certificate extension (e.g., {{TCG-DICE}}), or into a new
 TLS Certificate Type (e.g., {{?I-D.tschofenig-tls-cwt}}).
 
 Especially for constrained nodes there is a desire to minimize
 the amount of parsing code needed in a Relying Party, in order to both
-minimize footprint and to minimize the attack surface area.  So while
+minimize footprint and to minimize the attack surface. While
 it would be possible to embed a CWT inside a JWT, or a JWT inside an
 X.509 extension, etc., there is a desire to encode the information
-natively in the format that is natural for the Relying Party.
+natively in a format that is already supported by the Relying Party.
 
 This motivates having a common "information model" that describes
 the set of remote attestation related information in an encoding-agnostic
@@ -1083,7 +1094,7 @@ that encode the same information into the Claims format needed by the
 Relying Party.
 
 The following diagram illustrates that Evidence and Attestation Results
-might each have multiple possible encoding formats, so that they can be
+might be expressed via multiple potential encoding formats, so that they can be
 conveyed by various existing protocols.  It also motivates why the Verifier
 might also be responsible for accepting Evidence that encodes Claims in
 one format, while issuing Attestation Results that encode Claims in
@@ -1097,7 +1108,7 @@ a different format.
 
 # Freshness {#freshness}
 
-A Verifier or Relying Party may need to learn the point in time
+A Verifier or Relying Party might need to learn the point in time
 (i.e., the "epoch") an Evidence or Attestation Result has been produced.  This
 is essential in deciding whether the included Claims and their values can be
 considered fresh, meaning they still reflect the latest state of the Attester,
@@ -1125,9 +1136,9 @@ Attestation Result.
 The first approach is to rely on synchronized and trustworthy clocks, and
 include a signed timestamp (see {{?I-D.birkholz-rats-tuda}}) along with the
 Claims in the Evidence or Attestation Result.  Timestamps can also be added on a
-per-Claim basis to distinguish the time of creation of Evidence or Attestation
+per-Claim basis to distinguish the time of generation of Evidence or Attestation
 Result from the time that a specific Claim was generated.  The clock's
-trustworthiness typically requires additional Claims about the signer's time
+trustworthiness can generally be established via Endorsements and typically requires additional Claims about the signer's time
 synchronization mechanism.
 
 In some use cases, however, a trustworthy clock might not be available. For
@@ -1146,7 +1157,7 @@ same, the appraising entity knows that the Claims were signed after the nonce
 was generated.  This allows associating a "rough" epoch to the Evidence or
 Attestation Result.  In this case the epoch is said to be rough because:
 
-* The epoch applies to the entire claim set instead of a more granular
+* The epoch applies to the entire Claim set instead of a more granular
   association, and
 * The time between the creation of Claims and the collection of Claims is
   indistinguishable.
@@ -1218,31 +1229,29 @@ For a discussion on the security of handles see {{handles-sec}}.
 The conveyance of Evidence and the resulting Attestation Results
 reveal a great deal of information about the internal state of a
 device as well as potentially any users of the device.
-In many cases, the whole point of the Attestation process is
+In many cases, the whole point of attestation procedures is
 to provide reliable information about the type of the device and the
 firmware/software that the device is running.
 This information might be particularly interesting to many attackers.
 For example, knowing that a device is
 running a weak version of firmware provides a way to aim attacks better.
 
-Many claims in Attestation Evidence and Attestation Results are potentially
-Personally Identifying Information) depending on the end-to-end use case of
-the attestation.
-Attestation that goes up to include containers and applications may further
-reveal details about a specific system or user.
+Many Claims in Evidence and Attestation Results are potentially
+Personally Identifying Information (PII) depending on the end-to-end use case of
+the remote attestation procedure.
+Remote attestation that goes up to include containers and applications, e.g., a blood pressure monitor, may further
+reveal details about specific systems or users.
 
-In some cases, an attacker may be able to make inferences about attestations
-from the results or timing of the processing.
+In some cases, an attacker may be able to make inferences about the contents of Evidence
+from the resulting effects or timing of the processing.
 For example, an attacker might be able to infer the value of specific Claims if it knew that only certain values were accepted by the Relying Party.
 
-Evidence and Attestation Results data structures are expected to support
-integrity protection encoding (e.g., COSE, JOSE, X.509) and optionally might
-support confidentiality protection (e.g., COSE, JOSE).
-Therefore, if confidentiality protection is omitted or unavailable, the protocols
+Evidence and Attestation Results are expected to be integrity protected (i.e., either via signing or a secure channel) and optionally might be confidentiality protected via encryption.
+If confidentiality protection via signing the conceptual messages is omitted or unavailable, the protecting protocols
 that convey Evidence or Attestation Results are responsible for detailing what
 kinds of information are disclosed, and to whom they are exposed.
 
-Furthermore, because Evidence might contain sensitive information,
+As Evidence might contain sensitive or confidential information,
 Attesters are responsible for only sending such Evidence to trusted
 Verifiers.
 Some Attesters might want a stronger level of assurance of
@@ -1261,54 +1270,49 @@ This approach is often called "Direct Anonymous Attestation".  See
 
 ## Attester and Attestation Key Protection
 
-
-Implementers need to pay close attention to the protection of the Attester and the factory processes for provisioning the Attestation key material. If either of these are compromised, the remote attestation becomes worthless because an attacker can forge Evidence or manipulate the Attesting Environment.
+Implementers need to pay close attention to the protection of the Attester and the manufacturing processes for provisioning attestation key material. If either of these are compromised, intended levels of assurance for RATS are compromised because attackers can forge Evidence or manipulate the Attesting Environment.
 For example, a Target Environment should not be able to tamper with the
 Attesting Environment that measures it, by isolating the two environments
 from each other in some way.
 
-Remote attestation applies to use cases with a range of security requirements, so the protections discussed here range from low to high security where low security  may be only application or process isolation by the device's operating system and high security involves specialized hardware to defend against physical attacks on a chip.
+Remote attestation applies to use cases with a range of security requirements, so the protections discussed here range from low to high security where low security may be limited to application or process isolation by the device's operating system, and high security may involve specialized hardware to defend against physical attacks on a chip.
 
 ### On-Device Attester and Key Protection
 
 It is assumed that an Attesting Environment is sufficiently isolated from the
-Target Environment it collects Claims for and signs them with an Attestation
-Key, so that the Target Environment cannot forge Evidence about itself.  Such
+Target Environment it collects Claims about and that it signs the resulting Claims set with an attestation
+key, so that the Target Environment cannot forge Evidence about itself.  Such
 an isolated environment might be provided by a process, a dedicated chip,
 a TEE, a virtual machine, or another secure mode of operation.
-The Attesting Environment must be protected from unauthorized modification to ensure it behaves correctly. There must also be confidentiality so that the signing key is not captured and used elsewhere to forge Evidence.
+The Attesting Environment must be protected from unauthorized modification to ensure it behaves correctly. Confidentiality protection of the Attesting Environment's signing key is vital so it cannot be misused to forge Evidence.
 
-In many cases the user or owner of the device must not be able to modify or exfiltrate keys from the Attesting Environment of the Attester.
-For example the owner or user of a mobile phone or FIDO authenticator, having full control over the keys, might not be trusted to use the keys to report Evidence about the environment that protects the keys.
-The point of remote attestation is for the Relying Party to be able to trust the Attester even though they don’t trust the user or owner.
+In many cases the user or owner of a device that takes on the role of Attester must not be able to modify or extract keys from its Attesting Environments.
+For example, the owner or user of a mobile phone or FIDO authenticator might not be trusted to use the keys to report Evidence about the environment that protects the keys.
+An essential value-add provided by RATS is for the Relying Party to be able to trust the Attester even if the user or owner is not trusted.
 
+Measures for a minimally protected system might include process or application isolation provided by a high-level operating system, and restricted access to root or system privileges. In contrast, For really simple single-use devices that don't use a protected mode operating system, like a Bluetooth speaker, the only factual isolation might be the sturdy housing of the device.
 
-Some of the measures for a minimally protected system might include process or application isolation by a high-level operating system, and perhaps restricting access to root or system privilege. For extremely simple single-use devices that don’t use a protected mode operating system, like a Bluetooth speaker, the isolation might only be the plastic housing for the device.
-
-Measures for a moderately protected system could include a special restricted operating environment like a Trusted Execution Environment (TEE) might be used. In this case, only security-oriented software has access to the Attester and key material.
+Measures for a moderately protected system could include a special restricted operating environment, such as a TEE. In this case, only security-oriented software has access to the Attester and key material.
 
 Measures for a highly protected system could include specialized hardware that is used to provide protection against chip decapping attacks, power supply and clock glitching, faulting injection and RF and power side channel attacks.
 
-
 ### Attestation Key Provisioning Processes
 
-Attestation key provisioning is the process that occurs in the factory or elsewhere that establishes the signing key material on the device and the verification key material off the device. Sometimes this is referred to as “personalization”.
+Attestation key provisioning is the process that occurs in the factory or elsewhere to establish signing key material on the device and the validation key material off the device. Sometimes this is procedure is referred to as personalization or customization.
 
-One way to provision a key is to first generate it external to the device and then copy the key onto the device.
-In this case, confidentiality of the generator, as well as the path over which the key is provisioned, is necessary.
-The manufacturer needs to take care to protect it with measures consistent with its value.
-This can be achieved in a number of ways.
+One way to provision key material is to first generate it external to the device and then copy the key onto the device.
+In this case, confidentiality protection of the generator, as well as for the path over which the key is provisioned, is necessary.
+The manufacturer needs to take care to protect corresponding key material with measures appropriate for its value.
 
-Confidentiality can be achieved entirely with physical provisioning facility security involving no encryption at all. For low-security use cases, this might be simply locking doors and limiting personnel that can enter the facility. For high-security use cases, this might involve a special area of the facility accessible only to select security-trained personnel.
+Confidentiality protection can be realized via physical provisioning facility security involving no encryption at all. For low-security use cases, this might be simply locking doors and limiting personnel that can enter the facility. For high-security use cases, this might involve a special area of the facility accessible only to select security-trained personnel.
 
-Cryptography can also be used to support confidentiality, but keys that are used to then provision attestation keys must somehow have been provisioned securely beforehand (a recursive problem).
+Typically, cryptography is used to enable confidentiality protection. This can result in recursive problems, as the key material used to provision attestation keys must again somehow have been provisioned securely beforehand (requiring an additional level of protection, and so on).
 
-In many cases both some physical security and some cryptography will be necessary and useful to establish confidentiality.
+In general, a combination of some physical security measures and some cryptographic measures is used to establish confidentiality protection.
 
-Another way to provision the key material is to generate it on the device and export the verification key. If public key cryptography is being used, then only integrity is necessary. Confidentiality is not necessary.
+Another way to provision key material is to generate it on the device and export the validation key. If public-key cryptography is being used, then only integrity is necessary. Confidentiality of public keys is not necessary.
 
-In all cases, the Attestation Key provisioning process must ensure that only attestation key material that is generated by a valid Endorser is established in Attesters and then configured correctly.
-For many use cases, this will involve physical security at the facility, to prevent unauthorized devices from being manufactured that may be counterfeit or incorrectly configured.
+In all cases, attestation key provisioning must ensure that only attestation key material that is generated by a valid Endorser is established in Attesters.
 
 ## Integrity Protection
 Any solution that conveys information used for security purposes, whether
@@ -1335,13 +1339,16 @@ boot, or immutable hardware/ROM.
 It is also important that the appraisal policy was itself obtained securely.
 If an attacker can configure appraisal policies for a Relying Party or for a Verifier, then integrity of the process is compromised.
 
-The security protecting conveyed information may be applied at different layers, whether by a conveyance protocol, or an information encoding format. This architecture expects attestation messages (i.e., Evidence, Attestation Results, Endorsements, Reference Values, and Policies) are end-to-end protected based on the role interaction context.
+Security protections in RATS may be applied at different layers, whether by a conveyance protocol, or an information encoding format. This architecture expects conceptual messages (see {{messages}}) to be end-to-end protected based on the role interaction context.
 For example, if an Attester produces Evidence that is relayed through some other entity that doesn't implement the Attester or the intended Verifier roles, then the relaying entity should not expect to have access to the Evidence.
 
 ## Handle-based Attestation {#handles-sec}
 
 Handles, described in {{epochfreshness}}, can be tampered with, replayed, dropped, delayed, and
 reordered by an attacker.
+
+An attacker could be either external or belong to the distribution group, for
+example, if one of the Attester entities have been compromised.
 
 An attacker who is able to tamper with handles can potentially lock all the
 participants in a certain epoch of choice for ever, effectively freezing time.
@@ -1384,7 +1391,7 @@ David Wooten.
 
 # Notable Contributions
 
-Thomas Hardjono created older versions of the terminology section in collaboration with Ned Smith.
+Thomas Hardjono created initial versions of the terminology section in collaboration with Ned Smith.
 Eric Voit provided the conceptual separation between Attestation Provision Flows and Attestation Evidence Flows.
 Monty Wisemen created the content structure of the first three architecture drafts.
 Carsten Bormann provided many of the motivational building blocks with respect to the Internet Threat Model.
@@ -1393,8 +1400,8 @@ Carsten Bormann provided many of the motivational building blocks with respect t
 
 The table below defines a number of relevant events, with an ID that
 is used in subsequent diagrams.  The times of said events might be
-defined in terms of an absolute clock time such as Coordinated Universal Time,
-or might be defined relative to some other timestamp or timeticks counter.
+defined in terms of an absolute clock time, such as the Coordinated Universal Time timescale,
+or might be defined relative to some other timestamp or timeticks counter, such as a clock resetting its epoch each time it is powered on.
 
 | ID | Event                       | Explanation of event
 |----|-----------------------------|-----------------------
@@ -1411,11 +1418,11 @@ or might be defined relative to some other timestamp or timeticks counter.
 | RX | Result expiry               | An Attestation Result should no longer be accepted, according to the Verifier that generated it.
 
 Using the table above, a number of hypothetical examples of how a solution might be built are illustrated below.
-a solution might be built.  This list is not intended to be complete,
+This list is not intended to be complete,
 but is just representative enough to highlight various timing considerations.
 
-All times are relative to the local clocks, indicated by an "a" (Attester),
-"v" (Verifier), or "r" (Relying Party) suffix.
+All times are relative to the local clocks, indicated by an "_a" (Attester),
+"_v" (Verifier), or "_r" (Relying Party) suffix.
 
 Times with an appended Prime (') indicate a second instance of the same event.
 
@@ -1461,9 +1468,9 @@ it at time(RG_v) by checking `time(RG_v) - time(EG_a) < Threshold`, where the
 Verifier's threshold is large enough to account for the maximum
 permitted clock skew between the Verifier and the Attester.
 
-If time(VG_a) is also included in the Evidence along with the claim value
+If time(VG_a) is also included in the Evidence along with the Claim value
 generated at that time, and the Verifier decides that it can trust the
-time(VG_a) value, the Verifier can also determine whether the claim value is
+time(VG_a) value, the Verifier can also determine whether the Claim value is
 recent by checking `time(RG_v) - time(VG_a) < Threshold`.
 The threshold is decided by the Appraisal Policy for Evidence, and again needs to take
 into account the maximum permitted clock skew between
@@ -1526,7 +1533,7 @@ In this example solution, the Verifier can check whether the Evidence is
 fresh at `time(RG_v)` by verifying that `time(RG_v)-time(NS_v) < Threshold`.
 
 The Verifier cannot, however, simply rely on a Nonce to
-determine whether the value of a claim is recent, since the claim value
+determine whether the value of a Claim is recent, since the Claim value
 might have been generated long before the nonce was sent by the Verifier.
 However, if the Verifier decides that the Attester can be trusted to
 correctly provide the delta `time(EG_a)-time(VG_a)`, then it can determine recency
@@ -1663,7 +1670,7 @@ the Relying Party needs to send one to an Attester.
      |                    time(OP_r)                     |
 ~~~~
 
-The Verifier can check whether the Evidence is fresh, and whether a claim
+The Verifier can check whether the Evidence is fresh, and whether a Claim
 value is recent, the same as in Example 2 above.
 
 However, unlike in Example 2, the Relying Party can use the Nonce to
