@@ -1286,6 +1286,12 @@ This approach is often called "Direct Anonymous Attestation".  See
 
 # Security Considerations {#security-considerations}
 
+This document provides an architecture for doing remote attestation.
+No specific wire protocol is documented here.
+Without a specific proposal to compare against, it is impossible to know if the security threats listed below have been mitigated well.
+The security considerations below should be read as being essentially requirements against realizations of the RATS Architecture.
+Some threats apply to protocols, some are against implementations (code), and some threats are against physical infrastructure (such as factories). 
+
 ## Attester and Attestation Key Protection
 
 Implementers need to pay close attention to the protection of the Attester and the manufacturing processes for provisioning attestation key material. If either of these are compromised, intended levels of assurance for RATS are compromised because attackers can forge Evidence or manipulate the Attesting Environment.
