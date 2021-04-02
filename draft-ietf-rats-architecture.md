@@ -1288,7 +1288,7 @@ This approach is often called "Direct Anonymous Attestation".  See
 
 This document provides an architecture for doing remote attestation.
 No specific wire protocol is documented here.
-Without a specific proposal to compare against, it is impossible to know if the security considerations listed below have been mitigated well.
+Without a specific proposal to compare against, it is impossible to know if the security threats listed below have been mitigated well.
 The security considerations below should be read as being essentially requirements against implementations of the RATS Architecture.
 
 ## Attester and Attestation Key Protection
