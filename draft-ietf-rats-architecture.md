@@ -973,11 +973,13 @@ some way of verifying the signature on the Evidence.  This may be in the form of
 The nature of how the Verifier manages to validate the signatures produced by the Attester is critical to the secure operation of a remote attestation system, but is not the subject of standardization within this architecture.
 
 A conveyance protocol that provides authentication and integrity protection can be used
-to convey Evidence that is otherwise unprotected (e.g., not signed). Appropriate conveyance of unprotected Evidence (e.g., {{-uccs}}) relies on the following conveyance protocol's protection capabilities:
+to convey Evidence that is otherwise unprotected (e.g., not signed). Appropriate conveyance of unprotected Evidence (e.g., {{-uccs}} via a Secure Channel) relies on the following conveyance protocol's protection capabilities:
 
    1. The key material used to authenticate and integrity protect the conveyance channel is trusted by the Verifier to speak for the Attesting Environment(s) that collected Claims about the Target Environment(s).
    2. All unprotected Evidence that is conveyed is supplied exclusively by the Attesting Environment that has the key material that protects the conveyance channel
    3. The root of trust protects both the conveyance channel key material and the Attesting Environment with equivalent strength protections.
+
+As illustrated in {{-uccs}}, the entity that receives unprotected Evidence via a trusted conveyance channel always takes on the responsibility of vouching for the Evidence's authenticity and freshness. With protected Evidence taking on that responsibility is not always necessary (e.g. signed Evidence that includes timestamps anchored in a global, synchronized timescale). In cases where unprotected Evidence is processed by a Verifier, Relying Parties have to trust the Verifier's capabilities of handling Evidence in a manner that it's authenticity and freshness at the time of Attestation Result generation are believable. Generating and conveying unprotected Evidence always creates significant risk and the benefits of that approach have to be carefully weighed against potentially drawbacks. 
 
 See {{security-considerations}} for discussion on security strength.
 
