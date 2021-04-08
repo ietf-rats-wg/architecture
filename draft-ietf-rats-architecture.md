@@ -139,7 +139,7 @@ informative:
 
   TEEParch:
     title: "Trusted Execution Environment Provisioning (TEEP) Architecture"
-    author: "M. Pei et.al."
+    author: M. Pei et.al.
     org: "IETF"
     target: https://datatracker.ietf.org/doc/draft-ietf-teep-architecture/
     
