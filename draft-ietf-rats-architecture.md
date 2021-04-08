@@ -1310,8 +1310,8 @@ an isolated environment might be provided by a process, a dedicated chip,
 a TEE, a virtual machine, or another secure mode of operation.
 The Attesting Environment must be protected from unauthorized modification to ensure it behaves correctly. Confidentiality protection of the Attesting Environment's signing key is vital so it cannot be misused to forge Evidence.
 
-In many cases the user or owner of a device that takes on the role of Attester must not be able to modify or extract keys from its Attesting Environments.
-For example, the owner or user of a mobile phone or FIDO authenticator might not be trusted to use the keys to report Evidence about the environment that protects the keys.
+In many cases the user or owner of a device that includes the role of Attester must not be able to modify or extract keys via the Attesting Environments.
+If access to the Attesting keys was available, then Evidence about the Attesting Environment could be forged. Some common examples include the user of a mobile phone or FIDO authenticator.
 An essential value-add provided by RATS is for the Relying Party to be able to trust the Attester even if the user or owner is not trusted.
 
 Measures for a minimally protected system might include process or application isolation provided by a high-level operating system, and restricted access to root or system privileges. In contrast, For really simple single-use devices that don't use a protected mode operating system, like a Bluetooth speaker, the only factual isolation might be the sturdy housing of the device.
