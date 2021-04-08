@@ -1,37 +1,39 @@
-    .-------------.   Endorsement for A
+    .-------------.   Endorsement for ROM
     |  Endorser   |-----------------------.
     '-------------'                       |
                                           v
-    .-------------.   Reference     .----------.
-    | Reference   |    Values       |          |
-    | Value       |---------------->| Verifier |
-    | Provider(s) |   for A, B,     |          |
-    '-------------'     and C       '----------'
+    .-------------.   Reference      .----------.
+    | Reference   |   Values for     |          |
+    | Value       |----------------->| Verifier |
+    | Provider(s) | ROM, bootloader, |          |
+    '-------------'    and kernel    '----------'
                                           ^
 .------------------------------------.    |
 |                                    |    |
 |   .---------------------------.    |    |
-|   | Target                    |    |    | Layered
-|   | Environment               |    |    | Evidence
-|   | C                         |    |    |   for
-|   '---------------------------'    |    | B and C
-|           Collect |                |    |
-|           Claims  |                |    |
+|   | Kernel                    |    |    | 
+|   |                           |    |    | Layered
+|   |   Target                  |    |    | Evidence
+|   | Environment               |    |    |   for
+|   '---------------------------'    |    | bootloader
+|           Collect |                |    |   and
+|           Claims  |                |    | kernel
 |   .---------------|-----------.    |    |
-|   | Target        v           |    |    |
-|   | Environment .-----------. |    |    |
-|   | B           | Attesting | |    |    |
-|   |             |Environment|-----------'
-|   |             |     B     | |    |
+|   | Bootloader    v           |    |    |
+|   |             .-----------. |    |    |
+|   |   Target    | Attesting | |    |    |
+|   | Environment |Environment|-----------'
+|   |             |           | |    |
 |   |             '-----------' |    |
-|   |                     ^     |    |
-|   '---------------------|-----'    |
-|           Collect |     | Evidence |
-|           Claims  v     |  for B   |
-|                 .-----------.      |
-|                 | Attesting |      |
-|                 |Environment|      |
-|                 |     A     |      |
-|                 '-----------'      |
+|   |                 ^         |    |
+|   '-----------------|---------'    |
+|          Collect |  | Evidence for |
+|          Claims  v  | bootloader   |
+|   .---------------------------.    |
+|   | ROM                       |    |
+|   |                           |    |
+|   |               Attesting   |    |
+|   |              Environment  |    |
+|   '---------------------------'    |
 |                                    |
 '------------------------------------'
