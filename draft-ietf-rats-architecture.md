@@ -386,29 +386,7 @@ The Appraisal Policy for Attestation Results is configured in the Relying Party 
 and/or are programmed into the Relying Party.
 This procedure is called the appraisal of Attestation Results.
 
-## Appraisal Policies
-
-The Verifier, when appraising Evidence, or the Relying Party, when
-appraising Attestation Results, checks the values of some Claims
-against constraints specified in its appraisal policy.
-Examples of such constraints checking include:
-
-* comparison for equality against a Reference Value, or
-* a check for being in a range bounded by Reference Values, or
-* membership in a set of Reference Values, or
-* a check against values in other Claims.
-
-The actual data format and semantics of any Appraisal Policy is implementation specific.
-
-## Reference Values
-
-Reference Values used in appraisal procedures come from a Reference Value Provider
-and are then used by the appraisal policy.
-
-The actual data format and semantics of any Reference Values are specific to
-Claims and implementations.
-This architecture document does not define any
-general purpose format for Reference Values or general means for comparison.
+See {{messages}} for further discussion of the conceptual messages shown in {{dataflow}}.
 
 ## Two Types of Environments of an Attester
 
@@ -995,6 +973,11 @@ See {{privacy-considerations}} for more discussion.
 
 # Conceptual Messages {#messages}
 
+{{dataflow}} illustrates the flow of a conceptual messages between various roles.
+This section provides additional elaboration and implementation considerations.
+It is the responsibility of protocol specifications to define the actual data format
+and semantics of any relevant conceptual messages.
+
 ## Evidence
 
 Evidence is a set of Claims about the target environment that reveal operational
@@ -1031,6 +1014,25 @@ onto the network.  Thus, an Endorsement may be helpful information in authentica
 information about a device, but is not necessarily sufficient to authorize access to
 resources which may need device-specific information such as a public key for the device or
 component or user on the device.
+
+## Reference Values
+
+Reference Values used in appraisal come from a Reference Value Provider
+and are then used by the appraisal policy.  Typically the Reference Values
+have format and semantics specific to the Claims whose values are compared
+against them.
+
+## Appraisal Policies
+
+The Verifier, when appraising Evidence, or the Relying Party, when
+appraising Attestation Results, checks the values of some Claims
+against constraints specified in its appraisal policy.
+Examples of such constraints checking include:
+
+* comparison for equality against a Reference Value, or
+* a check for being in a range bounded by Reference Values, or
+* membership in a set of Reference Values, or
+* a check against values in other Claims.
 
 ## Attestation Results
 
