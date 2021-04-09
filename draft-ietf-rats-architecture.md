@@ -374,6 +374,7 @@ An Attester creates Evidence that is conveyed to a Verifier.
 A Verifier uses the Evidence, any Reference Values from Reference Value Providers, and any Endorsements from Endorsers,
 by applying an Appraisal Policy for Evidence to assess the trustworthiness of the Attester.
 This procedure is called the appraisal of Evidence.
+
 Subsequently, the Verifier generates Attestation Results for use by Relying Parties.
 The Appraisal Policy for Evidence
 might be obtained from an Endorser along with the Endorsements, and/or might be obtained
