@@ -973,7 +973,7 @@ some way of verifying the signature on the Evidence.  This may be in the form of
 The nature of how the Verifier manages to validate the signatures produced by the Attester is critical to the secure operation of a remote attestation system, but is not the subject of standardization within this architecture.
 
 A conveyance protocol that provides authentication and integrity protection can be used
-to convey Evidence that is otherwise unprotected (e.g., not signed). Appropriate conveyance of unprotected Evidence (e.g., {{-uccs}} via a secure channel) relies on the following conveyance protocol's protection capabilities:
+to convey Evidence that is otherwise unprotected (e.g., not signed). Appropriate conveyance of unprotected Evidence (e.g., {{-uccs}}) relies on the following conveyance protocol's protection capabilities:
 
    1. The key material used to authenticate and integrity protect the conveyance channel is trusted by the Verifier to speak for the Attesting Environment(s) that collected Claims about the Target Environment(s).
    2. All unprotected Evidence that is conveyed is supplied exclusively by the Attesting Environment that has the key material that protects the conveyance channel
