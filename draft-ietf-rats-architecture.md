@@ -481,7 +481,7 @@ This procedure in layered attestation is sometimes called "staging".
 It is important that the bootloader not be
 able to alter any Claims about itself that were collected by the BIOS.
 This can be ensured having those Claims be either signed by the BIOS
-or stored in an untamperable manner by the BIOS.
+or stored in a tamper-proof manner by the BIOS.
 
 Continuing with this example, the bootloader's Attesting Environment is now in charge of collecting Claims
 about the next Target Environment, which in this example
