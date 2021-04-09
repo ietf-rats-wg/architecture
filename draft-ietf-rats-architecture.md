@@ -455,8 +455,8 @@ The corresponding Claims can be structured in a nested fashion that reflects the
 Normally, Claims are not self-asserted, rather a previous layer acts as the Attesting Environment for the next layer.
 Claims about a root of trust typically are asserted by an Endorser.
 
-The device illustrated in {{layered}} includes (A) a BIOS stored in read-only memory,
-(B) an operating system kernel, and (C) an application or workload.
+The example device illustrated in {{layered}} includes (A) a BIOS stored in read-only memory,
+(B) a bootloader, and (C) an operating system kernel.
 
 {:layered: artwork-align="center"}
 ~~~~ LAYERED
@@ -464,8 +464,8 @@ The device illustrated in {{layered}} includes (A) a BIOS stored in read-only me
 ~~~~
 {:layered #layered title="Layered Attester"}
 
-Attesting Environment A, the read-only BIOS in this example,
-has to ensure the integrity of the bootloader (Target Environment B).
+The first Attesting Environment, the read-only BIOS in this example,
+has to ensure the integrity of the bootloader (the first Target Environment).
 There are
 potentially multiple kernels to boot, and the decision is up to the bootloader.
 Only a bootloader with intact integrity will make an appropriate decision.
@@ -475,17 +475,16 @@ device, the Claims collected typically cannot be composed into Evidence.
 
 After the boot sequence is started, the BIOS conducts the
 most important and defining feature of layered attestation, which is that
-the successfully measured Target Environment B
+the successfully measured bootloader
 now becomes (or contains) an Attesting Environment for the next layer.
 This procedure in layered attestation is sometimes called "staging".
-It is important that the new Attesting Environment B not be
-able to alter any Claims about its own Target Environment B.
-This can be ensured having those Claims be either signed by Attesting
-Environment A or stored in an untamperable manner by Attesting
-Environment A.
+It is important that the bootloader not be
+able to alter any Claims about itself that were collected by the BIOS.
+This can be ensured having those Claims be either signed by the BIOS
+or stored in a tamper-proof manner by the BIOS.
 
-Continuing with this example, the bootloader's Attesting Environment B is now in charge of collecting Claims
-about Target Environment C, which in this example
+Continuing with this example, the bootloader's Attesting Environment is now in charge of collecting Claims
+about the next Target Environment, which in this example
 is the kernel to be booted.  The final Evidence thus contains two sets of
 Claims: one set about the bootloader as measured and signed by the BIOS,
 plus a set of Claims about the kernel as measured and signed by the bootloader.
@@ -499,7 +498,7 @@ environment has the responsibility
 of measuring the next environment before the next environment is started.
 In general, the number of layers may vary by device or implementation,
 and an Attesting Environment might even have multiple Target Environments
-that it measures, rather than only one as shown in {{layered}}.
+that it measures, rather than only one as shown by example in {{layered}}.
 
 ## Composite Device {#compositedevice}
 
