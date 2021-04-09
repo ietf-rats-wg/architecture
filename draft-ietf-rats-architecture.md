@@ -984,6 +984,11 @@ to convey Evidence that is otherwise unprotected (e.g., not signed). Appropriate
    2. All unprotected Evidence that is conveyed is supplied exclusively by the Attesting Environment that has the key material that protects the conveyance channel
    3. The root of trust protects both the conveyance channel key material and the Attesting Environment with equivalent strength protections.
 
+As illustrated in {{-uccs}}, an entity that receives unprotected Evidence via a trusted conveyance channel always takes on the responsibility of vouching for the Evidence's authenticity and freshness.
+If protected Evidence is generated, the Attester's Attesting Environments take on that responsibility.
+In cases where unprotected Evidence is processed by a Verifier, Relying Parties have to trust that the Verifier is capable of handling Evidence in a manner that preserves the Evidence's authenticity and freshness.
+Generating and conveying unprotected Evidence always creates significant risk and the benefits of that approach have to be carefully weighed against potential drawbacks. 
+
 See {{security-considerations}} for discussion on security strength.
 
 ## Endorser, Reference Value Provider, and Verifier Owner
