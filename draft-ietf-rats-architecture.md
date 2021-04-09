@@ -386,6 +386,7 @@ and/or are programmed into the Relying Party.
 This procedure is called the appraisal of Attestation Results.
 
 
+See {{messages}} for further discussion of the conceptual messages shown in {{dataflow}}.
 ## Two Types of Environments of an Attester
 
 As shown in {{twotypes-env}}, an Attester consists of at least one Attesting Environment and at least one
