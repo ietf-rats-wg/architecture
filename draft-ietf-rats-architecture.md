@@ -137,6 +137,12 @@ informative:
     title: "Confidential Computing Deep Dive"
     target: https://confidentialcomputing.io/whitepaper-02-latest
 
+  TEEParch:
+    title: "Trusted Execution Environment Provisioning (TEEP) Architecture"
+    author: M. Pei et.al.
+    org: "IETF"
+    target: https://datatracker.ietf.org/doc/draft-ietf-teep-architecture/
+    
 --- abstract
 
 In network protocol exchanges it is often useful for one end of a
@@ -298,7 +304,7 @@ etc.).
 ## Trusted Execution Environment Provisioning
 
 A Trusted Application Manager (TAM) server is responsible
-for managing the applications running in a Trusted Execution Environment (TEE) of a client device.
+for managing the applications running in a Trusted Execution Environment (TEE) of a client device, as described in {{TEEParch}}.
 To achieve its purpose, the TAM needs to assess the state of a TEE, or of applications
 in the TEE, of a client device.  The TEE conducts Remote Attestation
 Procedures with the TAM, which can
@@ -432,7 +438,7 @@ use key material and
 cryptographic functions, such as signing or cipher algorithms, to
 generate Evidence.
 There is no limit to or requirement on the types of hardware or software environments that can be used to implement an Attesting Environment, for example: Trusted Execution Environments (TEEs), embedded Secure Elements
-(eSEs), Trusted Platform Modules (TPMs), or BIOS firmware.
+(eSEs), Trusted Platform Modules (TPMs) {{TCGarch}}, or BIOS firmware.
 
 An arbitrary execution environment may not, by default, be capable of Claims collection for a given Target Environment.
 Execution environments that are designed specifically to be capable of Claims collection are referred to in this document as Attesting Environments.
