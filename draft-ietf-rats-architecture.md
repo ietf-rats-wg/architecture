@@ -1310,7 +1310,7 @@ an isolated environment might be provided by a process, a dedicated chip,
 a TEE, a virtual machine, or another secure mode of operation.
 The Attesting Environment must be protected from unauthorized modification to ensure it behaves correctly. Confidentiality protection of the Attesting Environment's signing key is vital so it cannot be misused to forge Evidence.
 
-In many cases the user or owner of a device that includes the role of Attester must not be able to modify or extract keys via the Attesting Environments.
+In many cases the user or owner of a device that includes the role of Attester must not be able to modify or extract keys from the Attesting Environments.
 If access to the Attesting keys was available, then Evidence about the Attesting Environment could be forged. Some common examples include the user of a mobile phone or FIDO authenticator.
 An essential value-add provided by RATS is for the Relying Party to be able to trust the Attester even if the user or owner is not trusted.
 
