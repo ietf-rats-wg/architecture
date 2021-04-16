@@ -377,9 +377,9 @@ This procedure is called the appraisal of Evidence.
 Subsequently, the Verifier generates Attestation Results for use by Relying Parties.
 
 The Appraisal Policy for Evidence might be obtained from the Verifier Owner via some protocol mechanism
-and/or is configured into the Verifier by the Verifier Owner,
-and/or is programmed into the Verifier,
-and/or might be obtained via some other mechanism.
+or is configured into the Verifier by the Verifier Owner,
+or is programmed into the Verifier,
+or might be obtained via some other mechanism.
 
 A Relying Party uses Attestation Results by applying its own
 appraisal policy to make application-specific decisions, such as authorization decisions.
