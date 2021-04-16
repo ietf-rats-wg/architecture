@@ -382,16 +382,20 @@ by applying an Appraisal Policy for Evidence to assess the trustworthiness of th
 This procedure is called the appraisal of Evidence.
 
 Subsequently, the Verifier generates Attestation Results for use by Relying Parties.
-The Appraisal Policy for Evidence
-might be obtained from an Endorser along with the Endorsements, and/or might be obtained
-via some other mechanism, such as being configured in the Verifier by the Verifier Owner.
+
+The Appraisal Policy for Evidence might be obtained from the Verifier Owner via some protocol mechanism,
+or might be configured into the Verifier by the Verifier Owner,
+or might be programmed into the Verifier,
+or might be obtained via some other mechanism.
 
 A Relying Party uses Attestation Results by applying its own
 appraisal policy to make application-specific decisions, such as authorization decisions.
-The Appraisal Policy for Attestation Results is configured in the Relying Party by the Relying Party Owner,
-and/or are programmed into the Relying Party.
 This procedure is called the appraisal of Attestation Results.
 
+The Appraisal Policy for Attestation Results might be obtained from the Relying Party Owner via some protocol mechanism,
+or might be configured into the Relying Party by the Relying Party Owner,
+or might be programmed into the Relying Party,
+or might be obtained via some other mechanism.
 
 See {{messages}} for further discussion of the conceptual messages shown in {{dataflow}}.
 ## Two Types of Environments of an Attester
