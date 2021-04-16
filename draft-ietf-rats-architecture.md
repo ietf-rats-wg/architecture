@@ -376,7 +376,7 @@ by applying an Appraisal Policy for Evidence to assess the trustworthiness of th
 This procedure is called the appraisal of Evidence.
 Subsequently, the Verifier generates Attestation Results for use by Relying Parties.
 
-The Appraisal Policy for Evidence might be obtained from the Verifier Owner,
+The Appraisal Policy for Evidence might be obtained from the Verifier Owner via some protocol mechanism
 and/or is configured into the Verifier by the Verifier Owner,
 and/or is programmed into the Verifier,
 and/or might be obtained via some other mechanism.
