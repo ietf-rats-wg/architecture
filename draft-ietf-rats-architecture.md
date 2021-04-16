@@ -385,10 +385,10 @@ A Relying Party uses Attestation Results by applying its own
 appraisal policy to make application-specific decisions, such as authorization decisions.
 This procedure is called the appraisal of Attestation Results.
 
-The Appraisal Policy for Attestation Results might be obtained from the Relying Party Owner,
-and/or is configured into the Relying Party by the Relying Party Owner,
-and/or is programmed into the Relying Party,
-and/or might be obtained via some other mechanism.
+The Appraisal Policy for Attestation Results might be obtained from the Relying Party Owner via some protocol mechanism,
+or might be configured into the Relying Party by the Relying Party Owner,
+or might be programmed into the Relying Party,
+or might be obtained via some other mechanism.
 
 ## Two Types of Environments of an Attester
 
