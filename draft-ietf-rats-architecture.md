@@ -972,10 +972,10 @@ in order to bootstrap the sequence.
 See {{privacy-considerations}} for more discussion.
 
 # Conceptual Messages {#messages}
-The data format and semantics of conceptual messages are implementation specific.
-This architecture document does not define any
-general purpose data format for conceptual messages or a general means for comparison.
-Implementations of conceptual messages will define data formats, semantics and the means for comparison.
+{{dataflow}} illustrates the flow of a conceptual messages between various roles.
+This section provides additional elaboration and implementation considerations.
+It is the responsibility of protocol specifications to define the actual data format
+and semantics of any relevant conceptual messages.
 
 ## Evidence
 
