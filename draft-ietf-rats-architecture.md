@@ -1324,6 +1324,8 @@ Measures for a highly protected system could include specialized hardware that i
 
 Attestation key provisioning is the process that occurs in the factory or elsewhere to establish signing key material on the device and the validation key material off the device. Sometimes this is procedure is referred to as personalization or customization.
 
+#### Off-Device Key Generation
+
 One way to provision key material is to first generate it external to the device and then copy the key onto the device.
 In this case, confidentiality protection of the generator, as well as for the path over which the key is provisioned, is necessary.
 The manufacturer needs to take care to protect corresponding key material with measures appropriate for its value.
@@ -1337,6 +1339,8 @@ The cryptography that is used to enable confidentiality protection of the attest
 This results in recursive problems, as the key material used to provision attestation keys must again somehow have been provisioned securely beforehand (requiring an additional level of protection, and so on).
 
 So, this is why, in general, a combination of some physical security measures and some cryptographic measures is used to establish confidentiality protection.
+
+#### On-Device Key Generation
 
 When key material is generated within a device and the secret part of it never leaves the device,
 then the problem may lessen.  For public-key cryptography, it is, by definition, not necessary to
