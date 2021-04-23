@@ -136,7 +136,7 @@ informative:
       org: "Confidential Computing Consortium"
     title: "Confidential Computing Deep Dive"
     target: https://confidentialcomputing.io/whitepaper-02-latest
-    
+
 --- abstract
 
 In network protocol exchanges it is often useful for one end of a
@@ -1453,6 +1453,11 @@ Monty Wisemen created the content structure of the first three architecture draf
 Carsten Bormann provided many of the motivational building blocks with respect to the Internet Threat Model.
 
 # Appendix A: Time Considerations {#time-considerations}
+
+{{freshness}} discussed various issues and requirements around freshness of evidence, and
+summarized three approaches that might be used by different solutions to address them.
+This appendix provides more details with examples to help illustrate potential approaches,
+to inform those creating specific solutions.
 
 The table below defines a number of relevant events, with an ID that
 is used in subsequent diagrams.  The times of said events might be
