@@ -854,7 +854,7 @@ trusts a Verifier that can appraise the trustworthiness of
 information about an Attester.  Such trust might come by the Relying
 Party trusting the Verifier (or its public key) directly, or might
 come by trusting an entity (e.g., a Certificate Authority) that is
-in the Verifier's certificate chain.  Such trust
+in the Verifier's certificate path.  Such trust
 is expressed by storing one or more "trust anchors" in a secure location
 known as a trust anchor store.
 
@@ -862,7 +862,7 @@ As defined in {{?RFC6024}}, "A trust anchor represents an authoritative entity v
 key and associated data.  The public key is used to verify digital
 signatures, and the associated data is used to constrain the types
 of information for which the trust anchor is authoritative."
-The Trust Anchor may be a certificate or it may be a raw public key
+The trust anchor may be a certificate or it may be a raw public key
 along with additional data if necessary such as its public key
 algorithm and parameters.
 
@@ -1431,12 +1431,13 @@ However, the delay attack described above can't be thwarted in this manner.
 ## Trust Anchor Protection
 
 As noted in {{trustmodel}}, Verifiers and Relying Parties have trust anchor stores
-that must be secured.  Specifically, a Trust Anchor Store must resist
+that must be secured.  Specifically, a trust anchor store must resist
 modification against unauthorized insertion, deletion, and modification.
 
 If certificates are used as trust anchors, Verifiers and Relying Parties are also
-responsible for validating the entire certificate chain up to the trust anchor,
-which includes checking for certificate revocation.
+responsible for validating the entire certificate path up to the trust anchor,
+which includes checking for certificate revocation.  See Section 6 of {{!RFC5280}}
+for details.
 
 # IANA Considerations
 
