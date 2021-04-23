@@ -136,12 +136,6 @@ informative:
       org: "Confidential Computing Consortium"
     title: "Confidential Computing Deep Dive"
     target: https://confidentialcomputing.io/whitepaper-02-latest
-
-  TEEParch:
-    title: "Trusted Execution Environment Provisioning (TEEP) Architecture"
-    author: M. Pei et.al.
-    org: "IETF"
-    target: https://datatracker.ietf.org/doc/draft-ietf-teep-architecture/
     
 --- abstract
 
@@ -304,7 +298,7 @@ etc.).
 ## Trusted Execution Environment Provisioning
 
 A Trusted Application Manager (TAM) server is responsible
-for managing the applications running in a Trusted Execution Environment (TEE) of a client device, as described in {{TEEParch}}.
+for managing the applications running in a Trusted Execution Environment (TEE) of a client device, as described in {{-teep-arch}}.
 To achieve its purpose, the TAM needs to assess the state of a TEE, or of applications
 in the TEE, of a client device.  The TEE conducts Remote Attestation
 Procedures with the TAM, which can
