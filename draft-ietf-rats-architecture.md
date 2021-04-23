@@ -854,7 +854,17 @@ trusts a Verifier that can appraise the trustworthiness of
 information about an Attester.  Such trust might come by the Relying
 Party trusting the Verifier (or its public key) directly, or might
 come by trusting an entity (e.g., a Certificate Authority) that is
-in the Verifier's certificate chain.
+in the Verifier's certificate path.  Such trust
+is expressed by storing one or more "trust anchors" in a secure location
+known as a trust anchor store.
+
+As defined in {{?RFC6024}}, "A trust anchor represents an authoritative entity via a public
+key and associated data.  The public key is used to verify digital
+signatures, and the associated data is used to constrain the types
+of information for which the trust anchor is authoritative."
+The trust anchor may be a certificate or it may be a raw public key
+along with additional data if necessary such as its public key
+algorithm and parameters.
 
 The Relying Party
 might implicitly trust a Verifier, such as in a Verifier/Relying
@@ -911,16 +921,8 @@ The Verifier trusts (or more specifically, the Verifier's security
 policy is written in a way that configures the Verifier to trust) a
 manufacturer, or the manufacturer's hardware, so as to be able to
 appraise the trustworthiness of that manufacturer's devices.  Such trust
-is expressed by storing one or more "trust anchors" in a secure location
-known as a trust anchor store.
-
-As defined in {{?RFC6024}}, "A trust anchor represents an authoritative entity via a public
-key and associated data.  The public key is used to verify digital
-signatures, and the associated data is used to constrain the types
-of information for which the trust anchor is authoritative."
-The Trust Anchor may be a certificate or it may be a raw public key
-along with additional data if necessary such as its public key
-algorithm and parameters.
+is expressed by storing one or more trust anchors in the Verifier's
+trust anchor store.
 
 In a typical solution, a Verifier comes to trust an Attester
 indirectly by having an Endorser (such as a manufacturer) vouch for
@@ -1426,6 +1428,16 @@ the meantime the Attester has been compromised.
 Reordering and dropping attacks are mitigated if the transport provides the ability to detect reordering and drop.
 However, the delay attack described above can't be thwarted in this manner.
 
+## Trust Anchor Protection
+
+As noted in {{trustmodel}}, Verifiers and Relying Parties have trust anchor stores
+that must be secured.  Specifically, a trust anchor store must resist
+modification against unauthorized insertion, deletion, and modification.
+
+If certificates are used as trust anchors, Verifiers and Relying Parties are also
+responsible for validating the entire certificate path up to the trust anchor,
+which includes checking for certificate revocation.  See Section 6 of {{!RFC5280}}
+for details.
 
 # IANA Considerations
 
