@@ -11,7 +11,7 @@ else
 endif
 
 # because "make upload" never works for MCR. Yes, there are better ways.
-VER=07
+VER=12
 IETFUSER=mcr+ietf@sandelman.ca
 mcrsend: draft-ietf-rats-architecture-${VER}.xml
 	curl -S -F "user=${IETFUSER}" -F "xml=@draft-ietf-rats-architecture-${VER}.xml" https://datatracker.ietf.org/api/submit
