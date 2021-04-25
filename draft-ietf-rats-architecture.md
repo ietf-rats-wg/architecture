@@ -392,6 +392,7 @@ or might be programmed into the Relying Party,
 or might be obtained via some other mechanism.
 
 See {{messages}} for further discussion of the conceptual messages shown in {{dataflow}}.
+
 ## Two Types of Environments of an Attester
 
 As shown in {{twotypes-env}}, an Attester consists of at least one Attesting Environment and at least one
