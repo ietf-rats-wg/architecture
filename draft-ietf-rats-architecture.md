@@ -515,7 +515,7 @@ A multi-chassis router setup provides a management point that connects to the Ve
 Typically one router in the group is designated as the main router.
 Other routers in the multi-chassis setup are connected to the main router only via physical network links
 and are therefore managed and appraised via the main router's help.
-In consequence, a multi-chassis router setup is a composite device,
+Consequently, a multi-chassis router setup is a composite device,
 each router is an Attester, and the main router is the lead Attester.
 
 {{composite}} depicts the conceptual data flow for a composite device.
