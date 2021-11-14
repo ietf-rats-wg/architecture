@@ -350,8 +350,6 @@ The FIDO protocol employs remote attestation for this.
 
 The FIDO protocol supports several remote attestation protocols and a mechanism by which new ones can be registered and added. Remote attestation defined by RATS is thus a candidate for use in the FIDO protocol.
 
-Other biometric authentication protocols such as the Chinese IFAA standard and WeChat Pay as well as Google Pay make use of remote attestation in one form or another.
-
 Attester:
 
 : Every FIDO Authenticator contains an Attester.
