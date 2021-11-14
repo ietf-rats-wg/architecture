@@ -156,7 +156,8 @@ The question of how one system can know that another system can be trusted has f
 Systems that have been attested and verified to be in a good state
 (for some value of "good") can improve overall system posture.
 Conversely, systems that cannot be attested and verified to be in a
-good state can be taken out of service, or otherwise flagged for repair.
+good state can be given reduced access or privileges, taken out of
+service, or otherwise flagged for repair.
 
 For example:
 
