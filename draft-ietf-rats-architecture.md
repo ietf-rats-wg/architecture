@@ -208,10 +208,12 @@ Attester and Relying Party roles derived from the use case.
 
 ## Network Endpoint Assessment
 
-Network operators want a trustworthy report that includes identity
+Network operators want trustworthy reports that include identity
 and version information about the hardware and software on the
-machines attached to their network, for purposes such as inventory,
-audit, anomaly detection, record maintenance and/or trending reports (logging).
+machines attached to their network. Examples of reports include
+purposes, such as inventory summaries, audit results, anomaly
+notifications, typically including the maintenance of log records or
+trend reports.
 The network operator may also want a policy
 by which full access is only granted to devices that meet some definition
 of hygiene, and so wants to get Claims about such information and verify
