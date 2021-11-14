@@ -563,7 +563,7 @@ Relying Party:
 
 : A role performed by an entity that depends on the validity of information about an Attester, for purposes of reliably applying application specific actions.  Compare /relying party/ in {{RFC4949}}.
 
-: Consumes: Attestation Results
+: Consumes: Attestation Results, Appraisal Policy for Attestation Results
 
 Verifier:
 
