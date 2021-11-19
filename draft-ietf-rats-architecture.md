@@ -156,7 +156,8 @@ The question of how one system can know that another system can be trusted has f
 Systems that have been attested and verified to be in a good state
 (for some value of "good") can improve overall system posture.
 Conversely, systems that cannot be attested and verified to be in a
-good state can be taken out of service, or otherwise flagged for repair.
+good state can be given reduced access or privileges, taken out of
+service, or otherwise flagged for repair.
 
 For example:
 
@@ -207,10 +208,12 @@ Attester and Relying Party roles derived from the use case.
 
 ## Network Endpoint Assessment
 
-Network operators want a trustworthy report that includes identity
+Network operators want trustworthy reports that include identity
 and version information about the hardware and software on the
-machines attached to their network, for purposes such as inventory,
-audit, anomaly detection, record maintenance and/or trending reports (logging).
+machines attached to their network. Examples of reports include
+purposes, such as inventory summaries, audit results, anomaly
+notifications, typically including the maintenance of log records or
+trend reports.
 The network operator may also want a policy
 by which full access is only granted to devices that meet some definition
 of hygiene, and so wants to get Claims about such information and verify
@@ -346,8 +349,6 @@ For the Relying Party to know that the authentication is trustworthy, the Relyin
 The FIDO protocol employs remote attestation for this.
 
 The FIDO protocol supports several remote attestation protocols and a mechanism by which new ones can be registered and added. Remote attestation defined by RATS is thus a candidate for use in the FIDO protocol.
-
-Other biometric authentication protocols such as the Chinese IFAA standard and WeChat Pay as well as Google Pay make use of remote attestation in one form or another.
 
 Attester:
 
@@ -514,7 +515,7 @@ A multi-chassis router setup provides a management point that connects to the Ve
 Typically one router in the group is designated as the main router.
 Other routers in the multi-chassis setup are connected to the main router only via physical network links
 and are therefore managed and appraised via the main router's help.
-In consequence, a multi-chassis router setup is a composite device,
+Consequently, a multi-chassis router setup is a composite device,
 each router is an Attester, and the main router is the lead Attester.
 
 {{composite}} depicts the conceptual data flow for a composite device.
@@ -562,7 +563,7 @@ Relying Party:
 
 : A role performed by an entity that depends on the validity of information about an Attester, for purposes of reliably applying application specific actions.  Compare /relying party/ in {{RFC4949}}.
 
-: Consumes: Attestation Results
+: Consumes: Attestation Results, Appraisal Policy for Attestation Results
 
 Verifier:
 
@@ -974,7 +975,7 @@ to convey Evidence that is otherwise unprotected (e.g., not signed). Appropriate
 As illustrated in {{-uccs}}, an entity that receives unprotected Evidence via a trusted conveyance channel always takes on the responsibility of vouching for the Evidence's authenticity and freshness.
 If protected Evidence is generated, the Attester's Attesting Environments take on that responsibility.
 In cases where unprotected Evidence is processed by a Verifier, Relying Parties have to trust that the Verifier is capable of handling Evidence in a manner that preserves the Evidence's authenticity and freshness.
-Generating and conveying unprotected Evidence always creates significant risk and the benefits of that approach have to be carefully weighed against potential drawbacks. 
+Generating and conveying unprotected Evidence always creates significant risk and the benefits of that approach have to be carefully weighed against potential drawbacks.
 
 See {{security-considerations}} for discussion on security strength.
 
