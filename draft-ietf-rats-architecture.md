@@ -1002,7 +1002,7 @@ and semantics of any relevant conceptual messages.
 Evidence is a set of Claims about the target environment that reveal operational
 status, health, configuration or construction that have security relevance.
 Evidence is appraised by a Verifier to establish its relevance, compliance, and timeliness.
-Claims need to be collected in a manner that is reliable.
+Claims need to be collected in a manner that is reliable such that a Target Environment cannot lie to the Attesting Environment about its trustworthiness properties.
 Evidence needs to be securely associated with the target environment
 so that the Verifier cannot be tricked into accepting Claims originating
 from a different environment (that may be more trustworthy).
