@@ -1279,10 +1279,10 @@ This information might be particularly interesting to many attackers.
 For example, knowing that a device is
 running a weak version of firmware provides a way to aim attacks better.
 
-Many Claims in Evidence and Attestation Results are potentially
+Many Claims in Evidence, Attestation Results, and Appraisal Policies potentially contain
 Personally Identifying Information (PII) depending on the end-to-end use case of
 the remote attestation procedure.
-Remote attestation that goes up to include containers and applications, e.g., a blood pressure monitor, may further
+Remote attestation that includes containers and applications, e.g., a blood pressure monitor, may further
 reveal details about specific systems or users.
 
 In some cases, an attacker may be able to make inferences about the contents of Evidence
