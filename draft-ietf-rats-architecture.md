@@ -1063,7 +1063,7 @@ A more complex appraisal policy might involve using the information
 provided in the Attestation Result to compare against expected values, or to apply complex analysis
 of other information contained in the Attestation Result.
 
-Thus, Attestation Results can contain privacy sensitive information as discussed in section {{privacy-considerations}}.
+Thus, Attestation Results can contain detailed information about an Attester, which can include privacy sensitive information as discussed in section {{privacy-considerations}}.
 Unlike Evidence, which is often
 very device- and vendor-specific, Attestation Results can be vendor-neutral, if the Verifier
 has a way to generate vendor-agnostic information based on the appraisal of vendor-specific
