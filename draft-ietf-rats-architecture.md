@@ -1290,9 +1290,7 @@ from the resulting effects or timing of the processing.
 For example, an attacker might be able to infer the value of specific Claims if it knew that only certain values were accepted by the Relying Party.
 
 Evidence and Attestation Results are expected to be integrity protected (i.e., either via signing or a secure channel) and optionally might be confidentiality protected via encryption.
-If confidentiality protection of the conceptual messages is omitted or unavailable, the protecting protocols
-that convey Evidence or Attestation Results are responsible for detailing what
-kinds of information are disclosed, and to whom they are exposed.
+If there isn't confidentiality protection of Evidence and Attestation Results, the underlying conveyance protocol should provide these protections.
 
 As Evidence might contain sensitive or confidential information,
 Attesters are responsible for only sending such Evidence to trusted
