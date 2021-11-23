@@ -1063,9 +1063,8 @@ A more complex appraisal policy might involve using the information
 provided in the Attestation Result to compare against expected values, or to apply complex analysis
 of other information contained in the Attestation Result.
 
-Thus, Attestation Results often need to include detailed information about the Attester,
-for use by Relying Parties, much like physical passports and drivers licenses include
-personal information such as name and date of birth.  Unlike Evidence, which is often
+Thus, Attestation Results can contain privacy sensitive information as discussed in section {{privacy-considerations}}.
+Unlike Evidence, which is often
 very device- and vendor-specific, Attestation Results can be vendor-neutral, if the Verifier
 has a way to generate vendor-agnostic information based on the appraisal of vendor-specific
 information in Evidence.  This allows a Relying Party's appraisal policy to be simpler,
