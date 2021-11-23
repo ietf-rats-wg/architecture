@@ -1163,6 +1163,14 @@ considered fresh, meaning they still reflect the latest state of the Attester,
 and that any Attestation Result was generated using the latest Appraisal Policy
 for Evidence.
 
+This section provides a number of details.
+It does not however define any protocol formats, the interactions shown are abstract.
+This section is intended for those creating protocols and solutions to understand the options available to ensure freshness.
+The way in which freshness is provisioned in a protocol is an architectural decision.
+Provisioning of freshness has an impact on the number of needed round trips in a protocol, and therefore must be made very early in the design.
+Different decisions will have significant impacts on resulting interoperability,
+which is why this section goes into sufficient detail such that choices in freshness will be compatible across interacting protocols, such as depicted in {{multievidence_diag}}.
+
 Freshness is assessed based on the Appraisal Policy for Evidence or Attestation Results
 that compares the estimated epoch against an "expiry" threshold defined locally to that policy.
 There is, however, always a
