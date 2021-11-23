@@ -1158,7 +1158,7 @@ considered fresh, meaning they still reflect the latest state of the Attester,
 and that any Attestation Result was generated using the latest Appraisal Policy
 for Evidence.
 
-This section appears very detailed.
+This section provides a number of details.
 It does not however define any protocol formats, the interactions shown are abstract.
 This section is intended for those creating protocols and solutions to understand the options available to ensure freshness.
 The way in which freshness is provisioned in a protocol is an architectural decision.
