@@ -678,7 +678,7 @@ retains control of the resulting passport document and presents it to other enti
 when it needs to assert a citizenship or identity Claim, such as an airport immigration
 desk. The passport is considered sufficient because it vouches for the citizenship and
 identity Claims, and it is issued by a trusted authority. Thus, in this immigration
-desk analogy, the citizen is the Attester, the passport issuing agency is a Verifier, 
+desk analogy, the citizen is the Attester, the passport issuing agency is a Verifier,
 the passport application and identifying information (e.g., birth certificate) is the
 the Evidence, the passport is an Attestation Result, and the immigration desk is a Relying Party.
 
