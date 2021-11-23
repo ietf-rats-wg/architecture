@@ -678,13 +678,15 @@ retains control of the resulting passport document and presents it to other enti
 when it needs to assert a citizenship or identity Claim, such as an airport immigration
 desk. The passport is considered sufficient because it vouches for the citizenship and
 identity Claims, and it is issued by a trusted authority. Thus, in this immigration
-desk analogy, the passport issuing agency is a Verifier, the passport is an Attestation
-Result, and the immigration desk is a Relying Party.
+desk analogy, the citizen is the Attester, the passport issuing agency is a Verifier, 
+the passport application and identifying information (e.g., birth certificate) is the
+the Evidence, the passport is an Attestation Result, and the immigration desk is a Relying Party.
 
 In this model, an Attester conveys Evidence to a Verifier, which compares
 the Evidence against its appraisal policy.  The Verifier then gives back
-an Attestation Result.
-If the Attestation Result was a successful one, the Attester
+an Attestation Result which the Attester treats as opaque data.
+The Attester does not consume the Attestation Result, but might cache it.
+The Attester
 can then present the Attestation Result (and possibly additional Claims)
 to a Relying Party, which then compares this information against its own
 appraisal policy.
@@ -697,8 +699,9 @@ Three ways in which the process may fail include:
 
 * The third way is when the Verifier is unreachable or unavailable.
 
-Since the resource access protocol between the Attester and Relying Party
-includes an Attestation Result, in this model the details of that protocol
+As with any other information needed by the Relying Party to make an authorization decision,
+an Attestation Result can be carried in a resource access protocol between the Attester and Relying Party.
+In this model the details of the resource access protocol
 constrain the serialization format of the Attestation Result. The
 format of the Evidence on the other hand is only constrained by the
 Attester-Verifier remote attestation protocol.
@@ -732,8 +735,8 @@ checks on volunteers in order to determine the volunteer's trustworthiness.
 Thus, in this analogy, a prospective volunteer is an Attester, the organization is the Relying Party,
 and the organization that issues a report is a Verifier.
 
-In this model, an Attester conveys Evidence to a Relying Party, which simply
-passes it on to a Verifier.  The Verifier then compares the Evidence against
+In this model, an Attester conveys Evidence to a Relying Party, which treats it as opaque and simply
+forwards it on to a Verifier.  The Verifier compares the Evidence against
 its appraisal policy, and returns an Attestation Result to the Relying Party.
 The Relying Party then compares the Attestation Result against its own
 appraisal policy.
@@ -853,10 +856,7 @@ the corresponding conceptual messages as defined in this document.
 
 This document covers scenarios for which a Relying Party
 trusts a Verifier that can appraise the trustworthiness of
-information about an Attester.  Such trust might come by the Relying
-Party trusting the Verifier (or its public key) directly, or might
-come by trusting an entity (e.g., a Certificate Authority) that is
-in the Verifier's certificate path.  Such trust
+information about an Attester.  Such trust
 is expressed by storing one or more "trust anchors" in a secure location
 known as a trust anchor store.
 
@@ -868,28 +868,33 @@ The trust anchor may be a certificate or it may be a raw public key
 along with additional data if necessary such as its public key
 algorithm and parameters.
 
-The Relying Party
-might implicitly trust a Verifier, such as in a Verifier/Relying
-Party combination where the Verifier and Relying Party roles are combined.
-Or, for a stronger level of security, the
+Thus, trusting a Verifier might be expressed by having the Relying
+Party store the Verifier's public key or certificate in its trust anchor store, or might
+be expressed by storing the public key or certificate of an entity (e.g., a Certificate Authority) that is
+in the Verifier's certificate path.
+For example, the Relying Party can verify that the Verifier is an expected one by out of band establishment of key material, combined with a protocol like TLS to communicate.
+There is an assumption that between the establishment of the trusted key material and the creation of the Evidence, that the Verifier has not been compromised.
+
+For a stronger level of security, the
 Relying Party might require that the Verifier first provide
 information about itself that the Relying Party can use to assess
 the trustworthiness of the Verifier before accepting its Attestation Results.
+Such process would provide a stronger level of confidence in the correctness of
+the information provided, such as a belief that the authentic Verifier has
+not been compromised by malware.
 
 For example, one explicit way for a Relying Party "A" to establish
-such trust in a Verifier "B", would be for B to first act as an Attester
+such confidence in the correctness of a Verifier "B", would be for B to first act as an Attester
 where A acts as a combined Verifier/Relying Party.  If A then accepts B as
 trustworthy, it can choose to accept B as a Verifier for other Attesters.
-
-As another example, the Relying Party can establish trust in the Verifier by out of band establishment of key material, combined with a protocol like TLS to communicate.
-There is an assumption that between the establishment of the trusted key material and the creation of the Evidence, that the Verifier has not been compromised.
 
 Similarly, the Relying Party also needs to trust the Relying Party Owner
 for providing its Appraisal Policy for Attestation Results, and
 in some scenarios the Relying Party might even require that the
 Relying Party Owner go through a remote attestation procedure with it before the Relying Party will accept
 an updated policy. This can be done similarly to how a Relying Party
-could establish trust in a Verifier as discussed above.
+could establish trust in a Verifier as discussed above, i.e., verifying credentials against a trust anchor store
+and optionally requiring Attestation Results from the Relying Party Owner.
 
 ## Attester
 
