@@ -1301,8 +1301,8 @@ In some cases, an attacker may be able to make inferences about the contents of 
 from the resulting effects or timing of the processing.
 For example, an attacker might be able to infer the value of specific Claims if it knew that only certain values were accepted by the Relying Party.
 
-Evidence and Attestation Results are expected to be integrity protected (i.e., either via signing or a secure channel) and optionally might be confidentiality protected via encryption.
-If there isn't confidentiality protection of Evidence and Attestation Results, the underlying conveyance protocol should provide these protections.
+Conceptual messages carrying sensitive or confidential information are expected to be integrity protected (i.e., either via signing or a secure channel) and optionally might be confidentiality protected via encryption.
+If there isn't confidentiality protection of conceptual messages themselves, the underlying conveyance protocol should provide these protections.
 
 As Evidence might contain sensitive or confidential information,
 Attesters are responsible for only sending such Evidence to trusted
