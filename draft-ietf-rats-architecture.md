@@ -933,7 +933,7 @@ trust anchor store.
 
 In a typical solution, a Verifier comes to trust an Attester
 indirectly by having an Endorser (such as a manufacturer) vouch for the Attester's
-ability to securely generate Evidence through Endorsements (see {{endorsements}}). Endorsement Claims
+ability to securely generate Evidence through Endorsements (see {{endorsements}}). Endorsements
 might describe the ways in which the Attester resists attack, protects secrets and
 measures Target Environments. Consequently, the Endorser's key material is stored in the
 Verifier's trust anchor store so that Endorsements can be included in the Verifier's appraisal.\
