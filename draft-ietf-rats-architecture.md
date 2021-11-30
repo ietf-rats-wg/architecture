@@ -932,9 +932,11 @@ is expressed by storing one or more trust anchors in the Verifier's
 trust anchor store.
 
 In a typical solution, a Verifier comes to trust an Attester
-indirectly by having an Endorser (such as a manufacturer) vouch for
-the Attester's ability to securely generate Evidence, in which case
-the Endorser's key material is stored in the Verifier's trust anchor store.
+indirectly by having an Endorser (such as a manufacturer) vouch for the Attester's
+ability to securely generate Evidence through Endorsements (see {{endorsements}}). Endorsements
+might describe the ways in which the Attester resists attack, protects secrets and
+measures Target Environments. Consequently, the Endorser's key material is stored in the
+Verifier's trust anchor store so that Endorsements can be authenticated and used in the Verifier's appraisal process.
 
 In some solutions, a Verifier might be configured to directly
 trust an Attester by having the Verifier have the Attester's key
@@ -1016,7 +1018,7 @@ change or misdirect Evidence as it travels from Attester to Verifier.
 The timeliness of Evidence can be captured using Claims that pinpoint the time
 or interval when changes in operational status, health, and so forth occur.
 
-## Endorsements
+## Endorsements {#endorsements}
 
 An Endorsement is a secure statement that some entity (e.g., a manufacturer) vouches for the integrity of the
 device's signing capability.  For example, if the signing capability is in hardware, then
