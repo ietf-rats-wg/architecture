@@ -936,7 +936,7 @@ indirectly by having an Endorser (such as a manufacturer) vouch for the Attester
 ability to securely generate Evidence through Endorsements (see {{endorsements}}). Endorsements
 might describe the ways in which the Attester resists attack, protects secrets and
 measures Target Environments. Consequently, the Endorser's key material is stored in the
-Verifier's trust anchor store so that Endorsements can be included in the Verifier's appraisal.\
+Verifier's trust anchor store so that Endorsements can be authenticated and used in the Verifier's appraisal process.
 
 In some solutions, a Verifier might be configured to directly
 trust an Attester by having the Verifier have the Attester's key
