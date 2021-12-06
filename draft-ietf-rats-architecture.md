@@ -1393,7 +1393,8 @@ maintain confidentiality of the public key: however integrity of the chain of cu
 To summarize: attestation key provisioning must ensure that only valid attestation key material is established in Attesters.
 
 ## Integrity Protection
-Any solution that conveys information in any conceptual message (see {{messages}}) 
+
+Any solution that conveys information in any conceptual message (see {{messages}})
 must support end-to-end integrity protection
 and replay attack prevention, and often also needs to support additional
 security properties, including:
@@ -1414,7 +1415,7 @@ whether it is mutable software, or firmware that is read-only after
 boot, or immutable hardware/ROM.
 
 It is also important that the appraisal policy was itself obtained securely.
-If an attacker can configure appraisal policies for a Relying Party or for a Verifier, then integrity of the process is compromised.
+If an attacker can configure or modify appraisal policies, Endorsements or Reference Values for a Relying Party or for a Verifier, then integrity of the process is compromised.
 
 Security protections in RATS may be applied at different layers, whether by a conveyance protocol, or an information encoding format.
 This architecture expects conceptual messages to be end-to-end protected based on the role interaction context.
