@@ -1367,7 +1367,8 @@ One way to provision key material is to first generate it external to the device
 In this case, confidentiality protection of the generator, as well as for the path over which the key is provisioned, is necessary.
 The manufacturer needs to take care to protect corresponding key material with measures appropriate for its value.
 
-The degree of protection afforded to this key material can vary by device, based upon considerations as to a cost/benefit evaluation of the intended function of the device.
+The degree of protection afforded to this key material can vary by the intended
+function of the device and the specific practices of the device manufacturer or integrator.
 The confidentiality protection is fundamentally based upon some amount of physical protection: while encryption is often used to provide confidentiality when a key is conveyed across a factory, where the attestation key is created or applied, it must be available in an unencrypted form.
 The physical protection can therefore vary from situations where the key is unencrypted only within carefully controlled secure enclaves within silicon, to situations where an entire facility is considered secure,
 by the simple means of locked doors and limited access.
