@@ -1332,6 +1332,9 @@ Some threats apply to protocols, some are against implementations (code), and so
 
 The fundamental purpose of the RATS architecture is to allow a Relying Party to establish a basis for trusting the Attester.
 
+In some circumstances, if an attacker can become aware of appraisal policies, it could potentially provide an attacker with insight into defensive mitigations.
+It is recommended that attention be paid to confidentiality of policies.
+
 ## Attester and Attestation Key Protection
 
 Implementers need to pay close attention to the protection of the Attester and the manufacturing processes for provisioning attestation key material. If either of these are compromised, intended levels of assurance for RATS are compromised because attackers can forge Evidence or manipulate the Attesting Environment.
