@@ -352,7 +352,7 @@ The FIDO protocol supports several remote attestation protocols and a mechanism 
 
 Attester:
 
-: FIDO Authenticator
+: FIDO Authenticator.
 
 Relying Party:
 
