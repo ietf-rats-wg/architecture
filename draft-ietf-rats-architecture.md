@@ -1303,7 +1303,7 @@ In some cases, an attacker may be able to make inferences about the contents of 
 from the resulting effects or timing of the processing.
 For example, an attacker might be able to infer the value of specific Claims if it knew that only certain values were accepted by the Relying Party.
 
-Conceptual messages carrying sensitive or confidential information are expected to be integrity protected (i.e., either via signing or a secure channel) and optionally might be confidentiality protected via encryption.
+Conceptual messages (see {{messages}}) carrying sensitive or confidential information are expected to be integrity protected (i.e., either via signing or a secure channel) and optionally might be confidentiality protected via encryption.
 If there isn't confidentiality protection of conceptual messages themselves, the underlying conveyance protocol should provide these protections.
 
 As Evidence might contain sensitive or confidential information,
@@ -1386,9 +1386,8 @@ maintain confidentiality of the public key: however integrity of the chain of cu
 To summarize: attestation key provisioning must ensure that only valid attestation key material is established in Attesters.
 
 ## Integrity Protection
-Any solution that conveys information used for security purposes, whether
-such information is in the form of Evidence, Attestation Results,
-Endorsements, or appraisal policy must support end-to-end integrity protection
+Any solution that conveys information in any conceptual message (see {{messages}}) 
+must support end-to-end integrity protection
 and replay attack prevention, and often also needs to support additional
 security properties, including:
 
@@ -1411,7 +1410,7 @@ It is also important that the appraisal policy was itself obtained securely.
 If an attacker can configure appraisal policies for a Relying Party or for a Verifier, then integrity of the process is compromised.
 
 Security protections in RATS may be applied at different layers, whether by a conveyance protocol, or an information encoding format.
-This architecture expects conceptual messages (see {{messages}}) to be end-to-end protected based on the role interaction context.
+This architecture expects conceptual messages to be end-to-end protected based on the role interaction context.
 For example, if an Attester produces Evidence that is relayed through some other entity that doesn't implement the Attester or the intended Verifier roles, then the relaying entity should not expect to have access to the Evidence.
 
 ## Epoch ID-based Attestation {#epochids-sec}
