@@ -588,7 +588,7 @@ Verifier Owner:
 
 Endorser:
 
-: A role performed by an entity (typically a manufacturer) whose Endorsements help Verifiers appraise the authenticity of Evidence.
+: A role performed by an entity (typically a manufacturer) whose Endorsements may help Verifiers appraise the authenticity of Evidence and infer further capabilities of the Attester.
 
 : Produces: Endorsements
 
@@ -1021,7 +1021,7 @@ or interval when changes in operational status, health, and so forth occur.
 ## Endorsements {#endorsements}
 
 An Endorsement is a secure statement that some entity (e.g., a manufacturer) vouches for the integrity of the
-device's signing capability.  For example, if the signing capability is in hardware, then
+device's various capabilities such as claims collection, signing, launching code, transitioning to other environments, storing secrets, and more.  For example, if the device's signing capability is in hardware, then
 an Endorsement might be a manufacturer certificate that signs a public key whose corresponding
 private key is only known inside the device's hardware.  Thus, when Evidence and such an Endorsement
 are used together, an appraisal procedure can be conducted based on appraisal policies that may not be specific to the
