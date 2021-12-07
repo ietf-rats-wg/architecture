@@ -1286,14 +1286,19 @@ For a discussion on the security of epoch IDs see {{epochids-sec}}.
 The conveyance of Evidence and the resulting Attestation Results
 reveal a great deal of information about the internal state of a
 device as well as potentially any users of the device.
+
 In many cases, the whole point of attestation procedures is
 to provide reliable information about the type of the device and the
 firmware/software that the device is running.
+
 This information might be particularly interesting to many attackers.
 For example, knowing that a device is
 running a weak version of firmware provides a way to aim attacks better.
 
-Many Claims in Evidence, many Claims in Attestation Results, and Appraisal Policies potentially contain
+In some circumstances, if an attacker can become aware of appraisal policies, it could potentially provide an attacker with insight into defensive mitigations.
+It is recommended that attention be paid to confidentiality of policies.
+
+Additionally, many Claims in Evidence, many Claims in Attestation Results, and Appraisal Policies potentially contain
 Personally Identifying Information (PII) depending on the end-to-end use case of
 the remote attestation procedure.
 Remote attestation that includes containers and applications, e.g., a blood pressure monitor, may further
@@ -1331,9 +1336,6 @@ The security considerations below should be read as being essentially requiremen
 Some threats apply to protocols, some are against implementations (code), and some threats are against physical infrastructure (such as factories).
 
 The fundamental purpose of the RATS architecture is to allow a Relying Party to establish a basis for trusting the Attester.
-
-In some circumstances, if an attacker can become aware of appraisal policies, it could potentially provide an attacker with insight into defensive mitigations.
-It is recommended that attention be paid to confidentiality of policies.
 
 ## Attester and Attestation Key Protection
 
