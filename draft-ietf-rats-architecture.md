@@ -1446,7 +1446,7 @@ However, the delay attack described above can't be thwarted in this manner.
 
 As noted in {{trustmodel}}, Verifiers and Relying Parties have trust anchor stores
 that must be secured.
-{{RFC6024}} contains more discussion of trust anchor store requirements.
+{{?RFC6024}} contains more discussion of trust anchor store requirements.
 Specifically, a trust anchor store must resist modification against unauthorized insertion, deletion, and modification.
 
 If certificates are used as trust anchors, Verifiers and Relying Parties are also
