@@ -588,7 +588,7 @@ Verifier Owner:
 
 Endorser:
 
-: A role performed by an entity (typically a manufacturer) whose Endorsements help Verifiers appraise the authenticity of Evidence.
+: A role performed by an entity (typically a manufacturer) whose Endorsements may help Verifiers appraise the authenticity of Evidence and infer further capabilities of the Attester.
 
 : Produces: Endorsements
 
@@ -1021,7 +1021,7 @@ or interval when changes in operational status, health, and so forth occur.
 ## Endorsements {#endorsements}
 
 An Endorsement is a secure statement that some entity (e.g., a manufacturer) vouches for the integrity of the
-device's signing capability.  For example, if the signing capability is in hardware, then
+device's various capabilities such as claims collection, signing, launching code, transitioning to other environments, storing secrets, and more.  For example, if the device's signing capability is in hardware, then
 an Endorsement might be a manufacturer certificate that signs a public key whose corresponding
 private key is only known inside the device's hardware.  Thus, when Evidence and such an Endorsement
 are used together, an appraisal procedure can be conducted based on appraisal policies that may not be specific to the
@@ -1303,7 +1303,7 @@ In some cases, an attacker may be able to make inferences about the contents of 
 from the resulting effects or timing of the processing.
 For example, an attacker might be able to infer the value of specific Claims if it knew that only certain values were accepted by the Relying Party.
 
-Conceptual messages carrying sensitive or confidential information are expected to be integrity protected (i.e., either via signing or a secure channel) and optionally might be confidentiality protected via encryption.
+Conceptual messages (see {{messages}}) carrying sensitive or confidential information are expected to be integrity protected (i.e., either via signing or a secure channel) and optionally might be confidentiality protected via encryption.
 If there isn't confidentiality protection of conceptual messages themselves, the underlying conveyance protocol should provide these protections.
 
 As Evidence might contain sensitive or confidential information,
@@ -1371,7 +1371,8 @@ One way to provision key material is to first generate it external to the device
 In this case, confidentiality protection of the generator, as well as for the path over which the key is provisioned, is necessary.
 The manufacturer needs to take care to protect corresponding key material with measures appropriate for its value.
 
-The degree of protection afforded to this key material can vary by device, based upon considerations as to a cost/benefit evaluation of the intended function of the device.
+The degree of protection afforded to this key material can vary by the intended
+function of the device and the specific practices of the device manufacturer or integrator.
 The confidentiality protection is fundamentally based upon some amount of physical protection: while encryption is often used to provide confidentiality when a key is conveyed across a factory, where the attestation key is created or applied, it must be available in an unencrypted form.
 The physical protection can therefore vary from situations where the key is unencrypted only within carefully controlled secure enclaves within silicon, to situations where an entire facility is considered secure,
 by the simple means of locked doors and limited access.
@@ -1390,9 +1391,8 @@ maintain confidentiality of the public key: however integrity of the chain of cu
 To summarize: attestation key provisioning must ensure that only valid attestation key material is established in Attesters.
 
 ## Integrity Protection
-Any solution that conveys information used for security purposes, whether
-such information is in the form of Evidence, Attestation Results,
-Endorsements, or appraisal policy must support end-to-end integrity protection
+Any solution that conveys information in any conceptual message (see {{messages}}) 
+must support end-to-end integrity protection
 and replay attack prevention, and often also needs to support additional
 security properties, including:
 
@@ -1415,7 +1415,7 @@ It is also important that the appraisal policy was itself obtained securely.
 If an attacker can configure appraisal policies for a Relying Party or for a Verifier, then integrity of the process is compromised.
 
 Security protections in RATS may be applied at different layers, whether by a conveyance protocol, or an information encoding format.
-This architecture expects conceptual messages (see {{messages}}) to be end-to-end protected based on the role interaction context.
+This architecture expects conceptual messages to be end-to-end protected based on the role interaction context.
 For example, if an Attester produces Evidence that is relayed through some other entity that doesn't implement the Attester or the intended Verifier roles, then the relaying entity should not expect to have access to the Evidence.
 
 ## Epoch ID-based Attestation {#epochids-sec}
