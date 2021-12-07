@@ -1326,8 +1326,11 @@ This approach is often called "Direct Anonymous Attestation".  See
 This document provides an architecture for doing remote attestation.
 No specific wire protocol is documented here.
 Without a specific proposal to compare against, it is impossible to know if the security threats listed below have been mitigated well.
+
 The security considerations below should be read as being essentially requirements against realizations of the RATS Architecture.
 Some threats apply to protocols, some are against implementations (code), and some threats are against physical infrastructure (such as factories).
+
+The fundamental purpose of the RATS architecture is to allow a Relying Party to establish a basis for trusting the Attester.
 
 ## Attester and Attestation Key Protection
 
@@ -1349,7 +1352,6 @@ The Attesting Environment must be protected from unauthorized modification to en
 
 In many cases the user or owner of a device that includes the role of Attester must not be able to modify or extract keys from the Attesting Environments, to prevent creating forged Evidence.
 Some common examples include the user of a mobile phone or FIDO authenticator.
-An essential value-add provided by RATS is for the Relying Party to be able to trust the Attester even if the user or owner is not trusted.
 
 Measures for a minimally protected system might include process or application isolation provided by a high-level operating system, and restricted access to root or system privileges. In contrast, For really simple single-use devices that don't use a protected mode operating system, like a Bluetooth speaker, the only factual isolation might be the sturdy housing of the device.
 
