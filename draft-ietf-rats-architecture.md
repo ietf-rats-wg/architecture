@@ -1296,7 +1296,7 @@ For example, knowing that a device is
 running a weak version of firmware provides a way to aim attacks better.
 
 In some circumstances, if an attacker can become aware of Endorsements, Reference Values, or appraisal policies, it could potentially provide an attacker with insight into defensive mitigations.
-It is recommended that attention be paid to confidentiality of policies.
+It is recommended that attention be paid to confidentiality of such information.
 
 Additionally, many Claims in Evidence, many Claims in Attestation Results, and Appraisal Policies potentially contain
 Personally Identifying Information (PII) depending on the end-to-end use case of
