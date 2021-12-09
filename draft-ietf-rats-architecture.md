@@ -1286,14 +1286,19 @@ For a discussion on the security of epoch IDs see {{epochids-sec}}.
 The conveyance of Evidence and the resulting Attestation Results
 reveal a great deal of information about the internal state of a
 device as well as potentially any users of the device.
+
 In many cases, the whole point of attestation procedures is
 to provide reliable information about the type of the device and the
 firmware/software that the device is running.
+
 This information might be particularly interesting to many attackers.
 For example, knowing that a device is
 running a weak version of firmware provides a way to aim attacks better.
 
-Many Claims in Evidence, many Claims in Attestation Results, and Appraisal Policies potentially contain
+In some circumstances, if an attacker can become aware of Endorsements, Reference Values, or appraisal policies, it could potentially provide an attacker with insight into defensive mitigations.
+It is recommended that attention be paid to confidentiality of such information.
+
+Additionally, many Claims in Evidence, many Claims in Attestation Results, and appraisal policies potentially contain
 Personally Identifying Information (PII) depending on the end-to-end use case of
 the remote attestation procedure.
 Remote attestation that includes containers and applications, e.g., a blood pressure monitor, may further
@@ -1393,7 +1398,8 @@ maintain confidentiality of the public key: however integrity of the chain of cu
 To summarize: attestation key provisioning must ensure that only valid attestation key material is established in Attesters.
 
 ## Integrity Protection
-Any solution that conveys information in any conceptual message (see {{messages}}) 
+
+Any solution that conveys information in any conceptual message (see {{messages}})
 must support end-to-end integrity protection
 and replay attack prevention, and often also needs to support additional
 security properties, including:
@@ -1414,7 +1420,7 @@ whether it is mutable software, or firmware that is read-only after
 boot, or immutable hardware/ROM.
 
 It is also important that the appraisal policy was itself obtained securely.
-If an attacker can configure appraisal policies for a Relying Party or for a Verifier, then integrity of the process is compromised.
+If an attacker can configure or modify appraisal policies, Endorsements or Reference Values for a Relying Party or for a Verifier, then integrity of the process is compromised.
 
 Security protections in RATS may be applied at different layers, whether by a conveyance protocol, or an information encoding format.
 This architecture expects conceptual messages to be end-to-end protected based on the role interaction context.
