@@ -137,6 +137,22 @@ informative:
     title: "Confidential Computing Deep Dive"
     target: https://confidentialcomputing.io/whitepaper-02-latest
 
+  TCG-DICE-SIBDA:
+    author:
+      org: "Trusted Computing Group"
+    title: "Symmetric Identity Based Device Attestation for DICE"
+    target: "https://trustedcomputinggroup.org/wp-content/uploads/TCG_DICE_SymIDAttest_v1_r0p94_pubrev.pdf"
+    date: 2019-07-24
+  NIST-800-57-p1:
+    author:
+      ins: E. Barker
+      name: Elaine Barker
+      org: NIST
+    title: "Recommendation for Key Managemement: Part 1 - General"
+    target: "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf"
+    date: May 2020
+
+
 --- abstract
 
 In network protocol exchanges it is often useful for one end of a
@@ -867,9 +883,12 @@ of information for which the trust anchor is authoritative."
 The trust anchor may be a certificate or it may be a raw public key
 along with additional data if necessary such as its public key
 algorithm and parameters.
+In the context of this document, a trust anchor may also be a symmetric key, as
+in {{TCG-DICE-SIBDA}} or the symmetric mode described in
+{{?I-D.tschofenig-rats-psa-token}}.
 
 Thus, trusting a Verifier might be expressed by having the Relying
-Party store the Verifier's public key or certificate in its trust anchor store, or might
+Party store the Verifier's key or certificate in its trust anchor store, or might
 be expressed by storing the public key or certificate of an entity (e.g., a Certificate Authority) that is
 in the Verifier's certificate path.
 For example, the Relying Party can verify that the Verifier is an expected one by out of band establishment of key material, combined with a protocol like TLS to communicate.
@@ -1458,8 +1477,13 @@ However, the delay attack described above can't be thwarted in this manner.
 
 As noted in {{trustmodel}}, Verifiers and Relying Parties have trust anchor stores
 that must be secured.
-{{?RFC6024}} contains more discussion of trust anchor store requirements.
+{{?RFC6024}} contains more discussion of trust anchor store requirements
+for protecting public keys.
+Section 6 of {{NIST-800-57-p1}} contains a comprehensive treatment of the
+topic, including the protection of symmetric key material.
 Specifically, a trust anchor store must resist modification against unauthorized insertion, deletion, and modification.
+Besides, if the trust anchor is a symmetric key, the trust anchor store must
+not allow unauthorized read.
 
 If certificates are used as trust anchors, Verifiers and Relying Parties are also
 responsible for validating the entire certificate path up to the trust anchor,
