@@ -1482,7 +1482,7 @@ for protecting public keys.
 Section 6 of {{NIST-800-57-p1}} contains a comprehensive treatment of the
 topic, including the protection of symmetric key material.
 Specifically, a trust anchor store must resist modification against unauthorized insertion, deletion, and modification.
-Besides, if the trust anchor is a symmetric key, the trust anchor store must
+Additionally, if the trust anchor is a symmetric key, the trust anchor store must
 not allow unauthorized read.
 
 If certificates are used as trust anchors, Verifiers and Relying Parties are also
