@@ -1159,7 +1159,7 @@ a different format.
 
 A Verifier or Relying Party might need to learn the point in time
 (i.e., the "epoch") an Evidence or Attestation Result has been produced.  This
-is essential in deciding whether the included Claims and their values can be
+is essential in deciding whether the included Claims can be
 considered fresh, meaning they still reflect the latest state of the Attester,
 and that any Attestation Result was generated using the latest Appraisal Policy
 for Evidence.
