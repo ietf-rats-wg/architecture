@@ -222,7 +222,7 @@ Remote attestation is desired to prevent vulnerable or
 compromised devices from getting access to the network and potentially
 harming others.
 
-Typically, a trustworthy solution starts with a specific component (sometimes referred to as the root of trust) that often
+Typically, a trustworthy solution starts with a specific component (sometimes referred to as a root of trust) that often
 provides trustworthy device identity, and performs a series of operations that enables trustworthiness appraisals for other components.
 The trusted components perform operations that help determine the trustworthiness of yet other components,
 such as collecting, protecting or signing measurements.
