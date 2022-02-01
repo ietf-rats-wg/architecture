@@ -465,7 +465,7 @@ The example device illustrated in {{layered}} includes (A) a BIOS stored in read
 ~~~~
 {:layered #layered title="Layered Attester"}
 
-The first Attesting Environment, the read-only BIOS in this example,
+The first Attesting Environment, the ROM in this example,
 has to ensure the integrity of the bootloader (the first Target Environment).
 There are
 potentially multiple kernels to boot, and the decision is up to the bootloader.
