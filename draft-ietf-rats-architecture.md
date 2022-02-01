@@ -227,7 +227,7 @@ provides trustworthy device identity, and performs a series of operations that e
 Such components perform operations that help determine the trustworthiness of yet other components,
 by collecting, protecting or signing measurements.
 Measurements that have been signed by such components comprise Evidence that either supports or contradicts a claim of trustworthiness.
-Measurements can describe a variety of component attributes, such as hardware, firmware, BIOS, software, etc.
+Measurements can describe a variety of attributes of system components, such as hardware, firmware, BIOS, software, etc.
 
 Attester:
 
