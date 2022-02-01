@@ -223,10 +223,10 @@ compromised devices from getting access to the network and potentially
 harming others.
 
 Typically, a trustworthy solution starts with a specific component (sometimes referred to as the root of trust) that often
-provides trustworthy device identity, and performs a series of operations that enables trustworthiness appraisals for other components. 
-The trusted components perform operations that help determine the trustworthiness of yet other components, 
-such as collecting, protecting or signing measurements. 
-Measurements that have been signed by a trusted component is Evidence that either supports or contradicts a claim of trustworthiness. 
+provides trustworthy device identity, and performs a series of operations that enables trustworthiness appraisals for other components.
+The trusted components perform operations that help determine the trustworthiness of yet other components,
+such as collecting, protecting or signing measurements.
+Measurements that have been signed by a trusted component is Evidence that either supports or contradicts a claim of trustworthiness.
 Measurements can describe a variety of component attributes, such as hardware, firmware, BIOS, software, etc.
 
 Attester:
