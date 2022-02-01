@@ -977,7 +977,7 @@ to convey Evidence that is otherwise unprotected (e.g., not signed). Appropriate
 
    1. The key material used to authenticate and integrity protect the conveyance channel is trusted by the Verifier to speak for the Attesting Environment(s) that collected Claims about the Target Environment(s).
    2. All unprotected Evidence that is conveyed is supplied exclusively by the Attesting Environment that has the key material that protects the conveyance channel
-   3. A trusted environment protects the conveyance channel key material which may depend on other Attesting Environments with equivalent strength protections.
+   3. A trusted environment protects the conveyance channel's key material which may depend on other Attesting Environments with equivalent strength protections.
 
 As illustrated in {{-uccs}}, an entity that receives unprotected Evidence via a trusted conveyance channel always takes on the responsibility of vouching for the Evidence's authenticity and freshness.
 If protected Evidence is generated, the Attester's Attesting Environments take on that responsibility.
