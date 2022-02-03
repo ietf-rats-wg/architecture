@@ -424,6 +424,17 @@ requires another component to feed various values to the TPM.
 Thus, an Attesting Environment in such a case would be the combination
 of the TPM together with whatever component is feeding it the measurements.
 
+## Environment Interactions
+
+As explained in the sections below, the Attesting Environment may be arbitrarily complex.
+It may be distributed in various ways, or may depend upon other environments that collect claims on the environment itself as part of the process.
+
+{:other-attesting-env: artwork-align="center"}
+~~~~ OTHERATTESTING
+{::include other-attesting-env.txt}
+~~~~
+{:other-attesting-env #other-types-env title="Attesting Environments may collaborate"}
+
 ## Layered Attestation Environments {#layered-attestation}
 
 By definition, the Attester role generates Evidence.
@@ -545,12 +556,6 @@ Endorsements and appraisal policies (obtained the same way as by any other
 Verifier) as part of the appraisal procedures that generate Attestation Results.
 The inside Verifier then conveys the Attestation Results of other Attesters to the outside Verifier,
 whether in the same conveyance protocol as part of the Evidence or not.
-
-{:other-attesting-env: artwork-align="center"}
-~~~~ OTHERATTESTING
-{::include other-attesting-env.txt}
-~~~~
-{:other-attesting-env #other-types-env title="Attesting Environments may collaborate"}
 
 # Terminology {#terminology}
 
