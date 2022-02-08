@@ -1387,7 +1387,7 @@ maintain confidentiality of the public key: however integrity of the chain of cu
 To summarize: attestation key provisioning must ensure that only valid attestation key material is established in Attesters.
 
 ## Integrity Protection
-Any solution that conveys information in any conceptual message (see {{messages}}) 
+Any solution that conveys information in any conceptual message (see {{messages}})
 must support end-to-end integrity protection
 and replay attack prevention, and often also needs to support additional
 security properties, including:
