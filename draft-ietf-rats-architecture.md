@@ -385,22 +385,22 @@ Relying Party:
 ~~~~
 {:dataflow #dataflow title="Conceptual Data Flow"}
 
-The text below summarizes the activities conducted by the roles illustrated in {{dataflow}}.
+The text below summarizes the activities conducted by the roles illustrated in {{dataflow}}. Roles are assigned to entities. Entities are often system components {{RFC4949}}, such as devices. As the term device is typically more intuitive than the term entity, device is often used as a illustrative synonym for entity throughout this document.
 
-An Attester creates Evidence that is conveyed to a Verifier.
+The Attester role is assigned to entities that creates Evidence that is conveyed to a Verifier.
 
-A Verifier uses the Evidence, any Reference Values from Reference Value Providers, and any Endorsements from Endorsers,
+The Verifier role is assigned to entities that uses the Evidence, any Reference Values from Reference Value Providers, and any Endorsements from Endorsers,
 by applying an Appraisal Policy for Evidence to assess the trustworthiness of the Attester.
 This procedure is called the appraisal of Evidence.
 
-Subsequently, the Verifier generates Attestation Results for use by Relying Parties.
+Subsequently, the Verifier role generates Attestation Results for use by Relying Parties.
 
 The Appraisal Policy for Evidence might be obtained from the Verifier Owner via some protocol mechanism,
 or might be configured into the Verifier by the Verifier Owner,
 or might be programmed into the Verifier,
 or might be obtained via some other mechanism.
 
-A Relying Party uses Attestation Results by applying its own
+The Relying Party role is assigned to entities that uses Attestation Results by applying its own
 appraisal policy to make application-specific decisions, such as authorization decisions.
 This procedure is called the appraisal of Attestation Results.
 
@@ -409,13 +409,13 @@ or might be configured into the Relying Party by the Relying Party Owner,
 or might be programmed into the Relying Party,
 or might be obtained via some other mechanism.
 
-See {{messages}} for further discussion of the conceptual messages shown in {{dataflow}}.
+See {{messages}} for further discussion of the conceptual messages shown in {{dataflow}}. Section {{#terminology}} provides a more formal definition of all RATS roles.
 
 ## Two Types of Environments of an Attester
 
 As shown in {{twotypes-env}}, an Attester consists of at least one Attesting Environment and at least one
-Target Environment.
-In some implementations, the Attesting and Target Environments might be combined.
+Target Environment co-located in one entity.
+In some implementations, the Attesting and Target Environments might be combined into one environment.
 Other implementations might have multiple Attesting and Target Environments,
 such as in the examples described in more detail in {{layered-attestation}}
 and {{compositedevice}}.  Other examples may exist. All compositions of Attesting and Target Environments discussed in this architecture can be combined into more complex implementations.
@@ -456,7 +456,7 @@ The corresponding Claims can be structured in a nested fashion that reflects the
 Normally, Claims are not self-asserted, rather a previous layer acts as the Attesting Environment for the next layer.
 Claims about an initial layer typically are asserted by an Endorser.
 
-The example device illustrated in {{layered}} includes (A) a BIOS stored in read-only memory,
+The example Attester illustrated in {{layered}} is a device that includes (A) a BIOS stored in read-only memory,
 (B) a bootloader, and (C) an operating system kernel.
 
 {:layered: artwork-align="center"}
