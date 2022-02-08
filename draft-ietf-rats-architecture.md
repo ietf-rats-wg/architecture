@@ -109,6 +109,7 @@ informative:
   I-D.birkholz-rats-tuda: rats-tuda
   I-D.birkholz-rats-uccs: uccs
   I-D.ietf-teep-architecture: teep-arch
+  I-D.ietf-rats-daa: daa
   TCGarch:
     title: "Trusted Platform Module Library - Part 1: Architecture"
     author:
@@ -1319,7 +1320,7 @@ an Attestation Result for any other purpose.
 Another approach to deal with Evidence is to remove PII from the Evidence
 while still being able to verify that the Attester is one of a large set.
 This approach is often called "Direct Anonymous Attestation".  See
-{{CCC-DeepDive}} section 6.2 for more discussion.
+{{CCC-DeepDive}} section 6.2 and {{I-D.ietf-rats-daa}} for more discussion.
 
 # Security Considerations {#security-considerations}
 
