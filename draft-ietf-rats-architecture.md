@@ -388,9 +388,9 @@ Relying Party:
 The text below summarizes the activities conducted by the roles illustrated in {{dataflow}}. 
 Roles are assigned to entities. Entities are often system components {{RFC4949}}, such as devices. As the term device is typically more intuitive than the term entity or system component, device is often used as a illustrative synonym throughout this document.
 
-The Attester role is assigned to entities that creates Evidence that is conveyed to a Verifier.
+The Attester role is assigned to entities that create Evidence that is conveyed to a Verifier.
 
-The Verifier role is assigned to entities that uses the Evidence, any Reference Values from Reference Value Providers, and any Endorsements from Endorsers,
+The Verifier role is assigned to entities that use the Evidence, any Reference Values from Reference Value Providers, and any Endorsements from Endorsers,
 by applying an Appraisal Policy for Evidence to assess the trustworthiness of the Attester.
 This procedure is called the appraisal of Evidence.
 
@@ -410,7 +410,8 @@ or might be configured into the Relying Party by the Relying Party Owner,
 or might be programmed into the Relying Party,
 or might be obtained via some other mechanism.
 
-See {{messages}} for further discussion of the conceptual messages shown in {{dataflow}}. Section {{terminology}} provides a more formal definition of all RATS roles.
+See {{messages}} for further discussion of the conceptual messages shown in {{dataflow}}.
+Section {{terminology}} provides a more complete definition of all RATS roles.
 
 ## Two Types of Environments of an Attester
 
