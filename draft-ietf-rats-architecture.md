@@ -409,7 +409,7 @@ or might be configured into the Relying Party by the Relying Party Owner,
 or might be programmed into the Relying Party,
 or might be obtained via some other mechanism.
 
-See {{messages}} for further discussion of the conceptual messages shown in {{dataflow}}. Section {{#terminology}} provides a more formal definition of all RATS roles.
+See {{messages}} for further discussion of the conceptual messages shown in {{dataflow}}. Section {{terminology}} provides a more formal definition of all RATS roles.
 
 ## Two Types of Environments of an Attester
 
