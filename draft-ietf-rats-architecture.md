@@ -458,7 +458,7 @@ The corresponding Claims can be structured in a nested fashion that reflects the
 Normally, Claims are not self-asserted, rather a previous layer acts as the Attesting Environment for the next layer.
 Claims about an initial layer typically are asserted by an Endorser.
 
-The example Attester illustrated in {{layered}} is a device that includes (A) a BIOS stored in read-only memory,
+The example device illustrated in {{layered}} includes (A) a BIOS stored in read-only memory,
 (B) a bootloader, and (C) an operating system kernel.
 
 {:layered: artwork-align="center"}
