@@ -138,6 +138,22 @@ informative:
     title: "Confidential Computing Deep Dive"
     target: https://confidentialcomputing.io/whitepaper-02-latest
 
+  TCG-DICE-SIBDA:
+    author:
+      org: "Trusted Computing Group"
+    title: "Symmetric Identity Based Device Attestation for DICE"
+    target: "https://trustedcomputinggroup.org/wp-content/uploads/TCG_DICE_SymIDAttest_v1_r0p94_pubrev.pdf"
+    date: 2019-07-24
+  NIST-800-57-p1:
+    author:
+      ins: E. Barker
+      name: Elaine Barker
+      org: NIST
+    title: "Recommendation for Key Managemement: Part 1 - General"
+    target: "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf"
+    date: May 2020
+
+
 --- abstract
 
 In network protocol exchanges it is often useful for one end of a
@@ -223,11 +239,12 @@ Remote attestation is desired to prevent vulnerable or
 compromised devices from getting access to the network and potentially
 harming others.
 
-Typically, solutions start with a specific component (called a root of trust) that is intended to
-provide trustworthy device identity and protected storage for measurements.
-The system components perform a series of measurements that may be
-signed via functions provided by a root of trust, considered as Evidence about present system components, such as hardware,
-firmware, BIOS, software, etc.
+Typically, a trustworthy solution starts with a specific component (sometimes referred to as a root of trust) that often
+provides trustworthy device identity, and performs a series of operations that enables trustworthiness appraisals for other components.
+Such components perform operations that help determine the trustworthiness of yet other components,
+by collecting, protecting or signing measurements.
+Measurements that have been signed by such components comprise Evidence that when evaluated either supports or refutes a claim of trustworthiness.
+Measurements can describe a variety of attributes of system components, such as hardware, firmware, BIOS, software, etc.
 
 Attester:
 
@@ -353,7 +370,7 @@ The FIDO protocol supports several remote attestation protocols and a mechanism 
 
 Attester:
 
-: Every FIDO Authenticator contains an Attester.
+: FIDO Authenticator.
 
 Relying Party:
 
@@ -369,22 +386,23 @@ Relying Party:
 ~~~~
 {:dataflow #dataflow title="Conceptual Data Flow"}
 
-The text below summarizes the activities conducted by the roles illustrated in {{dataflow}}.
+The text below summarizes the activities conducted by the roles illustrated in {{dataflow}}. 
+Roles are assigned to entities. Entities are often system components {{RFC4949}}, such as devices. As the term device is typically more intuitive than the term entity or system component, device is often used as a illustrative synonym throughout this document.
 
-An Attester creates Evidence that is conveyed to a Verifier.
+The Attester role is assigned to entities that create Evidence that is conveyed to a Verifier.
 
-A Verifier uses the Evidence, any Reference Values from Reference Value Providers, and any Endorsements from Endorsers,
+The Verifier role is assigned to entities that use the Evidence, any Reference Values from Reference Value Providers, and any Endorsements from Endorsers,
 by applying an Appraisal Policy for Evidence to assess the trustworthiness of the Attester.
 This procedure is called the appraisal of Evidence.
 
-Subsequently, the Verifier generates Attestation Results for use by Relying Parties.
+Subsequently, the Verifier role generates Attestation Results for use by Relying Parties.
 
 The Appraisal Policy for Evidence might be obtained from the Verifier Owner via some protocol mechanism,
 or might be configured into the Verifier by the Verifier Owner,
 or might be programmed into the Verifier,
 or might be obtained via some other mechanism.
 
-A Relying Party uses Attestation Results by applying its own
+The Relying Party role is assigned to entities that uses Attestation Results by applying its own
 appraisal policy to make application-specific decisions, such as authorization decisions.
 This procedure is called the appraisal of Attestation Results.
 
@@ -394,12 +412,13 @@ or might be programmed into the Relying Party,
 or might be obtained via some other mechanism.
 
 See {{messages}} for further discussion of the conceptual messages shown in {{dataflow}}.
+Section {{terminology}} provides a more complete definition of all RATS roles.
 
 ## Two Types of Environments of an Attester
 
 As shown in {{twotypes-env}}, an Attester consists of at least one Attesting Environment and at least one
-Target Environment.
-In some implementations, the Attesting and Target Environments might be combined.
+Target Environment co-located in one entity.
+In some implementations, the Attesting and Target Environments might be combined into one environment.
 Other implementations might have multiple Attesting and Target Environments,
 such as in the examples described in more detail in {{layered-attestation}}
 and {{compositedevice}}.  Other examples may exist. All compositions of Attesting and Target Environments discussed in this architecture can be combined into more complex implementations.
@@ -431,15 +450,14 @@ of the TPM together with whatever component is feeding it the measurements.
 By definition, the Attester role generates Evidence.
 An Attester may consist of one or
 more nested environments (layers).
-The root layer of an Attester includes at least one root of trust.
-In order to appraise Evidence generated by an Attester, the Verifier needs to trust the Attester's root of trust.
-Trust in the Attester's root of trust can be established in various ways as discussed in {{verifier}}.
+The bottom layer of an Attester has an Attesting Environment that is typically designed to be immutable or difficult to modify by malicious code.
+In order to appraise Evidence generated by an Attester, the Verifier needs to trust various layers, including the bottom Attesting Environment.
+Trust in the Attester's layers, including the bottom layer, can be established in various ways as discussed in {{verifier}}.
 
-In layered attestation, a root of trust is the initial Attesting Environment.
-Claims can be collected from or about each layer.
+In layered attestation, Claims can be collected from or about each layer beginning with an initial layer.
 The corresponding Claims can be structured in a nested fashion that reflects the nesting of the Attester's layers.
 Normally, Claims are not self-asserted, rather a previous layer acts as the Attesting Environment for the next layer.
-Claims about a root of trust typically are asserted by an Endorser.
+Claims about an initial layer typically are asserted by an Endorser.
 
 The example device illustrated in {{layered}} includes (A) a BIOS stored in read-only memory,
 (B) a bootloader, and (C) an operating system kernel.
@@ -450,7 +468,7 @@ The example device illustrated in {{layered}} includes (A) a BIOS stored in read
 ~~~~
 {:layered #layered title="Layered Attester"}
 
-The first Attesting Environment, the read-only BIOS in this example,
+The first Attesting Environment, the ROM in this example,
 has to ensure the integrity of the bootloader (the first Target Environment).
 There are
 potentially multiple kernels to boot, and the decision is up to the bootloader.
@@ -589,7 +607,7 @@ Verifier Owner:
 
 Endorser:
 
-: A role performed by an entity (typically a manufacturer) whose Endorsements help Verifiers appraise the authenticity of Evidence.
+: A role performed by an entity (typically a manufacturer) whose Endorsements may help Verifiers appraise the authenticity of Evidence and infer further capabilities of the Attester.
 
 : Produces: Endorsements
 
@@ -868,9 +886,12 @@ of information for which the trust anchor is authoritative."
 The trust anchor may be a certificate or it may be a raw public key
 along with additional data if necessary such as its public key
 algorithm and parameters.
+In the context of this document, a trust anchor may also be a symmetric key, as
+in {{TCG-DICE-SIBDA}} or the symmetric mode described in
+{{?I-D.tschofenig-rats-psa-token}}.
 
 Thus, trusting a Verifier might be expressed by having the Relying
-Party store the Verifier's public key or certificate in its trust anchor store, or might
+Party store the Verifier's key or certificate in its trust anchor store, or might
 be expressed by storing the public key or certificate of an entity (e.g., a Certificate Authority) that is
 in the Verifier's certificate path.
 For example, the Relying Party can verify that the Verifier is an expected one by out of band establishment of key material, combined with a protocol like TLS to communicate.
@@ -978,7 +999,7 @@ to convey Evidence that is otherwise unprotected (e.g., not signed). Appropriate
 
    1. The key material used to authenticate and integrity protect the conveyance channel is trusted by the Verifier to speak for the Attesting Environment(s) that collected Claims about the Target Environment(s).
    2. All unprotected Evidence that is conveyed is supplied exclusively by the Attesting Environment that has the key material that protects the conveyance channel
-   3. The root of trust protects both the conveyance channel key material and the Attesting Environment with equivalent strength protections.
+   3. A trusted environment protects the conveyance channel's key material which may depend on other Attesting Environments with equivalent strength protections.
 
 As illustrated in {{-uccs}}, an entity that receives unprotected Evidence via a trusted conveyance channel always takes on the responsibility of vouching for the Evidence's authenticity and freshness.
 If protected Evidence is generated, the Attester's Attesting Environments take on that responsibility.
@@ -1022,7 +1043,7 @@ or interval when changes in operational status, health, and so forth occur.
 ## Endorsements {#endorsements}
 
 An Endorsement is a secure statement that some entity (e.g., a manufacturer) vouches for the integrity of the
-device's signing capability.  For example, if the signing capability is in hardware, then
+device's various capabilities such as claims collection, signing, launching code, transitioning to other environments, storing secrets, and more.  For example, if the device's signing capability is in hardware, then
 an Endorsement might be a manufacturer certificate that signs a public key whose corresponding
 private key is only known inside the device's hardware.  Thus, when Evidence and such an Endorsement
 are used together, an appraisal procedure can be conducted based on appraisal policies that may not be specific to the
@@ -1160,7 +1181,7 @@ a different format.
 
 A Verifier or Relying Party might need to learn the point in time
 (i.e., the "epoch") an Evidence or Attestation Result has been produced.  This
-is essential in deciding whether the included Claims and their values can be
+is essential in deciding whether the included Claims can be
 considered fresh, meaning they still reflect the latest state of the Attester,
 and that any Attestation Result was generated using the latest Appraisal Policy
 for Evidence.
@@ -1287,14 +1308,19 @@ For a discussion on the security of epoch IDs see {{epochids-sec}}.
 The conveyance of Evidence and the resulting Attestation Results
 reveal a great deal of information about the internal state of a
 device as well as potentially any users of the device.
+
 In many cases, the whole point of attestation procedures is
 to provide reliable information about the type of the device and the
 firmware/software that the device is running.
+
 This information might be particularly interesting to many attackers.
 For example, knowing that a device is
 running a weak version of firmware provides a way to aim attacks better.
 
-Many Claims in Evidence, many Claims in Attestation Results, and Appraisal Policies potentially contain
+In some circumstances, if an attacker can become aware of Endorsements, Reference Values, or appraisal policies, it could potentially provide an attacker with insight into defensive mitigations.
+It is recommended that attention be paid to confidentiality of such information.
+
+Additionally, many Claims in Evidence, many Claims in Attestation Results, and appraisal policies potentially contain
 Personally Identifying Information (PII) depending on the end-to-end use case of
 the remote attestation procedure.
 Remote attestation that includes containers and applications, e.g., a blood pressure monitor, may further
@@ -1327,8 +1353,11 @@ This approach is often called "Direct Anonymous Attestation".  See
 This document provides an architecture for doing remote attestation.
 No specific wire protocol is documented here.
 Without a specific proposal to compare against, it is impossible to know if the security threats listed below have been mitigated well.
+
 The security considerations below should be read as being essentially requirements against realizations of the RATS Architecture.
 Some threats apply to protocols, some are against implementations (code), and some threats are against physical infrastructure (such as factories).
+
+The fundamental purpose of the RATS architecture is to allow a Relying Party to establish a basis for trusting the Attester.
 
 ## Attester and Attestation Key Protection
 
@@ -1350,7 +1379,6 @@ The Attesting Environment must be protected from unauthorized modification to en
 
 In many cases the user or owner of a device that includes the role of Attester must not be able to modify or extract keys from the Attesting Environments, to prevent creating forged Evidence.
 Some common examples include the user of a mobile phone or FIDO authenticator.
-An essential value-add provided by RATS is for the Relying Party to be able to trust the Attester even if the user or owner is not trusted.
 
 Measures for a minimally protected system might include process or application isolation provided by a high-level operating system, and restricted access to root or system privileges. In contrast, For really simple single-use devices that don't use a protected mode operating system, like a Bluetooth speaker, the only factual isolation might be the sturdy housing of the device.
 
@@ -1360,7 +1388,11 @@ Measures for a highly protected system could include specialized hardware that i
 
 ### Attestation Key Provisioning Processes
 
-Attestation key provisioning is the process that occurs in the factory or elsewhere to establish signing key material on the device and the validation key material off the device. Sometimes this procedure is referred to as personalization or customization.
+Attestation key provisioning is the process that occurs in the factory or elsewhere to establish signing key material on the device and the validation key material off the device.
+Sometimes this procedure is referred to as personalization or customization.
+
+The keys generated in the factory, whether generated in the device or off-device by the factory
+SHOULD be generated by a Cryptographically Strong Sequence ({{?RFC4086, Section 6.2}}).
 
 #### Off-Device Key Generation
 
@@ -1368,7 +1400,8 @@ One way to provision key material is to first generate it external to the device
 In this case, confidentiality protection of the generator, as well as for the path over which the key is provisioned, is necessary.
 The manufacturer needs to take care to protect corresponding key material with measures appropriate for its value.
 
-The degree of protection afforded to this key material can vary by device, based upon considerations as to a cost/benefit evaluation of the intended function of the device.
+The degree of protection afforded to this key material can vary by the intended
+function of the device and the specific practices of the device manufacturer or integrator.
 The confidentiality protection is fundamentally based upon some amount of physical protection: while encryption is often used to provide confidentiality when a key is conveyed across a factory, where the attestation key is created or applied, it must be available in an unencrypted form.
 The physical protection can therefore vary from situations where the key is unencrypted only within carefully controlled secure enclaves within silicon, to situations where an entire facility is considered secure,
 by the simple means of locked doors and limited access.
@@ -1387,6 +1420,7 @@ maintain confidentiality of the public key: however integrity of the chain of cu
 To summarize: attestation key provisioning must ensure that only valid attestation key material is established in Attesters.
 
 ## Integrity Protection
+
 Any solution that conveys information in any conceptual message (see {{messages}})
 must support end-to-end integrity protection
 and replay attack prevention, and often also needs to support additional
@@ -1408,7 +1442,7 @@ whether it is mutable software, or firmware that is read-only after
 boot, or immutable hardware/ROM.
 
 It is also important that the appraisal policy was itself obtained securely.
-If an attacker can configure appraisal policies for a Relying Party or for a Verifier, then integrity of the process is compromised.
+If an attacker can configure or modify appraisal policies, Endorsements or Reference Values for a Relying Party or for a Verifier, then integrity of the process is compromised.
 
 Security protections in RATS may be applied at different layers, whether by a conveyance protocol, or an information encoding format.
 This architecture expects conceptual messages to be end-to-end protected based on the role interaction context.
@@ -1445,8 +1479,14 @@ However, the delay attack described above can't be thwarted in this manner.
 ## Trust Anchor Protection
 
 As noted in {{trustmodel}}, Verifiers and Relying Parties have trust anchor stores
-that must be secured.  Specifically, a trust anchor store must resist
-modification against unauthorized insertion, deletion, and modification.
+that must be secured.
+{{?RFC6024}} contains more discussion of trust anchor store requirements
+for protecting public keys.
+Section 6 of {{NIST-800-57-p1}} contains a comprehensive treatment of the
+topic, including the protection of symmetric key material.
+Specifically, a trust anchor store must resist modification against unauthorized insertion, deletion, and modification.
+Additionally, if the trust anchor is a symmetric key, the trust anchor store must
+not allow unauthorized read.
 
 If certificates are used as trust anchors, Verifiers and Relying Parties are also
 responsible for validating the entire certificate path up to the trust anchor,
