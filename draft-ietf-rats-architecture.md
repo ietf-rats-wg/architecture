@@ -386,7 +386,7 @@ Relying Party:
 ~~~~
 {:dataflow #dataflow title="Conceptual Data Flow"}
 
-The text below summarizes the activities conducted by the roles illustrated in {{dataflow}}. 
+The text below summarizes the activities conducted by the roles illustrated in {{dataflow}}.
 Roles are assigned to entities. Entities are often system components {{RFC4949}}, such as devices. As the term device is typically more intuitive than the term entity or system component, device is often used as a illustrative synonym throughout this document.
 
 The Attester role is assigned to entities that create Evidence that is conveyed to a Verifier.
