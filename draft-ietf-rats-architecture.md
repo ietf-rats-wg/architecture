@@ -1035,7 +1035,7 @@ Claims need to be collected in a manner that is reliable such that a Target Envi
 Evidence needs to be securely associated with the target environment
 so that the Verifier cannot be tricked into accepting Claims originating
 from a different environment (that may be more trustworthy).
-Evidence also must be protected from man-in-the-middle attackers who may observe,
+Evidence also must be protected from an active on-path attacker who may observe,
 change or misdirect Evidence as it travels from Attester to Verifier.
 The timeliness of Evidence can be captured using Claims that pinpoint the time
 or interval when changes in operational status, health, and so forth occur.
