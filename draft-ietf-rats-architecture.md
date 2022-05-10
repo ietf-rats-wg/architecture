@@ -1409,7 +1409,7 @@ by the simple means of locked doors and limited access.
 The cryptography that is used to enable confidentiality protection of the attestation key comes with its own requirements to be secured.
 This results in recursive problems, as the key material used to provision attestation keys must again somehow have been provisioned securely beforehand (requiring an additional level of protection, and so on).
 
-Commonly, a combination of some physical security measures and some cryptographic measures is used to establish confidentiality protection.
+Commonly, a combination of some physical security measures and some cryptographic measures are used to establish confidentiality protection.
 
 #### On-Device Key Generation
 
