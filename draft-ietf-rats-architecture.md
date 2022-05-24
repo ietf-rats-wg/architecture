@@ -702,13 +702,15 @@ the passport application and identifying information (e.g., birth certificate) i
 the Evidence, the passport is an Attestation Result, and the immigration desk is a Relying Party.
 
 In this model, an Attester conveys Evidence to a Verifier, which compares
-the Evidence against its appraisal policy.  The Verifier then gives back
-an Attestation Result which the Attester treats as opaque data.
+the Evidence against its appraisal policy.
+The Verifier then gives back an Attestation Result which the Attester treats as opaque data.
+
 The Attester does not consume the Attestation Result, but might cache it.
-The Attester
-can then present the Attestation Result (and possibly additional Claims)
+The Attester can then present the Attestation Result (and possibly additional Claims)
 to a Relying Party, which then compares this information against its own
 appraisal policy.
+The Attester may also present the same Attestation Result to other Relying Parties.
+
 
 Three ways in which the process may fail include:
 
@@ -762,9 +764,9 @@ appraisal policy.
 
 The resource access protocol between the Attester and Relying Party
 includes Evidence rather than an Attestation Result, but that Evidence is
-not processed by the Relying Party.  Since the Evidence is merely forwarded
-on to a trusted Verifier, any serialization format can be used
-for Evidence because the Relying Party does not need a parser for it.
+not processed by the Relying Party.
+
+Since the Evidence is merely forwarded on to a trusted Verifier, any serialization format can be used for Evidence because the Relying Party does not need a parser for it.
 The only requirement is that the Evidence can be *encapsulated in* the format
 required by the resource access protocol between the Attester and Relying Party.
 
@@ -786,10 +788,10 @@ constrained node.
                             Evidence |   | Attestation
                                      |   | Result
                                      |   v
-   +------------+               +-------------+
-   |            |-------------->|             | Compare Attestation
-   |  Attester  |   Evidence    |   Relying   | Result against
-   |            |               |    Party    | appraisal policy
+   +------------+               +----|--------+
+   |            |-------------->|---/         | Compare Attestation
+   |  Attester  |   Evidence    |     Relying | Result against
+   |            |               |      Party  | appraisal policy
    +------------+               +-------------+
 ~~~~
 {: #backgroundcheck title="Background-Check Model"}
