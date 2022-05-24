@@ -702,11 +702,11 @@ the passport application and identifying information (e.g., birth certificate) i
 the Evidence, the passport is an Attestation Result, and the immigration desk is a Relying Party.
 
 In this model, an Attester conveys Evidence to a Verifier, which compares
-the Evidence against its appraisal policy.  The Verifier then gives back
-an Attestation Result which the Attester treats as opaque data.
+the Evidence against its appraisal policy.
+The Verifier then gives back an Attestation Result which the Attester treats as opaque data.
+
 The Attester does not consume the Attestation Result, but might cache it.
-The Attester
-can then present the Attestation Result (and possibly additional Claims)
+The Attester can then present the Attestation Result (and possibly additional Claims)
 to a Relying Party, which then compares this information against its own
 appraisal policy.
 
