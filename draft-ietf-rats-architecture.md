@@ -1490,8 +1490,8 @@ not allow unauthorized read.
 
 If certificates are used as trust anchors, Verifiers and Relying Parties are also
 responsible for validating the entire certificate path up to the trust anchor,
-which includes checking for certificate revocation.  See Section 6 of {{!RFC5280}}
-for details.
+which includes checking for certificate revocation.
+For an example of such a proceedure see Section 6 of {{!RFC5280}}.
 
 # IANA Considerations
 
