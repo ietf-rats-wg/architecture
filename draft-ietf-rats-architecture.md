@@ -709,7 +709,7 @@ The Attester does not consume the Attestation Result, but might cache it.
 The Attester can then present the Attestation Result (and possibly additional Claims)
 to a Relying Party, which then compares this information against its own
 appraisal policy.
-The Attester may also present the Attestation Results (the passport) to another Relying Party.
+The Attester may also present the same Attestation Result to other Relying Parties.
 
 
 Three ways in which the process may fail include:
