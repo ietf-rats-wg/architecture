@@ -764,9 +764,9 @@ appraisal policy.
 
 The resource access protocol between the Attester and Relying Party
 includes Evidence rather than an Attestation Result, but that Evidence is
-not processed by the Relying Party.  Since the Evidence is merely forwarded
-on to a trusted Verifier, any serialization format can be used
-for Evidence because the Relying Party does not need a parser for it.
+not processed by the Relying Party.
+
+Since the Evidence is merely forwarded on to a trusted Verifier, any serialization format can be used for Evidence because the Relying Party does not need a parser for it.
 The only requirement is that the Evidence can be *encapsulated in* the format
 required by the resource access protocol between the Attester and Relying Party.
 
