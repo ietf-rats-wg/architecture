@@ -788,10 +788,10 @@ constrained node.
                             Evidence |   | Attestation
                                      |   | Result
                                      |   v
-   +------------+               +-------------+
-   |            |-------------->|             | Compare Attestation
-   |  Attester  |   Evidence    |   Relying   | Result against
-   |            |               |    Party    | appraisal policy
+   +------------+               +----|--------+
+   |            |-------------->|---/         | Compare Attestation
+   |  Attester  |   Evidence    |     Relying | Result against
+   |            |               |      Party  | appraisal policy
    +------------+               +-------------+
 ~~~~
 {: #backgroundcheck title="Background-Check Model"}
