@@ -1605,6 +1605,8 @@ The threshold is decided by the Appraisal Policy for Evidence, and again needs t
 into account the maximum permitted clock skew between
 the Verifier and the Attester.
 
+The Attester does not consume the Attestation Result, but might cache it.
+
 The Relying Party can check whether the Attestation Result is fresh
 when appraising it at time(RA_r) by checking `time(RA_r) - time(RG_v) < Threshold`,
 where the Relying Party's threshold is large enough to account for the
