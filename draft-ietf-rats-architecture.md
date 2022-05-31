@@ -568,6 +568,11 @@ whether in the same conveyance protocol as part of the Evidence or not.
 
 # Terminology {#terminology}
 
+{{RFC4949}} has defined a number of terms that are also used in this document.
+Some of the terms are close to, but not exactly the same.
+Where the terms are similar, they are noted below with references.
+As explained in {{RFC4949}}, Section 2.6 when this document says "Compare:", the terminology used in this document differs significantly from the definition in {{RFC4949}}.
+
 This document uses the following terms.
 
 ## Roles
