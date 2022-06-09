@@ -1525,6 +1525,8 @@ Eric Voit provided the conceptual separation between Attestation Provision Flows
 Monty Wisemen created the content structure of the first three architecture drafts.
 Carsten Bormann provided many of the motivational building blocks with respect to the Internet Threat Model.
 
+Peter Loscocco contributed critical review feedback as part of the weekly design team meetings that added precision and depth to several sections.
+
 # Appendix A: Time Considerations {#time-considerations}
 
 {{freshness}} discussed various issues and requirements around freshness of evidence, and
