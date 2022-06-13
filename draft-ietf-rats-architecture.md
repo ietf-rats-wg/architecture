@@ -1575,22 +1575,26 @@ depends on using a secure clock synchronization mechanism.
 As a result, the receiver of a conceptual message containing a
 timestamp can directly compare it to its own clock and timestamps.
 
-~~~~
+~~~~ aasvg
    .----------.                     .----------.  .---------------.
    | Attester |                     | Verifier |  | Relying Party |
-   '----------'                     '----------'  '---------------'
+   '----+-----'                     '-----+----'  '-------+-------'
+        |                                 |               |
      time(VG_a)                           |               |
         |                                 |               |
         ~                                 ~               ~
         |                                 |               |
      time(EG_a)                           |               |
-        |------Evidence{time(EG_a)}------>|               |
+        |                                 |               |
+        +------Evidence{time(EG_a)}------>|               |
+        |                                 |               |
         |                              time(RG_v)         |
-        |<-----Attestation Result---------|               |
+        |                                 |               |
+        |<-----Attestation Result---------+               |
         |      {time(RG_v),time(RX_v)}    |               |
         ~                                                 ~
         |                                                 |
-        |----Attestation Result{time(RG_v),time(RX_v)}-->time(RA_r)
+        +--Attestation Result{time(RG_v),time(RX_v)}--->time(RA_r)
         |                                                 |
         ~                                                 ~
         |                                                 |
@@ -1639,27 +1643,35 @@ timestamp cannot directly compare it to its own clock or timestamps.
 Thus we use a suffix ("a" for Attester, "v" for Verifier, and "r" for Relying Party) on the IDs below indicating which clock generated them, since times from different clocks cannot be compared.
 Only the delta between two events from the sender can be used by the receiver.
 
-~~~~
+~~~~ aasvg
    .----------.                     .----------.  .---------------.
    | Attester |                     | Verifier |  | Relying Party |
-   '----------'                     '----------'  '---------------'
+   '----+-----'                     '-----+----'  '-------+-------'
+        |                                 |               |
      time(VG_a)                           |               |
         |                                 |               |
         ~                                 ~               ~
         |                                 |               |
         |<--Nonce1---------------------time(NS_v)         |
+        |                                 |               |
      time(EG_a)                           |               |
-        |---Evidence--------------------->|               |
+        |                                 |               |
+        +---Evidence--------------------->|               |
         | {Nonce1, time(EG_a)-time(VG_a)} |               |
+        |                                 |               |
         |                              time(RG_v)         |
-        |<--Attestation Result------------|               |
+        |                                 |               |
+        |<--Attestation Result------------+               |
         |   {time(RX_v)-time(RG_v)}       |               |
         ~                                                 ~
         |                                                 |
         |<--Nonce2-------------------------------------time(NS_r)
+        |                                                 |
      time(RR_a)                                           |
-        |--[Attestation Result{time(RX_v)-time(RG_v)}, -->|time(RA_r)
+        |                                                 |
+        +--[Attestation Result{time(RX_v)-time(RG_v)}, -->|time(RA_r)
         |        Nonce2, time(RR_a)-time(EG_a)]           |
+        |                                                 |
         ~                                                 ~
         |                                                 |
         |                                              time(OP_r)
@@ -1719,28 +1731,31 @@ as discussed in {{epochfreshness}}, and the message is received during
 that window, the Attestation Result is accepted as fresh, and otherwise
 it is rejected as stale.
 
-~~~~
+~~~~ aasvg
                   .-------------.
    .----------.   | Epoch ID    |   .----------.  .---------------.
    | Attester |   | Distributor |   | Verifier |  | Relying Party |
-   '----------'   '-------------'   '----------'  '---------------'
+   '----+-----'   '------+------'   '-----+----'  '-------+-------'
+        |                |                |               |
      time(VG_a)          |                |               |
         |                |                |               |
         ~                ~                ~               ~
         |                |                |               |
-     time(IR_a)<------I--+--I--------time(IR_v)----->time(IR_r)
+     time(IR_a) <-----I--o--I------> time(IR_v) ---> time(IR_r)
         |                |                |               |
      time(EG_a)          |                |               |
-        |---Evidence--------------------->|               |
+        |                |                |               |
+        +---Evidence--------------------->|               |
         |   {I,time(EG_a)-time(VG_a)}     |               |
         |                |                |               |
         |                |           time(RG_v)           |
-        |<--Attestation Result------------|               |
+        |                |                |               |
+        |<--Attestation Result------------+               |
         |   {I,time(RX_v)-time(RG_v)}     |               |
         |                |                |               |
-     time(IR'_a)<-----I'-+--I'-------time(IR'_v)---->time(IR'_r)
+     time(IR'_a)<-----I'-o--I'-----> time(IR'_v) --> time(IR'_r)
         |                |                |               |
-        |---[Attestation Result--------------------->time(RA_r)
+        +---[Attestation Result--------------------> time(RA_r)
         |   {I,time(RX_v)-time(RG_v)},I'] |               |
         |                |                |               |
         ~                ~                ~               ~
@@ -1756,23 +1771,27 @@ solution that uses timestamps and requires roughly synchronized
 clocks between the Attester, Verifier, and Relying Party.
 The Attester conveys Evidence to the Relying Party, which treats it as opaque and simply forwards it on to the Verifier.
 
-~~~~
-.----------.         .---------------.                .----------.
-| Attester |         | Relying Party |                | Verifier |
-'----------'         '---------------'                '----------'
-  time(VG_a)                 |                             |
-        |                    |                             |
-        ~                    ~                             ~
-        |                    |                             |
-  time(EG_a)                 |                             |
-        |----Evidence------->|                             |
-        |   {time(EG_a)} time(ER_r)--Evidence{time(EG_a)}->|
-        |                    |                        time(RG_v)
-        |                 time(RA_r)<-Attestation Result---|
-        |                    |           {time(RX_v)}      |
-        ~                    ~                             ~
-        |                    |                             |
-        |                 time(OP_r)                       |
+~~~~ aasvg
+.----------.         .---------------.                    .----------.
+| Attester |         | Relying Party |                    | Verifier |
+'-------+--'         '-------+-------'                    '----+-----'
+        |                    |                                 |
+  time(VG_a)                 |                                 |
+        |                    |                                 |
+        ~                    ~                                 ~
+        |                    |                                 |
+  time(EG_a)                 |                                 |
+        |                    |                                 |
+        +----Evidence------->|                                 |
+        |   {time(EG_a)}  time(ER_r) ---Evidence{time(EG_a)}-->|
+        |                    |                                 |
+        |                    |                            time(RG_v)
+        |                    |                                 |
+        |                 time(RA_r)<--Attestation Result------+
+        |                    |           {time(RX_v)}          |
+        ~                    ~                                 ~
+        |                    |                                 |
+        |                 time(OP_r)                           |
 ~~~~
 
 The time considerations in this example are equivalent to those
@@ -1786,25 +1805,32 @@ are synchronized.
 In this example solution, a nonce is generated by a Verifier at the request of a Relying Party, when the Relying Party needs to send one to an Attester.
 
 
-~~~~
-.----------.         .---------------.              .----------.
-| Attester |         | Relying Party |              | Verifier |
-'----------'         '---------------'              '----------'
-  time(VG_a)                 |                           |
-     |                       |                           |
-     ~                       ~                           ~
-     |                       |                           |
+~~~~ aasvg
+.----------.         .---------------.                .----------.
+| Attester |         | Relying Party |                | Verifier |
+'----+-----'         '-------+-------'                '----+-----'
+     |                       |                             |
+  time(VG_a)                 |                             |
+     |                       |                             |
+     ~                       ~                             ~
+     |                       |                             |
      |                       |<-------Nonce-----------time(NS_v)
-     |<---Nonce-----------time(NR_r)                     |
-  time(EG_a)                 |                           |
-     |----Evidence{Nonce}--->|                           |
-     |                    time(ER_r)--Evidence{Nonce}--->|
-     |                       |                        time(RG_v)
-     |                    time(RA_r)<-Attestation Result-|
-     |                       |   {time(RX_v)-time(RG_v)} |
-     ~                       ~                           ~
-     |                       |                           |
-     |                    time(OP_r)                     |
+     |                       |                             |
+     |<---Nonce-----------time(NR_r)                       |
+     |                       |                             |
+  time(EG_a)                 |                             |
+     |                       |                             |
+     +----Evidence{Nonce}--->|                             |
+     |                       |                             |
+     |                    time(ER_r) ---Evidence{Nonce}--->|
+     |                       |                             |
+     |                       |                          time(RG_v)
+     |                       |                             |
+     |                    time(RA_r)<--Attestation Result--+
+     |                       |    {time(RX_v)-time(RG_v)}  |
+     ~                       ~                             ~
+     |                       |                             |
+     |                    time(OP_r)                       |
 ~~~~
 
 The Verifier can check whether the Evidence is fresh, and whether a Claim
