@@ -1739,7 +1739,7 @@ it is rejected as stale.
         |                |                |               |
      time(VG_a)          |                |               |
         |                |                |               |
-        ~                ~                ~               ~
+        ~                |                ~               ~
         |                |                |               |
      time(IR_a) <-----I--o--I------> time(IR_v) ---> time(IR_r)
         |                |                |               |
@@ -1753,14 +1753,14 @@ it is rejected as stale.
         |<--Attestation Result------------+               |
         |   {I,time(RX_v)-time(RG_v)}     |               |
         |                |                |               |
-     time(IR'_a) <----I'-o--I'-----> time(IR'_v) --> time(IR'_r)
-        |                |                |               |
+     time(IR'_a) <----I'-o--I' ----> time(IR'_v) --> time(IR'_r)
+        |                                 |               |
         +---[Attestation Result--------------------> time(RA_r)
         |   {I,time(RX_v)-time(RG_v)},I'] |               |
-        |                |                |               |
-        ~                ~                ~               ~
-        |                |                |               |
-        |                |                |          time(OP_r)
+        |                                 |               |
+        ~                                 ~               ~
+        |                                 |               |
+        |                                 |          time(OP_r)
 ~~~~
 {: #fig-epochid-passport title="Epoch ID-based Passport Model"}
 
