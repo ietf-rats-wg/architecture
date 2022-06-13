@@ -1,25 +1,23 @@
-  ************   *************    ************    *****************
-  * Endorser *   * Reference *    * Verifier *    * Relying Party *
-  ************   * Value     *    *  Owner   *    *  Owner        *
-     |           * Provider  *    ************    *****************
-     |           *************          |                 |
+   .--------.     .---------.       .--------.       .-------------.
+  | Endorser |   | Reference |     | Verifier |     | Relying Party |
+   '-+------'    | Value     |     | Owner    |     | Owner         |
+     |           | Provider  |      '---+----'       '----+--------'
+     |            '-----+---'           |                 |
      |                  |               |                 |
-     |Endorsements      |Reference      |Appraisal        |Appraisal
-     |                  |Values         |Policy           |Policy for
-     |                  |               |for              |Attestation
-     .-----------.      |               |Evidence         |Results   
-                 |      |               |                 |
-                 |      |               |                 |
-                 v      v               v                 |
-               .---------------------------.              |
-        .----->|          Verifier         |------.       |
-        |      '---------------------------'      |       |
+     | Endorsements     | Reference     | Appraisal       | Appraisal
+     |                  | Values        | Policy for      | Policy for
+     |                  |               | Evidence        | Attestation
+      '-----------.     |               |                 | Results
+                   |    |               |                 |
+                   v    v               v                 |
+                 .-------------------------.              |
+         .------>|         Verifier        +-----.        |
+        |        '-------------------------'      |       |
         |                                         |       |
-        |                              Attestation|       |
-        |                              Results    |       |
-        | Evidence                                |       |
+        | Evidence                    Attestation |       |
+        |                             Results     |       |
         |                                         |       |
         |                                         v       v
-  .----------.                                .---------------.
+  .-----+----.                                .---------------.
   | Attester |                                | Relying Party |
   '----------'                                '---------------'
