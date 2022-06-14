@@ -1,35 +1,35 @@
     .-------------.   Endorsement for ROM
-    |  Endorser   |-----------------------.
+    |  Endorser   +-----------------------.
     '-------------'                       |
                                           v
     .-------------.   Reference      .----------.
     | Reference   |   Values for     |          |
-    | Value       |----------------->| Verifier |
+    | Value       +----------------->| Verifier |
     | Provider(s) | ROM, bootloader, |          |
     '-------------'    and kernel    '----------'
                                           ^
 .------------------------------------.    |
 |                                    |    |
 |   .---------------------------.    |    |
-|   | Kernel                    |    |    | 
+|   | Kernel                    |    |    |
 |   |                           |    |    | Layered
 |   |   Target                  |    |    | Evidence
 |   | Environment               |    |    |   for
-|   '---------------------------'    |    | bootloader
+|   '---------------+-----------'    |    | bootloader
 |           Collect |                |    |   and
 |           Claims  |                |    | kernel
 |   .---------------|-----------.    |    |
 |   | Bootloader    v           |    |    |
 |   |             .-----------. |    |    |
 |   |   Target    | Attesting | |    |    |
-|   | Environment |Environment|-----------'
+|   | Environment |Environment+-----------'
 |   |             |           | |    |
 |   |             '-----------' |    |
 |   |                 ^         |    |
-|   '-----------------|---------'    |
+|   '--------------+--|---------'    |
 |          Collect |  | Evidence for |
 |          Claims  v  | bootloader   |
-|   .---------------------------.    |
+|   .-----------------+---------.    |
 |   | ROM                       |    |
 |   |                           |    |
 |   |               Attesting   |    |

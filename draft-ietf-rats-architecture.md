@@ -380,11 +380,10 @@ Relying Party:
 
 {{dataflow}} depicts the data that flows between different roles, independent of protocol or use case.
 
-{:dataflow: artwork-align="center"}
-~~~~ WHOLEFLOW
+~~~~ aasvg
 {::include dataflow.txt}
 ~~~~
-{:dataflow #dataflow title="Conceptual Data Flow"}
+{: #dataflow artwork-align="center" title="Conceptual Data Flow"}
 
 The text below summarizes the activities conducted by the roles illustrated in {{dataflow}}.
 Roles are assigned to entities. Entities are often system components {{RFC4949}}, such as devices. As the term device is typically more intuitive than the term entity or system component, device is often used as a illustrative synonym throughout this document.
@@ -423,11 +422,10 @@ Other implementations might have multiple Attesting and Target Environments,
 such as in the examples described in more detail in {{layered-attestation}}
 and {{compositedevice}}.  Other examples may exist. All compositions of Attesting and Target Environments discussed in this architecture can be combined into more complex implementations.
 
-{:twotypes-env: artwork-align="center"}
-~~~~ TWOTYPES
+~~~~ aasvg
 {::include twotypes-env.txt}
 ~~~~
-{:twotypes-env #twotypes-env title="Two Types of Environments"}
+{: #twotypes-env artwork-align="center" title="Two Types of Environments"}
 
 Claims are collected from Target Environments.
 That is, Attesting Environments collect the values and the information to be represented in Claims, by reading system registers and variables, calling into subsystems, taking measurements on code, memory, or other security related assets of the Target Environment.
@@ -462,11 +460,10 @@ Claims about an initial layer typically are asserted by an Endorser.
 The example device illustrated in {{layered}} includes (A) a BIOS stored in read-only memory,
 (B) a bootloader, and (C) an operating system kernel.
 
-{:layered: artwork-align="center"}
-~~~~ LAYERED
+~~~~ aasvg
 {::include layered-attester.txt}
 ~~~~
-{:layered #layered title="Layered Attester"}
+{: #layered artwork-align="center" title="Layered Attester"}
 
 The first Attesting Environment, the ROM in this example,
 has to ensure the integrity of the bootloader (the first Target Environment).
@@ -539,10 +536,10 @@ each router is an Attester, and the main router is the lead Attester.
 
 {{composite}} depicts the conceptual data flow for a composite device.
 
-~~~~ COMPOSITE
+~~~~ aasvg
 {::include composite-attester.txt}
 ~~~~
-{: #composite title="Composite Device"}
+{: #composite artwork-align="center" title="Composite Device"}
 
 In a composite device, each Attester generates its own Evidence by its
 Attesting Environment(s) collecting the Claims from its Target Environment(s).
@@ -733,23 +730,23 @@ format of the Evidence on the other hand is only constrained by the
 Attester-Verifier remote attestation protocol.
 This implies that interoperability and standardization is more relevant for Attestation Results than it is for Evidence.
 
-~~~~
-       +------------+
+~~~~ aasvg
+       .------------.
        |            | Compare Evidence
        |  Verifier  | against appraisal policy
        |            |
-       +------------+
+       '--------+---'
            ^    |
   Evidence |    | Attestation
            |    | Result
            |    v
-       +------------+              +-------------+
-       |            |------------->|             | Compare Attestation
+       .---+--------.              .-------------.
+       |            +------------->|             | Compare Attestation
        |  Attester  | Attestation  |   Relying   | Result against
        |            | Result       |    Party    | appraisal policy
-       +------------+              +-------------+
+       '------------'              '-------------'
 ~~~~
-{: #passport title="Passport Model"}
+{: #passport artwork-align="center" title="Passport Model"}
 
 ## Background-Check Model
 
@@ -783,23 +780,23 @@ which may be an existing standard or widely deployed resource access protocol.
 Such minimization is especially important if the Relying Party is a
 constrained node.
 
-~~~~
-                                +-------------+
+~~~~ aasvg
+                                .-------------.
                                 |             | Compare Evidence
                                 |   Verifier  | against appraisal
                                 |             | policy
-                                +-------------+
+                                '--------+----'
                                      ^   |
                             Evidence |   | Attestation
                                      |   | Result
                                      |   v
-   +------------+               +----|--------+
-   |            |-------------->|---/         | Compare Attestation
+   .------------.               .----|--------.
+   |            +-------------->|---'         | Compare Attestation
    |  Attester  |   Evidence    |     Relying | Result against
    |            |               |      Party  | appraisal policy
-   +------------+               +-------------+
+   '------------'               '-------------'
 ~~~~
-{: #backgroundcheck title="Background-Check Model"}
+{: #backgroundcheck artwork-align="center" title="Background-Check Model"}
 
 ## Combinations
 
@@ -821,30 +818,30 @@ actually provides the Attestation Result back to the Attester, allowing the Atte
 use it with other Relying Parties.  This is the model that the Trusted Application Manager
 plans to support in the TEEP architecture {{-teep-arch}}.
 
-~~~~
-      +-------------+
+~~~~ aasvg
+      .-------------.
       |             | Compare Evidence
       |   Verifier  | against appraisal policy
       |             |
-      +-------------+
+      '--------+----'
            ^   |
   Evidence |   | Attestation
            |   | Result
            |   v
-      +-------------+
+      .----+--------.
       |             | Compare
       |   Relying   | Attestation Result
       |   Party 2   | against appraisal policy
-      +-------------+
+      '--------+----'
            ^   |
   Evidence |   | Attestation
            |   | Result
            |   v
-      +-------------+               +-------------+
-      |             |-------------->|             | Compare Attestation
+      .----+--------.               .-------------.
+      |             +-------------->|             | Compare Attestation
       |   Attester  |  Attestation  |   Relying   | Result against
       |             |     Result    |   Party 1   | appraisal policy
-      +-------------+               +-------------+
+      '-------------'               '-------------'
 ~~~~
 {: #combination title="Example Combination"}
 
@@ -1132,12 +1129,12 @@ or as input to a Relying Party, when appraising Attestation Results.
 
 The following diagram illustrates a relationship to which remote attestation is desired to be added:
 
-~~~~
-   +-------------+               +------------+ Evaluate
-   |             |-------------->|            | request
+~~~~ aasvg
+   .-------------.               .------------. Evaluate
+   |             +-------------->|            | request
    |  Attester   |  Access some  |   Relying  | against
    |             |    resource   |    Party   | security
-   +-------------+               +------------+ policy
+   '-------------'               '------------' policy
 ~~~~
 {: #clientserver title="Typical Resource Access"}
 
@@ -1178,11 +1175,10 @@ might also be responsible for accepting Evidence that encodes Claims in
 one format, while issuing Attestation Results that encode Claims in
 a different format.
 
-{:multievidence: artwork-align="center"}
-~~~~ MULTIEVIDENCE
+~~~~ aasvg
 {::include multi-evidence.txt}
 ~~~~
-{:multievidence #multievidence_diag title="Multiple Attesters and Relying Parties with Different Formats"}
+{: #multievidence_diag artwork-align="center" title="Multiple Attesters and Relying Parties with Different Formats"}
 
 # Freshness {#freshness}
 
