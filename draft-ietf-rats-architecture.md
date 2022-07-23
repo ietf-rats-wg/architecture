@@ -845,7 +845,7 @@ plans to support in the TEEP architecture {{-teep-arch}}.
 ~~~~
 {: #combination title="Example Combination"}
 
-# Roles and Entities
+# Roles and Entities {#rolesentities}
 
 An entity in the RATS architecture includes at least one of the roles defined
 in this document.
@@ -1450,6 +1450,11 @@ If an attacker can configure or modify appraisal policies, Endorsements or Refer
 Security protections in RATS may be applied at different layers, whether by a conveyance protocol, or an information encoding format.
 This architecture expects conceptual messages to be end-to-end protected based on the role interaction context.
 For example, if an Attester produces Evidence that is relayed through some other entity that doesn't implement the Attester or the intended Verifier roles, then the relaying entity should not expect to have access to the Evidence.
+
+The RATS architecture allows for an entity to function in multiple roles
+({{rolesentities}}) and for composite devices ({{compositedevice}}).
+Implementers need to evaluate their designs to ensure that the assumed security properties of the individual components and roles still holds despite the lack of separation, and that emergent risk is not introduced.
+The specifics of this evaluation will depend on the implementation and use case is out of scope for this document.
 
 ## Epoch ID-based Attestation {#epochids-sec}
 
