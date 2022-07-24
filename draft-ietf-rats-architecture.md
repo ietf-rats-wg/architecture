@@ -401,7 +401,7 @@ or might be configured into the Verifier by the Verifier Owner,
 or might be programmed into the Verifier,
 or might be obtained via some other mechanism.
 
-The Relying Party role is assigned to entities that uses Attestation Results by applying its own
+The Relying Party role is assigned to an entity that uses Attestation Results by applying its own
 appraisal policy to make application-specific decisions, such as authorization decisions.
 This procedure is called the appraisal of Attestation Results.
 
