@@ -1,0 +1,72 @@
+<svg class='diagram' font-family='monospace' font-size='13px' height='432' text-anchor='middle' version='1.1' viewBox='0 0 536 432' width='536' xmlns='http://www.w3.org/2000/svg'>
+              <path d='M 8,32 L 8,64' fill='none' stroke='black'/>
+              <path d='M 48,64 L 48,80' fill='none' stroke='black'/>
+              <path d='M 48,144 L 48,208' fill='none' stroke='black'/>
+              <path d='M 48,240 L 48,368' fill='none' stroke='black'/>
+              <path d='M 48,400 L 48,416' fill='none' stroke='black'/>
+              <path d='M 96,32 L 96,64' fill='none' stroke='black'/>
+              <path d='M 176,32 L 176,64' fill='none' stroke='black'/>
+              <path d='M 240,64 L 240,112' fill='none' stroke='black'/>
+              <path d='M 240,144 L 240,176' fill='none' stroke='black'/>
+              <path d='M 240,208 L 240,272' fill='none' stroke='black'/>
+              <path d='M 240,304 L 240,336' fill='none' stroke='black'/>
+              <path d='M 304,32 L 304,64' fill='none' stroke='black'/>
+              <path d='M 440,32 L 440,64' fill='none' stroke='black'/>
+              <path d='M 480,64 L 480,112' fill='none' stroke='black'/>
+              <path d='M 480,176 L 480,304' fill='none' stroke='black'/>
+              <path d='M 480,336 L 480,368' fill='none' stroke='black'/>
+              <path d='M 480,400 L 480,416' fill='none' stroke='black'/>
+              <path d='M 528,32 L 528,64' fill='none' stroke='black'/>
+              <path d='M 8,32 L 96,32' fill='none' stroke='black'/>
+              <path d='M 176,32 L 304,32' fill='none' stroke='black'/>
+              <path d='M 440,32 L 528,32' fill='none' stroke='black'/>
+              <path d='M 8,64 L 96,64' fill='none' stroke='black'/>
+              <path d='M 176,64 L 304,64' fill='none' stroke='black'/>
+              <path d='M 440,64 L 528,64' fill='none' stroke='black'/>
+              <path d='M 248,160 L 304,160' fill='none' stroke='black'/>
+              <path d='M 352,160 L 432,160' fill='none' stroke='black'/>
+              <path d='M 56,192 L 80,192' fill='none' stroke='black'/>
+              <path d='M 128,192 L 208,192' fill='none' stroke='black'/>
+              <path d='M 48,256 L 80,256' fill='none' stroke='black'/>
+              <path d='M 208,256 L 232,256' fill='none' stroke='black'/>
+              <path d='M 304,288 L 320,288' fill='none' stroke='black'/>
+              <path d='M 448,288 L 472,288' fill='none' stroke='black'/>
+              <path d='M 288,352 L 312,352' fill='none' stroke='black'/>
+              <path d='M 464,352 L 480,352' fill='none' stroke='black'/>
+              <polygon class='arrowhead' fill='black' points='480,288 468,282.4 468,293.6 ' transform='rotate(0,472,288)'/>
+              <polygon class='arrowhead' fill='black' points='296,352 284,346.4 284,357.6 ' transform='rotate(180,288,352)'/>
+              <polygon class='arrowhead' fill='black' points='256,160 244,154.4 244,165.6 ' transform='rotate(180,248,160)'/>
+              <polygon class='arrowhead' fill='black' points='240,256 228,250.4 228,261.6 ' transform='rotate(0,232,256)'/>
+              <polygon class='arrowhead' fill='black' points='64,192 52,186.4 52,197.6 ' transform='rotate(180,56,192)'/>
+              <g class='text'>
+                <text x='52' y='52'>Attester</text>
+                <text x='216' y='52'>Relying</text>
+                <text x='272' y='52'>Party</text>
+                <text x='484' y='52'>Verifier</text>
+                <text x='60' y='100'>time(VG_a)</text>
+                <text x='48' y='116'>|</text>
+                <text x='48' y='132'>~</text>
+                <text x='240' y='132'>~</text>
+                <text x='480' y='132'>~</text>
+                <text x='480' y='148'>|</text>
+                <text x='328' y='164'>Nonce</text>
+                <text x='476' y='164'>time(NS_v)</text>
+                <text x='104' y='196'>Nonce</text>
+                <text x='252' y='196'>time(NR_r)</text>
+                <text x='60' y='228'>time(EG_a)</text>
+                <text x='144' y='260'>Evidence{Nonce}</text>
+                <text x='252' y='292'>time(ER_r)</text>
+                <text x='384' y='292'>Evidence{Nonce}</text>
+                <text x='492' y='324'>time(RG_v)</text>
+                <text x='240' y='356'>ime(RA_r)</text>
+                <text x='360' y='356'>Attestation</text>
+                <text x='436' y='356'>Result</text>
+                <text x='240' y='372'>|</text>
+                <text x='368' y='372'>{time(RX_v)-time(RG_v)}</text>
+                <text x='48' y='388'>~</text>
+                <text x='240' y='388'>~</text>
+                <text x='480' y='388'>~</text>
+                <text x='240' y='404'>|</text>
+                <text x='252' y='420'>time(OP_r)</text>
+              </g>
+            </svg>

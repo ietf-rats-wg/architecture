@@ -1,0 +1,61 @@
+<svg class='diagram' font-family='monospace' font-size='13px' height='368' text-anchor='middle' version='1.1' viewBox='0 0 568 368' width='568' xmlns='http://www.w3.org/2000/svg'>
+              <path d='M 8,32 L 8,64' fill='none' stroke='black'/>
+              <path d='M 72,64 L 72,80' fill='none' stroke='black'/>
+              <path d='M 72,104 L 72,112' fill='none' stroke='black'/>
+              <path d='M 72,168 L 72,304' fill='none' stroke='black'/>
+              <path d='M 72,336 L 72,352' fill='none' stroke='black'/>
+              <path d='M 96,32 L 96,64' fill='none' stroke='black'/>
+              <path d='M 176,32 L 176,64' fill='none' stroke='black'/>
+              <path d='M 240,64 L 240,112' fill='none' stroke='black'/>
+              <path d='M 240,144 L 240,208' fill='none' stroke='black'/>
+              <path d='M 240,240 L 240,272' fill='none' stroke='black'/>
+              <path d='M 304,32 L 304,64' fill='none' stroke='black'/>
+              <path d='M 472,32 L 472,64' fill='none' stroke='black'/>
+              <path d='M 512,64 L 512,112' fill='none' stroke='black'/>
+              <path d='M 512,144 L 512,240' fill='none' stroke='black'/>
+              <path d='M 512,272 L 512,304' fill='none' stroke='black'/>
+              <path d='M 512,336 L 512,352' fill='none' stroke='black'/>
+              <path d='M 560,32 L 560,64' fill='none' stroke='black'/>
+              <path d='M 8,32 L 96,32' fill='none' stroke='black'/>
+              <path d='M 176,32 L 304,32' fill='none' stroke='black'/>
+              <path d='M 472,32 L 560,32' fill='none' stroke='black'/>
+              <path d='M 8,64 L 96,64' fill='none' stroke='black'/>
+              <path d='M 176,64 L 304,64' fill='none' stroke='black'/>
+              <path d='M 472,64 L 560,64' fill='none' stroke='black'/>
+              <path d='M 72,192 L 104,192' fill='none' stroke='black'/>
+              <path d='M 176,192 L 232,192' fill='none' stroke='black'/>
+              <path d='M 288,224 L 304,224' fill='none' stroke='black'/>
+              <path d='M 472,224 L 504,224' fill='none' stroke='black'/>
+              <path d='M 288,288 L 312,288' fill='none' stroke='black'/>
+              <path d='M 464,288 L 512,288' fill='none' stroke='black'/>
+              <polygon class='arrowhead' fill='black' points='512,224 500,218.4 500,229.6 ' transform='rotate(0,504,224)'/>
+              <polygon class='arrowhead' fill='black' points='296,288 284,282.4 284,293.6 ' transform='rotate(180,288,288)'/>
+              <polygon class='arrowhead' fill='black' points='240,192 228,186.4 228,197.6 ' transform='rotate(0,232,192)'/>
+              <g class='text'>
+                <text x='52' y='52'>Attester</text>
+                <text x='216' y='52'>Relying</text>
+                <text x='272' y='52'>Party</text>
+                <text x='516' y='52'>Verifier</text>
+                <text x='60' y='100'>time(VG_a)</text>
+                <text x='72' y='132'>~</text>
+                <text x='240' y='132'>~</text>
+                <text x='512' y='132'>~</text>
+                <text x='72' y='148'>|</text>
+                <text x='60' y='164'>time(EG_a)</text>
+                <text x='140' y='196'>Evidence</text>
+                <text x='148' y='212'>{time(EG_a)}</text>
+                <text x='236' y='228'>time(ER_r)</text>
+                <text x='388' y='228'>Evidence{time(EG_a)}</text>
+                <text x='508' y='260'>time(RG_v)</text>
+                <text x='236' y='292'>time(RA_r)</text>
+                <text x='360' y='292'>Attestation</text>
+                <text x='436' y='292'>Result</text>
+                <text x='240' y='308'>|</text>
+                <text x='380' y='308'>{time(RX_v)}</text>
+                <text x='72' y='324'>~</text>
+                <text x='240' y='324'>~</text>
+                <text x='512' y='324'>~</text>
+                <text x='240' y='340'>|</text>
+                <text x='252' y='356'>time(OP_r)</text>
+              </g>
+            </svg>

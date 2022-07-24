@@ -1,0 +1,82 @@
+<svg class='diagram' font-family='monospace' font-size='13px' height='416' text-anchor='middle' version='1.1' viewBox='0 0 552 416' width='552' xmlns='http://www.w3.org/2000/svg'>
+                <path d='M 8,160 L 8,400' fill='none' stroke='black'/>
+                <path d='M 24,176 L 24,352' fill='none' stroke='black'/>
+                <path d='M 48,240 L 48,304' fill='none' stroke='black'/>
+                <path d='M 120,208 L 120,240' fill='none' stroke='black'/>
+                <path d='M 160,32 L 160,64' fill='none' stroke='black'/>
+                <path d='M 184,240 L 184,304' fill='none' stroke='black'/>
+                <path d='M 208,192 L 208,288' fill='none' stroke='black'/>
+                <path d='M 288,72 L 288,192' fill='none' stroke='black'/>
+                <path d='M 312,192 L 312,288' fill='none' stroke='black'/>
+                <path d='M 336,176 L 336,200' fill='none' stroke='black'/>
+                <path d='M 336,280 L 336,352' fill='none' stroke='black'/>
+                <path d='M 392,176 L 392,224' fill='none' stroke='black'/>
+                <path d='M 400,32 L 400,64' fill='none' stroke='black'/>
+                <path d='M 408,240 L 408,256' fill='none' stroke='black'/>
+                <path d='M 424,272 L 424,288' fill='none' stroke='black'/>
+                <path d='M 496,176 L 496,224' fill='none' stroke='black'/>
+                <path d='M 512,208 L 512,256' fill='none' stroke='black'/>
+                <path d='M 528,240 L 528,288' fill='none' stroke='black'/>
+                <path d='M 544,160 L 544,400' fill='none' stroke='black'/>
+                <path d='M 160,32 L 400,32' fill='none' stroke='black'/>
+                <path d='M 160,64 L 400,64' fill='none' stroke='black'/>
+                <path d='M 8,160 L 280,160' fill='none' stroke='black'/>
+                <path d='M 296,160 L 544,160' fill='none' stroke='black'/>
+                <path d='M 24,176 L 280,176' fill='none' stroke='black'/>
+                <path d='M 296,176 L 336,176' fill='none' stroke='black'/>
+                <path d='M 392,176 L 496,176' fill='none' stroke='black'/>
+                <path d='M 208,192 L 312,192' fill='none' stroke='black'/>
+                <path d='M 120,208 L 200,208' fill='none' stroke='black'/>
+                <path d='M 320,208 L 392,208' fill='none' stroke='black'/>
+                <path d='M 496,208 L 512,208' fill='none' stroke='black'/>
+                <path d='M 392,224 L 496,224' fill='none' stroke='black'/>
+                <path d='M 48,240 L 184,240' fill='none' stroke='black'/>
+                <path d='M 320,240 L 408,240' fill='none' stroke='black'/>
+                <path d='M 512,240 L 528,240' fill='none' stroke='black'/>
+                <path d='M 408,256 L 512,256' fill='none' stroke='black'/>
+                <path d='M 320,272 L 424,272' fill='none' stroke='black'/>
+                <path d='M 208,288 L 312,288' fill='none' stroke='black'/>
+                <path d='M 424,288 L 528,288' fill='none' stroke='black'/>
+                <path d='M 48,304 L 184,304' fill='none' stroke='black'/>
+                <path d='M 24,352 L 336,352' fill='none' stroke='black'/>
+                <path d='M 8,400 L 544,400' fill='none' stroke='black'/>
+                <polygon class='arrowhead' fill='black' points='328,272 316,266.4 316,277.6 ' transform='rotate(180,320,272)'/>
+                <polygon class='arrowhead' fill='black' points='328,240 316,234.4 316,245.6 ' transform='rotate(180,320,240)'/>
+                <polygon class='arrowhead' fill='black' points='328,208 316,202.4 316,213.6 ' transform='rotate(180,320,208)'/>
+                <polygon class='arrowhead' fill='black' points='296,72 284,66.4 284,77.6 ' transform='rotate(270,288,72)'/>
+                <polygon class='arrowhead' fill='black' points='208,208 196,202.4 196,213.6 ' transform='rotate(0,200,208)'/>
+                <g class='text'>
+                  <text x='284' y='52'>Verifier</text>
+                  <text x='332' y='116'>Evidence</text>
+                  <text x='380' y='116'>of</text>
+                  <text x='336' y='132'>Composite</text>
+                  <text x='404' y='132'>Device</text>
+                  <text x='72' y='196'>Collect</text>
+                  <text x='68' y='212'>Claims</text>
+                  <text x='264' y='212'>Attesting</text>
+                  <text x='436' y='212'>Attester</text>
+                  <text x='480' y='212'>B</text>
+                  <text x='256' y='228'>Environment</text>
+                  <text x='336' y='228'>|</text>
+                  <text x='452' y='244'>Attester</text>
+                  <text x='496' y='244'>C</text>
+                  <text x='116' y='260'>Target</text>
+                  <text x='336' y='260'>|</text>
+                  <text x='116' y='276'>Environment(s)</text>
+                  <text x='448' y='276'>...</text>
+                  <text x='380' y='292'>Evidence</text>
+                  <text x='380' y='308'>of</text>
+                  <text x='384' y='324'>Attesters</text>
+                  <text x='52' y='340'>lead</text>
+                  <text x='108' y='340'>Attester</text>
+                  <text x='152' y='340'>A</text>
+                  <text x='364' y='340'>(via</text>
+                  <text x='420' y='340'>Internal</text>
+                  <text x='480' y='340'>Links</text>
+                  <text x='516' y='340'>or</text>
+                  <text x='376' y='356'>Network</text>
+                  <text x='460' y='356'>Connections)</text>
+                  <text x='232' y='388'>Composite</text>
+                  <text x='300' y='388'>Device</text>
+                </g>
+              </svg>

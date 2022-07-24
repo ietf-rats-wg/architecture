@@ -1,0 +1,25 @@
+<svg class='diagram' font-family='monospace' font-size='13px' height='128' text-anchor='middle' version='1.1' viewBox='0 0 432 128' width='432' xmlns='http://www.w3.org/2000/svg'>
+              <path d='M 8,32 L 8,96' fill='none' stroke='black'/>
+              <path d='M 120,32 L 120,96' fill='none' stroke='black'/>
+              <path d='M 248,32 L 248,96' fill='none' stroke='black'/>
+              <path d='M 352,32 L 352,96' fill='none' stroke='black'/>
+              <path d='M 8,32 L 120,32' fill='none' stroke='black'/>
+              <path d='M 248,32 L 352,32' fill='none' stroke='black'/>
+              <path d='M 120,48 L 240,48' fill='none' stroke='black'/>
+              <path d='M 8,96 L 120,96' fill='none' stroke='black'/>
+              <path d='M 248,96 L 352,96' fill='none' stroke='black'/>
+              <polygon class='arrowhead' fill='black' points='248,48 236,42.4 236,53.6 ' transform='rotate(0,240,48)'/>
+              <g class='text'>
+                <text x='396' y='36'>Evaluate</text>
+                <text x='392' y='52'>request</text>
+                <text x='60' y='68'>Attester</text>
+                <text x='164' y='68'>Access</text>
+                <text x='212' y='68'>some</text>
+                <text x='304' y='68'>Relying</text>
+                <text x='392' y='68'>against</text>
+                <text x='188' y='84'>resource</text>
+                <text x='304' y='84'>Party</text>
+                <text x='396' y='84'>security</text>
+                <text x='388' y='100'>policy</text>
+              </g>
+            </svg>

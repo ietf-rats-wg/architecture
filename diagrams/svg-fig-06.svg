@@ -1,0 +1,44 @@
+<svg class='diagram' font-family='monospace' font-size='13px' height='272' text-anchor='middle' version='1.1' viewBox='0 0 520 272' width='520' xmlns='http://www.w3.org/2000/svg'>
+                <path d='M 8,176 L 8,240' fill='none' stroke='black'/>
+                <path d='M 112,176 L 112,240' fill='none' stroke='black'/>
+                <path d='M 240,32 L 240,96' fill='none' stroke='black'/>
+                <path d='M 240,176 L 240,240' fill='none' stroke='black'/>
+                <path d='M 280,104 L 280,176' fill='none' stroke='black'/>
+                <path d='M 312,96 L 312,168' fill='none' stroke='black'/>
+                <path d='M 352,32 L 352,96' fill='none' stroke='black'/>
+                <path d='M 352,176 L 352,240' fill='none' stroke='black'/>
+                <path d='M 240,32 L 352,32' fill='none' stroke='black'/>
+                <path d='M 240,96 L 352,96' fill='none' stroke='black'/>
+                <path d='M 8,176 L 112,176' fill='none' stroke='black'/>
+                <path d='M 240,176 L 272,176' fill='none' stroke='black'/>
+                <path d='M 288,176 L 352,176' fill='none' stroke='black'/>
+                <path d='M 112,192 L 232,192' fill='none' stroke='black'/>
+                <path d='M 248,192 L 264,192' fill='none' stroke='black'/>
+                <path d='M 8,240 L 112,240' fill='none' stroke='black'/>
+                <path d='M 240,240 L 352,240' fill='none' stroke='black'/>
+                <path d='M 264,192 C 272.83064,192 280,184.83064 280,176' fill='none' stroke='black'/>
+                <polygon class='arrowhead' fill='black' points='320,168 308,162.4 308,173.6 ' transform='rotate(90,312,168)'/>
+                <polygon class='arrowhead' fill='black' points='288,104 276,98.4 276,109.6 ' transform='rotate(270,280,104)'/>
+                <polygon class='arrowhead' fill='black' points='240,192 228,186.4 228,197.6 ' transform='rotate(0,232,192)'/>
+                <g class='text'>
+                  <text x='392' y='52'>Compare</text>
+                  <text x='460' y='52'>Evidence</text>
+                  <text x='300' y='68'>Verifier</text>
+                  <text x='392' y='68'>against</text>
+                  <text x='464' y='68'>appraisal</text>
+                  <text x='388' y='84'>policy</text>
+                  <text x='236' y='132'>Evidence</text>
+                  <text x='368' y='132'>Attestation</text>
+                  <text x='348' y='148'>Result</text>
+                  <text x='392' y='196'>Compare</text>
+                  <text x='472' y='196'>Attestation</text>
+                  <text x='60' y='212'>Attester</text>
+                  <text x='172' y='212'>Evidence</text>
+                  <text x='312' y='212'>Relying</text>
+                  <text x='388' y='212'>Result</text>
+                  <text x='448' y='212'>against</text>
+                  <text x='312' y='228'>Party</text>
+                  <text x='400' y='228'>appraisal</text>
+                  <text x='468' y='228'>policy</text>
+                </g>
+              </svg>

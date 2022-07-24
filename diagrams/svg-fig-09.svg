@@ -1,0 +1,110 @@
+<svg class='diagram' font-family='monospace' font-size='13px' height='352' text-anchor='middle' version='1.1' viewBox='0 0 560 352' width='560' xmlns='http://www.w3.org/2000/svg'>
+              <path d='M 8,48 L 8,80' fill='none' stroke='black'/>
+              <path d='M 8,112 L 8,144' fill='none' stroke='black'/>
+              <path d='M 8,176 L 8,208' fill='none' stroke='black'/>
+              <path d='M 8,240 L 8,272' fill='none' stroke='black'/>
+              <path d='M 8,304 L 8,336' fill='none' stroke='black'/>
+              <path d='M 128,48 L 128,80' fill='none' stroke='black'/>
+              <path d='M 128,112 L 128,144' fill='none' stroke='black'/>
+              <path d='M 128,176 L 128,208' fill='none' stroke='black'/>
+              <path d='M 128,240 L 128,272' fill='none' stroke='black'/>
+              <path d='M 128,304 L 128,336' fill='none' stroke='black'/>
+              <path d='M 208,112 L 208,272' fill='none' stroke='black'/>
+              <path d='M 232,80 L 232,104' fill='none' stroke='black'/>
+              <path d='M 232,280 L 232,304' fill='none' stroke='black'/>
+              <path d='M 288,80 L 288,112' fill='none' stroke='black'/>
+              <path d='M 288,272 L 288,304' fill='none' stroke='black'/>
+              <path d='M 312,112 L 312,272' fill='none' stroke='black'/>
+              <path d='M 392,48 L 392,80' fill='none' stroke='black'/>
+              <path d='M 392,112 L 392,144' fill='none' stroke='black'/>
+              <path d='M 392,176 L 392,208' fill='none' stroke='black'/>
+              <path d='M 392,240 L 392,272' fill='none' stroke='black'/>
+              <path d='M 392,304 L 392,336' fill='none' stroke='black'/>
+              <path d='M 552,48 L 552,80' fill='none' stroke='black'/>
+              <path d='M 552,112 L 552,144' fill='none' stroke='black'/>
+              <path d='M 552,176 L 552,208' fill='none' stroke='black'/>
+              <path d='M 552,240 L 552,272' fill='none' stroke='black'/>
+              <path d='M 552,304 L 552,336' fill='none' stroke='black'/>
+              <path d='M 8,48 L 128,48' fill='none' stroke='black'/>
+              <path d='M 392,48 L 552,48' fill='none' stroke='black'/>
+              <path d='M 128,64 L 216,64' fill='none' stroke='black'/>
+              <path d='M 304,64 L 384,64' fill='none' stroke='black'/>
+              <path d='M 8,80 L 128,80' fill='none' stroke='black'/>
+              <path d='M 392,80 L 552,80' fill='none' stroke='black'/>
+              <path d='M 8,112 L 128,112' fill='none' stroke='black'/>
+              <path d='M 208,112 L 312,112' fill='none' stroke='black'/>
+              <path d='M 392,112 L 552,112' fill='none' stroke='black'/>
+              <path d='M 128,128 L 200,128' fill='none' stroke='black'/>
+              <path d='M 312,128 L 384,128' fill='none' stroke='black'/>
+              <path d='M 8,144 L 128,144' fill='none' stroke='black'/>
+              <path d='M 392,144 L 552,144' fill='none' stroke='black'/>
+              <path d='M 8,176 L 128,176' fill='none' stroke='black'/>
+              <path d='M 392,176 L 552,176' fill='none' stroke='black'/>
+              <path d='M 128,192 L 200,192' fill='none' stroke='black'/>
+              <path d='M 312,192 L 384,192' fill='none' stroke='black'/>
+              <path d='M 8,208 L 128,208' fill='none' stroke='black'/>
+              <path d='M 392,208 L 552,208' fill='none' stroke='black'/>
+              <path d='M 8,240 L 128,240' fill='none' stroke='black'/>
+              <path d='M 392,240 L 552,240' fill='none' stroke='black'/>
+              <path d='M 128,256 L 200,256' fill='none' stroke='black'/>
+              <path d='M 312,256 L 384,256' fill='none' stroke='black'/>
+              <path d='M 8,272 L 128,272' fill='none' stroke='black'/>
+              <path d='M 208,272 L 312,272' fill='none' stroke='black'/>
+              <path d='M 392,272 L 552,272' fill='none' stroke='black'/>
+              <path d='M 8,304 L 128,304' fill='none' stroke='black'/>
+              <path d='M 392,304 L 552,304' fill='none' stroke='black'/>
+              <path d='M 128,320 L 216,320' fill='none' stroke='black'/>
+              <path d='M 304,320 L 384,320' fill='none' stroke='black'/>
+              <path d='M 8,336 L 128,336' fill='none' stroke='black'/>
+              <path d='M 392,336 L 552,336' fill='none' stroke='black'/>
+              <path d='M 216,64 C 224.83064,64 232,71.16936 232,80' fill='none' stroke='black'/>
+              <path d='M 304,64 C 295.16936,64 288,71.16936 288,80' fill='none' stroke='black'/>
+              <path d='M 216,320 C 224.83064,320 232,312.83064 232,304' fill='none' stroke='black'/>
+              <path d='M 304,320 C 295.16936,320 288,312.83064 288,304' fill='none' stroke='black'/>
+              <polygon class='arrowhead' fill='black' points='392,320 380,314.4 380,325.6 ' transform='rotate(0,384,320)'/>
+              <polygon class='arrowhead' fill='black' points='392,256 380,250.4 380,261.6 ' transform='rotate(0,384,256)'/>
+              <polygon class='arrowhead' fill='black' points='392,192 380,186.4 380,197.6 ' transform='rotate(0,384,192)'/>
+              <polygon class='arrowhead' fill='black' points='392,128 380,122.4 380,133.6 ' transform='rotate(0,384,128)'/>
+              <polygon class='arrowhead' fill='black' points='392,64 380,58.4 380,69.6 ' transform='rotate(0,384,64)'/>
+              <polygon class='arrowhead' fill='black' points='240,280 228,274.4 228,285.6 ' transform='rotate(270,232,280)'/>
+              <polygon class='arrowhead' fill='black' points='240,104 228,98.4 228,109.6 ' transform='rotate(90,232,104)'/>
+              <polygon class='arrowhead' fill='black' points='208,256 196,250.4 196,261.6 ' transform='rotate(0,200,256)'/>
+              <polygon class='arrowhead' fill='black' points='208,192 196,186.4 196,197.6 ' transform='rotate(0,200,192)'/>
+              <polygon class='arrowhead' fill='black' points='208,128 196,122.4 196,133.6 ' transform='rotate(0,200,128)'/>
+              <g class='text'>
+                <text x='164' y='36'>Evidence</text>
+                <text x='328' y='36'>Attestation</text>
+                <text x='408' y='36'>Results</text>
+                <text x='168' y='52'>CWT</text>
+                <text x='352' y='52'>CWT</text>
+                <text x='68' y='68'>Attester-A</text>
+                <text x='440' y='68'>Relying</text>
+                <text x='496' y='68'>Party</text>
+                <text x='528' y='68'>V</text>
+                <text x='168' y='116'>JWT</text>
+                <text x='352' y='116'>JWT</text>
+                <text x='68' y='132'>Attester-B</text>
+                <text x='440' y='132'>Relying</text>
+                <text x='496' y='132'>Party</text>
+                <text x='528' y='132'>W</text>
+                <text x='168' y='180'>X.509</text>
+                <text x='352' y='180'>X.509</text>
+                <text x='68' y='196'>Attester-C</text>
+                <text x='260' y='196'>Verifier</text>
+                <text x='440' y='196'>Relying</text>
+                <text x='496' y='196'>Party</text>
+                <text x='528' y='196'>X</text>
+                <text x='168' y='244'>TPM</text>
+                <text x='352' y='244'>TPM</text>
+                <text x='68' y='260'>Attester-D</text>
+                <text x='440' y='260'>Relying</text>
+                <text x='496' y='260'>Party</text>
+                <text x='528' y='260'>Y</text>
+                <text x='168' y='308'>other</text>
+                <text x='352' y='308'>other</text>
+                <text x='68' y='324'>Attester-E</text>
+                <text x='440' y='324'>Relying</text>
+                <text x='496' y='324'>Party</text>
+                <text x='528' y='324'>Z</text>
+              </g>
+            </svg>

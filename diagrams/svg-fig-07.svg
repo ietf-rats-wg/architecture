@@ -1,0 +1,63 @@
+<svg class='diagram' font-family='monospace' font-size='13px' height='416' text-anchor='middle' version='1.1' viewBox='0 0 560 416' width='560' xmlns='http://www.w3.org/2000/svg'>
+                <path d='M 40,32 L 40,96' fill='none' stroke='black'/>
+                <path d='M 40,176 L 40,240' fill='none' stroke='black'/>
+                <path d='M 40,320 L 40,384' fill='none' stroke='black'/>
+                <path d='M 80,104 L 80,176' fill='none' stroke='black'/>
+                <path d='M 80,248 L 80,320' fill='none' stroke='black'/>
+                <path d='M 112,96 L 112,168' fill='none' stroke='black'/>
+                <path d='M 112,240 L 112,312' fill='none' stroke='black'/>
+                <path d='M 152,32 L 152,96' fill='none' stroke='black'/>
+                <path d='M 152,176 L 152,240' fill='none' stroke='black'/>
+                <path d='M 152,320 L 152,384' fill='none' stroke='black'/>
+                <path d='M 280,320 L 280,384' fill='none' stroke='black'/>
+                <path d='M 392,320 L 392,384' fill='none' stroke='black'/>
+                <path d='M 40,32 L 152,32' fill='none' stroke='black'/>
+                <path d='M 40,96 L 152,96' fill='none' stroke='black'/>
+                <path d='M 40,176 L 152,176' fill='none' stroke='black'/>
+                <path d='M 40,240 L 152,240' fill='none' stroke='black'/>
+                <path d='M 40,320 L 152,320' fill='none' stroke='black'/>
+                <path d='M 280,320 L 392,320' fill='none' stroke='black'/>
+                <path d='M 152,336 L 272,336' fill='none' stroke='black'/>
+                <path d='M 40,384 L 152,384' fill='none' stroke='black'/>
+                <path d='M 280,384 L 392,384' fill='none' stroke='black'/>
+                <polygon class='arrowhead' fill='black' points='280,336 268,330.4 268,341.6 ' transform='rotate(0,272,336)'/>
+                <polygon class='arrowhead' fill='black' points='120,312 108,306.4 108,317.6 ' transform='rotate(90,112,312)'/>
+                <polygon class='arrowhead' fill='black' points='120,168 108,162.4 108,173.6 ' transform='rotate(90,112,168)'/>
+                <polygon class='arrowhead' fill='black' points='88,248 76,242.4 76,253.6 ' transform='rotate(270,80,248)'/>
+                <polygon class='arrowhead' fill='black' points='88,104 76,98.4 76,109.6 ' transform='rotate(270,80,104)'/>
+                <g class='text'>
+                  <text x='192' y='52'>Compare</text>
+                  <text x='260' y='52'>Evidence</text>
+                  <text x='100' y='68'>Verifier</text>
+                  <text x='192' y='68'>against</text>
+                  <text x='264' y='68'>appraisal</text>
+                  <text x='332' y='68'>policy</text>
+                  <text x='36' y='132'>Evidence</text>
+                  <text x='168' y='132'>Attestation</text>
+                  <text x='148' y='148'>Result</text>
+                  <text x='192' y='196'>Compare</text>
+                  <text x='96' y='212'>Relying</text>
+                  <text x='208' y='212'>Attestation</text>
+                  <text x='284' y='212'>Result</text>
+                  <text x='88' y='228'>Party</text>
+                  <text x='120' y='228'>2</text>
+                  <text x='192' y='228'>against</text>
+                  <text x='264' y='228'>appraisal</text>
+                  <text x='332' y='228'>policy</text>
+                  <text x='36' y='276'>Evidence</text>
+                  <text x='168' y='276'>Attestation</text>
+                  <text x='148' y='292'>Result</text>
+                  <text x='432' y='340'>Compare</text>
+                  <text x='512' y='340'>Attestation</text>
+                  <text x='100' y='356'>Attester</text>
+                  <text x='216' y='356'>Attestation</text>
+                  <text x='336' y='356'>Relying</text>
+                  <text x='428' y='356'>Result</text>
+                  <text x='488' y='356'>against</text>
+                  <text x='220' y='372'>Result</text>
+                  <text x='328' y='372'>Party</text>
+                  <text x='360' y='372'>1</text>
+                  <text x='440' y='372'>appraisal</text>
+                  <text x='508' y='372'>policy</text>
+                </g>
+              </svg>

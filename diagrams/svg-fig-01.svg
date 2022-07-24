@@ -1,0 +1,94 @@
+<svg class='diagram' font-family='monospace' font-size='13px' height='416' text-anchor='middle' version='1.1' viewBox='0 0 560 416' width='560' xmlns='http://www.w3.org/2000/svg'>
+              <path d='M 8,352 L 8,384' fill='none' stroke='black'/>
+              <path d='M 32,64 L 32,160' fill='none' stroke='black'/>
+              <path d='M 56,256 L 56,352' fill='none' stroke='black'/>
+              <path d='M 96,352 L 96,384' fill='none' stroke='black'/>
+              <path d='M 128,48 L 128,80' fill='none' stroke='black'/>
+              <path d='M 128,224 L 128,256' fill='none' stroke='black'/>
+              <path d='M 144,192 L 144,216' fill='none' stroke='black'/>
+              <path d='M 184,96 L 184,216' fill='none' stroke='black'/>
+              <path d='M 224,48 L 224,80' fill='none' stroke='black'/>
+              <path d='M 272,48 L 272,64' fill='none' stroke='black'/>
+              <path d='M 312,80 L 312,216' fill='none' stroke='black'/>
+              <path d='M 336,224 L 336,256' fill='none' stroke='black'/>
+              <path d='M 360,48 L 360,64' fill='none' stroke='black'/>
+              <path d='M 360,352 L 360,384' fill='none' stroke='black'/>
+              <path d='M 392,256 L 392,344' fill='none' stroke='black'/>
+              <path d='M 408,48 L 408,64' fill='none' stroke='black'/>
+              <path d='M 456,80 L 456,344' fill='none' stroke='black'/>
+              <path d='M 488,352 L 488,384' fill='none' stroke='black'/>
+              <path d='M 536,48 L 536,64' fill='none' stroke='black'/>
+              <path d='M 24,32 L 80,32' fill='none' stroke='black'/>
+              <path d='M 144,32 L 208,32' fill='none' stroke='black'/>
+              <path d='M 288,32 L 344,32' fill='none' stroke='black'/>
+              <path d='M 424,32 L 520,32' fill='none' stroke='black'/>
+              <path d='M 24,64 L 80,64' fill='none' stroke='black'/>
+              <path d='M 288,80 L 344,80' fill='none' stroke='black'/>
+              <path d='M 424,80 L 520,80' fill='none' stroke='black'/>
+              <path d='M 144,96 L 208,96' fill='none' stroke='black'/>
+              <path d='M 48,176 L 128,176' fill='none' stroke='black'/>
+              <path d='M 128,224 L 336,224' fill='none' stroke='black'/>
+              <path d='M 72,240 L 120,240' fill='none' stroke='black'/>
+              <path d='M 336,240 L 376,240' fill='none' stroke='black'/>
+              <path d='M 128,256 L 336,256' fill='none' stroke='black'/>
+              <path d='M 8,352 L 96,352' fill='none' stroke='black'/>
+              <path d='M 360,352 L 488,352' fill='none' stroke='black'/>
+              <path d='M 8,384 L 96,384' fill='none' stroke='black'/>
+              <path d='M 360,384 L 488,384' fill='none' stroke='black'/>
+              <path d='M 24,32 C 15.16936,32 8,39.16936 8,48' fill='none' stroke='black'/>
+              <path d='M 80,32 C 88.83064,32 96,39.16936 96,48' fill='none' stroke='black'/>
+              <path d='M 144,32 C 135.16936,32 128,39.16936 128,48' fill='none' stroke='black'/>
+              <path d='M 208,32 C 216.83064,32 224,39.16936 224,48' fill='none' stroke='black'/>
+              <path d='M 288,32 C 279.16936,32 272,39.16936 272,48' fill='none' stroke='black'/>
+              <path d='M 344,32 C 352.83064,32 360,39.16936 360,48' fill='none' stroke='black'/>
+              <path d='M 424,32 C 415.16936,32 408,39.16936 408,48' fill='none' stroke='black'/>
+              <path d='M 520,32 C 528.83064,32 536,39.16936 536,48' fill='none' stroke='black'/>
+              <path d='M 24,64 C 15.16936,64 8,56.83064 8,48' fill='none' stroke='black'/>
+              <path d='M 80,64 C 88.83064,64 96,56.83064 96,48' fill='none' stroke='black'/>
+              <path d='M 288,80 C 279.16936,80 272,72.83064 272,64' fill='none' stroke='black'/>
+              <path d='M 344,80 C 352.83064,80 360,72.83064 360,64' fill='none' stroke='black'/>
+              <path d='M 424,80 C 415.16936,80 408,72.83064 408,64' fill='none' stroke='black'/>
+              <path d='M 520,80 C 528.83064,80 536,72.83064 536,64' fill='none' stroke='black'/>
+              <path d='M 144,96 C 135.16936,96 128,88.83064 128,80' fill='none' stroke='black'/>
+              <path d='M 208,96 C 216.83064,96 224,88.83064 224,80' fill='none' stroke='black'/>
+              <path d='M 48,176 C 39.16936,176 32,168.83064 32,160' fill='none' stroke='black'/>
+              <path d='M 128,176 C 136.83064,176 144,183.16936 144,192' fill='none' stroke='black'/>
+              <path d='M 72,240 C 63.16936,240 56,247.16936 56,256' fill='none' stroke='black'/>
+              <path d='M 376,240 C 384.83064,240 392,247.16936 392,256' fill='none' stroke='black'/>
+              <polygon class='arrowhead' fill='black' points='464,344 452,338.4 452,349.6 ' transform='rotate(90,456,344)'/>
+              <polygon class='arrowhead' fill='black' points='400,344 388,338.4 388,349.6 ' transform='rotate(90,392,344)'/>
+              <polygon class='arrowhead' fill='black' points='320,216 308,210.4 308,221.6 ' transform='rotate(90,312,216)'/>
+              <polygon class='arrowhead' fill='black' points='192,216 180,210.4 180,221.6 ' transform='rotate(90,184,216)'/>
+              <polygon class='arrowhead' fill='black' points='152,216 140,210.4 140,221.6 ' transform='rotate(90,144,216)'/>
+              <polygon class='arrowhead' fill='black' points='128,240 116,234.4 116,245.6 ' transform='rotate(0,120,240)'/>
+              <g class='text'>
+                <text x='52' y='52'>Endorser</text>
+                <text x='176' y='52'>Reference</text>
+                <text x='316' y='52'>Verifier</text>
+                <text x='448' y='52'>Relying</text>
+                <text x='504' y='52'>Party</text>
+                <text x='160' y='68'>Value</text>
+                <text x='304' y='68'>Owner</text>
+                <text x='440' y='68'>Owner</text>
+                <text x='172' y='84'>Provider</text>
+                <text x='92' y='132'>Endorsements</text>
+                <text x='232' y='132'>Reference</text>
+                <text x='360' y='132'>Appraisal</text>
+                <text x='504' y='132'>Appraisal</text>
+                <text x='220' y='148'>Values</text>
+                <text x='348' y='148'>Policy</text>
+                <text x='392' y='148'>for</text>
+                <text x='492' y='148'>Policy</text>
+                <text x='536' y='148'>for</text>
+                <text x='356' y='164'>Evidence</text>
+                <text x='512' y='164'>Attestation</text>
+                <text x='496' y='180'>Results</text>
+                <text x='236' y='244'>Verifier</text>
+                <text x='100' y='292'>Evidence</text>
+                <text x='336' y='292'>Attestation</text>
+                <text x='320' y='308'>Results</text>
+                <text x='52' y='372'>Attester</text>
+                <text x='400' y='372'>Relying</text>
+                <text x='456' y='372'>Party</text>
+              </g>
+            </svg>
