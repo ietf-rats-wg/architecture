@@ -1456,6 +1456,7 @@ The RATS architecture allows for an entity to function in multiple roles
 Implementers need to evaluate their designs to ensure that the assumed security properties of the individual components and roles still hold despite the lack of separation, and that emergent risk is not introduced.
 The specifics of this evaluation will depend on the implementation and the use case and hence is out of scope for this document.
 Isolation mechanisms in software or hardware that separate Attesting Environments and Target Environments {{twotypes}} can support an implementer's evaluation and resulting design decisions.
+
 ## Epoch ID-based Attestation {#epochids-sec}
 
 Epoch IDs, described in {{epochfreshness}}, can be tampered with, replayed, dropped, delayed, and
