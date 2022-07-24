@@ -1453,7 +1453,7 @@ For example, if an Attester produces Evidence that is relayed through some other
 
 The RATS architecture allows for an entity to function in multiple roles
 ({{rolesentities}}) and for composite devices ({{compositedevice}}).
-Implementers need to evaluate their designs to ensure that the assumed security properties of the individual components and roles still holds despite the lack of separation, and that emergent risk is not introduced.
+Implementers need to evaluate their designs to ensure that the assumed security properties of the individual components and roles still hold despite the lack of separation, and that emergent risk is not introduced.
 The specifics of this evaluation will depend on the implementation and use case is out of scope for this document.
 
 ## Epoch ID-based Attestation {#epochids-sec}
