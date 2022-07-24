@@ -413,7 +413,7 @@ or might be obtained via some other mechanism.
 See {{messages}} for further discussion of the conceptual messages shown in {{dataflow}}.
 Section {{terminology}} provides a more complete definition of all RATS roles.
 
-## Two Types of Environments of an Attester
+## Two Types of Environments of an Attester {#twotypes}
 
 As shown in {{twotypes-env}}, an Attester consists of at least one Attesting Environment and at least one
 Target Environment co-located in one entity.
@@ -845,7 +845,7 @@ plans to support in the TEEP architecture {{-teep-arch}}.
 ~~~~
 {: #combination title="Example Combination"}
 
-# Roles and Entities
+# Roles and Entities {#rolesentities}
 
 An entity in the RATS architecture includes at least one of the roles defined
 in this document.
@@ -1451,6 +1451,11 @@ Security protections in RATS may be applied at different layers, whether by a co
 This architecture expects conceptual messages to be end-to-end protected based on the role interaction context.
 For example, if an Attester produces Evidence that is relayed through some other entity that doesn't implement the Attester or the intended Verifier roles, then the relaying entity should not expect to have access to the Evidence.
 
+The RATS architecture allows for an entity to function in multiple roles
+({{rolesentities}}) and for composite devices ({{compositedevice}}).
+Implementers need to evaluate their designs to ensure that the assumed security properties of the individual components and roles still hold despite the lack of separation, and that emergent risk is not introduced.
+The specifics of this evaluation will depend on the implementation and the use case and hence is out of scope for this document.
+Isolation mechanisms in software or hardware that separate Attesting Environments and Target Environments {{twotypes}} can support an implementer's evaluation and resulting design decisions.
 ## Epoch ID-based Attestation {#epochids-sec}
 
 Epoch IDs, described in {{epochfreshness}}, can be tampered with, replayed, dropped, delayed, and
