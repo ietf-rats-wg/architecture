@@ -1523,7 +1523,9 @@ Carsten Bormann provided many of the motivational building blocks with respect t
 
 Peter Loscocco contributed critical review feedback as part of the weekly design team meetings that added precision and depth to several sections.
 
-# Appendix A: Time Considerations {#time-considerations}
+--- back
+
+# Time Considerations {#time-considerations}
 
 {{freshness}} discussed various issues and requirements around freshness of evidence, and
 summarized three approaches that might be used by different solutions to address them.
