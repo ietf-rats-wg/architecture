@@ -413,7 +413,7 @@ or might be obtained via some other mechanism.
 See {{messages}} for further discussion of the conceptual messages shown in {{dataflow}}.
 Section {{terminology}} provides a more complete definition of all RATS roles.
 
-## Two Types of Environments of an Attester
+## Two Types of Environments of an Attester {#twotypes}
 
 As shown in {{twotypes-env}}, an Attester consists of at least one Attesting Environment and at least one
 Target Environment co-located in one entity.
