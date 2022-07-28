@@ -572,6 +572,9 @@ As explained in {{RFC4949}}, Section 2.6 when this document says "Compare:", the
 
 This document uses the following terms.
 
+As explained in {{overview}}, artifacts are defined by which role elements produce them or consume them.
+Other role elements may forward, pass-through, cache or repeat artifacts.
+
 ## Roles
 
 Attester:
