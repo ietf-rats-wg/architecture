@@ -11,5 +11,5 @@ d = REXML::Document.new(ARGF)
 REXML::XPath.each(d.root, "//svg:svg", {"svg" => "http://www.w3.org/2000/svg"}) do |x|
   fn = default_fn.succ!
   # insert code to override fn with @name of ancestor
-  File.open(fn, "w") { |f| f.write x }
+  File.open("#{fn}.svg", "w") { |f| f.write x }
 end
