@@ -563,6 +563,9 @@ Verifier) as part of the appraisal procedures that generate Attestation Results.
 The inside Verifier then conveys the Attestation Results of other Attesters to the outside Verifier,
 whether in the same conveyance protocol as part of the Evidence or not.
 
+As explained in {{overview}}, artifacts are defined by which roles produce them or consume them.
+In some protocol instantiations, other roles may cache and forward artifacts as opaque data, to one or more entities implementing the consuming role.
+
 # Terminology {#terminology}
 
 {{RFC4949}} has defined a number of terms that are also used in this document.
