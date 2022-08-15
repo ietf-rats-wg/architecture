@@ -563,8 +563,12 @@ Verifier) as part of the appraisal procedures that generate Attestation Results.
 The inside Verifier then conveys the Attestation Results of other Attesters to the outside Verifier,
 whether in the same conveyance protocol as part of the Evidence or not.
 
-As explained in {{overview}}, artifacts are defined by which roles produce them or consume them.
-In some protocol instantiations, other roles may cache and forward artifacts as opaque data, to one or more entities implementing the consuming role.
+As explained in {{terminology}}, there are a variety of roles in the RATS architecture and they are defined by a unique combination of artifacts they produce and consume.
+Conversely, artifacts are also defined by the roles that produce or consume them.
+To produce an artifact means that a given role introduces it into the RATS architecture.
+To consume an artifact means that a given role has responsibility for processing it in the RATS architecture.
+Roles also have the ability to perform additional actions such caching or forwarding artifacts as opaque data.
+As depicted in {{overview}}, these additional actions can be performed by several roles.
 
 # Terminology {#terminology}
 
