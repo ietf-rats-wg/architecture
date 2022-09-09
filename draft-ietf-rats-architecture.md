@@ -1297,7 +1297,7 @@ as all use the same Epoch ID Distributor.
 ## Discussion
 
 Implicit and explicit timekeeping can be combined into hybrid mechanisms.
-For example, if clocks exist within the Attesting Environment and are considered trustworthy (tamper-proof) but  are not synchronized, a nonce-based exchange may be used to determine the (relative) time offset between the involved peers, followed by any number of timestamp
+For example, if clocks exist within the Attesting Environment and are considered trustworthy (tamper-proof) but are not synchronized, a nonce-based exchange may be used to determine the (relative) time offset between the involved peers, followed by any number of timestamp
 based exchanges.
 
 It is important to note that the actual values in Claims might have been
