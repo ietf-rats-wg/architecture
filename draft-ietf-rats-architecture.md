@@ -243,7 +243,7 @@ Typically, a solution starts with a specific component (sometimes referred to as
 provides trustworthy device identity, and performs a series of operations that enables trustworthiness appraisals for other components.
 Such components perform operations that help determine the trustworthiness of yet other components,
 by collecting, protecting or signing measurements.
-Measurements that have been signed by such components comprise Evidence that when evaluated either supports or refutes a claim of trustworthiness.
+Measurements that have been signed by such components comprise of Evidence that when evaluated either supports or refutes a claim of trustworthiness.
 Measurements can describe a variety of attributes of system components, such as hardware, firmware, BIOS, software, etc.
 
 Attester:
@@ -567,7 +567,7 @@ As explained in {{terminology}}, there are a variety of roles in the RATS archit
 Conversely, artifacts are also defined by the roles that produce or consume them.
 To produce an artifact means that a given role introduces it into the RATS architecture.
 To consume an artifact means that a given role has responsibility for processing it in the RATS architecture.
-Roles also have the ability to perform additional actions such caching or forwarding artifacts as opaque data.
+Roles also have the ability to perform additional actions such as caching or forwarding artifacts as opaque data.
 As depicted in {{overview}}, these additional actions can be performed by several roles.
 
 # Terminology {#terminology}
