@@ -178,7 +178,7 @@ service, or otherwise flagged for repair.
 
 For example:
 
- * A bank back-end system might refuse to transact with another system
+ * A bank backend system might refuse to transact with another system
    that is not known to be in a good state.
 
  * A healthcare system might refuse to transmit electronic healthcare
@@ -374,7 +374,7 @@ Attester:
 
 Relying Party:
 
-: Any web site, mobile application back-end, or service that relies on authentication data based on biometric information.
+: Any web site, mobile application backend, or service that relies on authentication data based on biometric information.
 
 # Architectural Overview
 
@@ -386,7 +386,7 @@ Relying Party:
 {: #dataflow artwork-align="center" title="Conceptual Data Flow"}
 
 The text below summarizes the activities conducted by the roles illustrated in {{dataflow}}.
-Roles are assigned to entities. Entities are often system components {{RFC4949}}, such as devices. As the term device is typically more intuitive than the term entity or system component, device is often used as a illustrative synonym throughout this document.
+Roles are assigned to entities. Entities are often system components {{RFC4949}}, such as devices. As the term device is typically more intuitive than the term entity or system component, device is often used as an illustrative synonym throughout this document.
 
 The Attester role is assigned to entities that create Evidence that is conveyed to a Verifier.
 
@@ -411,7 +411,7 @@ or might be programmed into the Relying Party,
 or might be obtained via some other mechanism.
 
 See {{messages}} for further discussion of the conceptual messages shown in {{dataflow}}.
-Section {{terminology}} provides a more complete definition of all RATS roles.
+{{terminology}} provides a more complete definition of all RATS roles.
 
 ## Two Types of Environments of an Attester {#twotypes}
 
@@ -521,14 +521,14 @@ Among these slots, only a "main" slot can communicate with the Verifier
 while other slots cannot. But other slots can communicate with the main
 slot by the links between them inside the router.
 So the main slot collects the Evidence of other slots, produces the final Evidence of the whole router and conveys the final Evidence to the Verifier.
-Therefore the router is a composite
+Therefore, the router is a composite
 device, each slot is an Attester, and the main slot is the lead Attester.
 
 Another example is a multi-chassis router composed of multiple single carrier-grade routers.
 Multi-chassis router setups create redundancy groups that provide higher throughput by interconnecting
 multiple routers in these groups, which can be treated as one logical router for simpler management.
 A multi-chassis router setup provides a management point that connects to the Verifier.
-Typically one router in the group is designated as the main router.
+Typically, one router in the group is designated as the main router.
 Other routers in the multi-chassis setup are connected to the main router only via physical network links
 and are therefore managed and appraised via the main router's help.
 Consequently, a multi-chassis router setup is a composite device,
@@ -705,10 +705,14 @@ to provide to its local authority is specific to the country involved. The citiz
 retains control of the resulting passport document and presents it to other entities
 when it needs to assert a citizenship or identity Claim, such as an airport immigration
 desk. The passport is considered sufficient because it vouches for the citizenship and
-identity Claims, and it is issued by a trusted authority. Thus, in this immigration
-desk analogy, the citizen is the Attester, the passport issuing agency is a Verifier,
-the passport application and identifying information (e.g., birth certificate) is the
-the Evidence, the passport is an Attestation Result, and the immigration desk is a Relying Party.
+identity Claims, and it is issued by a trusted authority.
+
+Thus, in this immigration desk analogy,
+the citizen is the Attester,
+the passport issuing agency is a Verifier,
+and the passport application and identifying information (e.g., birth certificate) is the
+the Evidence.
+The passport is an Attestation Result, and the immigration desk is a Relying Party.
 
 In this model, an Attester conveys Evidence to a Verifier, which compares
 the Evidence against its appraisal policy.
@@ -905,7 +909,7 @@ Thus, trusting a Verifier might be expressed by having the Relying
 Party store the Verifier's key or certificate in its trust anchor store, or might
 be expressed by storing the public key or certificate of an entity (e.g., a Certificate Authority) that is
 in the Verifier's certificate path.
-For example, the Relying Party can verify that the Verifier is an expected one by out of band establishment of key material, combined with a protocol like TLS to communicate.
+For example, the Relying Party can verify that the Verifier is an expected one by out-of-band establishment of key material, combined with a protocol like TLS to communicate.
 There is an assumption that between the establishment of the trusted key material and the creation of the Evidence, that the Verifier has not been compromised.
 
 For a stronger level of security, the
@@ -1032,7 +1036,7 @@ in order to bootstrap the sequence.
 See {{privacy-considerations}} for more discussion.
 
 # Conceptual Messages {#messages}
-{{dataflow}} illustrates the flow of a conceptual messages between various roles.
+{{dataflow}} illustrates the flow of conceptual messages between various roles.
 This section provides additional elaboration and implementation considerations.
 It is the responsibility of protocol specifications to define the actual data format
 and semantics of any relevant conceptual messages.
@@ -1103,7 +1107,7 @@ A more complex appraisal policy might involve using the information
 provided in the Attestation Result to compare against expected values, or to apply complex analysis
 of other information contained in the Attestation Result.
 
-Thus, Attestation Results can contain detailed information about an Attester, which can include privacy sensitive information as discussed in section {{privacy-considerations}}.
+Thus, Attestation Results can contain detailed information about an Attester, which can include privacy sensitive information as discussed in {{privacy-considerations}}.
 Unlike Evidence, which is often
 very device- and vendor-specific, Attestation Results can be vendor-neutral, if the Verifier
 has a way to generate vendor-agnostic information based on the appraisal of vendor-specific
@@ -1276,7 +1280,7 @@ when transitioning to a new epoch, such as by using a counter signed
 by the Epoch ID Distributor as the epoch ID, or by including both the current and
 previous epoch IDs in messages and/or checks, by requiring retries
 in case of mismatching epoch IDs, or by buffering incoming messages
-that might be associated with a epoch ID that the receiver has not yet
+that might be associated with an epoch ID that the receiver has not yet
 obtained.
 
 More generally, in order to prevent an appraising entity from generating false
@@ -1399,8 +1403,8 @@ Measures for a highly protected system could include specialized hardware that i
 Attestation key provisioning is the process that occurs in the factory or elsewhere to establish signing key material on the device and the validation key material off the device.
 Sometimes this procedure is referred to as personalization or customization.
 
-The keys generated in the factory, whether generated in the device or off-device by the factory
-SHOULD be generated by a Cryptographically Strong Sequence ({{?RFC4086, Section 6.2}}).
+When generating keys off-device in the factory or in the device the use of
+a Cryptographically Strong Sequence ({{?RFC4086, Section 6.2}}) needs consideration.
 
 #### Off-Device Key Generation
 
@@ -1423,7 +1427,7 @@ Commonly, a combination of some physical security measures and some cryptographi
 
 When key material is generated within a device and the secret part of it never leaves the device,
 then the problem may lessen.  For public-key cryptography, it is, by definition, not necessary to
-maintain confidentiality of the public key: however integrity of the chain of custody of the public key is necessary in order to avoid attacks where an attacker is able get a key they control endorsed.
+maintain confidentiality of the public key: however integrity of the chain of custody of the public key is necessary in order to avoid attacks where an attacker is able to get a key they control endorsed.
 
 To summarize: attestation key provisioning must ensure that only valid attestation key material is established in Attesters.
 
@@ -1471,7 +1475,7 @@ An attacker could be either external or belong to the distribution group, for
 example, if one of the Attester entities have been compromised.
 
 An attacker who is able to tamper with epoch IDs can potentially lock all the
-participants in a certain epoch of choice for ever, effectively freezing time.
+participants in a certain epoch of choice forever, effectively freezing time.
 This is problematic since it destroys the ability to ascertain freshness of
 Evidence and Attestation Results.
 
@@ -1651,7 +1655,7 @@ The advantage is that it does not require that any clocks
 are synchronized.
 As a result, the receiver of a conceptual message containing a
 timestamp cannot directly compare it to its own clock or timestamps.
-Thus we use a suffix ("a" for Attester, "v" for Verifier, and "r" for Relying Party) on the IDs below indicating which clock generated them, since times from different clocks cannot be compared.
+Thus, we use a suffix ("a" for Attester, "v" for Verifier, and "r" for Relying Party) on the IDs below indicating which clock generated them, since times from different clocks cannot be compared.
 Only the delta between two events from the sender can be used by the receiver.
 
 ~~~~ aasvg
