@@ -1403,7 +1403,7 @@ Measures for a highly protected system could include specialized hardware that i
 Attestation key provisioning is the process that occurs in the factory or elsewhere to establish signing key material on the device and the validation key material off the device.
 Sometimes this procedure is referred to as personalization or customization.
 
-When generating keys off-device in the factory or in the device the use of
+When generating keys off-device in the factory or in the device, the use of
 a Cryptographically Strong Sequence ({{?RFC4086, Section 6.2}}) needs consideration.
 
 #### Off-Device Key Generation
