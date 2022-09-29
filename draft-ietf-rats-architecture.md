@@ -907,7 +907,7 @@ in {{TCG-DICE-SIBDA}} or the symmetric mode described in
 
 Thus, trusting a Verifier might be expressed by having the Relying
 Party store the Verifier's key or certificate in its trust anchor store, or might
-be expressed by storing the public key or certificate of an entity (e.g., a Certificate Authority) that is
+be expressed by storing the public key or certificate of an entity (e.g., a Certification Authority) that is
 in the Verifier's certificate path.
 For example, the Relying Party can verify that the Verifier is an expected one by out-of-band establishment of key material, combined with a protocol like TLS to communicate.
 There is an assumption that between the establishment of the trusted key material and the creation of the Evidence, that the Verifier has not been compromised.
