@@ -1,0 +1,672 @@
+
+
+
+
+RATS Working Group                                           H. Birkholz
+Internet-Draft                                            Fraunhofer SIT
+Intended status: Informational                                 D. Thaler
+Expires: 31 July 2020                                          Microsoft
+                                                           M. Richardson
+                                                Sandelman Software Works
+                                                                N. Smith
+                                                                   Intel
+                                                         28 January 2020
+
+
+               Remote Attestation Procedures Architecture
+                  draft-ietf-rats-architecture-latest
+
+Abstract
+
+   In network protocol exchanges, it is often the case that one entity
+   (a Relying Party) requires evidence about a remote peer to assess the
+   peer's trustworthiness, and a way to appraise such evidence.  The
+   evidence is typically a set of claims about its software and hardware
+   platform.  This document describes an architecture for such remote
+   attestation procedures (RATS).
+
+Note to Readers
+
+   Discussion of this document takes place on the RATS Working Group
+   mailing list (rats@ietf.org), which is archived at
+   https://mailarchive.ietf.org/arch/browse/rats/
+   (https://mailarchive.ietf.org/arch/browse/rats/).
+
+   Source for this draft and an issue tracker can be found at
+   https://github.com/ietf-rats-wg/architecture (https://github.com/
+   ietf-rats-wg/architecture).
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+
+
+Birkholz, et al.          Expires 31 July 2020                  [Page 1]
+
+Internet-Draft              RATS Arch & Terms               January 2020
+
+
+   This Internet-Draft will expire on 31 July 2020.
+
+Copyright Notice
+
+   Copyright (c) 2020 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.  Code Components
+   extracted from this document must include Simplified BSD License text
+   as described in Section 4.e of the Trust Legal Provisions and are
+   provided without warranty as described in the Simplified BSD License.
+
+Table of Contents
+
+   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+   2.  Terminology . . . . . . . . . . . . . . . . . . . . . . . . .   3
+   3.  Reference Use Cases . . . . . . . . . . . . . . . . . . . . .   4
+   4.  Architectural Overview  . . . . . . . . . . . . . . . . . . .   4
+   5.  Topological Models  . . . . . . . . . . . . . . . . . . . . .   5
+     5.1.  Passport Model  . . . . . . . . . . . . . . . . . . . . .   5
+     5.2.  Background-Check Model  . . . . . . . . . . . . . . . . .   6
+     5.3.  Combinations  . . . . . . . . . . . . . . . . . . . . . .   7
+   6.  Two Types of Environments of an Attester  . . . . . . . . . .   8
+   7.  Trust Model . . . . . . . . . . . . . . . . . . . . . . . . .   9
+   8.  Conceptual Messages . . . . . . . . . . . . . . . . . . . . .   9
+   9.  Freshness . . . . . . . . . . . . . . . . . . . . . . . . . .  10
+   10. Privacy Considerations  . . . . . . . . . . . . . . . . . . .  10
+   11. Security Considerations . . . . . . . . . . . . . . . . . . .  10
+   12. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  11
+   13. Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  11
+   14. Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  11
+   15. Informative References  . . . . . . . . . . . . . . . . . . .  11
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  11
+
+1.  Introduction
+
+   <more text to be added here>
+
+   Remote Attestation, as used in this document, is a process by which
+   one entity (the "Attester") provides evidence about its identity and
+   state to another remote entity (the "Relying Party"), which then
+   assesses the Attester's trustworthiness for the Relying Party's own
+   purposes.
+
+
+
+
+Birkholz, et al.          Expires 31 July 2020                  [Page 2]
+
+Internet-Draft              RATS Arch & Terms               January 2020
+
+
+2.  Terminology
+
+   This document uses the following terms:
+
+   *  Appraisal Policy for Evidence: A set of rules that direct how a
+      Verifier evaluates the validity of information about an Attester.
+      Compare /security policy/ in [RFC4949].
+
+   *  Appraisal Policy for Attestation Result: A set of rules that
+      direct how a Relying Party uses the evaluation results about an
+      Attester generated by the Verifiers.  Compare /security policy/ in
+      [RFC4949].
+
+   *  Attestation Result: The evaluation results generated by a
+      Verifier, typically including information about an Attester, where
+      the Verifier vouches for the validity of the results.
+
+   *  Attester: An entity whose attributes must be evaluated in order to
+      determine whether the entity is considered trustworthy, such as
+      when deciding whether the entity is authorized to perform some
+      operation.
+
+   *  Endorsement: A secure statement that some entity (typically a
+      manufacturer) vouches for the integrity of an Attester's signing
+      capability.
+
+   *  Endorser: An entity that creates Endorsements that can be used to
+      help evaluate trustworthiness of Attesters.
+
+   *  Evidence: A set of information about an Attester that is to be
+      evaluated by a Verifier.
+
+   *  Relying Party: An entity that depends on the validity of
+      information about another entity, typically for purposes of
+      authorization.  Compare /relying party/ in [RFC4949].
+
+   *  Relying Party Owner: An entity, such as an administrator, that is
+      authorized to configure Appraisal Policy for Attestation Results
+      in a Relying Party.
+
+   *  Verifier: An entity that evaluates the validity of Evidence about
+      an Attester.
+
+   *  Verifier Owner: An entity, such as an administrator, that is
+      authorized to configure Appraisal Policy for Evidence in a
+      Verifier.
+
+
+
+
+
+Birkholz, et al.          Expires 31 July 2020                  [Page 3]
+
+Internet-Draft              RATS Arch & Terms               January 2020
+
+
+3.  Reference Use Cases
+
+   <unclear if the WG wants this section in the arch doc>
+
+4.  Architectural Overview
+
+   Figure 1 depicts the data that flows between different roles,
+   independent of protocol or use case.
+
+                 ************   ************    *****************
+                 * Endorser *   * Verifier *    * Relying Party *
+                 ************   *  Owner   *    *  Owner        *
+                       |        ************    *****************
+                       |              |                 |
+           Endorsements|              |                 |
+                       |              |Appraisal        |
+                       |              |Policy for       |
+                       |              |Evidence         | Appraisal
+                       |              |                 | Policy for
+                       |              |                 | Attestation
+                       |              |                 |  Result
+                       v              v                 |
+                     .-----------------.                |
+              .----->|     Verifier    |------.         |
+              |      '-----------------'      |         |
+              |                               |         |
+              |                    Attestation|         |
+              |                    Results    |         |
+              | Evidence                      |         |
+              |                               |         |
+              |                               v         v
+        .----------.                      .-----------------.
+        | Attester |                      | Relying Party   |
+        '----------'                      '-----------------'
+
+                       Figure 1: Conceptual Data Flow
+
+   An Attester creates Evidence that is conveyed to a Verifier.
+
+   The Verifier uses the Evidence, and any Endorsements from Endorsers,
+   by applying an Evidence Appraisal Policy to assess the
+   trustworthiness of the Attester, and generates Attestation Results
+   for use by Relying Parties.  The Evidence Appraisal Policy might be
+   obtained from an Endorser along with the Endorsements, or might be
+   obtained via some other mechanism such as being configured in the
+   Verifier by an administrator.
+
+
+
+
+
+Birkholz, et al.          Expires 31 July 2020                  [Page 4]
+
+Internet-Draft              RATS Arch & Terms               January 2020
+
+
+   The Relying Party uses Attestation Results by applying its own
+   Appraisal Policy to make application-specific decisions such as
+   authorization decisions.  The Attestation Result Appraisal Policy
+   might, for example, be configured in the Relying Party by an
+   administrator.
+
+5.  Topological Models
+
+   There are multiple possible models for communication between an
+   Attester, a Verifier, and a Relying Party.  This section includes
+   some reference models, but this is not intended to be a restrictive
+   list, and other variations may exist.
+
+5.1.  Passport Model
+
+   In this model, an Attester sends Evidence to a Verifier, which
+   compares the Evidence against its Appraisal Policy.  The Verifier
+   then gives back an Attestation Result.  If the Attestation Result was
+   a successful one, the Attester can then present the Attestation
+   Result to a Relying Party, which then compares the Attestation Result
+   against its own Appraisal Policy.
+
+   Since the resource access protocol between the Attester and Relying
+   Party includes an Attestation Result, in this model the details of
+   that protocol constrain the serialization format of the Attestation
+   Result.  The format of the Evidence on the other hand is only
+   constrained by the Attester-Verifier attestation protocol.
+
+         +-------------+
+         |             | Compare Evidence
+         |   Verifier  | against Appraisal Policy
+         |             |
+         +-------------+
+              ^    |
+      Evidence|    |Attestation
+              |    |  Result
+              |    v
+         +-------------+               +-------------+
+         |             |-------------->|             | Compare Attestation
+         |   Attester  |  Attestation  |   Relying   | Result against
+         |             |     Result    |    Party    | Appraisal Policy
+         +-------------+               +-------------+
+
+                          Figure 2: Passport Model
+
+   The passport model is so named because of its resemblance to how
+   nations issue passports to their citizens.  The nature of the
+   Evidence that an individual needs to provide to its local authority
+
+
+
+Birkholz, et al.          Expires 31 July 2020                  [Page 5]
+
+Internet-Draft              RATS Arch & Terms               January 2020
+
+
+   is specific to the country involved.  The citizen retains control of
+   the resulting passport document and presents it to other entities
+   when it needs to assert a citizenship or identity claim, such as an
+   airport immigration desk.  The passport is considered sufficient
+   because it vouches for the citizenship and identity claims, and it is
+   issued by a trusted authority.  Thus, in this immigration desk
+   analogy, the passport issuing agency is a Verifier, the passport is
+   an Attestation Result, and the immigration desk is a Relying Party.
+
+5.2.  Background-Check Model
+
+   In this model, an Attester sends Evidence to a Relying Party, which
+   simply passes it on to a Verifier.  The Verifier then compares the
+   Evidence against its Appraisal Policy, and returns an Attestation
+   Result to the Relying Party.  The Relying Party then compares the
+   Attestation Result against its own security policy.
+
+   The resource access protocol between the Attester and Relying Party
+   includes Evidence rather than an Attestation Result, but that
+   Evidence is not processed by the Relying Party.  Since the Evidence
+   is merely forwarded on to a trusted Verifier, any serialization
+   format can be used for Evidence because the Relying Party does not
+   need a parser for it.  The only requirement is that the Evidence can
+   be _encapsulated in_ the format required by the resource access
+   protocol between the Attester and Relying Party.
+
+   However, like in the Passport model, an Attestation Result is still
+   consumed by the Relying Party and so the serialization format of the
+   Attestation Result is still important.  If the Relying Party is a
+   constrained node whose purpose is to serve a given type resource
+   using a standard resource access protocol, it already needs the
+   parser(s) required by that existing protocol.  Hence, the ability to
+   let the Relying Party obtain an Attestation Result in the same
+   serialization format allows minimizing the code footprint and attack
+   surface area of the Relying Party, especially if the Relying Party is
+   a constrained node.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Birkholz, et al.          Expires 31 July 2020                  [Page 6]
+
+Internet-Draft              RATS Arch & Terms               January 2020
+
+
+                                    +-------------+
+                                    |             | Compare Evidence
+                                    |   Verifier  | against Appraisal Policy
+                                    |             |
+                                    +-------------+
+                                        ^    |
+                                Evidence|    |Attestation
+                                        |    |  Result
+                                        |    v
+      +-------------+               +-------------+
+      |             |-------------->|             | Compare Attestation
+      |   Attester  |   Evidence    |   Relying   | Result against
+      |             |               |    Party    | Appraisal Policy
+      +-------------+               +-------------+
+
+                      Figure 3: Background-Check Model
+
+   The background-check model is so named because of the resemblance of
+   how employers and volunteer organizations perform background checks.
+   When a prospective employee provides claims about education or
+   previous experience, the employer will contact the respective
+   institutions or former employers to validate the claim.  Volunteer
+   organizations often perform police background checks on volunteers in
+   order to determine the volunteer's trustworthiness.  Thus, in this
+   analogy, a prospective volunteer is an Attester, the organization is
+   the Relying Party, and a former employer or government agency that
+   issues a report is a Verifier.
+
+5.3.  Combinations
+
+   One variation of the background-check model is where the Relying
+   Party and the Verifier on the same machine, and so there is no need
+   for a protocol between the two.
+
+   It is also worth pointing out that the choice of model is generally
+   up to the Relying Party, and the same device may need to attest to
+   different Relying Parties for different use cases (e.g., a network
+   infrastructure device to gain access to the network, and then a
+   server holding confidential data to get access to that data).  As
+   such, both models may simultaneously be in use by the same device.
+
+   Figure 4 shows another example of a combination where Relying Party 1
+   uses the passport model, whereas Relying Party 2 uses an extension of
+   the background-check model.  Specifically, in addition to the basic
+   functionality shown in Figure 3, Relying Party 2 actually provides
+   the Attestation Result back to the Attester, allowing the Attester to
+   use it with other Relying Parties.  This is the model that the
+
+
+
+
+Birkholz, et al.          Expires 31 July 2020                  [Page 7]
+
+Internet-Draft              RATS Arch & Terms               January 2020
+
+
+   Trusted Application Manager plans to support in the TEEP architecture
+   [I-D.ietf-teep-architecture].
+
+         +-------------+
+         |             | Compare Evidence
+         |   Verifier  | against Appraisal Policy
+         |             |
+         +-------------+
+              ^    |
+      Evidence|    |Attestation
+              |    |  Result
+              |    v
+         +-------------+
+         |             | Compare
+         |   Relying   | Attestation Result
+         |   Party 2   | against Appraisal Policy
+         +-------------+
+              ^    |
+      Evidence|    |Attestation
+              |    |  Result
+              |    v
+         +-------------+               +-------------+
+         |             |-------------->|             | Compare Attestation
+         |   Attester  |  Attestation  |   Relying   | Result against
+         |             |     Result    |   Party 1   | Appraisal Policy
+         +-------------+               +-------------+
+
+                       Figure 4: Example Combination
+
+6.  Two Types of Environments of an Attester
+
+   An Attester consists of at least one Attesting Environment and at
+   least one Target Environment.  In some implementations, the Attesting
+   and Target Environments might be combined.  Other implementations
+   might have multiple Attesting and Target Environments.  One example
+   is a set of components in a boot sequence (e.g., ROM, firmware, OS,
+   and application) where a Target Environment is the Attesting
+   Environment for the next environment in the boot sequence.
+
+   Claims are collected from Target Environments.  That is, Attesting
+   Environments collect the raw values and the information to be
+   represented in claims.  Attesting Environments then format them
+   appropriately, and typically use key material and cryptographic
+   functions, such as signing or cipher algorithms, to create Evidence.
+   Examples of environments that can be used as Attesting Environments
+   include Trusted Execution Environments (TEE), embedded Secure
+   Elements (eSE), or Hardware Security Modules (HSM).
+
+
+
+
+Birkholz, et al.          Expires 31 July 2020                  [Page 8]
+
+Internet-Draft              RATS Arch & Terms               January 2020
+
+
+7.  Trust Model
+
+   The scope of this document is scenarios for which a Relying Party
+   trusts a Verifier that can evaluate the trustworthiness of
+   information about an Attester.  Such trust might come by the Relying
+   Party trusting the Verifier (or its public key) directly, or might
+   come by trusting an entity (e.g., a Certificate Authority) that is in
+   the Verifier's certificate chain.  The Relying Party might implicitly
+   trust a Verifier (such as in the Verifying Relying Party
+   combination).  Or, for a stronger level of security, the Relying
+   Party might require that the Verifier itself provide information
+   about itself that the Relying Party can use to evaluate the
+   trustworthiness of the Verifier before accepting its Attestation
+   Results.
+
+   In solutions following the background-check model, the Attester is
+   assumed to trust the Verifier (again, whether directly or indirectly
+   via a Certificate Authority that it trusts), since the Attester
+   relies on an Attestation Result it obtains from the Verifier, in
+   order to access resources.
+
+   The Verifier trusts (or more specifically, the Verifier's security
+   policy is written in a way that configures the Verifier to trust) a
+   manufacturer, or the manufacturer's hardware, so as to be able to
+   evaluate the trustworthiness of that manufacturer's devices.  In
+   solutions with weaker security, a Verifier might be configured to
+   implicitly trust firmware or even software (e.g., a hypervisor).
+   That is, it might evaluate the trustworthiness of an application
+   component, or operating system component or service, under the
+   assumption that information provided about it by the lower-layer
+   hypervisor or firmware is true.  A stronger level of security comes
+   when information can be vouched for by hardware or by ROM code,
+   especially if such hardware is physically resistant to hardware
+   tampering.  The component that is implicitly trusted is often
+   referred to as a Root of Trust.
+
+8.  Conceptual Messages
+
+   <this section can include content from Serialization Formats and Conceptual Messages sections from
+   draft-thaler-rats-architecture, and Role Messages content from draft-birkholz-rats-architecture>
+
+
+
+
+
+
+
+
+
+
+
+Birkholz, et al.          Expires 31 July 2020                  [Page 9]
+
+Internet-Draft              RATS Arch & Terms               January 2020
+
+
+                       Evidence           Attestation Results
+
+       .--------------.   CWT                    CWT   .-------------------.
+       |  Attester-A  |------------.      .----------->|  Relying Party V  |
+       '--------------'            v      |            `-------------------'
+       .--------------.   JWT   .------------.   JWT   .-------------------.
+       |  Attester-B  |-------->|  Verifier  |-------->|  Relying Party W  |
+       '--------------'         |            |         `-------------------'
+       .--------------.  X.509  |            |  X.509  .-------------------.
+       |  Attester-C  |-------->|            |-------->|  Relying Party X  |
+       '--------------'         |            |         `-------------------'
+       .--------------.   TPM   |            |   TPM   .-------------------.
+       |  Attester-D  |-------->|            |-------->|  Relying Party Y  |
+       '--------------'         '------------'         `-------------------'
+       .--------------.  other     ^      |     other  .-------------------.
+       |  Attester-E  |------------'      '----------->|  Relying Party Z  |
+       '--------------'                                `-------------------'
+
+      Figure 5: Multiple Attesters and Relying Parties with Different
+                                  Formats
+
+9.  Freshness
+
+   <this section can include some high-level content from draft-birkholz-rats-reference-interaction-model>
+
+10.  Privacy Considerations
+
+   The conveyance of Evidence and the resulting Attestation Results
+   reveal a great deal of information about the internal state of a
+   device.  In many cases, the whole point of the Attestation process is
+   to provide reliable information about the type of the device and the
+   firmware/software that the device is running.  This information is
+   particularly interesting to many attackers.  For example, knowing
+   that a device is running a weak version of firmware provides a way to
+   aim attacks better.
+
+   Protocols that convey Evidence or Attestation Results are responsible
+   for detailing what kinds of information are disclosed, and to whom
+   they are exposed.
+
+11.  Security Considerations
+
+   Any solution that conveys information used for security purposes,
+   whether such information is in the form of Evidence, Attestation
+   Results, or Endorsements, or Appraisal Policy, needs to support end-
+   to-end integrity protection and replay attack prevention, and often
+   also needs to support additional security protections.  For example,
+   additional means of authentication, confidentiality, integrity,
+
+
+
+Birkholz, et al.          Expires 31 July 2020                 [Page 10]
+
+Internet-Draft              RATS Arch & Terms               January 2020
+
+
+   replay, denial of service and privacy protection are needed in many
+   use cases.
+
+   To evaluate the security provided by a particular Appraisal Policy,
+   it is important to understand the strength of the Root of Trust,
+   e.g., whether it is mutable software, or firmware that is read-only
+   after boot, or immutable hardware/ROM.
+
+   It is also important that the Appraisal Policy was itself obtained
+   securely.  As such, if Appraisal Policy in a Relying Party or
+   Verifier can be configured via a network protocol, the ability to
+   attest to the health of the client providing the Appraisal Policy
+   needs to be considered.
+
+12.  IANA Considerations
+
+   This document does not require any actions by IANA.
+
+13.  Acknowledgments
+
+   Special thanks go to David Wooten, Joerg Borchert, Hannes Tschofenig,
+   Laurence Lundblade, Diego Lopez, Jessica Fitzgerald-McKay, Frank Xia,
+   and Nancy Cam-Winget.
+
+14.  Contributors
+
+   Thomas Hardjono created older versions of the terminology section in
+   collaboration with Ned Smith.  Eric Voit provided the conceptual
+   separation between Attestation Provision Flows and Attestation
+   Evidence Flows.  Monty Wisemen created the content structure of the
+   first three architecture drafts.  Carsten Bormann provided many of
+   the motivational building blocks with respect to the Internet Threat
+   Model.
+
+15.  Informative References
+
+   [I-D.ietf-teep-architecture]
+              Pei, M., Tschofenig, H., Thaler, D., and D. Wheeler,
+              "Trusted Execution Environment Provisioning (TEEP)
+              Architecture", Work in Progress, Internet-Draft, draft-
+              ietf-teep-architecture-05, 12 December 2019,
+              <http://www.ietf.org/internet-drafts/draft-ietf-teep-
+              architecture-05.txt>.
+
+Authors' Addresses
+
+   Henk Birkholz
+   Fraunhofer SIT
+
+
+
+Birkholz, et al.          Expires 31 July 2020                 [Page 11]
+
+Internet-Draft              RATS Arch & Terms               January 2020
+
+
+   Rheinstrasse 75
+   64295 Darmstadt
+   Germany
+
+   Email: henk.birkholz@sit.fraunhofer.de
+
+
+   Dave Thaler
+   Microsoft
+   United States of America
+
+   Email: dthaler@microsoft.com
+
+
+   Michael Richardson
+   Sandelman Software Works
+   Canada
+
+   Email: mcr+ietf@sandelman.ca
+
+
+   Ned Smith
+   Intel Corporation
+   United States of America
+
+   Email: ned.smith@intel.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Birkholz, et al.          Expires 31 July 2020                 [Page 12]
