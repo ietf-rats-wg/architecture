@@ -11,7 +11,7 @@
 .------------------------------------.    |
 |                                    |    |
 |   .---------------------------.    |    |
-|   | Kernel                    |    |    |
+|   | Kernel(C)                 |    |    |
 |   |                           |    |    | Layered
 |   |   Target                  |    |    | Evidence
 |   | Environment               |    |    |   for
@@ -19,7 +19,7 @@
 |           Collect |                |    |   and
 |           Claims  |                |    | kernel
 |   .---------------|-----------.    |    |
-|   | Bootloader    v           |    |    |
+|   | Bootloader(B) v           |    |    |
 |   |             .-----------. |    |    |
 |   |   Target    | Attesting | |    |    |
 |   | Environment |Environment+-----------'
@@ -30,7 +30,7 @@
 |          Collect |  | Evidence for |
 |          Claims  v  | bootloader   |
 |   .-----------------+---------.    |
-|   | ROM                       |    |
+|   | ROM(A)                    |    |
 |   |                           |    |
 |   |               Attesting   |    |
 |   |              Environment  |    |
