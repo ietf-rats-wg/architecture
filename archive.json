@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-09-30T10:28:17.724040+00:00",
+  "timestamp": "2022-11-17T15:59:14.297583+00:00",
   "repo": "ietf-rats-wg/architecture",
   "labels": [
     {
@@ -6684,7 +6684,7 @@
       ],
       "body": "As per discussion at: https://mailarchive.ietf.org/arch/msg/rats/REAexJRlAPnRCofS--8r8Zhcxgo/  consider replacing the chassis example with an a mobile example.\r\n",
       "createdAt": "2022-08-27T13:04:13Z",
-      "updatedAt": "2022-09-28T12:17:38Z",
+      "updatedAt": "2022-10-11T07:04:55Z",
       "closedAt": null,
       "comments": [
         {
@@ -6714,6 +6714,13 @@
           "body": "I really like the Chassis example.   It is a real concern for routers as someone can open the backplane and intercept/snoop/etc. intra-device communications.",
           "createdAt": "2022-09-28T12:17:38Z",
           "updatedAt": "2022-09-28T12:17:38Z"
+        },
+        {
+          "author": "mcr",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The suggestion about replacing the chassis example was not well taken to me.\nI did not see any support for it, and my impression is that the AD did not\nagree with the reviewer comments.\n\nWhile it is true that the chassis backplane might be proprietary, and one\nmight think that it's not needing standardization, because the (signed) Evidence is\nactually being collected and transmitted off-machine to a Verifier, we do\nneed standardization.\n\nAnd your point that the chassis can be a significant point of attack,\nparticularly if such an attack allows the owner to violate the system licenses.\n",
+          "createdAt": "2022-10-11T07:04:55Z",
+          "updatedAt": "2022-10-11T07:04:55Z"
         }
       ]
     },
@@ -6804,6 +6811,37 @@
       "updatedAt": "2022-09-27T17:39:11Z",
       "closedAt": "2022-09-27T17:39:11Z",
       "comments": []
+    },
+    {
+      "number": 440,
+      "id": "I_kwDODT6R7s5WiwOy",
+      "title": "Provide justification as to why definition of roles should supersede previous industry-accepted definitions",
+      "url": "https://github.com/ietf-rats-wg/architecture/issues/440",
+      "state": "OPEN",
+      "author": "gmandyam",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "In https://datatracker.ietf.org/doc/html/draft-ietf-rats-architecture#section-4.1, roles of RP and verifier are defined.  RP can only consume attestation results, while verifier can consume attestation evidence.  This does not align with the preceding FIDO/Webauthn specification, which enumerates verification as one of the required RP operations:  see https://www.w3.org/TR/webauthn-2/#sctn-rp-operations.  \r\n\r\nThe FIDO specification precedes the RATS Architecture document.  Therefore the architecture document should contain a detailed justification as to why there is not alignment between the two documents in terms of RP role.",
+      "createdAt": "2022-11-16T16:56:07Z",
+      "updatedAt": "2022-11-16T17:19:02Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "thomas-fossati",
+          "authorAssociation": "COLLABORATOR",
+          "body": "The way I reconcile this is by interpreting FIDO's RP as an _entity_ combining RATS's relying party (i.e., the RP JS app) and verifier (i.e., the \"RP Server\") _roles_.",
+          "createdAt": "2022-11-16T17:11:38Z",
+          "updatedAt": "2022-11-16T17:11:38Z"
+        },
+        {
+          "author": "gmandyam",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": ">The way I reconcile this is by interpreting FIDO's RP as an entity combining RATS's relying party (i.e., the RP JS app) and verifier (i.e., the \"RP Server\") roles.\r\n\r\nAgreed that this is how one would reconcile the roles definitions.  \r\n\r\nBut that RATS Architecture still lacks justification as to why it is even necessary to reconcile.  FIDO was the earlier specification and also had working interoperable implementations before the WG was chartered.  The RATS Architecture document should provide a full justification as to why it was necessary to distinguish between the roles of RP and verifier, and attestation results and evidence. It should also state when it is acceptable to use the FIDO definition of RP role and operations, and when the RATS arch. definition should be used.  The current draft lacks this guidance.",
+          "createdAt": "2022-11-16T17:19:01Z",
+          "updatedAt": "2022-11-16T17:19:01Z"
+        }
+      ]
     }
   ],
   "pulls": [
