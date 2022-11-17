@@ -5,14 +5,14 @@
 RATS Working Group                                           H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Informational                                 D. Thaler
-Expires: 3 April 2023                                          Microsoft
+Expires: 21 May 2023                                           Microsoft
                                                            M. Richardson
                                                 Sandelman Software Works
                                                                 N. Smith
                                                                    Intel
                                                                   W. Pan
                                                      Huawei Technologies
-                                                       30 September 2022
+                                                        17 November 2022
 
 
                Remote Attestation Procedures Architecture
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 April 2023.
+   This Internet-Draft will expire on 21 May 2023.
 
 Copyright Notice
 
@@ -523,7 +523,7 @@ Table of Contents
           .------------------------------------.    |
           |                                    |    |
           |   .---------------------------.    |    |
-          |   | Kernel                    |    |    |
+          |   | Kernel(C)                 |    |    |
           |   |                           |    |    | Layered
           |   |   Target                  |    |    | Evidence
           |   | Environment               |    |    |   for
@@ -531,7 +531,7 @@ Table of Contents
           |           Collect |                |    |   and
           |           Claims  |                |    | kernel
           |   .---------------|-----------.    |    |
-          |   | Bootloader    v           |    |    |
+          |   | Bootloader(B) v           |    |    |
           |   |             .-----------. |    |    |
           |   |   Target    | Attesting | |    |    |
           |   | Environment |Environment+-----------'
@@ -542,7 +542,7 @@ Table of Contents
           |          Collect |  | Evidence for |
           |          Claims  v  | bootloader   |
           |   .-----------------+---------.    |
-          |   | ROM                       |    |
+          |   | ROM(A)                    |    |
           |   |                           |    |
           |   |               Attesting   |    |
           |   |              Environment  |    |
@@ -1956,9 +1956,9 @@ Table of Contents
               Pei, M., Tschofenig, H., Thaler, D., and D. M. Wheeler,
               "Trusted Execution Environment Provisioning (TEEP)
               Architecture", Work in Progress, Internet-Draft, draft-
-              ietf-teep-architecture-18, 11 July 2022,
+              ietf-teep-architecture-19, 24 October 2022,
               <https://datatracker.ietf.org/doc/html/draft-ietf-teep-
-              architecture-18>.
+              architecture-19>.
 
    [I-D.tschofenig-rats-psa-token]
               Tschofenig, H., Frost, S., Brossard, M., Shaw, A. L., and
