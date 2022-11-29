@@ -5,14 +5,14 @@
 RATS Working Group                                           H. Birkholz
 Internet-Draft                                            Fraunhofer SIT
 Intended status: Informational                                 D. Thaler
-Expires: 21 May 2023                                           Microsoft
+Expires: 2 June 2023                                           Microsoft
                                                            M. Richardson
                                                 Sandelman Software Works
                                                                 N. Smith
                                                                    Intel
                                                                   W. Pan
                                                      Huawei Technologies
-                                                        17 November 2022
+                                                        29 November 2022
 
 
                Remote Attestation Procedures Architecture
@@ -54,7 +54,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 May 2023.
+   This Internet-Draft will expire on 2 June 2023.
 
 Copyright Notice
 
@@ -520,35 +520,35 @@ Table of Contents
               | Provider(s) | ROM, bootloader, |          |
               '-------------'    and kernel    '----------'
                                                     ^
-          .------------------------------------.    |
-          |                                    |    |
-          |   .---------------------------.    |    |
-          |   | Kernel(C)                 |    |    |
-          |   |                           |    |    | Layered
-          |   |   Target                  |    |    | Evidence
-          |   | Environment               |    |    |   for
-          |   '---------------+-----------'    |    | bootloader
-          |           Collect |                |    |   and
-          |           Claims  |                |    | kernel
-          |   .---------------|-----------.    |    |
-          |   | Bootloader(B) v           |    |    |
-          |   |             .-----------. |    |    |
-          |   |   Target    | Attesting | |    |    |
-          |   | Environment |Environment+-----------'
-          |   |             |           | |    |
-          |   |             '-----------' |    |
-          |   |                 ^         |    |
-          |   '--------------+--|---------'    |
-          |          Collect |  | Evidence for |
-          |          Claims  v  | bootloader   |
-          |   .-----------------+---------.    |
-          |   | ROM(A)                    |    |
-          |   |                           |    |
-          |   |               Attesting   |    |
-          |   |              Environment  |    |
-          |   '---------------------------'    |
-          |                                    |
-          '------------------------------------'
+          .-------------------------------------.    |
+          |                                     |    |
+          |   .----------------------------.    |    |
+          |   | Kernel(C)                  |    |    |
+          |   |                            |    |    | Layered
+          |   |   Target                   |    |    | Evidence
+          |   | Environment                |    |    |   for
+          |   '----------------+-----------'    |    | bootloader
+          |            Collect |                |    |   and
+          |            Claims  |                |    | kernel
+          |   .----------------|-----------.    |    |
+          |   | Bootloader(B)  v           |    |    |
+          |   |              .-----------. |    |    |
+          |   |   Target     | Attesting | |    |    |
+          |   | Environment  |Environment+-----------'
+          |   |              |           | |    |
+          |   |              '-----------' |    |
+          |   |                  ^         |    |
+          |   '---------------+--|---------'    |
+          |           Collect |  | Evidence for |
+          |           Claims  v  | bootloader   |
+          |   .------------------+---------.    |
+          |   | ROM(A)                     |    |
+          |   |                            |    |
+          |   |                Attesting   |    |
+          |   |               Environment  |    |
+          |   '----------------------------'    |
+          |                                     |
+          '-------------------------------------'
 
                          Figure 3: Layered Attester
 
