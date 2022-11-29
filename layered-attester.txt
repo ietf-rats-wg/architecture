@@ -8,32 +8,32 @@
     | Provider(s) | ROM, bootloader, |          |
     '-------------'    and kernel    '----------'
                                           ^
-.------------------------------------.    |
-|                                    |    |
-|   .---------------------------.    |    |
-|   | Kernel(C)                 |    |    |
-|   |                           |    |    | Layered
-|   |   Target                  |    |    | Evidence
-|   | Environment               |    |    |   for
-|   '---------------+-----------'    |    | bootloader
-|           Collect |                |    |   and
-|           Claims  |                |    | kernel
-|   .---------------|-----------.    |    |
-|   | Bootloader(B) v           |    |    |
-|   |             .-----------. |    |    |
-|   |   Target    | Attesting | |    |    |
-|   | Environment |Environment+-----------'
-|   |             |           | |    |
-|   |             '-----------' |    |
-|   |                 ^         |    |
-|   '--------------+--|---------'    |
-|          Collect |  | Evidence for |
-|          Claims  v  | bootloader   |
-|   .-----------------+---------.    |
-|   | ROM(A)                    |    |
-|   |                           |    |
-|   |               Attesting   |    |
-|   |              Environment  |    |
-|   '---------------------------'    |
-|                                    |
-'------------------------------------'
+.-------------------------------------.    |
+|                                     |    |
+|   .----------------------------.    |    |
+|   | Kernel(C)                  |    |    |
+|   |                            |    |    | Layered
+|   |   Target                   |    |    | Evidence
+|   | Environment                |    |    |   for
+|   '----------------+-----------'    |    | bootloader
+|            Collect |                |    |   and
+|            Claims  |                |    | kernel
+|   .----------------|-----------.    |    |
+|   | Bootloader(B)  v           |    |    |
+|   |              .-----------. |    |    |
+|   |   Target     | Attesting | |    |    |
+|   | Environment  |Environment+-----------'
+|   |              |           | |    |
+|   |              '-----------' |    |
+|   |                  ^         |    |
+|   '---------------+--|---------'    |
+|           Collect |  | Evidence for |
+|           Claims  v  | bootloader   |
+|   .------------------+---------.    |
+|   | ROM(A)                     |    |
+|   |                            |    |
+|   |                Attesting   |    |
+|   |               Environment  |    |
+|   '----------------------------'    |
+|                                     |
+'-------------------------------------'
