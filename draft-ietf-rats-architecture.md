@@ -626,6 +626,8 @@ Reference Value Provider:
 
 : Produces: Reference Values
 
+Note that the roles defined in this section are only applicable to the reference architecture(s) provided in this document.  Other reference architectures exist for remote attestation in which the roles may be defined differently.  For instance, as per Section 7 of {{WebAuthN}} the Relying Party is expected to serve in the role of verifier of an "attestation object".  The attestation object includes an "attestation statement" which encompasses what in this document is referred to as "evidence".
+
 ## Artifacts
 
 Claim:
